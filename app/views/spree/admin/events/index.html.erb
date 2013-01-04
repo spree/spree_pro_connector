@@ -1,0 +1,11 @@
+<%= render :partial => 'spree/admin/shared/order_tabs', :locals => { :current => 'Events' } %>
+
+<% content_for :page_title do %>
+  <i class="icon-arrow-right"></i> <%= t(:order_events) %>
+<% end %>
+
+<div data-hook="order_events_iframe_container" class="order_events_iframe_container">
+  <iframe src="http://augury-admin.dev/events?store_id=<%= Spree::Config.store_id %>&order_number=<%= @order.number %>&embed=1&auth_token=eosHWdDzTyE3V74zppak" class="order_events_iframe" scrolling="no"></iframe>
+</div>
+
+<%= button_link_to t(:continue), admin_orders_url, :icon => 'icon-arrow-right' %>
