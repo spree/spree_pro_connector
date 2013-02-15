@@ -5,7 +5,7 @@
 <% end %>
 
 <div data-hook="order_events_iframe_container" class="order_events_iframe_container">
-  <iframe src="http://augury-admin.dev/events?store_id=<%= Spree::Config.store_id %>&order_number=<%= @order.number %>&embed=1&auth_token=eosHWdDzTyE3V74zppak" class="order_events_iframe" scrolling="no"></iframe>
+	<iframe width="100%" src="http://augury-admin.dev/events/embedded?store_id=<%= Spree::Config.store_id %>&order_number=<%= @order.number %>&auth_token=<%= Spree::Config.pro_api_key %>" class="order_events_iframe" scrolling="no"></iframe>
 </div>
 
-<%= button_link_to t(:continue), admin_orders_url, :icon => 'icon-arrow-right' %>
+<%= button_link_to t(:continue), admin_orders_url %>
