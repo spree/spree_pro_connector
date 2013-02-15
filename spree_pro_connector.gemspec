@@ -3,8 +3,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_pro_connector'
   s.version     = '1.3.0'
-  s.summary     = 'TODO: Add gem summary here'
-  s.description = 'TODO: Add (optional) gem description here'
+  s.summary     = 'Integrator with Spree Pro'
+  s.description = 'Integrator with Spreecommerce.com pro product'
   s.required_ruby_version = '>= 1.8.7'
 
   s.author      = 'Sean Schofield'
