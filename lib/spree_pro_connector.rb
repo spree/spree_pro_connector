@@ -1,2 +1,2 @@
-require 'spree_core'
+require 'spree'
 require 'spree_pro_connector/engine'

@@ -1,4 +1,4 @@
-Spree::Api::V1::VariantsController.class_eval do
+Spree::Api::VariantsController.class_eval do
   helper_method :variant_attributes
 
   def index

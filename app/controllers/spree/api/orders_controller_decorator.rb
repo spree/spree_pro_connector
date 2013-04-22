@@ -1,4 +1,4 @@
-Spree::Api::V1::OrdersController.class_eval do
+Spree::Api::OrdersController.class_eval do
   helper_method :variant_attributes, :order_attributes
 
   private
