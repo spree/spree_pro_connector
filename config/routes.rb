@@ -4,4 +4,8 @@ Spree::Core::Engine.routes.draw do
       resources :events, :only => :index
     end
   end
+
+  namespace :api, :defaults => { :format => 'json' } do
+    get :integrator, :to => 'integrator#index'
+  end
 end

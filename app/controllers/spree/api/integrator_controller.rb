@@ -4,7 +4,7 @@ module Spree
       respond_to :json
 
       def index
-        @since = params[:since]
+        @since = params[:since] || 1.day.ago
         @orders = orders(@since)
         @count = @orders.count
       end
