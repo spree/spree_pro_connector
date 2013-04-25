@@ -7,5 +7,6 @@ Spree::Core::Engine.routes.draw do
 
   namespace :api, :defaults => { :format => 'json' } do
     get :integrator, :to => 'integrator#index'
+    post 'integrator/add_stock', :to => 'integrator#add_stock'
   end
 end
