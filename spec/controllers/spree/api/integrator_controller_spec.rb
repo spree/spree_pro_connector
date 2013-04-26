@@ -14,14 +14,5 @@ module Spree
       json_response['count'].should eq 1
       json_response['orders'].first['number'].should eq order.number
     end
-
-    it 'adds stock for a variant' do
-      variant = create(:variant, :count_on_hand => 10)
-      api_post :add_stock, :variant_id => variant.id, :quantity => 10
-      variant.reload
-      variant.count_on_hand.should eq 20
-
-      json_response['count_on_hand'].should eq 20
-    end
   end
 end
