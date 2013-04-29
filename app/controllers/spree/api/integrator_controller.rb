@@ -13,7 +13,8 @@ module Spree
       def orders(since)
         Spree::Order.complete
                     .ransack(:updated_at_gteq => since).result
-                    .page(params[:page]).per(params[:per_page])
+                    .page(params[:orders_page])
+                    .per(params[:orders_per_page])
       end
     end
   end
