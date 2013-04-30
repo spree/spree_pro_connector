@@ -17,6 +17,7 @@ module Spree
                     .ransack(:updated_at_gteq => since).result
                     .page(params[:orders_page])
                     .per(params[:orders_per_page])
+                    .order('updated_at ASC')
       end
 
       def variant_attributes
