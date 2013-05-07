@@ -52,7 +52,9 @@ module Spree
                       stock_transfers_page: 1,
                       stock_transfers_per_page: 1
 
-      json_response['stock_transfers']['page'].first['destination_location']['name'].should eq 'DEST101'
+      transfer = json_response['stock_transfers']['page'].first
+      transfer['destination_location']['name'].should eq 'DEST101'
+      transfer['destination_movements'].first['quantity'].should eq 1
     end
   end
 end

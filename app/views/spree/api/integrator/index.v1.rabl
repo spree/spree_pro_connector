@@ -51,10 +51,7 @@ child(:stock_transfers => :stock_transfers) do
     end
 
     child :source_movements => :source_movements do
-      attributes *stock_movement_attributes
-      child :stock_item do
-        extends "spree/api/stock_items/show"
-      end
+      extends "spree/api/stock_movements/show"
     end
 
     child :destination_location => :destination_location do
@@ -63,10 +60,7 @@ child(:stock_transfers => :stock_transfers) do
     end
 
     child :destination_movements => :destination_movements do
-      attributes *stock_movement_attributes
-      child :stock_item do
-        extends "spree/api/stock_items/show"
-      end
+      extends "spree/api/stock_movements/show"
     end
   end
 
