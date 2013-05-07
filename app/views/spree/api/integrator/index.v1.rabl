@@ -40,3 +40,37 @@ child(:orders => :orders) do
   node(:current_page) { params[:orders_page] || 1 }
   node(:pages) { @orders.num_pages }
 end
+
+child(:stock_transfers => :stock_transfers) do
+  child(@stock_transfers => :page) do
+    attributes *stock_transfer_attributes
+
+    child :source_location => :source_location do
+      attributes :name
+      extends "spree/api/addresses/show"
+    end
+
+    child :source_movements => :source_movements do
+      attributes *stock_movement_attributes
+      child :stock_item do
+        extends "spree/api/stock_items/show"
+      end
+    end
+
+    child :destination_location => :destination_location do
+      attributes :name
+      extends "spree/api/addresses/show"
+    end
+
+    child :destination_movements => :destination_movements do
+      attributes *stock_movement_attributes
+      child :stock_item do
+        extends "spree/api/stock_items/show"
+      end
+    end
+  end
+
+  node(:count) { @stock_transfers.count }
+  node(:current_page) { params[:stock_transfers_page] || 1 }
+  node(:pages) { @stock_transfers.num_pages }
+end

@@ -8,7 +8,7 @@ module Spree
       stub_authentication!
     end
 
-    it 'gets everything changed since' do
+    it 'gets orders changed since' do
       order = create(:completed_order_with_totals)
       Order.update_all(:updated_at => 2.days.ago)
 
@@ -24,6 +24,35 @@ module Spree
       json_response['orders']['page'].first.should have_key('bill_address')
       json_response['orders']['page'].first.should have_key('payments')
       json_response['orders']['page'].first.should have_key('credit_cards')
+    end
+
+    it 'gets stock_transfers changed since' do
+      source = create(:stock_location)
+      destination = create(:stock_location_with_items, :name => 'DEST101')
+      stock_transfer = StockTransfer.create do |transfer|
+        transfer.source_location_id = source.id
+        transfer.destination_location_id = destination.id
+        transfer.reference_number = 'PO 666'
+      end
+      StockTransfer.update_all(:updated_at => 2.days.ago)
+
+      StockMovement.create do |movement|
+        movement.stock_item = source.stock_items.first
+        movement.quantity = -1
+        movement.originator = stock_transfer
+      end
+
+      StockMovement.create do |movement|
+        movement.stock_item = destination.stock_items.first
+        movement.quantity = 1
+        movement.originator = stock_transfer
+      end
+
+      api_get :index, since: 3.days.ago.utc.to_s,
+                      stock_transfers_page: 1,
+                      stock_transfers_per_page: 1
+
+      json_response['stock_transfers']['page'].first['destination_location']['name'].should eq 'DEST101'
     end
   end
 end
