@@ -3,6 +3,8 @@ Spree::Core::Engine.routes.draw do
     resources :orders do
       resources :events, :only => :index
     end
+
+    resource :integration
   end
 
   namespace :api, :defaults => { :format => 'json' } do
