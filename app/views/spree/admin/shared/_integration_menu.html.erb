@@ -1,0 +1,12 @@
+<% content_for :sidebar_title do %>
+  <%= Spree.t(:integration) %>
+<% end %>
+
+<% content_for :sidebar do %>
+  <nav class="menu">
+    <ul class="sidebar" data-hook="admin_configurations_sidebar_menu">
+      <%= configurations_sidebar_menu_item Spree.t(:overview), admin_integration_path %>
+      <%= configurations_sidebar_menu_item Spree.t(:endpoint_testing), admin_trackers_path %>
+    </ul>
+  </nav>
+<% end %>
