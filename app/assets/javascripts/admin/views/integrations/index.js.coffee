@@ -1,9 +1,7 @@
 Augury.Views.Integrations.Index = Backbone.View.extend(
-  initialize: (data) ->
-    @integrations = data.integrations
+  initialize: ->
 
   render: ->
-    console.log(@integrations)
-    @$el.html JST["admin/templates/integrations/index"](integrations: @integrations)
+    @$el.html JST["admin/templates/integrations/index"](integrations: @collection)
     this
 )
