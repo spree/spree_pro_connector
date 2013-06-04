@@ -8,12 +8,13 @@ window.Augury =
     @Routers._active['integrations'] = new this.Routers.Integrations()
 
     @handle_link_clicks()
+    @store_id = $("#integration_main").data("store-id")
     Backbone.history.start pushState: true, root: '/admin/integration/'
 
   Models: {}
   Collections: {}
   Routers: { _active: {} }
-  Views: { Home: {}, Integrations: {} }
+  Views: { Home: {}, Integrations: {}, Registrations: {} }
 
   handle_link_clicks: ->
     $(document).on "click", "a[href^='/']", (event) ->

@@ -1,0 +1,3 @@
+<h2>Registrations</h2>
+
+<p>Here's the complete list of registrations (<%= @registrations.size() %>).</p>

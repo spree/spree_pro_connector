@@ -10,7 +10,7 @@
     <%= button_link_to Spree.t(:register), admin_integration_register_path, :icon => 'icon-pencil' %>
   </div>
 <% else %>
-  <div id="integration_main" class="row">
+  <div id="integration_main" class="row" data-store-id="<%= Spree::Config[:store_id] %>">
     <!-- Backbone app renders here -->
   </div>
   <script type="text/javascript">
