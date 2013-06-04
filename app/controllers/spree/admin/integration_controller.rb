@@ -2,7 +2,7 @@ module Spree
   module Admin
     class IntegrationController < Spree::Admin::BaseController
       include HTTParty
-      base_uri 'http://augury-admin.dev/api'
+      base_uri 'http://augury.dev/api'
 
       def register
         email = 'integrator@spreecommerce.com'

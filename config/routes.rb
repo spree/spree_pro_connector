@@ -6,6 +6,7 @@ Spree::Core::Engine.routes.draw do
 
     match 'integration' => 'integration#show'
     match 'integration/register' => 'integration#register'
+    match 'integration/*backbone' => 'integration#show'
   end
 
   namespace :api, :defaults => { :format => 'json' } do

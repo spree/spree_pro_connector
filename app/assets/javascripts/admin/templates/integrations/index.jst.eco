@@ -1,0 +1,5 @@
+
+<h2>Services</h2>
+
+<p>Here's the complete list of available services (<%= integrations.size() %>).</p>
+

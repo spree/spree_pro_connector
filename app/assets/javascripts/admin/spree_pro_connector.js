@@ -1,6 +1,6 @@
 //= require underscore
 //= require backbone
-//= require integration
+//= require admin/augury
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./routers
