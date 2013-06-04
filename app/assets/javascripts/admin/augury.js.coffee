@@ -2,7 +2,8 @@ window.Augury =
   init: ->
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       options.url = "http://aug-stg1.spree.mx/api#{options.url}"
-
+      options.xhrFields = withCredentials: true
+      
     @Routers._active['home'] = new this.Routers.Home()
     @Routers._active['integrations'] = new this.Routers.Integrations()
 
