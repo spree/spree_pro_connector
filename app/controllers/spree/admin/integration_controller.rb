@@ -1,9 +1,6 @@
 module Spree
   module Admin
     class IntegrationController < Spree::Admin::BaseController
-      include HTTParty
-      base_uri 'http://augury.dev/api'
-
       def register
         email = 'integrator@spreecommerce.com'
         if user = Spree::User.where('email' => email).first
@@ -24,7 +21,7 @@ module Spree
             body: {
               signup: {
                 name: Spree::Config[:site_name],
-                url: request.url,
+                url: "http://#{request.host_with_port}/api",
                 version: Spree.version,
                 api_key: user.spree_api_key,
                 email: email,
@@ -32,10 +29,13 @@ module Spree
             }
           }
 
-          response = self.class.post('/signups.json', options)
+          response = HTTParty.post('http://augury-admin.dev/api/signups.json', options)
           if response.code == 201
             Spree::Config[:store_id] = response["store_id"]
             Spree::Config[:pro_api_key] = response["auth_token"]
+          else
+            flash[:error] = "We're unable to complete your registration at this time
+              , please try again later."
           end
         end
 
