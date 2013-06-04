@@ -7,7 +7,7 @@ Augury.Routers.Integrations = Backbone.Router.extend(
       error: (a,b,c,d) ->
         console.log('err', a,b,c,d)
       success: (integrations, response, options) ->
-        view = new Augury.Views.Integrations.Index(collection: integrations)
+        view = new Augury.Views.Integrations.Index(integrations: integrations)
         $("#integration_main").html view.render().el
         integrations
 )
