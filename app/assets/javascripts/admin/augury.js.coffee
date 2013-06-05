@@ -3,12 +3,14 @@ window.Augury =
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       options.url = "http://aug-stg1.spree.mx/api#{options.url}"
       options.xhrFields = withCredentials: true
-      
+
     @Routers._active['home'] = new this.Routers.Home()
     @Routers._active['integrations'] = new this.Routers.Integrations()
 
     @handle_link_clicks()
+
     @store_id = $("#integration_main").data("store-id")
+
     Backbone.history.start pushState: true, root: '/admin/integration/'
 
   Models: {}
@@ -17,7 +19,7 @@ window.Augury =
   Views: { Home: {}, Integrations: {}, Registrations: {} }
 
   handle_link_clicks: ->
-    $(document).on "click", "a[href^='/']", (event) ->
+    $(document).on "click", "a[href^='/admin/integration']", (event) ->
 
       href = $(event.currentTarget).attr('href')
 

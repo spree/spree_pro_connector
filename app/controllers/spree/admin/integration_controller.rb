@@ -29,7 +29,8 @@ module Spree
             }
           }
 
-          response = HTTParty.post('http://augury-admin.dev/api/signups.json', options)
+          response = HTTParty.post("#{Spree::Config.pro_url}/api/signups.json", options)
+
           if response.code == 201
             Spree::Config[:store_id] = response["store_id"]
             Spree::Config[:pro_api_key] = response["auth_token"]

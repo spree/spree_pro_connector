@@ -3,3 +3,31 @@
 
 <p>Here's the complete list of available services (<%= @integrations.size() %>).</p>
 
+<table class="index">
+  <colgroup>
+    <col style="width: 30%" />
+    <col style="width: 15%" />
+    <col style="width: 50%" />
+    <col style="width: 5%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>URL</th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for integration in @integrations.models: %>
+      <tr>
+        <td><%= integration.get('name') %></td>
+        <td><%= integration.get('category') %></td>
+        <td><%= integration.get('url') %></td>
+        <td class="actions">
+          <a href="#" class="edit icon_link with-tip icon-link no-text" title="Use" data-action="use"></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
