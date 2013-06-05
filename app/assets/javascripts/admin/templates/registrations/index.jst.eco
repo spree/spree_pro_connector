@@ -1,3 +1,32 @@
 <h2>Registrations</h2>
 
 <p>Here's the complete list of registrations (<%= @registrations.size() %>).</p>
+
+<table class="index">
+  <colgroup>
+    <col style="width: 30%" />
+    <col style="width: 15%" />
+    <col style="width: 50%" />
+    <col style="width: 5%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>URL</th>
+      <th>Keys</th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for registration in @registrations.models: %>
+      <tr>
+        <td><%= registration.get('name') %></td>
+        <td><%= registration.get('url') %></td>
+        <td><%= registration.get('keys') %></td>
+        <td class="actions">
+          <a href="#" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
