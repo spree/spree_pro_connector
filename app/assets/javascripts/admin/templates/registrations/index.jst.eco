@@ -24,7 +24,7 @@
         <td><%= registration.get('url') %></td>
         <td><%= registration.get('keys') %></td>
         <td class="actions">
-          <a href="#" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
+          <a href="/admin/integration/registrations/<%= registration.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
         </td>
       </tr>
     <% end %>

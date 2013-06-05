@@ -4,12 +4,13 @@ window.Augury =
       options.url = "http://aug-stg1.spree.mx/api#{options.url}"
       options.xhrFields = withCredentials: true
 
+    @store_id = $("#integration_main").data("store-id")
+
     @Routers._active['home'] = new this.Routers.Home()
     @Routers._active['integrations'] = new this.Routers.Integrations()
+    @Routers._active['registrations'] = new this.Routers.Registrations()
 
     @handle_link_clicks()
-
-    @store_id = $("#integration_main").data("store-id")
 
     Backbone.history.start pushState: true, root: '/admin/integration/'
 

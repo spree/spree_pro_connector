@@ -1,3 +1,4 @@
 Augury.Models.Registration = Backbone.Model.extend(
-  urlRoot: '/registrations'
+  initialize: ->
+    @urlRoot = "/stores/#{Augury.store_id}/registrations"
 )
