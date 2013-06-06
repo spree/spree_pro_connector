@@ -12,6 +12,7 @@ window.Augury =
 
     @handle_link_clicks()
 
+    Backbone.emulateHTTP = true
     Backbone.history.start pushState: true, root: '/admin/integration/'
 
   Models: {}

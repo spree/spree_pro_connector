@@ -16,6 +16,14 @@
     </div>
     <div class="omega six columns">
       <div class="field">
+        <label for="registration-token">Token</label>
+        <input class="fullwidth" type="text" id="registration-token" name="token" value="<%= @registration.get('token') %>" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="alpha six columns">
+      <div class="field">
         <label for="registration-keys">Keys</label>
         <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
           <% for key in @registration.get('keys'): %>
@@ -24,17 +32,40 @@
         </select>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="alpha six columns">
+    <div class="omega six columns">
       <div class="field">
-        <label for="registration-parameter">Parameters</label>
+        <label for="registration-parameters">Parameters</label>
         <select class="select2 fullwidth" id="registration-parameters" name="parameters" multiple="true">
-          <% for parameter in @registration.get('parameters'): %>
-            <option value="<%= parameter %>"><%= parameter %></option>
+          <% for parameter in @parameters.models: %>
+            <option value="<%= parameter.get('id') %>"><%= parameter.get('name') %></option>
           <% end %>
         </select>
       </div>
     </div>
+  </div>
+  <div class="row event-keys">
+    <h3>Event Keys</h3>
+    <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
+      <div class="row">
+        <fieldset>
+          <div class="alpha six columns">
+            <div class="field">
+              <label for="name">Name</label>
+              <input class="fullwidth" type="text" id="name" value="<%= eventKeyName %>" />
+            </div>
+          </div>
+          <div class="omega six columns">
+            <div class="field">
+              <label for="path">Path</label>
+              <input class="fullwidth" type="text" id="path" value="<%= eventKeyPath %>" />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <button id="save">Save</button>
   </div>
 </fieldset>
