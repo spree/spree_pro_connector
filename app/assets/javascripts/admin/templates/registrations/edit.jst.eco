@@ -1,0 +1,40 @@
+<h2>Edit Registration <%= @registration.get('name') %></h2>
+
+<fieldset class="no-border-top">
+  <div class="row">
+    <div class="field">
+      <label for="registration-name">Name</label>
+      <input class="fullwidth" type="text" id="registration-name" name="name" value="<%= @registration.get('name') %>" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="alpha six columns">
+      <div class="field">
+        <label for="registration-url">URL</label>
+        <input class="fullwidth" type="text" id="registration-url" name="url" value="<%= @registration.get('url') %>" />
+      </div>
+    </div>
+    <div class="omega six columns">
+      <div class="field">
+        <label for="registration-keys">Keys</label>
+        <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
+          <% for key in @registration.get('keys'): %>
+            <option value="<%= key %>"><%= key %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="alpha six columns">
+      <div class="field">
+        <label for="registration-parameter">Parameters</label>
+        <select class="select2 fullwidth" id="registration-parameters" name="parameters" multiple="true">
+          <% for parameter in @registration.get('parameters'): %>
+            <option value="<%= parameter %>"><%= parameter %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </div>
+</fieldset>

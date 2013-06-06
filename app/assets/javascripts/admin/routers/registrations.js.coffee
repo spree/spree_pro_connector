@@ -12,7 +12,8 @@ Augury.Routers.Registrations = Backbone.Router.extend(
         $("#integration_main").html view.render().el
 
   edit: (id) ->
-    registration = new Augury.Models.Registration(id: id)
-    registration.fetch()
-    console.log(registration)
+    new Augury.Models.Registration(id: id).fetch
+      success: (registration, response, options) -> 
+        view = new Augury.Views.Registrations.Edit(model: registration)
+        $("#integration_main").html view.render().el
 )
