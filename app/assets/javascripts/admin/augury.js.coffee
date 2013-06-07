@@ -1,10 +1,12 @@
 window.Augury =
   init: ->
+    @store_id = $("#integration_main").data("store-id")
+    @api_key = $("#integration_main").data("api-key")
+
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
+      jqXHR.setRequestHeader("X-Augury-Token", Augury.api_key)
       options.url = "http://aug-stg1.spree.mx/api#{options.url}"
       options.xhrFields = withCredentials: true
-
-    @store_id = $("#integration_main").data("store-id")
 
     @Routers._active['home'] = new this.Routers.Home()
     @Routers._active['integrations'] = new this.Routers.Integrations()
