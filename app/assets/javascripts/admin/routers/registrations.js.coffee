@@ -1,21 +1,18 @@
 Augury.Routers.Registrations = Backbone.Router.extend(
+  initialize: (options) ->
+    @collection = options.collection
+    @parameters = options.parameters
+
   routes:
     "registrations": "index"
     "registrations/:id/edit": "edit"
 
   index: ->
-    new Augury.Collections.Registrations().fetch
-      error: (a,b,c,d) ->
-        console.log('err', a,b,c,d)
-      success: (registrations, response, options) ->
-        view = new Augury.Views.Registrations.Index(collection: registrations)
-        $("#integration_main").html view.render().el
+    view = new Augury.Views.Registrations.Index(collection: @collection)
+    $("#integration_main").html view.render().el
 
   edit: (id) ->
-    new Augury.Models.Registration(id: id).fetch
-      success: (registration, response, options) ->
-        new Augury.Collections.Parameters().fetch
-          success: (parameters, response, options) ->
-            view = new Augury.Views.Registrations.Edit(model: registration, parameters: parameters )
-            $("#integration_main").html view.render().el
+    registration = @collection.get(id)
+    view = new Augury.Views.Registrations.Edit(model: registration, parameters: @parameters )
+    $("#integration_main").html view.render().el
 )

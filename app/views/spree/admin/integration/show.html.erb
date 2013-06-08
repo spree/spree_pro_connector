@@ -10,12 +10,16 @@
     <%= button_link_to Spree.t(:register), admin_integration_register_path, :icon => 'icon-pencil' %>
   </div>
 <% else %>
-  <div id="integration_main" class="row" data-store-id="<%= Spree::Config[:store_id] %>" data-api-key="<%= Spree::Config[:pro_api_key] %>">
+  <div id="integration_main" class="row">
     <!-- Backbone app renders here -->
   </div>
-  <script type="text/javascript">
+  <%= javascript_tag do -%>
+    Augury.store_id = '<%= Spree::Config.store_id %>';
+    Augury.api_key = '<%= Spree::Config.pro_api_key %>';
+    Augury.Preload.registrations = <%== @registrations_json %>;
+    Augury.Preload.parameters = <%== @parameters_json %>;
     $(function() {
       return Augury.init();
     });
-  </script>
+  <% end %>
 <% end %>
