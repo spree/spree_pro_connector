@@ -2,9 +2,10 @@ window.Augury =
   init: ->
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       jqXHR.setRequestHeader("X-Augury-Token", Augury.api_key)
-      options.url = "http://localhost:4000/api#{options.url}"
+      options.url = "#{Augury.pro_url}/api#{options.url}"
       options.xhrFields = withCredentials: true
 
+    @integrations = new @Collections.Integrations(@Preload.integrations)
     @registrations = new @Collections.Registrations(@Preload.registrations)
     @parameters = new @Collections.Parameters(@Preload.parameters)
 

@@ -15,7 +15,9 @@
   </div>
   <%= javascript_tag do -%>
     Augury.store_id = '<%= Spree::Config.store_id %>';
+    Augury.pro_url = '<%= Spree::Config.pro_url %>';
     Augury.api_key = '<%= Spree::Config.pro_api_key %>';
+    Augury.Preload.integrations = <%== @integrations_json %>;
     Augury.Preload.registrations = <%== @registrations_json %>;
     Augury.Preload.parameters = <%== @parameters_json %>;
     $(function() {

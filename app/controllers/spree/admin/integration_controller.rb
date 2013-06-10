@@ -47,6 +47,8 @@ module Spree
         if Spree::Config.store_id.present? && Spree::Config.pro_api_key.present?
           headers = { :headers => { "X-Augury-Token" => Spree::Config.pro_api_key } }
           api_url = "#{Spree::Config.pro_url}/api"
+
+          @integrations_json = HTTParty.get("#{api_url}/integrations", headers).to_json
           @registrations_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/registrations", headers).to_json
           @parameters_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/parameters", headers).to_json
         end

@@ -1,5 +1,4 @@
-
-<h2>Services</h2>
+<h2>Integrations</h2>
 
 <p>Here's the complete list of available services (<%= @integrations.size() %>).</p>
 
@@ -25,7 +24,7 @@
         <td><%= integration.get('category') %></td>
         <td><%= integration.get('url') %></td>
         <td class="actions">
-          <a href="#" class="edit icon_link with-tip icon-link no-text" title="Use" data-action="use"></a>
+          <a href="/admin/integration/integrations/<%= integration.id %>/use" class="edit icon_link with-tip icon-link no-text" title="Use" data-action="use"></a>
         </td>
       </tr>
     <% end %>
