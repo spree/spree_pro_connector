@@ -10,7 +10,8 @@ window.Augury =
     @parameters = new @Collections.Parameters(@Preload.parameters)
 
     @Routers._active['home'] = new @Routers.Home()
-    @Routers._active['integrations'] = new @Routers.Integrations()
+    @Routers._active['integrations'] = new @Routers.Integrations
+      collection: @integrations
     @Routers._active['registrations'] = new @Routers.Registrations
       collection: @registrations
       parameters: @parameters

@@ -1,4 +1,7 @@
 Augury.Routers.Integrations = Backbone.Router.extend(
+  initialize: (options) ->
+    @collection = options.collection
+
   routes:
     "integrations": "index",
     "integrations/:id/use": "use"
@@ -9,5 +12,6 @@ Augury.Routers.Integrations = Backbone.Router.extend(
 
   use: ->
     view = new Augury.Views.Integrations.Use(model: null)
+    view = new Augury.Views.Integrations.Index(collection: @collection)
     $("#integration_main").html view.render().el
 )
