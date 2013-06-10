@@ -45,24 +45,51 @@
   </div>
   <div class="row event-keys">
     <h3>Event Keys</h3>
-    <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
-      <div class="row">
-        <fieldset>
+    <p><a href="#" class="add-event-fields">add row</a></p>
+    <p><strong></strong></p>
+    <fieldset>
+      <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
+        <div class="row">
           <div class="alpha six columns">
             <div class="field">
               <label for="name">Name</label>
               <input class="fullwidth" type="text" id="name" value="<%= eventKeyName %>" />
             </div>
           </div>
-          <div class="omega six columns">
+          <div class="omega five columns">
             <div class="field">
               <label for="path">Path</label>
               <input class="fullwidth" type="text" id="path" value="<%= eventKeyPath %>" />
             </div>
           </div>
-        </fieldset>
-      </div>
-    <% end %>
+          <div class="omega one columns">
+            <a href="#" class="remove-fields">x</a>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="row event-details">
+    <h3>Event Details</h3>
+    <p><a href="#" class="add-event-fields">add row</a></p>
+    <fieldset>
+      <% for own eventDetailName, eventDetailPath of @registration.get('event_details'): %>
+        <div class="row">
+          <div class="alpha six columns">
+            <div class="field">
+              <label for="name">Name</label>
+              <input class="fullwidth" type="text" id="name" value="<%= eventDetailName %>" />
+            </div>
+          </div>
+          <div class="omega six columns">
+            <div class="field">
+              <label for="path">Path</label>
+              <input class="fullwidth" type="text" id="path" value="<%= eventDetailPath %>" />
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
   </div>
 
   <div class="actions">

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="alpha six columns">
+    <div class="field">
+      <label for="name">Name</label>
+      <input class="fullwidth" type="text" id="name" value="" />
+    </div>
+  </div>
+  <div class="omega five columns">
+    <div class="field">
+      <label for="path">Path</label>
+      <input class="fullwidth" type="text" id="path" value="" />
+    </div>
+  </div>
+  <div class="omega one columns">
+    <a href="#" class="remove-fields">x</a>
+  </div>
+</div>
