@@ -48,6 +48,7 @@ module Spree
           headers = { :headers => { "X-Augury-Token" => Spree::Config.pro_api_key } }
           api_url = "#{Spree::Config.pro_url}/api"
 
+          @keys_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/available_keys", headers).to_json
           @integrations_json = HTTParty.get("#{api_url}/integrations", headers).to_json
           @registrations_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/registrations", headers).to_json
           @parameters_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/parameters", headers).to_json

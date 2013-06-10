@@ -26,7 +26,7 @@
       <div class="field">
         <label for="registration-keys">Keys</label>
         <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
-          <% for key in @registration.get('keys'): %>
+          <% for key in @keys: %>
             <option value="<%= key %>"><%= key %></option>
           <% end %>
         </select>

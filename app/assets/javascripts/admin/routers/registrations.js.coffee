@@ -13,6 +13,6 @@ Augury.Routers.Registrations = Backbone.Router.extend(
 
   edit: (id) ->
     registration = @collection.get(id)
-    view = new Augury.Views.Registrations.Edit(model: registration, parameters: @parameters )
+    view = new Augury.Views.Registrations.Edit(model: registration, parameters: @parameters, keys: Augury.keys )
     $("#integration_main").html view.render().el
 )

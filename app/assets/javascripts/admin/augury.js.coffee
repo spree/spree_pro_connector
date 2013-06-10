@@ -8,6 +8,7 @@ window.Augury =
     @integrations = new @Collections.Integrations(@Preload.integrations)
     @registrations = new @Collections.Registrations(@Preload.registrations)
     @parameters = new @Collections.Parameters(@Preload.parameters)
+    @keys = @Preload.keys
 
     @Routers._active['home'] = new @Routers.Home()
     @Routers._active['integrations'] = new @Routers.Integrations

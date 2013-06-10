@@ -8,7 +8,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     'change .event-keys': 'validateEventKey'
 
   render: ->
-    @$el.html JST["admin/templates/registrations/edit"](registration: @model, parameters: @options.parameters)
+    @$el.html JST["admin/templates/registrations/edit"](registration: @model, parameters: @options.parameters, keys: @options.keys)
     @$('#registration-keys.select2').select2().select2('val', @model.get('keys'))
     @$('#registration-parameters.select2').select2().select2('val', @model.get('parameters'))
     @
