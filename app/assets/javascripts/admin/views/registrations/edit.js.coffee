@@ -4,6 +4,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
 
   events:
     'click button#save': 'save'
+    'click button#cancel': 'cancel'
     'change :input': 'changed'
     'change .event-keys': 'validateEventKey'
 
@@ -20,6 +21,10 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     @buildEventKey()
     @buildEventDetails()
     @model.save {}, success: @saved
+
+  cancel: (e) ->
+    e.preventDefault()
+    Backbone.history.navigate '/registrations', trigger: true
 
   saved: ->
     console.log "Model updated! ", @model

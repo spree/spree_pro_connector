@@ -94,5 +94,6 @@
 
   <div class="actions">
     <button id="save">Save</button>
+    <button id="cancel">Cancel</button>
   </div>
 </fieldset>
