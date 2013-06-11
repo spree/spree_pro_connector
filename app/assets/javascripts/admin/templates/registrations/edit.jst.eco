@@ -7,133 +7,128 @@
 </h2>
 
 <fieldset class="no-border-top">
-  <div class="row">
+  <div class="alpha twelve columns">
     <div class="field">
       <label for="registration-name">Name</label>
       <input class="fullwidth" type="text" id="registration-name" name="name" value="<%= @registration.get('name') %>" />
     </div>
   </div>
-  <div class="row">
-    <div class="alpha six columns">
-      <div class="field">
-        <label for="registration-url">URL</label>
-        <input class="fullwidth" type="text" id="registration-url" name="url" value="<%= @registration.get('url') %>" />
-      </div>
-    </div>
-    <div class="omega six columns">
-      <div class="field">
-        <label for="registration-token">Token</label>
-        <input class="fullwidth" type="text" id="registration-token" name="token" value="<%= @registration.get('token') %>" />
-      </div>
+  <div class="alpha six columns">
+    <div class="field">
+      <label for="registration-url">URL</label>
+      <input class="fullwidth" type="text" id="registration-url" name="url" value="<%= @registration.get('url') %>" />
     </div>
   </div>
-  <div class="row">
-    <div class="alpha six columns">
-      <div class="field">
-        <label for="registration-keys">Keys</label>
-        <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
-          <% for key in @keys: %>
-            <option value="<%= key %>"><%= key %></option>
-          <% end %>
-        </select>
-      </div>
-    </div>
-    <div class="omega six columns">
-      <div class="field">
-        <label for="registration-parameters">Parameters</label>
-        <select class="select2 fullwidth" id="registration-parameters" name="parameters" multiple="true">
-          <% for parameter in @parameters.models: %>
-            <option value="<%= parameter.get('id') %>"><%= parameter.get('name') %></option>
-          <% end %>
-        </select>
-      </div>
+  <div class="omega six columns">
+    <div class="field">
+      <label for="registration-token">Token</label>
+      <input class="fullwidth" type="text" id="registration-token" name="token" value="<%= @registration.get('token') %>" />
     </div>
   </div>
-  <div class="row event-keys">
-    <h3>Event Keys</h3>
+  <div class="alpha six columns">
+    <div class="field">
+      <label for="registration-keys">Keys</label>
+      <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
+        <% for key in @keys: %>
+          <option value="<%= key %>"><%= key %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <div class="omega six columns">
+    <div class="field">
+      <label for="registration-parameters">Parameters</label>
+      <select class="select2 fullwidth" id="registration-parameters" name="parameters" multiple="true">
+        <% for parameter in @parameters.models: %>
+          <option value="<%= parameter.get('id') %>"><%= parameter.get('name') %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <div class="alpha twelve columns">
+    <div class="field">
+      <label for="registration-retries-allowed">Retries Allowed?</label>
+      <input class="checkbox fullwidth" type="checkbox" id="registration-retries-allowed" name="retries_allowed" value="<%= @registration.get('retries_allowed') %>" />
+    </div>
+  </div>
+  <div class="alpha twelve columns event-keys">
+    <h4>Event Keys</h4>
     <p class="add"><a href="#" class="add-event-fields">add row</a></p>
-    <fieldset>
-      <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
-        <div class="row">
-          <div class="alpha six columns">
-            <div class="field">
-              <label for="name">Name</label>
-              <input class="fullwidth" type="text" id="name" value="<%= eventKeyName %>" />
-            </div>
-          </div>
-          <div class="five columns">
-            <div class="field">
-              <label for="path">Path</label>
-              <input class="fullwidth" type="text" id="path" value="<%= eventKeyPath %>" />
-            </div>
-          </div>
-          <div class="omega one columns">
-            <br />
-            <a href="#" class="remove-fields">x</a>
+    <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
+      <div class="alpha twelve columns">
+        <div class="alpha six columns">
+          <div class="field">
+            <label for="name">Name</label>
+            <input class="fullwidth" type="text" id="name" value="<%= eventKeyName %>" />
           </div>
         </div>
-      <% end %>
-    </fieldset>
+        <div class="five columns">
+          <div class="field">
+            <label for="path">Path</label>
+            <input class="fullwidth" type="text" id="path" value="<%= eventKeyPath %>" />
+          </div>
+        </div>
+        <div class="omega one columns">
+          <a href="#" class="remove-fields">x</a>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="row event-details">
-    <h3>Event Details</h3>
+    <h4>Event Details</h4>
     <p class="add"><a href="#" class="add-event-fields">add row</a></p>
-    <fieldset>
-      <% for own eventDetailName, eventDetailPath of @registration.get('event_details'): %>
-        <div class="row">
-          <div class="alpha six columns">
-            <div class="field">
-              <label for="name">Name</label>
-              <input class="fullwidth" type="text" id="name" value="<%= eventDetailName %>" />
-            </div>
-          </div>
-          <div class="five columns">
-            <div class="field">
-              <label for="path">Path</label>
-              <input class="fullwidth" type="text" id="path" value="<%= eventDetailPath %>" />
-            </div>
-          </div>
-          <div class="omega one columns">
-            <a href="#" class="remove-fields">x</a>
+    <% for own eventDetailName, eventDetailPath of @registration.get('event_details'): %>
+      <div class="alpha twelve columns">
+        <div class="alpha six columns">
+          <div class="field">
+            <label for="name">Name</label>
+            <input class="fullwidth" type="text" id="name" value="<%= eventDetailName %>" />
           </div>
         </div>
-      <% end %>
-    </fieldset>
+        <div class="five columns">
+          <div class="field">
+            <label for="path">Path</label>
+            <input class="fullwidth" type="text" id="path" value="<%= eventDetailPath %>" />
+          </div>
+        </div>
+        <div class="omega one columns">
+          <a href="#" class="remove-fields">x</a>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="row filters">
-    <h3>Filters</h3>
+    <h4>Filters</h4>
     <p class="add"><a href="#" class="add-filter-fields">add row</a></p>
-    <fieldset>
-      <% for filter in @registration.get('formatted_filters'): %>
-        <div class="row" data-operator="<%= filter.operator %>">
-          <div class="alpha four columns">
-            <div class="field">
-              <label for="path">Path</label>
-              <input class="fullwidth" type="text" id="path" value="<%= filter.path %>" />
-            </div>
-          </div>
-          <div class="three columns">
-            <div class="field">
-              <label for="operator">Operator</label>
-              <select class="fullwidth" id="operator" name="operator">
-                <option value="eq">Equal</options>
-                <option value="gt">Greater Than</options>
-                <option value="lt">Less Than</options>
-              </select>
-            </div>
-          </div>
-          <div class="omega four columns">
-            <div class="field">
-              <label for="value">Value</label>
-              <input class="fullwidth" type="text" id="value" value="<%= filter.value %>" />
-            </div>
-          </div>
-          <div class="omega one columns">
-            <a href="#" class="remove-fields">x</a>
+    <% for filter in @registration.get('formatted_filters'): %>
+      <div class="alpha twelve columns" data-operator="<%= filter.operator %>">
+        <div class="alpha four columns">
+          <div class="field">
+            <label for="path">Path</label>
+            <input class="fullwidth" type="text" id="path" value="<%= filter.path %>" />
           </div>
         </div>
-      <% end %>
-    </fieldset>
+        <div class="three columns">
+          <div class="field">
+            <label for="operator">Operator</label>
+            <select class="fullwidth" id="operator" name="operator">
+              <option value="eq">Equal</options>
+              <option value="gt">Greater Than</options>
+              <option value="lt">Less Than</options>
+            </select>
+          </div>
+        </div>
+        <div class="four columns">
+          <div class="field">
+            <label for="value">Value</label>
+            <input class="fullwidth" type="text" id="value" value="<%= filter.value %>" />
+          </div>
+        </div>
+        <div class="omega one columns">
+          <a href="#" class="remove-fields">x</a>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="actions">

@@ -1,11 +1,11 @@
-<div class="row">
+<div class="alpha twelve columns">
   <div class="alpha six columns">
     <div class="field">
       <label for="name">Name</label>
       <input class="fullwidth" type="text" id="name" value="" />
     </div>
   </div>
-  <div class="omega five columns">
+  <div class="five columns">
     <div class="field">
       <label for="path">Path</label>
       <input class="fullwidth" type="text" id="path" value="" />

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="alpha twelve columns">
   <div class="alpha four columns">
     <div class="field">
       <label for="path">Path</label>
@@ -15,7 +15,7 @@
       </select>
     </div>
   </div>
-  <div class="omega four columns">
+  <div class="four columns">
     <div class="field">
       <label for="value">Value</label>
       <input class="fullwidth" type="text" id="value" value="" />
