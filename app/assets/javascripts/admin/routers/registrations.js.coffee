@@ -6,6 +6,7 @@ Augury.Routers.Registrations = Backbone.Router.extend(
   routes:
     "registrations": "index"
     "registrations/filter/:integration_id": "index"
+    "registrations/new": "new"
     "registrations/:id/edit": "edit"
 
   index: (integration_id) ->
@@ -15,6 +16,14 @@ Augury.Routers.Registrations = Backbone.Router.extend(
       registrations = @collection
 
     view = new Augury.Views.Registrations.Index(collection: registrations)
+    $("#integration_main").html view.render().el
+
+  new: ->
+    registration = new Augury.Models.Registration
+    Augury.registrations.add registration
+    registration.set formatted_filters: []
+    console.log registration
+    view = new Augury.Views.Registrations.Edit(model: registration, parameters: @parameters, keys: Augury.keys)
     $("#integration_main").html view.render().el
 
   edit: (id) ->
