@@ -11,15 +11,15 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
   render: ->
     @$el.html JST["admin/templates/registrations/edit"](registration: @model, parameters: @options.parameters, keys: @options.keys)
     @prepareClickHandlers()
+    @prepareForm()
     @validateEventKey()
-    @$('#registration-keys.select2').select2().select2('val', @model.get('keys'))
-    @$('#registration-parameters.select2').select2().select2('val', @model.get('parameters'))
     @
 
   save: (e) ->
     e.preventDefault()
     @buildEventKey()
     @buildEventDetails()
+    @buildFilters()
     @model.save {}, success: @saved
 
   cancel: (e) ->
@@ -51,6 +51,23 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     @$('.event-details').append("<input id='registration-event-details' name='event-details' type='hidden' value='#{eventDetailsJSON}' />")
     @model.set(event_details: @$('input[name=event-details]').val())
 
+  buildFilters: ->
+    filters = []
+    jQuery.each $('.filters .row'), (index, value) ->
+      filter = new Object()
+      path = $(value).find('input#path').first().val()
+      operator = $(value).find('select#operator option:selected').val()
+      value = $(value).find('input#value').first().val()
+      if path && operator && value
+        filter.path = path
+        filter.compare = {}
+        filter.compare[operator] = value
+        filters.push(filter)
+    filtersJSON = JSON.stringify(filters)
+    console.log filtersJSON
+    @$('.filters').append("<input id='registration-filters' name='filters' type='hidden' value='#{filtersJSON}' />")
+    @model.set(filters: @$('input[name=filters]').val())
+
   prepareClickHandlers: ->
     @$el.on 'click', '.add-event-fields', (event) ->
       event.preventDefault()
@@ -59,6 +76,18 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     @$el.on 'click', '.remove-fields', (event) ->
       event.preventDefault()
       $(@).closest('.row').remove()
+    @$el.on 'click', '.add-filter-fields', (event) ->
+      event.preventDefault()
+      template = JST['admin/templates/registrations/filter_fields']
+      $(template()).insertBefore($(@).context)
+
+  prepareForm: ->
+    @$('#registration-keys.select2').select2().select2('val', @model.get('keys'))
+    @$('#registration-parameters.select2').select2().select2('val', @model.get('parameters'))
+    _.each @$('.filters .row'), (row) ->
+      $(row).find('select option').filter( ->
+        $(@).val() == $(row).data('operator')
+      ).attr('selected', true)
 
   validateEventKey: ->
     @$('.event-keys').on 'change', (event) =>

@@ -56,7 +56,7 @@
               <input class="fullwidth" type="text" id="name" value="<%= eventKeyName %>" />
             </div>
           </div>
-          <div class="omega five columns">
+          <div class="five columns">
             <div class="field">
               <label for="path">Path</label>
               <input class="fullwidth" type="text" id="path" value="<%= eventKeyPath %>" />
@@ -81,11 +81,49 @@
               <input class="fullwidth" type="text" id="name" value="<%= eventDetailName %>" />
             </div>
           </div>
-          <div class="omega six columns">
+          <div class="five columns">
             <div class="field">
               <label for="path">Path</label>
               <input class="fullwidth" type="text" id="path" value="<%= eventDetailPath %>" />
             </div>
+          </div>
+          <div class="omega one columns">
+            <a href="#" class="remove-fields">x</a>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="row filters">
+    <h3>Filters</h3>
+    <p><a href="#" class="add-filter-fields">add row</a></p>
+    <fieldset>
+      <% for filter in @registration.get('formatted_filters'): %>
+        <div class="row" data-operator="<%= filter.operator %>">
+          <div class="alpha four columns">
+            <div class="field">
+              <label for="path">Path</label>
+              <input class="fullwidth" type="text" id="path" value="<%= filter.path %>" />
+            </div>
+          </div>
+          <div class="three columns">
+            <div class="field">
+              <label for="operator">Operator</label>
+              <select class="fullwidth" id="operator" name="operator">
+                <option value="eq">Equal</options>
+                <option value="gt">Greater Than</options>
+                <option value="lt">Less Than</options>
+              </select>
+            </div>
+          </div>
+          <div class="omega four columns">
+            <div class="field">
+              <label for="value">Value</label>
+              <input class="fullwidth" type="text" id="value" value="<%= filter.value %>" />
+            </div>
+          </div>
+          <div class="omega one columns">
+            <a href="#" class="remove-fields">x</a>
           </div>
         </div>
       <% end %>
