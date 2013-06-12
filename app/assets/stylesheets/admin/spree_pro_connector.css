@@ -20,3 +20,9 @@
 #admin_message_payload, #admin_message_parameters {
   display: none;
 }
+
+#admin-response-body {
+  border: 0px;
+  width: 100%;
+  height: 200px;
+}

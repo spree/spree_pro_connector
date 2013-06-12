@@ -17,17 +17,17 @@
             <dt><%= Spree.t(key, scope: :response_data) %></dt>
             <dl>
               <% if key == :body %>
-                <script id="response-body-content" type="application/vnd.spree-admin-responde-body">
+                <script id="response-body-content" type="application/vnd.spree-admin-response-body">
                   <%= raw value %>
                 </script>
-                <iframe id="response-body"></iframe>
+                <iframe id="admin-response-body"></iframe>
                 <script>
                   $(function(){
-                    var ifrm = document.getElementById("response-body");
+                    var ifrm = document.getElementById("admin-response-body");
                     var ifrmDocument;
                     if(ifrm.contentWindow) {
                       ifrmDocument = ifrm.contentWindow.document
-                      } else {
+                    } else {
                       ifrmDocument = ifrm.contentDocument
                     }
                     ifrmDocument.open()
