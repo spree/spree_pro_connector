@@ -13,12 +13,12 @@ module Spree::Admin
     end
 
     def each_response_data
-      { uri: uri }.merge(code: response_code).
-        merge(response_headers).
-        merge(body: response_body).each do |key, value|
-          yield key, value.kind_of?(Array) ? value.join(", ") :
-            value
-        end
+      { uri: uri, code: response_code, body: response_body}.
+        merge(response_headers)
+      .each do |key, value|
+        yield key, value.kind_of?(Array) ? value.join(", ") :
+          value
+      end
     end
   end
 end
