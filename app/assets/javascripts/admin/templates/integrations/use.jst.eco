@@ -1,1 +1,25 @@
-<h2>Use</h2>
+<h2><%= @integration.get('name') %> Setup</h2>
+
+<% if @integration.get('consumers')?: %>
+  <p>You need to complete the following <%= @parameters.length %> required configuration parameters:</p>
+
+  <fieldset class="no-border-top">
+    <div class="row">
+      <% for parameter in @parameters: %>
+        <div class="omega six columns">
+          <div class="field">
+            <label for="token"><%= parameter['name'] %></label>
+            <input class="fullwidth" type="text" id="<%= parameter['name'] %>" name="<%= parameter['name'] %>" placeholder="<%= parameter['default'] %>"/>
+            <span class="help-block" style="font-size:80%;"><%= parameter['description'] %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <button id="save">Save</button>
+    </div>
+  </fieldset>
+<% else: %>
+  <p>This Integration is currently unavailable, please try again later.</p>
+<% end %>

@@ -7,11 +7,13 @@ Augury.Routers.Integrations = Backbone.Router.extend(
     "integrations/:id/use": "use"
 
   index: ->
-    view = new Augury.Views.Integrations.Index(collection: Augury.integrations)
+    view = new Augury.Views.Integrations.Index(collection: @collection)
     $("#integration_main").html view.render().el
 
-  use: ->
-    view = new Augury.Views.Integrations.Use(model: null)
-    view = new Augury.Views.Integrations.Index(collection: @collection)
+  use: (integration_id) ->
+    integration = _.findWhere Augury.integrations.models,
+      id: integration_id
+
+    view = new Augury.Views.Integrations.Use(model: integration)
     $("#integration_main").html view.render().el
 )

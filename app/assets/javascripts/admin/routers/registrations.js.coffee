@@ -5,10 +5,14 @@ Augury.Routers.Registrations = Backbone.Router.extend(
 
   routes:
     "registrations": "index"
+    "registrations/filter/:integration_id": "index"
     "registrations/:id/edit": "edit"
 
-  index: ->
-    view = new Augury.Views.Registrations.Index(collection: @collection)
+  index: (integration_id) ->
+    if integration_id?
+      registrations = @collection.byIntegration(integration_id)
+
+    view = new Augury.Views.Registrations.Index(collection: registrations)
     $("#integration_main").html view.render().el
 
   edit: (id) ->
