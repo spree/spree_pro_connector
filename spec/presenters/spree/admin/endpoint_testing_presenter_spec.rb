@@ -21,8 +21,8 @@ describe Spree::Admin::EndpointTestingPresenter do
       expect{ |b| presenter.each_response_data &b }.to yield_successive_args(
         [:uri, "http://127.0.0.1"],
         [:code, "200"],
+        [:body, "ok"],
         ["content-type", "text/html; charset=utf-8"],
-        [:body, "ok"]
       )
     end
 
@@ -32,8 +32,8 @@ describe Spree::Admin::EndpointTestingPresenter do
       expect{ |b| presenter.each_response_data &b }.to yield_successive_args(
         [:uri, "http://127.0.0.1"],
         [:code, "200"],
-        ["content-type", "text/html; charset=utf-8"],
-        [:body, "ok"]
+        [:body, "ok"],
+        ["content-type", "text/html; charset=utf-8"]
       )
     end
   end
