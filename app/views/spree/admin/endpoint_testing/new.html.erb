@@ -15,7 +15,30 @@
         <ul>
           <% @presenter.each_response_data do |key, value| %>
             <dt><%= Spree.t(key, scope: :response_data) %></dt>
-            <dl><%= value %></dl>
+            <dl>
+              <% if key == :body %>
+                <script id="response-body-content" type="application/vnd.spree-admin-responde-body">
+                  <%= raw value %>
+                </script>
+                <iframe id="response-body"></iframe>
+                <script>
+                  $(function(){
+                    var ifrm = document.getElementById("response-body");
+                    var ifrmDocument;
+                    if(ifrm.contentWindow) {
+                      ifrmDocument = ifrm.contentWindow.document
+                      } else {
+                      ifrmDocument = ifrm.contentDocument
+                    }
+                    ifrmDocument.open()
+                    ifrmDocument.write($("#response-body-content").text());
+                    ifrmDocument.close()
+                  });
+                </script>
+              <% else %>
+                <%= value %>
+              <% end %>
+            </dl>
           <% end %>
         </ul>
       </fieldset>
