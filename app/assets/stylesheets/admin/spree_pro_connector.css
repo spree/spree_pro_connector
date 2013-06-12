@@ -25,4 +25,19 @@
   border: 0px;
   width: 100%;
   height: 200px;
+
+/* Simple modal */
+body #simplemodal-container {
+  border-color: #000;
+  background-color: #ccc;
+  width: 620px;
+  height: auto;
+  top: 50px !important;
+  padding: 0;
+  position: relative;
+}
+
+body .modal-header, .modal-footer {
+  background-color: #ccc;
+  text-align: center;
 }

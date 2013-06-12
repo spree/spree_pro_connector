@@ -1,0 +1,12 @@
+<div id="confirm_delete">
+  <div class="modal-header">
+    <h3>Confirm Delete</h3>
+  </div>
+  <div class="modal-body">
+    <p><%= @warning %></p>
+  </div>
+  <div class="modal-footer">
+    <a href="#<%= @klass %>/delete/<%= @identifier %>?confirm=true" class="btn danger">Delete</a>
+    <a href="/admin/integration/cancel_dialog" class="btn success">Cancel</a>
+  </div>
+</div>

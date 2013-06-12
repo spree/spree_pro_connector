@@ -1,3 +1,4 @@
+//= require jquery.simplemodal.1.4.4.min
 //= require underscore
 //= require backbone
 //= require admin/augury

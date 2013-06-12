@@ -11,6 +11,7 @@ window.Augury =
     @keys = @Preload.keys
 
     @Routers._active['home'] = new @Routers.Home()
+    @Routers._active['common'] = new @Routers.Common()
     @Routers._active['integrations'] = new @Routers.Integrations
       collection: @integrations
     @Routers._active['registrations'] = new @Routers.Registrations

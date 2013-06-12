@@ -8,6 +8,7 @@ Augury.Routers.Registrations = Backbone.Router.extend(
     "registrations/filter/:integration_id": "index"
     "registrations/new": "new"
     "registrations/:id/edit": "edit"
+    "registrations/delete/:id?confirm=:confirm": "delete"
 
   index: (integration_id) ->
     Augury.update_nav('registrations')
@@ -36,4 +37,15 @@ Augury.Routers.Registrations = Backbone.Router.extend(
     registration = @collection.get(id)
     view = new Augury.Views.Registrations.Edit(model: registration, parameters: @parameters, keys: Augury.keys )
     $("#integration_main").html view.render().el
+
+  delete: (id, confirm) ->
+    registration = @collection.get(id)
+    if confirm != 'true'
+      dialog = JST['admin/templates/shared/confirm_delete']
+      $.modal(dialog(klass: 'registrations', warning: 'Are you sure you want to delete this Registration?', identifier: id))
+    else
+      $.modal.close()
+      registration.destroy()
+      Augury.registrations.remove(registration)
+      Backbone.history.navigate '/registrations', trigger: true
 )
