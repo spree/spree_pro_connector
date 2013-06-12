@@ -1,3 +1,3 @@
 <!-- replace "code:contains('if can? :admin, Spree::Admin::ReportsController')"
      closing_selector "code:contains('end')" -->
-<%= tab(:integration, :url => spree.admin_integration_path, :icon => 'icon-cogs') %>
+<%= tab(:integration, :endpoint_testing, :url => spree.admin_integration_path, :icon => 'icon-cogs') %>
