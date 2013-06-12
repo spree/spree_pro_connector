@@ -1,7 +1,7 @@
 <%= render :partial => "spree/admin/shared/configuration_menu" %>
 
 <% content_for :page_title do %>
-  <%= t(:endpoint_testing) %>
+  <%= Spree.t(:endpoint_testing) %>
 <% end %>
 
 <%= render :partial => "spree/shared/error_messages", :locals => { :target => @presenter } %>
@@ -11,10 +11,10 @@
 
     <% if @presenter.response %>
       <fieldset class="general no-border-top">
-        <legend align="center"><%= t(:response) %></legend>
+        <legend align="center"><%= Spree.t(:response) %></legend>
         <ul>
           <% @presenter.each_response_data do |key, value| %>
-            <dt><%= t(key, scope: :response_data) %></dt>
+            <dt><%= Spree.t(key, scope: :response_data) %></dt>
             <dl><%= value %></dl>
           <% end %>
         </ul>
@@ -22,10 +22,10 @@
     <% end %>
 
     <fieldset class="general no-border-top">
-      <legend align="center"><%= t(:request) %></legend>
+      <legend align="center"><%= Spree.t(:request) %></legend>
 
       <%= f.field_container :message do %>
-        <%= f.label :message, t(:message) %>
+        <%= f.label :message, Spree.t(:message) %>
         <%= f.collection_select :message, @presenter.samples, :message, :message, {:include_blank => true}, {:class => "select2 fullwidth"} %>
         <%= f.error_message_on :message %>
       <% end %>
@@ -33,7 +33,7 @@
       <div class="row">
         <div class="alpha six columns">
           <%=f.field_container :uri do %>
-            <%= f.label :uri, t(:uri) %> <span class="required">*</span><br />
+            <%= f.label :uri, Spree.t(:uri) %> <span class="required">*</span><br />
             <%= f.text_field :uri, :class => "fullwidth title" %>
             <%= f.error_message_on :uri %>
           <% end %>
@@ -41,7 +41,7 @@
 
         <div class="omega six columns">
           <%= f.field_container :token do %>
-            <%= f.label :token, t(:token) %> <span class="required">*</span><br />
+            <%= f.label :token, Spree.t(:token) %> <span class="required">*</span><br />
             <%= f.text_field :token, :class => "fullwidth title" %>
             <%= f.error_message_on :token %>
           <% end %>
@@ -49,14 +49,14 @@
       </div>
 
       <%= f.field_container :payload do %>
-        <%= f.label :payload, t(:payload) %> <span class="required">*</span><br />
+        <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
         <%= f.text_area :payload, :class => "fullwidth title" %>
         <%= f.error_message_on :payload %>
         <div id="admin_message_payload_editor"></div>
       <% end %>
 
       <%= f.field_container :parameters do %>
-        <%= f.label :parameters, t(:parameters) %><br/>
+        <%= f.label :parameters, Spree.t(:parameters) %><br/>
         <%= f.text_area :parameters, :class => "fullwidth title" %>
         <%= f.error_message_on :parameters %>
         <div id="admin_message_parameters_editor"></div>

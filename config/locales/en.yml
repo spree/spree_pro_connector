@@ -3,12 +3,13 @@
 
 en:
   order_events: "Order Events"
-  endpoint_testing: "Endpoint Testing"
-  response_data:
-    uri: "URI"
-    code: "Code"
-    content-trpe: "Content-Type"
-    date: "Date"
-    content-length: "Content-Length"
-    connection: "Connection"
-    body: "Body"
+  spree:
+    endpoint_testing: "Endpoint Testing"
+    response_data:
+      uri: "URI"
+      code: "Code"
+      content-trpe: "Content-Type"
+      date: "Date"
+      content-length: "Content-Length"
+      connection: "Connection"
+      body: "Body"
