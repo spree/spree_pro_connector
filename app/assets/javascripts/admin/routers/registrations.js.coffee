@@ -11,6 +11,8 @@ Augury.Routers.Registrations = Backbone.Router.extend(
   index: (integration_id) ->
     if integration_id?
       registrations = @collection.byIntegration(integration_id)
+    else
+      registrations = @collection
 
     view = new Augury.Views.Registrations.Index(collection: registrations)
     $("#integration_main").html view.render().el
