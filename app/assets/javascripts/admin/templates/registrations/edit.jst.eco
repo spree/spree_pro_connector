@@ -45,17 +45,19 @@
       </select>
     </div>
   </div>
-  <div class="alpha twelve columns">
-    <div class="field">
-      <label for="registration-retries-allowed">Retries Allowed?</label>
-      <input class="checkbox fullwidth" type="checkbox" id="registration-retries-allowed" name="retries_allowed" value="<%= @registration.get('retries_allowed') %>" />
+  <div class="row">
+    <div class="alpha twelve columns">
+      <div class="field">
+        <label for="registration-retries-allowed">Retries Allowed?</label>
+        <input class="checkbox fullwidth" type="checkbox" id="registration-retries-allowed" name="retries_allowed" value="<%= @registration.get('retries_allowed') %>" />
+      </div>
     </div>
   </div>
-  <div class="alpha twelve columns event-keys">
+  <div class="row event-keys">
     <h4>Event Keys</h4>
     <p class="add"><a href="#" class="add-event-fields">add row</a></p>
     <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
-      <div class="alpha twelve columns">
+      <div class="alpha twelve columns event-fields">
         <div class="alpha six columns">
           <div class="field">
             <label for="name">Name</label>
@@ -78,7 +80,7 @@
     <h4>Event Details</h4>
     <p class="add"><a href="#" class="add-event-fields">add row</a></p>
     <% for own eventDetailName, eventDetailPath of @registration.get('event_details'): %>
-      <div class="alpha twelve columns">
+      <div class="alpha twelve columns event-fields">
         <div class="alpha six columns">
           <div class="field">
             <label for="name">Name</label>
@@ -101,7 +103,7 @@
     <h4>Filters</h4>
     <p class="add"><a href="#" class="add-filter-fields">add row</a></p>
     <% for filter in @registration.get('formatted_filters'): %>
-      <div class="alpha twelve columns" data-operator="<%= filter.operator %>">
+      <div class="alpha twelve columns filter-field" data-operator="<%= filter.operator %>">
         <div class="alpha four columns">
           <div class="field">
             <label for="path">Path</label>

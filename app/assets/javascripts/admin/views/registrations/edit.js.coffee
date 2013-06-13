@@ -31,7 +31,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
 
   buildEventKey: ->
     eventKey = new Object()
-    $.each @$('.event-keys .row'), (index, value) =>
+    $.each @$('.event-keys .event-fields'), (index, value) =>
       name = @$(value).find('input#name').first().val()
       path = @$(value).find('input#path').first().val()
       if path && name
@@ -42,7 +42,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
 
   buildEventDetails: ->
     eventDetails = new Object()
-    $.each @$('.event-details .row'), (index, value) =>
+    $.each @$('.event-details .event-fields'), (index, value) =>
       name = @$(value).find('input#name').first().val()
       path = @$(value).find('input#path').first().val()
       if path && name
@@ -53,7 +53,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
 
   buildFilters: ->
     filters = []
-    jQuery.each $('.filters .row'), (index, value) ->
+    jQuery.each $('.filters .filter-fields'), (index, value) ->
       filter = new Object()
       path = $(value).find('input#path').first().val()
       operator = $(value).find('select#operator option:selected').val()
