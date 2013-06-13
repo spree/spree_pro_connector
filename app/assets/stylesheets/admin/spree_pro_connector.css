@@ -25,9 +25,10 @@
   border: 0px;
   width: 100%;
   height: 200px;
+}
 
 /* Simple modal */
-body #simplemodal-container {
+#simplemodal-container {
   border-color: #000;
   background-color: #ccc;
   width: 620px;
