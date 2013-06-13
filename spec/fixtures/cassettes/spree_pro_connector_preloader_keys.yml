@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://augury.dev/api/stores/store/available_keys
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Augury-Token:
+      - token
+  response:
+    status:
+      code: 200
+      message: ! 'OK '
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"02486342052973530d7c3e9a99662dc0"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 401397d6d79b158159efd3a40340f429
+      X-Runtime:
+      - '0.007751'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2012-11-10)
+      Date:
+      - Thu, 13 Jun 2013 15:48:21 GMT
+      Content-Length:
+      - '453'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: US-ASCII
+      string: ! '["pch:gan:update","order:ship","order:persist","spree:order:poll","order:new","pch:sc:received","shipment:confirmation","spree:order:import","pch:sc:poll","monitor:order:polls","endpoint:poll","pch:do:confirmation","order:capture","quickbooks:order:verify","order:canceled","stock_transfer:new","remote:poll","order:payment:captured","pch:gan:poll","endpoint:query","spec:order:import","monitor:failing:jobs","spree:stock_transfer:poll","order:updated"]'
+    http_version: 
+  recorded_at: Thu, 13 Jun 2013 15:48:21 GMT
+recorded_with: VCR 2.5.0

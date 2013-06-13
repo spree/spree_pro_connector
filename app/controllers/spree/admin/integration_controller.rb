@@ -1,10 +1,14 @@
+require 'spree_pro_connector/preloader'
+
 module Spree
   module Admin
     class IntegrationController < Spree::Admin::BaseController
-      def register
-        email = 'integrator@spreecommerce.com'
-        if user = Spree::User.where('email' => email).first
-          # do nothing, for now....
+      rescue_from SpreeProConnector::PreloadError, with: :preload_error
+
+        def register
+          email = 'integrator@spreecommerce.com'
+          if user = Spree::User.where('email' => email).first
+    # do nothing, for now....
         else
           passwd = SecureRandom.hex(32)
           user = Spree::User.create('email' => email,
@@ -45,14 +49,21 @@ module Spree
 
       def show
         if Spree::Config.store_id.present? && Spree::Config.pro_api_key.present?
-          headers = { :headers => { "X-Augury-Token" => Spree::Config.pro_api_key } }
-          api_url = "#{Spree::Config.pro_url}/api"
-
-          @keys_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/available_keys", headers).to_json
-          @integrations_json = HTTParty.get("#{api_url}/integrations", headers).to_json
-          @registrations_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/registrations", headers).to_json
-          @parameters_json = HTTParty.get("#{api_url}/stores/#{Spree::Config.store_id}/parameters", headers).to_json
+          preloader = SpreeProConnector::Preloader.new(Spree::Config.pro_url,
+                                                       Spree::Config.store_id,
+                                                       Spree::Config.pro_api_key)
+          @keys_json = preloader.keys
+          @integrations_json = preloader.integrations
+          @registrations_json = preloader.registrations
+          @parameters_json = preloader.parameters
         end
+      end
+
+      private
+
+      def preload_error
+        flash[:error] = "There was a problem loading Augury data. Please try again."
+        render :show
       end
     end
   end

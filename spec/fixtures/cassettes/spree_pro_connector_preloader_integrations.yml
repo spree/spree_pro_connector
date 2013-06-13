@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://augury.dev/api/integrations
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Augury-Token:
+      - token
+  response:
+    status:
+      code: 200
+      message: ! 'OK '
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"2879238233585986053f2f4cc4adc3cf"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 177ca15c37db97108645922f56e32371
+      X-Runtime:
+      - '0.008379'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2012-11-10)
+      Date:
+      - Thu, 13 Jun 2013 15:48:21 GMT
+      Content-Length:
+      - '249'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: US-ASCII
+      string: ! '[{"id":"store","name":"Mandrill","url":"http://mandrill-stg.spree.mx","category":null,"consumers":null},{"id":"51b8b6e684a816656d000003","name":"Quickbooks","url":"http://quickbooks-stg.spree.mx","category":null,"consumers":null}]'
+    http_version: 
+  recorded_at: Thu, 13 Jun 2013 15:48:21 GMT
+recorded_with: VCR 2.5.0

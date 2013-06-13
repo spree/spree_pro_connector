@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://augury.dev/api/stores/store/registrations
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Augury-Token:
+      - token
+  response:
+    status:
+      code: 200
+      message: ! 'OK '
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"be318e475e7c5b8b1eeeca242427cf63"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 0514a3d4b474caca75b440fdb9339f2a
+      X-Runtime:
+      - '0.009665'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2012-11-10)
+      Date:
+      - Thu, 13 Jun 2013 15:48:21 GMT
+      Content-Length:
+      - '331'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: US-ASCII
+      string: ! '[{"id":"store","name":"foooooo","url":"http://google.com","integration_id":null,"event_key":{"foo":"bar"},"event_details":{"big":"bird"},"formatted_filters":[{"path":"order.amount","operator":"eq","value":"123"}],"options":{"retries_allowed":false},"keys":["spree:order:import"],"parameters":null,"token":"123"}]'
+    http_version: 
+  recorded_at: Thu, 13 Jun 2013 15:48:21 GMT
+recorded_with: VCR 2.5.0

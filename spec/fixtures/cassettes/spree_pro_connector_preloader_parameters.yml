@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://augury.dev/api/stores/store/parameters
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Augury-Token:
+      - token
+  response:
+    status:
+      code: 200
+      message: ! 'OK '
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - ! '"6afafc4274fc6f0a1b316ef478404072"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - b1dda71d8960bd743bf8ce5f676a090b
+      X-Runtime:
+      - '0.009800'
+      Server:
+      - WEBrick/1.3.1 (Ruby/1.9.3/2012-11-10)
+      Date:
+      - Thu, 13 Jun 2013 15:48:21 GMT
+      Content-Length:
+      - '263'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: US-ASCII
+      string: ! '[{"id":"store","name":"mandrill.api_key","value":"abc123","store_id":"51b8be0784a816f054000002"},{"id":"51b8b6e684a816656d00000d","name":"mandrill.order_cancellation_template","value":"order_cancellation","store_id":"51b8be0784a816f054000002"}]'
+    http_version: 
+  recorded_at: Thu, 13 Jun 2013 15:48:21 GMT
+recorded_with: VCR 2.5.0
