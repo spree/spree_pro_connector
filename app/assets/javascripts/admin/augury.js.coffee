@@ -40,3 +40,8 @@ window.Augury =
       if href.indexOf Backbone.history.root is 0
         event.preventDefault()
         Backbone.history.navigate href, trigger: true
+
+  update_nav: (active) ->
+    $("ul.sidebar li").removeClass 'active'
+    $("ul.sidebar li.#{active}").addClass 'active'
+

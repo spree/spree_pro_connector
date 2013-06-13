@@ -4,11 +4,11 @@
 
 <% content_for :sidebar do %>
   <nav class="menu">
-    <ul class="sidebar" data-hook="admin_configurations_sidebar_menu">
-      <%= configurations_sidebar_menu_item Spree.t(:overview), admin_integration_path %>
-      <%= configurations_sidebar_menu_item Spree.t(:integrations), '/admin/integration/integrations' %>
-      <%= configurations_sidebar_menu_item Spree.t(:registrations), '/admin/integration/registrations' %>
-      <%= configurations_sidebar_menu_item Spree.t(:endpoint_testing), admin_endpoint_testing_path %>
+    <ul class="sidebar">
+      <li class="overview"><a href="/admin/integration">Overview</a></li>
+      <li class="integrations"><a href="/admin/integration/integrations">Integrations</a></li>
+      <li class="registrations"><a href="/admin/integration/registrations">Registrations</a></li>
+      <li class="testing"><a href="/admin/endpoint_testing">Testing</a></li>
     </ul>
   </nav>
 <% end %>

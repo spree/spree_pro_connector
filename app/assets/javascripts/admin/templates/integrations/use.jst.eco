@@ -9,7 +9,11 @@
         <div class="omega six columns">
           <div class="field">
             <label for="token"><%= parameter['name'] %></label>
-            <input class="fullwidth" type="text" id="<%= parameter['name'] %>" name="<%= parameter['name'] %>" placeholder="<%= parameter['default'] %>"/>
+            <input class="fullwidth" type="text"
+                   id="<%= parameter['name'] %>"
+                   name="<%= parameter['name'] %>"
+                   value="<%= Augury.parameters.valueByName("#{@integration.get('name')}.#{parameter['name']}") %>"
+                   placeholder="<%= parameter['default'] %>"/>
             <span class="help-block" style="font-size:80%;"><%= parameter['description'] %></span>
           </div>
         </div>

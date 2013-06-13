@@ -6,8 +6,8 @@
   <colgroup>
     <col style="width: 30%" />
     <col style="width: 15%" />
-    <col style="width: 50%" />
-    <col style="width: 5%" />
+    <col style="width: 40%" />
+    <col style="width: 15%" />
   </colgroup>
   <thead>
     <tr>
@@ -24,7 +24,12 @@
         <td><%= integration.get('category') %></td>
         <td><%= integration.get('url') %></td>
         <td class="actions">
-          <a href="/admin/integration/integrations/<%= integration.id %>/use" class="edit icon_link with-tip icon-link no-text" title="Use" data-action="use"></a>
+          <% if integration.registrations().length!=0: %>
+            <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+          <% else: %>
+            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-link no-text" title="Sign up" data-action="signup"></a>
+          <% end %>
         </td>
       </tr>
     <% end %>

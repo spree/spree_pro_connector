@@ -4,13 +4,17 @@ Augury.Routers.Integrations = Backbone.Router.extend(
 
   routes:
     "integrations": "index",
-    "integrations/:id/use": "use"
+    "integrations/:id/signup": "signup"
 
   index: ->
+    Augury.update_nav('integrations')
+
     view = new Augury.Views.Integrations.Index(collection: @collection)
     $("#integration_main").html view.render().el
 
-  use: (integration_id) ->
+  signup: (integration_id) ->
+    Augury.update_nav('integrations')
+
     integration = _.findWhere Augury.integrations.models,
       id: integration_id
 
