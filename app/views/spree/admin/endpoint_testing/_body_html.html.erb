@@ -1,0 +1,19 @@
+<script id="admin-response-body-content" type="application/vnd.spree-admin-response-body">
+  <%= raw value.gsub("<", "&lt;").gsub(">", "&gt;") %>
+</script>
+<iframe id="admin-response-body"></iframe>
+<script>
+  $(function(){
+    var ifrm = document.getElementById("admin-response-body");
+    var ifrmDocument;
+    if(ifrm.contentWindow) {
+      ifrmDocument = ifrm.contentWindow.document
+      } else {
+      ifrmDocument = ifrm.contentDocument
+    }
+    ifrmDocument.open()
+    ifrmDocument.write($("#admin-response-body-content").text().replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
+    ifrmDocument.close()
+  });
+</script>
+

@@ -3,14 +3,15 @@ module Spree::Admin
     helper_method :collection_url
 
     def new
-      message    = Message.new
-      @presenter = EndpointTestingPresenter.new message
+      @message   = EndpointMessage.new
+      @presenter = EndpointTestingPresenter.new @message
     end
 
     def create
-      message    = Message.new params[:admin_message]
-      @presenter = EndpointTestingPresenter.new message
-      @presenter.save
+      @message   = EndpointMessage.new params[:admin_endpoint_message]
+      @message.save
+
+      @presenter = EndpointTestingPresenter.new @message
 
       render :new
     end

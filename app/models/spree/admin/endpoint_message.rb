@@ -1,5 +1,5 @@
 module Spree::Admin
-  class Message
+  class EndpointMessage
     include ActiveModel::Validations
     include ActiveModel::Conversion
     extend ActiveModel::Naming

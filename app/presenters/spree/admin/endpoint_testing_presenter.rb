@@ -1,7 +1,14 @@
 require "samples"
 
 module Spree::Admin
-  class EndpointTestingPresenter < SimpleDelegator
+  class EndpointTestingPresenter
+    delegate :uri, :response_code, :response_body, :response_headers, :response, 
+      to: :@message
+
+    def initialize message
+      @message = message
+    end
+
     def samples
       [
         OpenStruct.new(message: "order:persist"          , payload: Samples::Order.persist)          ,
@@ -19,6 +26,10 @@ module Spree::Admin
         yield key, value.kind_of?(Array) ? value.join(", ") :
           value
       end
+    end
+
+    def response_json?
+      response_headers["Content-Type"].include? "application/json"
     end
   end
 end

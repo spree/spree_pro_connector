@@ -4,9 +4,9 @@
   <%= Spree.t(:endpoint_testing) %>
 <% end %>
 
-<%= render :partial => "spree/shared/error_messages", :locals => { :target => @presenter } %>
+<%= render :partial => "spree/shared/error_messages", :locals => { :target => @message } %>
 
-<%= form_for @presenter, url: admin_endpoint_testing_path do |f| %>
+<%= form_for @message, url: admin_endpoint_testing_path do |f| %>
   <div class="preferences">
 
     <% if @presenter.response %>
@@ -17,140 +17,113 @@
             <dt><%= Spree.t(key, scope: :response_data) %></dt>
             <dl>
               <% if key == :body %>
-                <div id="admin-response-body-json"><%= begin; raw JSON.pretty_generate(JSON.parse(value)); rescue; raw value end %></div>
-                  <script>
-                    $(function(){
-                      (function createEditor(targetId){
-                        var editor = ace.edit(targetId);
-                        editor.setTheme("ace/theme/chrome");
-                        editor.getSession().setMode("ace/mode/javascript");
-                        editor.getSession().setUseWorker(false);
-                        editor.setShowPrintMargin(false);
-                        editor.setReadOnly(true);
-                        editor.renderer.setShowGutter(false);
-                      })("admin-response-body-json");
-                    });
-                  </script>
-                  <script id="response-body-content" type="application/vnd.spree-admin-response-body">
-                    <%= raw value %>
-                  </script>
-                  <iframe id="admin-response-body"></iframe>
-                  <script>
-                    $(function(){
-                      var ifrm = document.getElementById("admin-response-<%= key %>");
-                      var ifrmDocument;
-                      if(ifrm.contentWindow) {
-                        ifrmDocument = ifrm.contentWindow.document
-                        } else {
-                        ifrmDocument = ifrm.contentDocument
-                      }
-                      ifrmDocument.open()
-                      ifrmDocument.write($("#response-<%= key %>-content").text());
-                      ifrmDocument.close()
-                    });
-                  </script>
+                <% if @presenter.response_json? %>
+                  <%= render partial: "body_json", locals: { value: value } %>
                 <% else %>
-                  <%= value %>
+                  <%= render partial: "body_html", locals: { value: value } %>
                 <% end %>
-              </dl>
-            <% end %>
-          </ul>
-        </fieldset>
+              <% else %>
+                <%= value %>
+              <% end %>
+            </dl>
+          <% end %>
+        </ul>
+      </fieldset>
+    <% end %>
+
+    <fieldset class="general no-border-top">
+      <legend align="center"><%= Spree.t(:request) %></legend>
+
+      <%= f.field_container :message do %>
+        <%= f.label :message, Spree.t(:message) %>
+        <%= f.collection_select :message, @presenter.samples, :message, :message, {:include_blank => true}, {:class => "select2 fullwidth"} %>
+        <%= f.error_message_on :message %>
       <% end %>
 
-      <fieldset class="general no-border-top">
-        <legend align="center"><%= Spree.t(:request) %></legend>
-
-        <%= f.field_container :message do %>
-          <%= f.label :message, Spree.t(:message) %>
-          <%= f.collection_select :message, @presenter.samples, :message, :message, {:include_blank => true}, {:class => "select2 fullwidth"} %>
-          <%= f.error_message_on :message %>
-        <% end %>
-
-        <div class="row">
-          <div class="alpha six columns">
-            <%=f.field_container :uri do %>
-              <%= f.label :uri, Spree.t(:uri) %> <span class="required">*</span><br />
-              <%= f.text_field :uri, :class => "fullwidth title" %>
-              <%= f.error_message_on :uri %>
-            <% end %>
-          </div>
-
-          <div class="omega six columns">
-            <%= f.field_container :token do %>
-              <%= f.label :token, Spree.t(:token) %> <span class="required">*</span><br />
-              <%= f.text_field :token, :class => "fullwidth title" %>
-              <%= f.error_message_on :token %>
-            <% end %>
-          </div>
+      <div class="row">
+        <div class="alpha six columns">
+          <%=f.field_container :uri do %>
+            <%= f.label :uri, Spree.t(:uri) %> <span class="required">*</span><br />
+            <%= f.text_field :uri, :class => "fullwidth title" %>
+            <%= f.error_message_on :uri %>
+          <% end %>
         </div>
 
-        <%= f.field_container :payload do %>
-          <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
-          <%= f.text_area :payload, :class => "fullwidth title" %>
-          <%= f.error_message_on :payload %>
-          <div id="admin_message_payload_editor"></div>
-        <% end %>
+        <div class="omega six columns">
+          <%= f.field_container :token do %>
+            <%= f.label :token, Spree.t(:token) %> <span class="required">*</span><br />
+            <%= f.text_field :token, :class => "fullwidth title" %>
+            <%= f.error_message_on :token %>
+          <% end %>
+        </div>
+      </div>
 
-        <%= f.field_container :parameters do %>
-          <%= f.label :parameters, Spree.t(:parameters) %><br/>
-          <%= f.text_area :parameters, :class => "fullwidth title" %>
-          <%= f.error_message_on :parameters %>
-          <div id="admin_message_parameters_editor"></div>
-        <% end %>
+      <%= f.field_container :payload do %>
+        <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
+        <%= f.text_area :payload, :class => "fullwidth title" %>
+        <%= f.error_message_on :payload %>
+        <div id="admin_endpoint_message_payload_editor"></div>
+      <% end %>
 
-        <%= render :partial => "spree/admin/shared/new_resource_links" %>
+      <%= f.field_container :parameters do %>
+        <%= f.label :parameters, Spree.t(:parameters) %><br/>
+        <%= f.text_area :parameters, :class => "fullwidth title" %>
+        <%= f.error_message_on :parameters %>
+        <div id="admin_endpoint_message_parameters_editor"></div>
+      <% end %>
 
-      </fieldset>
-    </div>
-  <% end %>
+      <%= render :partial => "spree/admin/shared/new_resource_links" %>
 
-  <script id="messages" type="application/vnd.spree-admin-messages">
-    <%= raw @presenter.samples.to_json %>
-  </script>
+    </fieldset>
+  </div>
+<% end %>
 
-  <script>
-    $(function(){
-      var $textarea = $("#admin_message_payload");
+<script id="messages" type="application/vnd.spree-admin-messages">
+  <%= raw @presenter.samples.to_json %>
+</script>
 
-      // Creates ACE editor for parameters' field
-      createEditor("admin_message_parameters_editor", "admin_message_parameters");
+<script>
+  $(function(){
+    var $textarea = $("#admin_endpoint_message_payload");
 
-      var payloadEditor = createEditor("admin_message_payload_editor", "admin_message_payload");
+    // Creates ACE editor for parameters' field
+    createEditor("admin_endpoint_message_parameters_editor", "admin_endpoint_message_parameters");
 
-      $("#admin_message_message").change(function(e){
-        var message = messageSearch($(e.target).val());
-        if(message){
-          var payload = JSON.stringify(message.payload, null, 4);
-          $textarea.val(payload);
-          payloadEditor.setValue(payload);
-        }
-      });
+    var payloadEditor = createEditor("admin_endpoint_message_payload_editor", "admin_endpoint_message_payload");
 
-      var messageSearch = (function(){
-        var messages = JSON.parse($("#messages").text());
-        return function(message){
-          for(var i = 0; i < messages.length; i++){
-            if(messages[i].table.message === message) return messages[i].table;
-          }
-        };
-      })();
-
-      function createEditor(targetId, parentId){
-        var editor = ace.edit(targetId);
-        editor.setTheme("ace/theme/chrome");
-        editor.getSession().setMode("ace/mode/javascript");
-        editor.getSession().setUseWorker(false);
-        editor.setShowPrintMargin(false);
-
-        var $textarea = $("#" + parentId);
-        editor.getSession().setValue($textarea.val());
-        editor.getSession().on("change", function(){
-          $textarea.val(editor.getSession().getValue());
-        });
-
-        return editor;
+    $("#admin_endpoint_message_message").change(function(e){
+      var message = messageSearch($(e.target).val());
+      if(message){
+        var payload = JSON.stringify(message.payload, null, 4);
+        $textarea.val(payload);
+        payloadEditor.setValue(payload);
       }
     });
-  </script>
+
+    var messageSearch = (function(){
+      var messages = JSON.parse($("#messages").text());
+      return function(message){
+        for(var i = 0; i < messages.length; i++){
+          if(messages[i].table.message === message) return messages[i].table;
+        }
+      };
+    })();
+
+    function createEditor(targetId, parentId){
+      var editor = ace.edit(targetId);
+      editor.setTheme("ace/theme/chrome");
+      editor.getSession().setMode("ace/mode/javascript");
+      editor.getSession().setUseWorker(false);
+      editor.setShowPrintMargin(false);
+
+      var $textarea = $("#" + parentId);
+      editor.getSession().setValue($textarea.val());
+      editor.getSession().on("change", function(){
+        $textarea.val(editor.getSession().getValue());
+      });
+
+      return editor;
+    }
+  });
+</script>
 

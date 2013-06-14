@@ -1,0 +1,14 @@
+<div id="admin-response-body-json"><%= begin; raw JSON.pretty_generate(JSON.parse(value)); rescue; raw value end %></div>
+  <script>
+    $(function(){
+      (function createEditor(targetId){
+        var editor = ace.edit(targetId);
+        editor.setTheme("ace/theme/chrome");
+        editor.getSession().setMode("ace/mode/javascript");
+        editor.getSession().setUseWorker(false);
+        editor.setShowPrintMargin(false);
+        editor.setReadOnly(true);
+        editor.renderer.setShowGutter(false);
+      })("admin-response-body-json");
+    });
+  </script>

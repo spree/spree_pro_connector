@@ -7,24 +7,24 @@
   overflow-y:scroll;
 }
 
-#admin_message_payload_editor {
+#admin_endpoint_message_payload_editor {
   width: 100%;
   height: 400px;
 }
 
-#admin_message_parameters_editor {
+#admin_endpoint_message_parameters_editor {
   width: 100%;
   height: 200px;
 }
 
-#admin_message_payload, #admin_message_parameters {
+#admin_endpoint_message_payload, #admin_endpoint_message_parameters {
   display: none;
 }
 
 #admin-response-body {
   border: 0px;
   width: 100%;
-  height: 200px;
+  height: 100px;
 }
 
 /* Simple modal */

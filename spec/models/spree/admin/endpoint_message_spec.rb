@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Spree::Admin::Message do
+describe Spree::Admin::EndpointMessage do
   subject(:message)     { described_class.new token:      "maggie", 
                                               message:    "batman", 
                                               payload:    payload, 
