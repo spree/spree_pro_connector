@@ -1,4 +1,4 @@
-<div id="admin-response-body-json"><%= begin; raw JSON.pretty_generate(JSON.parse(value)); rescue; raw value end %></div>
+<div id="admin-response-body-json"><%= @presenter.response_json %></div>
   <script>
     $(function(){
       (function createEditor(targetId){

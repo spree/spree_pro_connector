@@ -15,18 +15,16 @@
         <ul>
           <% @presenter.each_response_data do |key, value| %>
             <dt><%= Spree.t(key, scope: :response_data) %></dt>
-            <dl>
-              <% if key == :body %>
-                <% if @presenter.response_json? %>
-                  <%= render partial: "body_json", locals: { value: value } %>
-                <% else %>
-                  <%= render partial: "body_html", locals: { value: value } %>
-                <% end %>
-              <% else %>
-                <%= value %>
-              <% end %>
-            </dl>
+            <dl><%= value %></dl>
           <% end %>
+          <dt><%= Spree.t(:body, scope: :response_data) %></dt>
+          <dl>
+            <% if @presenter.response_json? %>
+              <%= render partial: "body_json" %>
+            <% else %>
+              <%= render partial: "body_html" %>
+            <% end %>
+          </dl>
         </ul>
       </fieldset>
     <% end %>

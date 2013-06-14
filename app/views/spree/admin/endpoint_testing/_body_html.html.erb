@@ -1,5 +1,5 @@
 <script id="admin-response-body-content" type="application/vnd.spree-admin-response-body">
-  <%= raw value.gsub("<", "&lt;").gsub(">", "&gt;") %>
+  <%= raw @presenter.response_html_safe %>
 </script>
 <iframe id="admin-response-body"></iframe>
 <script>

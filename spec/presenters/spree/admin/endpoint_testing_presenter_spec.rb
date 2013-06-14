@@ -17,7 +17,6 @@ describe Spree::Admin::EndpointTestingPresenter do
       expect{ |b| presenter.each_response_data &b }.to yield_successive_args(
         [:uri, "http://127.0.0.1"],
         [:code, "200"],
-        [:body, "ok"],
         ["Content-Type", "text/html; charset=utf-8"],
       )
     end
@@ -28,7 +27,6 @@ describe Spree::Admin::EndpointTestingPresenter do
       expect{ |b| presenter.each_response_data &b }.to yield_successive_args(
         [:uri, "http://127.0.0.1"],
         [:code, "200"],
-        [:body, "ok"],
         ["Content-Type", "text/html; charset=utf-8"]
       )
     end
@@ -44,6 +42,21 @@ describe Spree::Admin::EndpointTestingPresenter do
       message.stub response_headers: { "Content-Type" => "text/html; charset=utf-8" }
 
       expect(presenter.response_json?).to_not be
+    end
+  end
+
+  describe "#response_json" do
+    it "should return pretty json" do
+      json = { status: "ok" }.to_json
+      message.stub response_body: json
+      expect(presenter.response_json).to eq "{\n  \"status\": \"ok\"\n}"
+    end
+  end
+
+  describe "#response_html_safe" do
+    it "should escape <>" do
+      message.stub response_body: "<span>Hello</span>"
+      expect(presenter.response_html_safe).to eq "&lt;span&gt;Hello&lt;/span&gt;"
     end
   end
 end

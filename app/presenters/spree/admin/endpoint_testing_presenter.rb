@@ -20,12 +20,20 @@ module Spree::Admin
     end
 
     def each_response_data
-      { uri: uri, code: response_code, body: response_body}.
+      { uri: uri, code: response_code}.
         merge(response_headers)
       .each do |key, value|
         yield key, value.kind_of?(Array) ? value.join(", ") :
           value
       end
+    end
+
+    def response_html_safe
+      response_body.gsub("<", "&lt;").gsub ">", "&gt;"
+    end
+
+    def response_json
+      JSON.pretty_generate JSON.parse(response_body)
     end
 
     def response_json?
