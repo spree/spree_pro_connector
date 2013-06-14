@@ -102,8 +102,8 @@
   <div class="row filters">
     <h4>Filters</h4>
     <p class="add"><a href="#" class="add-filter-fields">add row</a></p>
-    <% for filter in @registration.get('formatted_filters'): %>
-      <div class="alpha twelve columns filter-field" data-operator="<%= filter.operator %>">
+    <% for filter in @registration.get('filters'): %>
+      <div class="alpha twelve columns filter-fields" data-operator="<%= filter.operator %>">
         <div class="alpha four columns">
           <div class="field">
             <label for="path">Path</label>

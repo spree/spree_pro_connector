@@ -13,7 +13,7 @@ Augury.Models.Integration = Backbone.Model.extend(
         store_id: Augury.store_id
         parameters: parameters
       success: (registrations, response, opts)=>
-        Augury.parameteres.fetch()
+        Augury.parameters.fetch()
 
         _(registrations).each (reg) ->
           Augury.registrations.add new Augury.Models.Registration(reg)

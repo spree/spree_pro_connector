@@ -60,8 +60,8 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
       value = $(value).find('input#value').first().val()
       if path && operator && value
         filter.path = path
-        filter.compare = {}
-        filter.compare[operator] = value
+        filter.value = value
+        filter.operator = operator
         filters.push(filter)
     filtersJSON = JSON.stringify(filters)
     console.log filtersJSON
