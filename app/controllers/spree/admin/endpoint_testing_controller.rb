@@ -9,7 +9,7 @@ module Spree::Admin
 
     def create
       @message   = EndpointMessage.new params[:admin_endpoint_message]
-      @message.save
+      @message.send_request
 
       @presenter = EndpointTestingPresenter.new @message
 

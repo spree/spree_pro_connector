@@ -4,7 +4,7 @@
   <%= Spree.t(:endpoint_testing) %>
 <% end %>
 
-<%= render :partial => "spree/shared/error_messages", :locals => { :target => @message } %>
+<%= render partial: "spree/shared/error_messages", locals: { target: @message } %>
 
 <%= form_for @message, url: admin_endpoint_testing_path do |f| %>
   <div class="preferences">
@@ -34,7 +34,7 @@
 
       <%= f.field_container :message do %>
         <%= f.label :message, Spree.t(:message) %>
-        <%= f.collection_select :message, @presenter.samples, :message, :message, {:include_blank => true}, {:class => "select2 fullwidth"} %>
+        <%= f.collection_select :message, @presenter.samples, :message, :message, { include_blank: true }, { class: "select2 fullwidth" } %>
         <%= f.error_message_on :message %>
       <% end %>
 
