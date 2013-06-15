@@ -9,7 +9,7 @@
 <%= form_for @message, url: admin_endpoint_testing_path do |f| %>
   <div class="preferences">
 
-    <% if @presenter.response %>
+    <% if @presenter.response_data %>
       <fieldset class="general no-border-top">
         <legend align="center"><%= Spree.t(:response) %></legend>
         <ul>

@@ -2,7 +2,7 @@ require "samples"
 
 module Spree::Admin
   class EndpointTestingPresenter
-    delegate :uri, :response_code, :response_body, :response_headers, :response, 
+    delegate :uri, :response_code, :response_body, :response_headers, :response_data, 
       to: :@message
 
     def initialize message
