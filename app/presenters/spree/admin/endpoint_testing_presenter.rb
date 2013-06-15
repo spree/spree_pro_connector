@@ -29,7 +29,7 @@ module Spree::Admin
     end
 
     def response_html_safe
-      response_body.gsub("<", "&lt;").gsub ">", "&gt;"
+      response_body.gsub "script", "xcriptx"
     end
 
     def response_json

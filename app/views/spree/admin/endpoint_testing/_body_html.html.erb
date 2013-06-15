@@ -1,19 +1,19 @@
 <script id="admin-response-body-content" type="application/vnd.spree-admin-response-body">
   <%= raw @presenter.response_html_safe %>
 </script>
-<iframe id="admin-response-body"></iframe>
+<iframe id="admin-response-body-preview"></iframe>
 <script>
   $(function(){
-    var ifrm = document.getElementById("admin-response-body");
+    var ifrm = document.getElementById("admin-response-body-preview");
     var ifrmDocument;
     if(ifrm.contentWindow) {
-      ifrmDocument = ifrm.contentWindow.document
-      } else {
-      ifrmDocument = ifrm.contentDocument
+      ifrmDocument = ifrm.contentWindow.document;
+      } else { 
+      ifrmDocument = ifrm.contentDocument;
     }
-    ifrmDocument.open()
-    ifrmDocument.write($("#admin-response-body-content").text().replace(/&lt;/g, "<").replace(/&gt;/g, ">"));
-    ifrmDocument.close()
+    ifrmDocument.open();
+    ifrmDocument.write($("#admin-response-body-content").text().replace(/\xcriptx/g, "script"));
+    ifrmDocument.close();
   });
 </script>
 

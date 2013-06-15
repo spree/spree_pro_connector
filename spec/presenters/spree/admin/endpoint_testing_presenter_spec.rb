@@ -54,9 +54,9 @@ describe Spree::Admin::EndpointTestingPresenter do
   end
 
   describe "#response_html_safe" do
-    it "should escape <>" do
-      message.stub response_body: "<span>Hello</span>"
-      expect(presenter.response_html_safe).to eq "&lt;span&gt;Hello&lt;/span&gt;"
+    it "should escape script tag" do
+      message.stub response_body: "<script>alert('Hello');</script>"
+      expect(presenter.response_html_safe).to eq "<xcriptx>alert('Hello');</xcriptx>"
     end
   end
 end
