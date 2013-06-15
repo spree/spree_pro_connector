@@ -1,6 +1,10 @@
 module Spree::Admin
   class EndpointTestingController < BaseController
-    helper_method :collection_url
+    helper_method :collection_url, :new_object_url
+
+    def index
+      @messages = EndpointMessage.all
+    end
 
     def new
       @message   = EndpointMessage.new
@@ -19,6 +23,10 @@ module Spree::Admin
     private
 
     def collection_url
+      admin_endpoint_testings_path
+    end
+
+    def new_object_url
       admin_endpoint_testing_path
     end
   end

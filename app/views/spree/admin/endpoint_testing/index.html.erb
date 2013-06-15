@@ -1,0 +1,35 @@
+<%= render :partial => 'spree/admin/shared/configuration_menu' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:endpoint_testing) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+  <%= button_link_to Spree.t(:new_message), new_object_url, :icon => 'icon-plus', :id => 'admin_new_messages_link' %>
+  </li>
+<% end %>
+
+<% if @messages.any? %>
+  <table class="index" id='listing_messages'>
+    <colgroup>
+      <col style="width: 100%">
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_messages_index_headers">
+        <th><%= Spree.t(:name) %></th>
+        <th data-hook="admin_messages_index_header_actions" class="actions"></th>
+      </tr>  
+    </thead>
+    <tbody>
+      <% @messages.each do |message|%>
+        <tr id="<%= spree_dom_id message %>" data-hook="admin_messages_index_rows" class="<%= cycle('odd', 'even')%>">
+          <td class="align-center"><%= message.uri %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alpha twelve columns no-objects-found"><%= Spree.t(:no_endpoint_testing_found) %></div>
+<% end %>
+

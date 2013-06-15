@@ -4,6 +4,12 @@
   <%= Spree.t(:endpoint_testing) %>
 <% end %>
 
+<% content_for :page_actions do %>
+  <li>
+  <%= button_link_to Spree.t(:show_all), collection_url, :icon => 'icon-plus', :id => 'admin_new_messages_link' %>
+  </li>
+<% end %>
+
 <%= render partial: "spree/shared/error_messages", locals: { target: @message } %>
 
 <%= form_for @message, url: admin_endpoint_testing_path do |f| %>
