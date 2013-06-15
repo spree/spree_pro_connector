@@ -26,9 +26,9 @@ module Spree::Admin
     rescue JSON::ParserError
     end
 
-    def send_request
+    def send_request request_client=Spree::Admin::ApiRequest
       return unless valid?
-      @response = ApiRequest.new(token).post uri, full_payload
+      @response = request_client.post token, uri, full_payload
     end
 
     private :save, :create

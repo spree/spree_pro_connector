@@ -6,6 +6,7 @@ class CreateSpreeEndpointMessages < ActiveRecord::Migration
       t.string :message
       t.string :token
       t.string :parameters
+      t.text :response_data
 
       t.timestamps
     end
