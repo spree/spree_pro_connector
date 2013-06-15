@@ -20,7 +20,9 @@ module Spree::Admin
       write_attribute :payload, payload
       payload_hash = JSON.parse payload
       add_message_id(payload_hash) if payload_hash["message_id"].blank?
-      write_attribute :payload, JSON.pretty_generate(payload_hash)
+      write_attribute :message_id, payload_hash["message_id"]
+      write_attribute :message,    payload_hash["message"]
+      write_attribute :payload,    JSON.pretty_generate(payload_hash)
     rescue JSON::ParserError
     end
 

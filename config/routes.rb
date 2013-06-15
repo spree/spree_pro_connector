@@ -10,6 +10,7 @@ Spree::Core::Engine.routes.draw do
 
     get  "endpoint_testing"  => "endpoint_testing#new",    as: :endpoint_testing
     post "endpoint_testing"  => "endpoint_testing#create", as: :endpoint_testing
+    put  "endpoint_testing"  => "endpoint_testing#create", as: :endpoint_testing
     get  "endpoint_testings" => "endpoint_testing#index",  as: :endpoint_testings
   end
 

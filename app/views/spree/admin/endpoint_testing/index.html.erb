@@ -13,23 +13,28 @@
 <% if @messages.any? %>
   <table class="index" id='listing_messages'>
     <colgroup>
-      <col style="width: 100%">
+      <col style="width: 20%">
+      <col style="width: 40%">
+      <col style="width: 40%">
     </colgroup>
     <thead>
       <tr data-hook="admin_messages_index_headers">
-        <th><%= Spree.t(:name) %></th>
-        <th data-hook="admin_messages_index_header_actions" class="actions"></th>
-      </tr>  
+        <th><%= Spree.t(:message_id) %></th>
+        <th><%= Spree.t(:token) %></th>
+        <th><%= Spree.t(:message) %></th>
+      </tr>
     </thead>
     <tbody>
       <% @messages.each do |message|%>
         <tr id="<%= spree_dom_id message %>" data-hook="admin_messages_index_rows" class="<%= cycle('odd', 'even')%>">
-          <td class="align-center"><%= message.uri %></td>
+          <td class="align-center"><%= message.message_id %></td>
+          <td class="align-center"><%= message.token %></td>
+          <td class="align-center"><%= message.message %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <div class="alpha twelve columns no-objects-found"><%= Spree.t(:no_endpoint_testing_found) %></div>
+  <div class="alpha twelve columns no-objects-found"><%= Spree.t(:no_messages_found) %></div>
 <% end %>
 

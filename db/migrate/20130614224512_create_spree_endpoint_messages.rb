@@ -1,6 +1,7 @@
 class CreateSpreeEndpointMessages < ActiveRecord::Migration
   def change
     create_table :spree_endpoint_messages do |t|
+      t.string :message_id
       t.string :uri
       t.string :payload
       t.string :message
@@ -10,5 +11,6 @@ class CreateSpreeEndpointMessages < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :spree_endpoint_messages, :message_id, unique: true
   end
 end
