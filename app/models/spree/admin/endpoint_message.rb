@@ -2,7 +2,7 @@ module Spree::Admin
   class EndpointMessage < ActiveRecord::Base
     self.table_name = "spree_endpoint_messages"
 
-    delegate :code, :body, :headers, to: :response, prefix: true
+    serialize :response_data
 
     validates :payload    , presence: true , json: true
     validates :uri        , presence: true
@@ -10,6 +10,8 @@ module Spree::Admin
     validates :parameters , json: true
 
     attr_accessible :message, :uri, :token, :payload, :parameters
+
+    default_scope order: "created_at DESC"
 
     def uri=uri
       uri = "http://#{uri}" if !uri.blank? && !uri.match(/^https?:\/\//)
