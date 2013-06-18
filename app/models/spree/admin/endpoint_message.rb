@@ -8,6 +8,7 @@ module Spree::Admin
     validates :uri        , presence: true
     validates :token      , presence: true
     validates :parameters , json: true
+    validates :message_id , uniqueness: true
 
     attr_accessible :message, :uri, :token, :payload, :parameters
 
