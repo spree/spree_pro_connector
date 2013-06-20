@@ -48,6 +48,10 @@ module Spree
       response_data[:body]
     end
 
+    def self.unique_messages
+      uniq.pluck(:message)
+    end
+
     private :save, :create
 
     private
