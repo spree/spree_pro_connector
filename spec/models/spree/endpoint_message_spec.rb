@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Spree::Admin::EndpointMessage do
+describe Spree::EndpointMessage do
   subject(:message)     { described_class.new token: token,
                           message:    "batman",
                           uri:        uri,

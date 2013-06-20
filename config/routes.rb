@@ -8,10 +8,9 @@ Spree::Core::Engine.routes.draw do
     match 'integration/register' => 'integration#register'
     match 'integration/*backbone' => 'integration#show'
 
-    get  "endpoint_testing"  => "endpoint_testing#new",    as: :endpoint_testing
-    post "endpoint_testing"  => "endpoint_testing#create", as: :endpoint_testing
-    put  "endpoint_testing"  => "endpoint_testing#create", as: :endpoint_testing
-    get  "endpoint_testings" => "endpoint_testing#index",  as: :endpoint_testings
+    get 'endpoint_testing', to: redirect("/admin/endpoint_messages/new")
+
+    resources :endpoint_messages, except: [:show, :destroy]
   end
 
   namespace :api, :defaults => { :format => 'json' } do

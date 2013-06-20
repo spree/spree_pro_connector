@@ -6,13 +6,14 @@
 
 <% content_for :page_actions do %>
   <li>
+  <%= button_link_to Spree.t(:new_message), new_object_url, :icon => 'icon-plus', :id => 'admin_new_endpoint_messages_link' %>
   <%= button_link_to Spree.t(:show_all), collection_url, :icon => 'icon-plus', :id => 'admin_new_messages_link' %>
   </li>
 <% end %>
 
-<%= render partial: "spree/shared/error_messages", locals: { target: @message } %>
+<%= render partial: "spree/shared/error_messages", locals: { target: @endpoint_message } %>
 
-<%= form_for @message, url: admin_endpoint_testing_path do |f| %>
+<%= form_for [:admin, @endpoint_message] do |f| %>
   <div class="preferences">
 
     <% if @presenter.response_data %>
@@ -66,14 +67,14 @@
         <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
         <%= f.text_area :payload, :class => "fullwidth title" %>
         <%= f.error_message_on :payload %>
-        <div id="admin_endpoint_message_payload_editor"></div>
+        <div id="endpoint_message_payload_editor"></div>
       <% end %>
 
       <%= f.field_container :parameters do %>
         <%= f.label :parameters, Spree.t(:parameters) %><br/>
         <%= f.text_area :parameters, :class => "fullwidth title" %>
         <%= f.error_message_on :parameters %>
-        <div id="admin_endpoint_message_parameters_editor"></div>
+        <div id="endpoint_message_parameters_editor"></div>
       <% end %>
 
       <%= render :partial => "spree/admin/shared/new_resource_links" %>
@@ -88,14 +89,14 @@
 
 <script>
   $(function(){
-    var $textarea = $("#admin_endpoint_message_payload");
+    var $textarea = $("#endpoint_message_payload");
 
     // Creates ACE editor for parameters' field
-    createEditor("admin_endpoint_message_parameters_editor", "admin_endpoint_message_parameters");
+    createEditor("endpoint_message_parameters_editor", "endpoint_message_parameters");
 
-    var payloadEditor = createEditor("admin_endpoint_message_payload_editor", "admin_endpoint_message_payload");
+    var payloadEditor = createEditor("endpoint_message_payload_editor", "endpoint_message_payload");
 
-    $("#admin_endpoint_message_message").change(function(e){
+    $("#endpoint_message_message").change(function(e){
       var message = messageSearch($(e.target).val());
       if(message){
         var payload = JSON.stringify(message.payload, null, 4);

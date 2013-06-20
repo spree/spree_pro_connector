@@ -1,4 +1,4 @@
-module Spree::Admin
+module Spree
   class EndpointMessage < ActiveRecord::Base
     self.table_name = "spree_endpoint_messages"
 
@@ -8,7 +8,8 @@ module Spree::Admin
     validates :uri        , presence: true
     validates :token      , presence: true
     validates :parameters , json: true
-    validates :message_id , uniqueness: true
+
+    validate :validates_uniqueness_of_message_id
 
     attr_accessible :message, :uri, :token, :payload, :parameters
 
@@ -29,7 +30,7 @@ module Spree::Admin
     rescue JSON::ParserError
     end
 
-    def send_request request_client=ApiRequest
+    def send_request request_client=Spree::Admin::ApiRequest
       return unless valid?
       write_attribute :response_data, request_client.post(token, uri, full_payload)
       save
@@ -50,6 +51,18 @@ module Spree::Admin
     private :save, :create
 
     private
+
+    def validates_uniqueness_of_message_id
+      relation = self.class.where(message_id: message_id)
+      relation = relation.where(self.class.arel_table[:id].not_eq(id)) if persisted?
+
+      if endpoint_message = relation.first
+        errors.add :message_id,
+          Spree.t("endpoint_message.errors.taken_html",
+                  url: Spree::Core::Engine.routes.url_helpers.edit_admin_endpoint_message_path(endpoint_message),
+                  id: endpoint_message.id)
+      end
+    end
 
     def parameters_hash
       JSON.parse parameters unless parameters.blank?

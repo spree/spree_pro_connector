@@ -12,4 +12,14 @@ en:
       date: "Date"
       content-length: "Content-Length"
       connection: "Connection"
-      body: "Body"
+    endpoint_message:
+      errors:
+        cant_be_updated: "Messages already be sent can't be updated"
+        taken_html: "has already been taken check it out at <a href=\"%{url}\">%{url}</a>"
+    # activerecord:
+      # errors:
+        # models:
+          # endpoint_message:
+            # attributes:
+              # message_id:
+                # taken:

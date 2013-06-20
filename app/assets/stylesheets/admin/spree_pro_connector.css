@@ -7,17 +7,17 @@
   overflow-y:scroll;
 }
 
-#admin_endpoint_message_payload_editor {
+#endpoint_message_payload_editor {
   width: 100%;
   height: 400px;
 }
 
-#admin_endpoint_message_parameters_editor {
+#endpoint_message_parameters_editor {
   width: 100%;
   height: 200px;
 }
 
-#admin_endpoint_message_payload, #admin_endpoint_message_parameters {
+#endpoint_message_payload, #endpoint_message_parameters {
   display: none;
 }
 
