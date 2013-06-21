@@ -1,0 +1,83 @@
+<h2>Connect</h2>
+
+
+<fieldset class="no-border-top">
+  <div class="alpha six columns left">
+    <div class="field">
+      <label for="env">Integrator Environment</label><br>
+      <select class="select2" id="env" name="env">
+        <option value="staging">Staging</option>
+        <option value="production">Production</option>
+        <option value="custom">Custom</option>
+      </select>
+    </div>
+  </div>
+  <div class="omega six columns left">
+    <div class="field">
+      <label for="env">Integrator URL</label><br>
+      <p class="url"></p>
+      <input class="fullwidth url" type="text" name="name" style="display:none;" value="http://localhost:4000"/>
+    </div>
+  </div>
+
+  <div class="row" style="clear:both;">
+    <div class="field">
+      <ul style="border-top:none;">
+        <li>
+          <input checked="checked" id="new" name="new_or_existing" type="radio" value="new">
+          <label class="large">I am a new user or</label>
+        </li>
+        <li>
+          <input id="existing" name="new_or_existing" type="radio" value="existing">
+          <label class="large">I'm already registered on the <strong id="env_label">staging</strong> Integrator.</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <fieldset style="border-bottom:none;">
+    <legend>User Details</legend>
+    <div class="alpha six columns left">
+      <div class="field">
+        <label for="email">Email</label>
+        <input class="fullwidth" type="text" id="email" name="email" value="<%= Augury.SignUp.user %>" />
+      </div>
+    </div>
+    <div class="omega six columns right">
+      <div class="field">
+        <label for="password">Password</label>
+        <input class="fullwidth" type="password" id="password" name="password" />
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset id="store_details" style="border-bottom:0px;">
+    <legend>Store Details</legend>
+    <div class="alpha six columns left">
+      <div class="field">
+        <label for="name">Store Name</label>
+        <input class="fullwidth" type="text" id="name" name="name" value="<%= Augury.SignUp.name %>" />
+      </div>
+    </div>
+    <div class="omega six columns right">
+      <div class="field">
+        <label for="url">Store API URL</label>
+        <input class="fullwidth" type="text" id="url" name="url" value="<%= Augury.SignUp.url %>" />
+      </div>
+    </div>
+    <input type="hidden" id="version" value="<%= Augury.SignUp.version %>" />
+    <input type="hidden" id="api_key" value="<%= Augury.SignUp.api_key %>" />
+  </fieldset>
+
+  <div style="display:none;" class="form-buttons filter-actions actions" id="login_buttons">
+    <button id="login" class="icon-refresh button">Login</button>
+    <span class="or">or</span>
+    <button id="cancel" class="button icon_link with-tip icon-remove">Cancel</button>
+  </div>
+
+  <div class="form-buttons filter-actions actions" id="connect_buttons">
+    <button id="connect" class="icon-refresh button">Connect</button>
+    <span class="or">or</span>
+    <button id="cancel" class="button icon_link with-tip icon-remove">Cancel</button>
+  </div>
+</fieldset>

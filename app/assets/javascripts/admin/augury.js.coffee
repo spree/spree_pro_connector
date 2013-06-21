@@ -2,9 +2,31 @@ window.Augury =
   init: ->
     $.ajaxPrefilter (options, originalOptions, jqXHR) ->
       jqXHR.setRequestHeader("X-Augury-Token", Augury.api_key)
-      options.url = "#{Augury.pro_url}/api#{options.url}"
+      if options.url.indexOf("http", 0) is -1
+        options.url = "#{Augury.url}/api#{options.url}"
       options.xhrFields = withCredentials: true
 
+  post_init: ->
+    @handle_link_clicks()
+
+    Backbone.history.start pushState: true, root: '/admin/integration/'
+
+  connect: ->
+    @init()
+
+    @Routers._active['connections'] = new @Routers.Connections()
+
+    @post_init()
+
+    url = if _(Augury.connections).size() > 0
+      url = "connections"
+    else
+      url = "connections/new"
+
+    Backbone.history.navigate url, trigger: true
+
+  start: ->
+    @init()
     @integrations = new @Collections.Integrations(@Preload.integrations)
     @registrations = new @Collections.Registrations(@Preload.registrations)
     @parameters = new @Collections.Parameters(@Preload.parameters)
@@ -17,16 +39,17 @@ window.Augury =
     @Routers._active['registrations'] = new @Routers.Registrations
       collection: @registrations
       parameters: @parameters
+    @Routers._active['connections'] = new @Routers.Connections()
 
-    @handle_link_clicks()
-
-    Backbone.history.start pushState: true, root: '/admin/integration/'
+    @post_init()
 
   Models: {}
   Collections: {}
   Routers: { _active: {} }
-  Views: { Home: {}, Integrations: {}, Registrations: {} }
+  Views: { Home: {}, Integrations: {}, Registrations: {}, Connections: {} }
   Preload: {}
+
+  SignUp: {}
 
   handle_link_clicks: ->
     $(document).on "click", "a[href^='/admin/integration']", (event) ->

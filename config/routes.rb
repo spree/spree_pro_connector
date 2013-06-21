@@ -6,6 +6,8 @@ Spree::Core::Engine.routes.draw do
 
     match 'integration' => 'integration#show'
     match 'integration/register' => 'integration#register'
+    match 'integration/connect' => 'integration#connect'
+    match 'integration/disconnect' => 'integration#disconnect'
     match 'integration/*backbone' => 'integration#show'
 
     get 'endpoint_testing', to: redirect("/admin/endpoint_messages/new")

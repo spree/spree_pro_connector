@@ -4,25 +4,43 @@
 
 <%= render partial: 'spree/admin/shared/integration_menu' %>
 
-<% if !Spree::Config[:store_id].present? %>
-  <div class="row">
-    <p>This store is not registered with the Integrator.</p>
-    <%= button_link_to Spree.t(:register), admin_integration_register_path, :icon => 'icon-pencil' %>
-  </div>
-<% else %>
-  <div id="integration_main" class="row">
-    <!-- Backbone app renders here -->
-  </div>
-  <%= javascript_tag do -%>
-    Augury.store_id = '<%= Spree::Config.store_id %>';
-    Augury.pro_url = '<%= Spree::Config.pro_url %>';
-    Augury.api_key = '<%= Spree::Config.pro_api_key %>';
+<div id="integration_main" class="row">
+  <!-- Backbone app renders here -->
+</div>
+
+<%= javascript_tag do -%>
+  Augury.SignUp.urls = {};
+  Augury.SignUp.urls['production'] = "http://aug-stg1.spree.mx";
+  Augury.SignUp.urls['staging'] = "http://aug-stg1.spree.mx";
+  Augury.SignUp.name = '<%= Spree::Config[:site_name] %>';
+  Augury.SignUp.url = '<%= "http://#{request.host_with_port}/api" %>';
+  Augury.SignUp.version = '<%= Spree.version %>';
+  Augury.SignUp.api_key = '<%= @integrator_user.spree_api_key %>';
+  Augury.SignUp.user = '<%= spree_current_user.email %>';
+
+  Augury.connections = {}
+  <% AuguryEnvironment.all.each do |env| %>
+    Augury.connections[<%= env.id %>] = { url: '<%= env.url %>', token: '<%= env.token %>', environment: '<%= env.environment %>', user: '<%= env.user %>' };
+  <% end %>
+
+  <% if @environment.nil? %>
+    $(function() {
+      return Augury.connect();
+    });
+  <% else %>
+    Augury.env = '<%= @environment.environment %>';
+    Augury.url = '<%= @environment.url %>';
+    Augury.store_id = '<%= @environment.store_id %>';
+    Augury.api_key = '<%= @environment.token %>';
     Augury.Preload.integrations = <%== @integrations_json %>;
     Augury.Preload.registrations = <%== @registrations_json %>;
     Augury.Preload.parameters = <%== @parameters_json %>;
     Augury.Preload.keys = <%== @keys_json %>;
+
+    Augury.env_id = <%= @environment.id %>;
+
     $(function() {
-      return Augury.init();
+      return Augury.start();
     });
   <% end %>
 <% end %>

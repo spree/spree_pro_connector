@@ -1,0 +1,29 @@
+<h1>Connect</h1>
+
+<p>You've already registered the following stores, which one corresponds to this Spree instance?</p>
+
+<table class="index">
+  <colgroup>
+    <col style="width: 30%" />
+    <col style="width: 60%" />
+    <col style="width: 10%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Store Name</th>
+      <th>Store API URL</th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for store in @signup.stores: %>
+      <tr>
+        <td><%= store['name'] %></td>
+        <td><strong><%= store['api_url'] %></strong></td>
+        <td class="actions">
+          <a href="#" class="edit icon_link with-tip icon-ok no-text" title="Select" data-store-id="<%= store['id'] %>" data-action="select"></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

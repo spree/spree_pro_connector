@@ -4,25 +4,27 @@
 
 <table class="index">
   <colgroup>
-    <col style="width: 30%" />
+    <col style="width: 70%" />
     <col style="width: 15%" />
-    <col style="width: 40%" />
     <col style="width: 15%" />
   </colgroup>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Description</th>
       <th>Category</th>
-      <th>URL</th>
       <th class="actions"></th>
     </tr>
   </thead>
   <tbody>
     <% for integration in @integrations.models: %>
       <tr>
-        <td><%= integration.get('name') %></td>
+        <td>
+          <h6><%= integration.get('display') or integration.get('name') %></h6>
+          <% if integration.get('description')?: %>
+            <%= integration.get('description') %>
+          <% end %>
+        </td>
         <td><%= integration.get('category') %></td>
-        <td><%= integration.get('url') %></td>
         <td class="actions">
           <% if integration.registrations().length!=0: %>
             <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>

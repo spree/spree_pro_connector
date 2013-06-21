@@ -1,0 +1,37 @@
+<h2>Connections</h2>
+
+<p>Here's the complete list of Integrator connections (<%= _(@connections).size() %>).</p>
+
+<table class="index">
+  <colgroup>
+    <col style="width: 30%" />
+    <col style="width: 60%" />
+    <col style="width: 10%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Connect As</th>
+      <th>Integrator</th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for id, connection of @connections: %>
+      <tr>
+        <td><%= connection['user'] %></td>
+        <td><strong><%= connection['url'] %></strong> (<%= connection['environment'] %>)</td>
+        <td class="actions">
+          <% if "#{id}" == "#{Augury.env_id}": %>
+            <a href="/admin/integration/connections/<%= id %>/disconnect" class="edit icon_link with-tip icon-signout no-text" title="Disconnect" data-action="disconnect"></a>
+          <% else: %>
+            <a href="/admin/integration/connections/<%= id %>/connect" class="edit icon_link with-tip icon-signin no-text" title="Connect" data-action="connect"></a>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="actions">
+  <a href="/admin/integration/connections/new" class="new icon_link with-tip icon-plus">New Connection</a>
+</div>

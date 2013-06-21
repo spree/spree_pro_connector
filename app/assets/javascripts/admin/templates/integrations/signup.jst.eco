@@ -1,0 +1,45 @@
+<h2><%= @integration.get('display') %> Setup</h2>
+<p><%= @integration.get('description') %></p>
+<p><a href="<%= @integration.get('help') %>"><%= @integration.get('help') %></a></p>
+
+<br>
+<% if @integration.get('consumers')?: %>
+  <p>You need to complete the following required configuration parameters:</p>
+  <br><br>
+
+    <div class="row">
+      <% for consumer_name,parameters of @parameters_by_consumer: %>
+        <fieldset class="no-border-top">
+          <legend><%= consumer_name %></legend>
+          <% consumer = _(@integration.get('consumers')).findWhere(name: consumer_name) %>
+          <p><%= consumer['description'] %></p>
+
+            <div class="alpha twelve columns">
+              <div class="field">
+                <input class="enabled" type="checkbox" name="enabled" value="<%= consumer['name'] %>" <%= 'checked' if Augury.registrations.findWhere(name: "#{@integration.get('name')}.#{consumer_name}")? %>>
+                <label for="enabled">Enable this consumer?</label>
+              </div>
+            </div>
+            <% for parameter in parameters: %>
+              <div class="alpha six columns">
+                <div class="field">
+                  <label for="token"><%= parameter['name'] %></label>
+                  <input class="param fullwidth <%= consumer_name %>" type="text"
+                         id="<%= parameter['name'] %>"
+                         name="<%= parameter['name'] %>"
+                         value="<%= Augury.parameters.valueByName("#{@integration.get('name')}.#{parameter['name']}") %>"
+                         placeholder="<%= parameter['default'] %>"/>
+                  <span class="help-block" style="font-size:80%;"><%= parameter['description'] %></span>
+                </div>
+              </div>
+            <% end %>
+        </fieldset>
+      <% end %>
+    </div>
+
+    <div class="actions">
+      <button id="save">Save</button>
+    </div>
+<% else: %>
+  <p>This Integration is currently unavailable, please try again later.</p>
+<% end %>

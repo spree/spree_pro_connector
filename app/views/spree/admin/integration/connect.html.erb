@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:integration) %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/integration_menu' %>
+
+<div class="row">
+  <div class="left six columns alpha">
+    <%= f.field_container :email do %>
+      <%= f.label :email, Spree.t(:email) %> <span class="required">*</span><br />
+      <%= f.text_field :email, :class => 'fullwidth' %>
+      <%= f.error_message_on :email %>
+    <% end %>
+
+    <%= f.field_container :password do %>
+      <%= f.label :password, Spree.t(:password) %> <span class="required">*</span><br />
+      <%= f.text_field :email, :class => 'fullwidth' %>
+      <%= f.error_message_on :email %>
+    <% end %>
+  </div>
+
+
+  <div class="right size columns omega">
+  </div>
+
+</div>

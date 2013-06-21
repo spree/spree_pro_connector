@@ -38,6 +38,10 @@
   position: relative;
 }
 
+label.large {
+  font-size: 90%
+}
+
 body .modal-header, .modal-footer {
   background-color: #ccc;
   text-align: center;
