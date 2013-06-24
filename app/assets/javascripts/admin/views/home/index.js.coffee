@@ -2,6 +2,8 @@ Augury.Views.Home.Index = Backbone.View.extend(
   initialize: ->
 
   render: ->
-    @$el.html JST["admin/templates/home/index"]()
+    @env = _(Augury.connections).findWhere(id: Augury.env.id)
+
+    @$el.html JST["admin/templates/home/index"](env: @env)
     this
 )
