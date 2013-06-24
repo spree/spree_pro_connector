@@ -20,11 +20,11 @@ Augury.Views.Connections.New = Backbone.View.extend
 
     if new_or_existing=='new'
       @$el.find("#login_buttons").hide()
-      #@$el.find("#store_details").show()
+      @$el.find("#invite").show()
       @$el.find("#connect_buttons").show()
     else
       @$el.find("#login_buttons").show()
-      #@$el.find("#store_details").hide()
+      @$el.find("#invite").hide()
       @$el.find("#connect_buttons").hide()
 
   toggle_env: ->
@@ -88,9 +88,10 @@ Augury.Views.Connections.New = Backbone.View.extend
           api_key: @$el.find('input#api_key').val()
           email: @$el.find('input#email').val()
           password: @$el.find('input#password').val()
+          invite_code: @$el.find('input#invite_code').val()
 
       success: (login, response, opts)=>
-        window.location.href = "/admin/integration/register?url=#{Augury.url}&env=#{login.env}&user_token=#{login.auth_token}&store_id=#{login.store_id}"
+        window.location.href = "/admin/integration/register?url=#{Augury.url}&env=#{login.env}&user_token=#{login.auth_token}&store_id=#{login.store_id}&user=#{login.user}"
       error: (x,y,z) =>
         alert('signup failed')
 

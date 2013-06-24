@@ -12,28 +12,37 @@
       </select>
     </div>
   </div>
+
   <div class="omega six columns left">
     <div class="field">
-      <label for="env">Integrator URL</label><br>
+      <label for="url">Integrator URL</label><br>
       <p class="url"></p>
-      <input class="fullwidth url" type="text" name="name" style="display:none;" value="http://localhost:4000"/>
+      <input class="fullwidth url" type="text" name="name" id="url" style="display:none;" value="http://localhost:4000"/>
     </div>
   </div>
 
-  <div class="row" style="clear:both;">
+  <div id="invite" class="alpha twelve columns">
     <div class="field">
-      <ul style="border-top:none;">
-        <li>
-          <input checked="checked" id="new" name="new_or_existing" type="radio" value="new">
-          <label class="large">I am a new user or</label>
-        </li>
-        <li>
-          <input id="existing" name="new_or_existing" type="radio" value="existing">
-          <label class="large">I'm already registered on the <strong id="env_label">staging</strong> Integrator.</label>
-        </li>
-      </ul>
+      <label for="invite_code">Invite Code</label><br>
+      <input class="fullwidth invite_code" type="text" id="invite_code" name="invite_code"/>
     </div>
   </div>
+
+  <br>
+
+  <div class="field" style="clear:both;">
+    <ul style="border-top:none;">
+      <li>
+        <input checked="checked" id="new" name="new_or_existing" type="radio" value="new">
+        <label class="large">I am a new user or</label>
+      </li>
+      <li>
+        <input id="existing" name="new_or_existing" type="radio" value="existing">
+        <label class="large">I'm already registered on the <strong id="env_label">staging</strong> Integrator.</label>
+      </li>
+    </ul>
+  </div>
+
 
   <fieldset style="border-bottom:none;">
     <legend>User Details</legend>
