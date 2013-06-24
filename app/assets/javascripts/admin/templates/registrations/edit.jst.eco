@@ -7,27 +7,32 @@
 </h2>
 
 <fieldset class="no-border-top">
+  <div class="error-message"></div>
   <div class="alpha twelve columns">
     <div class="field">
       <label for="registration-name">Name</label>
+      <div class="error"></div>
       <input class="fullwidth" type="text" id="registration-name" name="name" value="<%= @registration.get('name') %>" />
     </div>
   </div>
   <div class="alpha six columns">
     <div class="field">
       <label for="registration-url">URL</label>
+      <div class="error"></div>
       <input class="fullwidth" type="text" id="registration-url" name="url" value="<%= @registration.get('url') %>" />
     </div>
   </div>
   <div class="omega six columns">
     <div class="field">
       <label for="registration-token">Token</label>
+      <div class="error"></div>
       <input class="fullwidth" type="text" id="registration-token" name="token" value="<%= @registration.get('token') %>" />
     </div>
   </div>
   <div class="alpha six columns">
     <div class="field">
       <label for="registration-keys">Keys</label>
+      <div class="error"></div>
       <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
         <% for key in @keys: %>
           <option value="<%= key %>"><%= key %></option>

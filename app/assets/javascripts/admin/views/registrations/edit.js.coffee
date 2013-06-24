@@ -6,13 +6,13 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     'click button#save': 'save'
     'click button#cancel': 'cancel'
     'change :input': 'changed'
-    'change .event-keys': 'validateEventKey'
+    'focusout :input': 'validate'
 
   render: ->
     @$el.html JST["admin/templates/registrations/edit"](registration: @model, parameters: @options.parameters, keys: @options.keys)
+    Backbone.Validation.bind @
     @prepareClickHandlers()
     @prepareForm()
-    @validateEventKey()
     @
 
   save: (e) ->
@@ -20,14 +20,16 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     @buildEventKey()
     @buildEventDetails()
     @buildFilters()
-    @model.save {}, success: @saved
+    @model.validate()
+    if @model.isValid()
+      @model.save {}, success: @saved
 
   cancel: (e) ->
     e.preventDefault()
     Backbone.history.navigate '/registrations', trigger: true
 
   saved: ->
-    console.log "Model updated! ", @model
+    console.log "Model updated!"
 
   buildEventKey: ->
     eventKey = new Object()
@@ -64,7 +66,6 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
         filter.operator = operator
         filters.push(filter)
     filtersJSON = JSON.stringify(filters)
-    console.log filtersJSON
     @$('.filters').append("<input id='registration-filters' name='filters' type='hidden' value='#{filtersJSON}' />")
     @model.set(filters: @$('input[name=filters]').val())
 
@@ -82,26 +83,13 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
       $(template()).insertAfter($(@).context)
 
   prepareForm: ->
-    @$('#registration-keys.select2').select2().select2('val', @model.get('keys'))
+    @$('#registration-keys.select2').select2().select2(
+      'val',
+      @model.get('keys')
+    )
     @$('#registration-parameters.select2').select2().select2('val', @model.get('parameters'))
     _.each @$('.filters .row'), (row) ->
       $(row).find('select option').filter( ->
         $(@).val() == $(row).data('operator')
       ).attr('selected', true)
-
-  validateEventKey: ->
-    @$('.event-keys').on 'change', (event) =>
-      console.log "Changed"
-      inputs = @$el.find('input#name')
-      input_values = _.map inputs, (input) ->
-        return $(input).val()
-      input_values = _.reject input_values, (value) ->
-        value.length < 1
-      unique_input_values = _.uniq input_values
-      if unique_input_values.length != input_values.length
-        $('#save')[0].disabled = true
-        @$el.find('strong').after('<p class="text-error">Names must be unique</p>')
-      else
-        $('#save')[0].disabled = false
-        @$el.find('p.text-error').remove()
 )

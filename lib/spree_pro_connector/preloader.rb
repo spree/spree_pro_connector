@@ -1,3 +1,5 @@
+require 'httparty'
+
 module SpreeProConnector
   class PreloadError < Exception; end
 

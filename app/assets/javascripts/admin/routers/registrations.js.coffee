@@ -26,8 +26,7 @@ Augury.Routers.Registrations = Backbone.Router.extend(
 
     registration = new Augury.Models.Registration
     Augury.registrations.add registration
-    registration.set formatted_filters: []
-    console.log registration
+    registration.set filters: []
     view = new Augury.Views.Registrations.Edit(model: registration, parameters: @parameters, keys: Augury.keys)
     $("#integration_main").html view.render().el
 

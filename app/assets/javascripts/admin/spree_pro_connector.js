@@ -1,6 +1,7 @@
 //= require jquery.simplemodal.1.4.4.min
 //= require underscore
 //= require backbone
+//= require backbone-validation-min
 //= require admin/augury
 //= require_tree ./extensions
 //= require_tree ./models
