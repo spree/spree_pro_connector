@@ -49,7 +49,7 @@ window.Augury =
   Models: {}
   Collections: {}
   Routers: { _active: {} }
-  Views: { Home: {}, Integrations: {}, Registrations: {}, Connections: {} }
+  Views: { Home: {}, Integrations: {}, Registrations: {}, Connections: {}, Schedulers: {} }
   Preload: {}
 
   SignUp: {}

@@ -1,0 +1,37 @@
+<h2>Schedulers</h2>
+
+<p>Here's the complete list of Integrator schedulers (<%= _(@schedulers).size() %>).</p>
+
+<table class="index">
+  <colgroup>
+    <col style="width: 20%" />
+    <col style="width: 30%" />
+    <col style="width: 35%" />
+    <col style="width: 15%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Count</th>
+      <th>Interval</th>
+      <th>Key</th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for scheduler in @schedulers.models: %>
+      <tr>
+        <td><%= scheduler.get('count') %></td>
+        <td><%= scheduler.get('interval') %></td>
+        <td><%= scheduler.get('key') %></td>
+        <td class="actions">
+          <a href="/admin/integration/schedulers/<%= scheduler.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
+          <a href="/admin/integration/schedulers/delete/<%= scheduler.get('id') %>?confirm=false" class="delete icon_link with-tip icon-trash no-text" title="Delete" data-action="delete"></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="actions">
+  <a href="/admin/integration/schedulers/new" class="new icon_link with-tip icon-plus">New Scheduler</a>
+</div>
