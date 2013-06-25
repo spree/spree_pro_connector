@@ -48,6 +48,7 @@ module Spree
           @keys_json = preloader.keys
           @integrations_json = preloader.integrations
           @registrations_json = preloader.registrations
+          @schedulers_json = preloader.schedulers
           @parameters_json = preloader.parameters
         end
 

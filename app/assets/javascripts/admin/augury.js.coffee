@@ -29,6 +29,7 @@ window.Augury =
     @init()
     @integrations = new @Collections.Integrations(@Preload.integrations)
     @registrations = new @Collections.Registrations(@Preload.registrations)
+    @schedulers = new @Collections.Schedulers(@Preload.schedulers)
     @parameters = new @Collections.Parameters(@Preload.parameters)
     @keys = @Preload.keys
 
@@ -39,6 +40,8 @@ window.Augury =
     @Routers._active['registrations'] = new @Routers.Registrations
       collection: @registrations
       parameters: @parameters
+    @Routers._active['schedulers'] = new @Routers.Schedulers
+      collection: @schedulers
     @Routers._active['connections'] = new @Routers.Connections()
 
     @post_init()

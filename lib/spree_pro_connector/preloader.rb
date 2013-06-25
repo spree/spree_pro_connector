@@ -29,6 +29,11 @@ module SpreeProConnector
       check_response response
     end
 
+    def schedulers
+      response = self.class.get("/stores/#{@store_id}/registrations", default_headers)
+      check_response response
+    end
+
     def parameters
       response = self.class.get("/stores/#{@store_id}/parameters", default_headers)
       check_response response
