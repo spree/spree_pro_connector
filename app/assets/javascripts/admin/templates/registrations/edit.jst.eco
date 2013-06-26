@@ -54,7 +54,7 @@
     <div class="alpha twelve columns">
       <div class="field">
         <label for="registration-retries-allowed">Retries Allowed?</label>
-        <input class="checkbox fullwidth" type="checkbox" id="registration-retries-allowed" name="options.retries_allowed" <% if @registration.get('retries_allowed'): %>checked="checked"<% end %> />
+        <input class="checkbox fullwidth" type="checkbox" id="registration-retries-allowed" name="options[retries_allowed]" <% if @registration.get('options').retries_allowed: %>checked="checked"<% end %> />
       </div>
     </div>
   </div>
