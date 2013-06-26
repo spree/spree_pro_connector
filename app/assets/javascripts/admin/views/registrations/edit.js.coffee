@@ -26,6 +26,8 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
 
   cancel: (e) ->
     e.preventDefault()
+    if @model.isNew()
+      Augury.registrations.remove @model
     Backbone.history.navigate '/registrations', trigger: true
 
   saved: ->
