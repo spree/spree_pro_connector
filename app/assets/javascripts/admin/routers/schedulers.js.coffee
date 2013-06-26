@@ -6,6 +6,7 @@ Augury.Routers.Schedulers = Backbone.Router.extend(
     "schedulers": "index"
     "schedulers/new": "new"
     "schedulers/:id/edit": "edit"
+    "schedulers/delete/:id?confirm=:confirm": "delete"
 
   index: (integration_id) ->
     Augury.update_nav('schedulers')
@@ -29,4 +30,15 @@ Augury.Routers.Schedulers = Backbone.Router.extend(
     scheduler = @collection.get(id)
     view = new Augury.Views.Schedulers.Edit(model: scheduler, keys: Augury.keys)
     $("#integration_main").html view.render().el
+
+  delete: (id, confirm) ->
+    scheduler = @collection.get(id)
+    if confirm != 'true'
+      dialog = JST['admin/templates/shared/confirm_delete']
+      $.modal(dialog(klass: 'schedulers', warning: 'Are you sure you want to delete this Scheduler?', identifier: id))
+    else
+      $.modal.close()
+      scheduler.destroy()
+      Augury.schedulers.remove scheduler
+      Backbone.history.navigate '/schedulers', trigger: true
 )
