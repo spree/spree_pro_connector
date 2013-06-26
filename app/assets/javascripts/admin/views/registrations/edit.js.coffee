@@ -22,7 +22,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     @buildFilters()
     @model.validate()
     if @model.isValid()
-      @model.save {}, success: @saved
+      @model.save {}, success: @saved, error: @displayErrors
 
   cancel: (e) ->
     e.preventDefault()

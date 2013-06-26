@@ -21,7 +21,7 @@ Augury.Views.Schedulers.Edit = Backbone.View.extend(
     e.preventDefault()
     @model.validate()
     if @model.isValid()
-      @model.save {}, success: @saved
+      @model.save {}, success: @saved, error: @displayErrors
 
   cancel: (e) ->
     e.preventDefault()
