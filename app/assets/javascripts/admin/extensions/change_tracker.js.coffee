@@ -8,14 +8,29 @@ Backbone.View = Backbone.View.extend(
   changed: (evt) ->
     field = $(evt.currentTarget)
     name = field.attr("name")
+    if name.indexOf("[") > -1
+      pattern = /((?:[a-z][a-z]+)).*?((?:[a-z][a-z0-9_]*))/i
+      matches = name.match(pattern)
+      root = matches[1]
+      attr = matches[2]
+      console.log root, attr
     attrs = {}
-    if field.is("input[type=\"checkbox\"]")
+    if root && attr
+      if field.is("input[type=\"checkbox\"]")
+        attrs[root] = {}
+        attrs[root][attr] = field.is(":checked")
+      else
+        attrs[root] = {}
+        attrs[root][attr] = field.val()
+    else if field.is("input[type=\"checkbox\"]")
       attrs[name] = field.is(":checked")
     else
       attrs[name] = field.val()
     @model.set attrs,
       silent: true
+    console.log @model
 
     @model.collection.trigger "change", @model  if _.isObject(@model.collection)
     evt.stopPropagation()
+  
 )
