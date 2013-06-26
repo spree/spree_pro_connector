@@ -15,5 +15,5 @@ Augury.Models.Scheduler = Backbone.Model.extend(
 
   toJSON: ->
     @attributes = _.omit(@attributes, ['id', 'undefined'])
-    return registration: _(@attributes).clone()
+    return scheduler: _(@attributes).clone()
 )

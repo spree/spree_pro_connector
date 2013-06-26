@@ -1,0 +1,46 @@
+<h2>
+  <% if @scheduler.isNew(): %>
+    New Scheduler
+  <% else: %>
+    Edit Scheduler
+  <% end %>
+</h2>
+
+<fieldset class="no-border-top">
+  <div class="error-message"></div>
+  <div class="alpha six columns">
+    <div class="field">
+      <label for="scheduler-count">Count</label>
+      <div class="error"></div>
+      <input class="fullwidth" type="text" id="scheduler-count" name="count" value="<%= @scheduler.get('count') %>" />
+    </div>
+  </div>
+  <div class="omega six columns">
+    <div class="field">
+      <label for="scheduler-interval">Interval</label>
+      <div class="error"></div>
+      <input class="fullwidth" type="text" id="scheduler-interval" name="interval" value="<%= @scheduler.get('interval') %>" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="alpha twelve columns">
+      <div class="field">
+        <label for="scheduler-key">Key</label>
+        <div class="error"></div>
+        <select class="select2 fullwidth" id="scheduler-key" name="key">
+          <% for key in @keys: %>
+            <option value="<%= key %>"><%= key %></option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="actions">
+      <button id="save">Save</button>
+      <button id="cancel">Cancel</button>
+    </div>
+  </div>
+</fieldset>
+
