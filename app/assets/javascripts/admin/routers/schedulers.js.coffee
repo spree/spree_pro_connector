@@ -13,7 +13,7 @@ Augury.Routers.Schedulers = Backbone.Router.extend(
 
     schedulers = @collection
 
-    view = new Augury.Views.Schedulers.Index(collection: schedulers)
+    view = new Augury.Views.Schedulers.Index()
     $("#integration_main").html view.render().el
 
   new: ->
