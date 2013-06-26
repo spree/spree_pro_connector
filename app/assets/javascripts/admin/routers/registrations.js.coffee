@@ -47,5 +47,5 @@ Augury.Routers.Registrations = Backbone.Router.extend(
       registration.destroy()
       Augury.registrations.remove(registration)
       Backbone.history.navigate '/registrations', trigger: true
-      Augury.Flash.alert "The registration has been deleted."
+      Augury.Flash.notice "The registration has been deleted."
 )

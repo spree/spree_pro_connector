@@ -41,5 +41,5 @@ Augury.Routers.Schedulers = Backbone.Router.extend(
       scheduler.destroy()
       Augury.schedulers.remove scheduler
       Backbone.history.navigate '/schedulers', trigger: true
-      Augury.Flash.alert "The scheduler has been deleted."
+      Augury.Flash.notice "The scheduler has been deleted."
 )
