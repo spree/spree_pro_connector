@@ -25,6 +25,8 @@ Augury.Views.Schedulers.Edit = Backbone.View.extend(
 
   cancel: (e) ->
     e.preventDefault()
+    if @model.isNew()
+      Augury.schedulers.remove @model
     Backbone.history.navigate '/schedulers', trigger: true
 
   saved: ->
