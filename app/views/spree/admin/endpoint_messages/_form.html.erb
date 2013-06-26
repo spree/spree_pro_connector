@@ -118,7 +118,6 @@
       var editor = ace.edit(targetId);
       editor.setTheme("ace/theme/chrome");
       editor.getSession().setMode("ace/mode/javascript");
-      editor.getSession().setUseWorker(false);
       editor.setShowPrintMargin(false);
 
       var $textarea = $("#" + parentId);
