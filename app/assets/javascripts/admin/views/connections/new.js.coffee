@@ -28,17 +28,27 @@ Augury.Views.Connections.New = Backbone.View.extend
       @$el.find("#connect_buttons").hide()
 
   toggle_env: ->
+    # update label with env name
     env = @$el.find("[name='env']").val()
     @$el.find('#env_label').text env
 
-    if env=='custom'
-      @$el.find("p.url").hide()
-      @$el.find("input.url").show()
-    else
-      url = @$el.find("p.url")
-      url.text Augury.SignUp.urls[env]
-      url.show()
-      @$el.find("input.url").hide()
+    # hide invite code (only needed in production)
+    @$el.find("#invite").hide()
+
+    switch env
+      when 'custom'
+        # custom envs can input a url for the integrator
+        @$el.find("p.url").hide()
+        @$el.find("input.url").show()
+      when 'production'
+        # production needs an invite code
+        @$el.find("#invite").show()
+      else
+        # other not input for url, just show hardcoded url
+        url = @$el.find("p.url")
+        url.text Augury.SignUp.urls[env]
+        url.show()
+        @$el.find("input.url").hide()
 
   cancel: ->
     window.location.href = "/admin/"
