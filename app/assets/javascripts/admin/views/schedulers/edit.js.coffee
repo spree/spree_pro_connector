@@ -30,5 +30,5 @@ Augury.Views.Schedulers.Edit = Backbone.View.extend(
     Backbone.history.navigate '/schedulers', trigger: true
 
   saved: ->
-    console.log "Model updated!"
+    Augury.Flash.success "The scheduler has been successfully saved."
 )

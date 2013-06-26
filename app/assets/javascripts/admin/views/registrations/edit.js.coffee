@@ -31,7 +31,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     Backbone.history.navigate '/registrations', trigger: true
 
   saved: ->
-    console.log "Model updated!"
+    Augury.Flash.success "The registration has been successfully saved."
 
   buildEventKey: ->
     eventKey = new Object()

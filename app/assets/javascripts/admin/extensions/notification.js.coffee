@@ -8,8 +8,8 @@ window.Augury.Flash =
   error: (msg) ->
     @notification 'error', false, msg
 
-  info: (msg) ->
-    @notification 'info', 5000, msg
+  success: (msg) ->
+    @notification 'success', 5000, msg
 
   notification: (type, timeout, msg) ->
     $.noty.closeAll()
