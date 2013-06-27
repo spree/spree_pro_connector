@@ -75,11 +75,7 @@
         <%= f.error_message_on :parameters %>
         <div id="endpoint_message_parameters_editor"></div>
       <% end %>
-      <div class="form-buttons filter-actions actions" data-hook="buttons">
-        <%= button Spree.t('actions.send'), 'icon-ok' %>
-        <span class="or"><%= Spree.t(:or) %></span>
-        <%= link_to_with_icon 'icon-remove', Spree.t('actions.cancel'), collection_url, :class => 'button' %>
-      </div>
+      <%= render partial: "spree/admin/shared/new_resource_links", locals: { button_create_label: Spree.t("actions.send") }%>
     </fieldset>
   </div>
 <% end %>
