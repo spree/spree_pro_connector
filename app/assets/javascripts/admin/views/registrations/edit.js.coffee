@@ -22,14 +22,16 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     @buildFilters()
     @model.validate()
     if @model.isValid()
-      @model.save {}, success: @saved
+      @model.save {}, success: @saved, error: @displayErrors
 
   cancel: (e) ->
     e.preventDefault()
+    if @model.isNew()
+      Augury.registrations.remove @model
     Backbone.history.navigate '/registrations', trigger: true
 
   saved: ->
-    console.log "Model updated!"
+    Augury.Flash.success "The registration has been successfully saved."
 
   buildEventKey: ->
     eventKey = new Object()

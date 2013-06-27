@@ -9,11 +9,8 @@ Augury.Models.Scheduler = Backbone.Model.extend(
     interval:
       required: true
       msg: "Interval is required"
-    key:
-      required: true
-      msg: "Key is required"
 
   toJSON: ->
     @attributes = _.omit(@attributes, ['id', 'undefined'])
-    return registration: _(@attributes).clone()
+    return scheduler: _(@attributes).clone()
 )

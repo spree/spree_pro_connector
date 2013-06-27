@@ -18,7 +18,7 @@ Augury.Routers.Registrations = Backbone.Router.extend(
     else
       registrations = @collection
 
-    view = new Augury.Views.Registrations.Index(collection: registrations)
+    view = new Augury.Views.Registrations.Index()
     $("#integration_main").html view.render().el
 
   new: ->
@@ -47,4 +47,5 @@ Augury.Routers.Registrations = Backbone.Router.extend(
       registration.destroy()
       Augury.registrations.remove(registration)
       Backbone.history.navigate '/registrations', trigger: true
+      Augury.Flash.notice "The registration has been deleted."
 )

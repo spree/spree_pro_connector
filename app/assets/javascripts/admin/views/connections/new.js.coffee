@@ -50,8 +50,9 @@ Augury.Views.Connections.New = Backbone.View.extend
         url.show()
         @$el.find("input.url").hide()
 
-  cancel: ->
-    window.location.href = "/admin/"
+  cancel: (e) ->
+    e.preventDefault()
+    Backbone.history.navigate '/connections', trigger: true
 
   set_url: ->
     env = @$el.find("[name='env']").val()
