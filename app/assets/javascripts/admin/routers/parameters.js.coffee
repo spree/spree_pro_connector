@@ -4,6 +4,7 @@ Augury.Routers.Parameters = Backbone.Router.extend(
 
   routes:
     "parameters": "index"
+    "parameters/new": "new"
 
   index: (integration_id) ->
     Augury.update_nav('parameters')
@@ -12,11 +13,11 @@ Augury.Routers.Parameters = Backbone.Router.extend(
     $("#integration_main").html view.render().el
 
   new: ->
-    Augury.update_nav('schedulers')
+    Augury.update_nav('parameters')
 
-    scheduler = new Augury.Models.Scheduler
-    Augury.schedulers.add scheduler
-    view = new Augury.Views.Schedulers.Edit(model: scheduler, keys: Augury.keys)
+    parameter = new Augury.Models.Parameter
+    @collection.add parameter
+    view = new Augury.Views.Parameters.Edit(model: parameter)
     $("#integration_main").html view.render().el
 
   edit: (id) ->

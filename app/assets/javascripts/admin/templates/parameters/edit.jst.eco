@@ -1,0 +1,34 @@
+<h2>
+  <% if @parameter.isNew(): %>
+    New Parameter
+  <% else: %>
+    Edit Parameter
+  <% end %>
+</h2>
+
+<fieldset class="no-border-top">
+  <div class="error-message"></div>
+  <div class="row">
+    <div class="alpha six columns">
+      <div class="field">
+        <label for="parameter-name">Name</label>
+        <div class="error"></div>
+        <input class="fullwidth" type="text" id="parameter-name" name="name" value="<%= @parameter.get('name') %>" />
+      </div>
+    </div>
+    <div class="omega six columns">
+      <div class="field">
+        <label for="parameter-value">Value</label>
+        <div class="error"></div>
+        <input class="fullwidth" type="text" id="parameter-value" name="value" value="<%= @parameter.get('value') %>" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="actions">
+      <button id="save">Save</button>
+      <button id="cancel">Cancel</button>
+    </div>
+  </div>
+</fieldset>
