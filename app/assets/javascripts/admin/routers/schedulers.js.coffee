@@ -11,8 +11,6 @@ Augury.Routers.Schedulers = Backbone.Router.extend(
   index: (integration_id) ->
     Augury.update_nav('schedulers')
 
-    schedulers = @collection
-
     view = new Augury.Views.Schedulers.Index()
     $("#integration_main").html view.render().el
 
@@ -20,7 +18,7 @@ Augury.Routers.Schedulers = Backbone.Router.extend(
     Augury.update_nav('schedulers')
 
     scheduler = new Augury.Models.Scheduler
-    Augury.schedulers.add scheduler
+    @collection.add scheduler
     view = new Augury.Views.Schedulers.Edit(model: scheduler, keys: Augury.keys)
     $("#integration_main").html view.render().el
 
@@ -39,7 +37,7 @@ Augury.Routers.Schedulers = Backbone.Router.extend(
     else
       $.modal.close()
       scheduler.destroy()
-      Augury.schedulers.remove scheduler
+      @collection.remove scheduler
       Backbone.history.navigate '/schedulers', trigger: true
       Augury.Flash.notice "The scheduler has been deleted."
 )
