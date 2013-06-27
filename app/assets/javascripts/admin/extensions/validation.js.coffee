@@ -2,13 +2,19 @@ _.extend(Backbone.Validation.callbacks,
   valid: (view, attr, selector) ->
     element = view.$('[' + selector + '~="' + attr + '"]')
     element.removeClass("invalid")
-    element.prev('div.error').html('')
+    if element.prev('div.error').length > 0
+      element.prev('div.error').html('')
+    else
+      element.prevUntil('.field', 'div.error').html('')
     view.$('fieldset .error-message').html('')
     return true
 
   invalid: (view, attr, error, selector) ->
     element = view.$('[' + selector + '~="' + attr + '"]')
-    element.prev('div.error').html(error)
+    if element.prev('div.error').length > 0
+      element.prev('div.error').html(error)
+    else
+      element.prevUntil('.field', 'div.error').html(error)
     view.$('fieldset .error-message').html('Please fix all validation errors on the form')
     return false
 )
