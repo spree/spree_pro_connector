@@ -62,6 +62,8 @@
         </td>
         <td><%= integration.get('category') %></td>
         <td class="actions">
+            <a href="/admin/integration/integrations/<%= integration.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
+            <a href="/admin/integration/integrations/delete/<%= integration.get('id') %>?confirm=false" class="delete icon_link with-tip icon-trash no-text" title="Delete" data-action="delete"></a>
           <% if integration.registrations().length!=0: %>
             <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
             <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
@@ -73,3 +75,6 @@
     <% end %>
   </tbody>
 </table>
+
+<div class="actions">
+  <a href="/admin/integration/integrations/new" class="new icon_link with-tip icon-plus">New Integration</a>

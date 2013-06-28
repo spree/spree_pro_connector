@@ -1,5 +1,17 @@
 Augury.Models.Integration = Backbone.Model.extend(
-  urlRoot: '/integrations'
+  initialize: ->
+    @urlRoot = "/stores/#{Augury.store_id}/integrations"
+
+  validation:
+    name:
+      required: true
+      msg: "Name is required"
+    url:
+      required: true
+      msg: "URL is required"
+    category:
+      required: true
+      msg: "Category is required"
 
   toJSON: ->
     @attributes = _.omit(@attributes, 'id')
