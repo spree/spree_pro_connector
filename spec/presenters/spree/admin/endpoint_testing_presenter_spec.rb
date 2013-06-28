@@ -13,7 +13,7 @@ describe Spree::Admin::EndpointTestingPresenter do
       message.stub response_body: "ok"
     end
 
-    it "should yield each key" do
+    it "yields each key" do
       expect{ |b| presenter.each_response_data &b }.to yield_successive_args(
         [:uri, "http://127.0.0.1"],
         [:code, "200"],
@@ -21,7 +21,7 @@ describe Spree::Admin::EndpointTestingPresenter do
       )
     end
 
-    it "should join arrays" do
+    it "joins arrays" do
       message.stub response_headers: { "Content-Type" => ["text/html; charset=utf-8"] }
 
       expect{ |b| presenter.each_response_data &b }.to yield_successive_args(
@@ -33,20 +33,24 @@ describe Spree::Admin::EndpointTestingPresenter do
   end
 
   describe "#response_json?" do
-    it "should return true" do
+    it "returns true" do
       message.stub response_headers: { "Content-Type" => "application/json; charset=utf-8" }
       expect(presenter.response_json?).to be
     end
 
-    it "should return false" do
-      message.stub response_headers: { "Content-Type" => "text/html; charset=utf-8" }
+    it "returns false" do
+      message.stub response_headers: { "content-type" => "text/html; charset=utf-8" }
+      expect(presenter.response_json?).to_not be
+    end
 
+    it "returns false when nil" do
+      message.stub response_headers: {}
       expect(presenter.response_json?).to_not be
     end
   end
 
   describe "#response_json" do
-    it "should return pretty json" do
+    it "returns pretty json" do
       json = { status: "ok" }.to_json
       message.stub response_body: json
       expect(presenter.response_json).to eq "{\n  \"status\": \"ok\"\n}"
@@ -54,7 +58,7 @@ describe Spree::Admin::EndpointTestingPresenter do
   end
 
   describe "#response_html_safe" do
-    it "should escape script tag" do
+    it "escapes script tag" do
       message.stub response_body: "<script>alert('Hello');</script>"
       expect(presenter.response_html_safe).to eq "<xcriptx>alert('Hello');</xcriptx>"
     end

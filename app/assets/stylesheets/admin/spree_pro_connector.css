@@ -8,13 +8,15 @@
 }
 
 #endpoint_message_payload_editor {
-  width: 100%;
   height: 400px;
+  width: 100%;
+  border: 1px solid lightgray;
 }
 
 #endpoint_message_parameters_editor {
   width: 100%;
   height: 200px;
+  border: 1px solid lightgray;
 }
 
 #endpoint_message_payload, #endpoint_message_parameters {
@@ -22,10 +24,10 @@
 }
 
 #admin-response-body-preview, #admin-response-body-json {
-  border: 0px;
   width: 100%;
   height: 300px;
   max-height: 300px;
+  border: 1px solid lightgray;
 }
 
 /* Simple modal */

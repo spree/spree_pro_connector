@@ -37,7 +37,7 @@ module Spree::Admin
     end
 
     def response_json?
-      response_headers["Content-Type"].include? "application/json"
+      response_headers.fetch("Content-Type", "").include? "application/json"
     end
   end
 end
