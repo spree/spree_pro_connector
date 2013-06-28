@@ -29,25 +29,27 @@
       <input class="fullwidth" type="text" id="registration-token" name="token" value="<%= @registration.get('token') %>" />
     </div>
   </div>
-  <div class="alpha six columns">
-    <div class="field">
-      <label for="registration-keys">Keys</label>
-      <div class="error"></div>
-      <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
-        <% for key in @keys: %>
-          <option value="<%= key %>"><%= key %></option>
-        <% end %>
-      </select>
+  <div class="row">
+    <div class="alpha six columns">
+      <div class="field">
+        <label for="registration-keys">Keys</label>
+        <div class="error"></div>
+        <select class="select2 fullwidth" id="registration-keys" name="keys" multiple="true">
+          <% for key in @keys: %>
+            <option value="<%= key %>"><%= key %></option>
+          <% end %>
+        </select>
+      </div>
     </div>
-  </div>
-  <div class="omega six columns">
-    <div class="field">
-      <label for="registration-parameters">Parameters</label>
-      <select class="select2 fullwidth" id="registration-parameters" name="parameters" multiple="true">
-        <% for parameter in @parameters.models: %>
-          <option value="<%= parameter.get('id') %>"><%= parameter.get('name') %></option>
-        <% end %>
-      </select>
+    <div class="omega six columns">
+      <div class="field">
+        <label for="registration-parameters">Parameters</label>
+        <select class="select2 fullwidth" id="registration-parameters" name="parameters" multiple="true">
+          <% for parameter in @parameters.models: %>
+            <option value="<%= parameter.get('id') %>"><%= parameter.get('name') %></option>
+          <% end %>
+        </select>
+      </div>
     </div>
   </div>
   <div class="row">

@@ -43,13 +43,15 @@ window.Augury =
     @Routers._active['schedulers'] = new @Routers.Schedulers
       collection: @schedulers
     @Routers._active['connections'] = new @Routers.Connections()
+    @Routers._active['parameters'] = new @Routers.Parameters
+      collection: @parameters
 
     @post_init()
 
   Models: {}
   Collections: {}
   Routers: { _active: {} }
-  Views: { Home: {}, Integrations: {}, Registrations: {}, Connections: {}, Schedulers: {} }
+  Views: { Home: {}, Integrations: {}, Registrations: {}, Connections: {}, Schedulers: {}, Parameters: {} }
   Preload: {}
 
   SignUp: {}

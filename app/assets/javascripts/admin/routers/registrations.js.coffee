@@ -27,6 +27,7 @@ Augury.Routers.Registrations = Backbone.Router.extend(
     registration = new Augury.Models.Registration
     Augury.registrations.add registration
     registration.set filters: []
+    registration.set options: retries_allowed: false
     view = new Augury.Views.Registrations.Edit(model: registration, parameters: @parameters, keys: Augury.keys)
     $("#integration_main").html view.render().el
 

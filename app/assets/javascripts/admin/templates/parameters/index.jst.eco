@@ -1,0 +1,34 @@
+<h2>Parameters</h2>
+
+<p>Here's the complete list of Integrator parameters (<%= _(@parameters).size() %>).</p>
+
+<table class="index">
+  <colgroup>
+    <col style="width: 32%" />
+    <col style="width: 52%" />
+    <col style="width: 16%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for parameter in @parameters.models: %>
+      <tr>
+        <td><%= parameter.get('name') %></td>
+        <td><%= parameter.get('value') %></td>
+        <td class="actions">
+          <a href="/admin/integration/parameters/<%= parameter.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
+          <a href="/admin/integration/parameters/delete/<%= parameter.get('id') %>?confirm=false" class="delete icon_link with-tip icon-trash no-text" title="Delete" data-action="delete"></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="actions">
+  <a href="/admin/integration/parameters/new" class="new icon_link with-tip icon-plus">New Parameter</a>
+</div>
