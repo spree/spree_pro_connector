@@ -3,6 +3,7 @@ Augury.Routers.Integrations = Backbone.Router.extend(
     "integrations": "index"
     "integrations/new": "new"
     "integrations/:id/edit": "edit"
+    "integrations/delete/:id?confirm=:confirm": "delete"
     "integrations/:id/signup": "signup"
 
   index: ->
@@ -26,6 +27,18 @@ Augury.Routers.Integrations = Backbone.Router.extend(
     console.log integration
     view = new Augury.Views.Integrations.Edit(model: integration)
     $("#integration_main").html view.render().el
+
+  delete: (id, confirm) ->
+    integration = Augury.store_integrations.get id
+    if confirm != 'true'
+      dialog = JST['admin/templates/shared/confirm_delete']
+      $.modal(dialog(klass: 'integrations', warning: 'Are you sure you want to delete this integration?', identifier: id))
+    else
+      $.modal.close()
+      integration.destroy()
+      Augury.store_integrations.remove integration
+      Backbone.history.navigate '/integrations', trigger: true
+      Augury.Flash.notice "The integration has been deleted."
 
   signup: (integration_id) ->
     Augury.update_nav('integrations')
