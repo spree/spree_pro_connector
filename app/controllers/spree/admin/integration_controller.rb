@@ -46,7 +46,8 @@ module Spree
                                                        @environment.token)
 
           @keys_json = preloader.keys
-          @integrations_json = preloader.integrations
+          @store_integrations_json = preloader.store_integrations
+          @global_integrations_json = preloader.global_integrations
           @registrations_json = preloader.registrations
           @schedulers_json = preloader.schedulers
           @parameters_json = preloader.parameters

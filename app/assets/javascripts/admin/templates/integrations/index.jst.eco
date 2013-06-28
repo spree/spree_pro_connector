@@ -1,6 +1,4 @@
-<h2>Integrations</h2>
-
-<p>Here's the complete list of available services (<%= @integrations.size() %>).</p>
+<h2>Global Integrations</h2>
 
 <table class="index">
   <colgroup>
@@ -16,7 +14,45 @@
     </tr>
   </thead>
   <tbody>
-    <% for integration in @integrations.models: %>
+    <% for integration in @global_integrations.models: %>
+      <tr>
+        <td>
+          <h6><%= integration.get('display') or integration.get('name') %></h6>
+          <% if integration.get('description')?: %>
+            <%= integration.get('description') %>
+          <% end %>
+        </td>
+        <td><%= integration.get('category') %></td>
+        <td class="actions">
+          <% if integration.registrations().length!=0: %>
+            <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+          <% else: %>
+            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-link no-text" title="Sign up" data-action="signup"></a>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Store Integrations</h2>
+
+<table class="index">
+  <colgroup>
+    <col style="width: 70%" />
+    <col style="width: 15%" />
+    <col style="width: 15%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Category</th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for integration in @store_integrations.models: %>
       <tr>
         <td>
           <h6><%= integration.get('display') or integration.get('name') %></h6>

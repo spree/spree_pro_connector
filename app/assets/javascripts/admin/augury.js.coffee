@@ -27,7 +27,8 @@ window.Augury =
 
   start: ->
     @init()
-    @integrations = new @Collections.Integrations(@Preload.integrations)
+    @global_integrations = new @Collections.Integrations(@Preload.global_integrations)
+    @store_integrations = new @Collections.Integrations(@Preload.store_integrations)
     @registrations = new @Collections.Registrations(@Preload.registrations)
     @schedulers = new @Collections.Schedulers(@Preload.schedulers)
     @parameters = new @Collections.Parameters(@Preload.parameters)
@@ -35,8 +36,7 @@ window.Augury =
 
     @Routers._active['home'] = new @Routers.Home()
     @Routers._active['common'] = new @Routers.Common()
-    @Routers._active['integrations'] = new @Routers.Integrations
-      collection: @integrations
+    @Routers._active['integrations'] = new @Routers.Integrations()
     @Routers._active['registrations'] = new @Routers.Registrations
       collection: @registrations
       parameters: @parameters

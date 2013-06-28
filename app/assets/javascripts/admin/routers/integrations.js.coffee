@@ -1,7 +1,4 @@
 Augury.Routers.Integrations = Backbone.Router.extend(
-  initialize: (options) ->
-    @collection = options.collection
-
   routes:
     "integrations": "index",
     "integrations/:id/signup": "signup"
@@ -9,7 +6,7 @@ Augury.Routers.Integrations = Backbone.Router.extend(
   index: ->
     Augury.update_nav('integrations')
 
-    view = new Augury.Views.Integrations.Index(collection: @collection)
+    view = new Augury.Views.Integrations.Index()
     $("#integration_main").html view.render().el
 
   signup: (integration_id) ->

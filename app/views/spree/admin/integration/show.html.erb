@@ -32,7 +32,8 @@
     Augury.url = '<%= @environment.url %>';
     Augury.store_id = '<%= @environment.store_id %>';
     Augury.api_key = '<%= @environment.token %>';
-    Augury.Preload.integrations = <%== @integrations_json %>;
+    Augury.Preload.global_integrations = <%== @global_integrations_json %>;
+    Augury.Preload.store_integrations = <%== @store_integrations_json %>;
     Augury.Preload.registrations = <%== @registrations_json %>;
     Augury.Preload.schedulers = <%== @schedulers_json %>;
     Augury.Preload.parameters = <%== @parameters_json %>;

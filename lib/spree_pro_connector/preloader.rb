@@ -19,8 +19,13 @@ module SpreeProConnector
       check_response response
     end
 
-    def integrations
-      response = self.class.get("/integrations", default_headers)
+    def global_integrations
+      response = self.class.get("/stores/#{@store_id}/integrations?global=1", default_headers)
+      check_response response
+    end
+
+    def store_integrations
+      response = self.class.get("/stores/#{@store_id}/integrations", default_headers)
       check_response response
     end
 
