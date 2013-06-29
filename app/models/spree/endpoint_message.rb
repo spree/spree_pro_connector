@@ -21,10 +21,7 @@ module Spree
     def payload=payload
       write_attribute :payload, payload
       payload_hash = JSON.parse payload
-      write_message_id(payload_hash) if payload_hash["message_id"].blank?
-      write_attribute :message_id, payload_hash["message_id"]
-      write_attribute :message,    payload_hash["message"]
-      write_attribute :payload,    JSON.pretty_generate(payload_hash)
+      update_payload payload_hash
     rescue JSON::ParserError
     end
 
@@ -49,7 +46,7 @@ module Spree
     def update_message_id!
       payload_hash = JSON.parse payload
       payload_hash.delete "message_id"
-      self.payload = payload_hash.to_json
+      update_payload payload_hash
     end
 
     def self.unique_messages
@@ -59,6 +56,13 @@ module Spree
     private :save, :create
 
     private
+
+    def update_payload payload_hash
+      write_message_id(payload_hash) if payload_hash["message_id"].blank?
+      write_attribute :message_id, payload_hash["message_id"]
+      write_attribute :message,    payload_hash["message"]
+      write_attribute :payload,    JSON.pretty_generate(payload_hash)
+    end
 
     def validates_uniqueness_of_message_id
       relation = self.class.where(message_id: message_id)
