@@ -20,9 +20,14 @@ module Spree
 
     def payload=payload
       write_attribute :payload, payload
-      payload_hash = JSON.parse payload
-      update_payload payload_hash
-    rescue JSON::ParserError
+      @payload_hash = nil
+      payload_hash && update_payload
+    end
+
+    def parameters=parameters
+      write_attribute :parameters, parameters
+      @parameters_hash = nil
+      parameters_hash && write_attribute(:parameters, JSON.pretty_generate(parameters_hash))
     end
 
     def send_request request_client=Spree::Admin::ApiRequest
@@ -44,9 +49,8 @@ module Spree
     end
 
     def update_message_id!
-      payload_hash = JSON.parse payload
       payload_hash.delete "message_id"
-      update_payload payload_hash
+      update_payload
     end
 
     def self.unique_messages
@@ -57,8 +61,23 @@ module Spree
 
     private
 
-    def update_payload payload_hash
-      write_message_id(payload_hash) if payload_hash["message_id"].blank?
+    def payload_hash
+      @payload_hash ||= to_hash payload
+    end
+
+    def parameters_hash
+      @parameters_hash ||= to_hash parameters
+    end
+
+
+    def to_hash data
+      return unless data
+      JSON.parse data
+    rescue JSON::ParserError
+    end
+
+    def update_payload
+      write_message_id if payload_hash["message_id"].blank?
       write_attribute :message_id, payload_hash["message_id"]
       write_attribute :message,    payload_hash["message"]
       write_attribute :payload,    JSON.pretty_generate(payload_hash)
@@ -76,16 +95,12 @@ module Spree
       end
     end
 
-    def parameters_hash
-      JSON.parse parameters unless parameters.blank?
-    end
-
-    def write_message_id target_hash
-      target_hash["message_id"] = BSON::ObjectId.new.to_s
+    def write_message_id
+      payload_hash["message_id"] = BSON::ObjectId.new.to_s
     end
 
     def full_payload
-      JSON.parse(payload).merge(parameters_hash || {}).to_json
+      payload_hash.merge(parameters_hash || {}).to_json
     end
   end
 end

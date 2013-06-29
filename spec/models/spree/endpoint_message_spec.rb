@@ -63,10 +63,37 @@ describe Spree::EndpointMessage do
     end
   end
 
+  describe "#parameters=" do
+    it "prettifies parameters" do
+      message.parameters = "{\"key\":\"key\",\"keys\":[{\"key\":\"key\"}]}"
+      expect(message.parameters).to eq "{\n  \"key\": \"key\",\n  \"keys\": [\n    {\n      \"key\": \"key\"\n    }\n  ]\n}"
+    end
+
+    it "skips when invalid" do
+      message.parameters = "homer"
+      expect(message.parameters).to eq "homer"
+    end
+
+    it "skips when nil" do
+      message.parameters = nil
+      expect(message.parameters).to be_nil
+    end
+  end
+
   describe "#payload=" do
     it "prettifies payload" do
       message.payload = "{\"key\":\"key\",\"keys\":[{\"key\":\"key\"}]}"
       expect(message.payload).to eq "{\n  \"key\": \"key\",\n  \"keys\": [\n    {\n      \"key\": \"key\"\n    }\n  ],\n  \"message_id\": \"1b\"\n}"
+    end
+
+    it "skips when invalid" do
+      message.payload = "homer"
+      expect(message.payload).to eq "homer"
+    end
+
+    it "skips when nil" do
+      message.payload = nil
+      expect(message.payload).to be_nil
     end
 
     it "appends message_id" do
