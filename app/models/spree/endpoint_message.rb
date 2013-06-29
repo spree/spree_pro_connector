@@ -1,7 +1,5 @@
 module Spree
   class EndpointMessage < ActiveRecord::Base
-    self.table_name = "spree_endpoint_messages"
-
     serialize :response_data
 
     validates :payload    , presence: true , json: true
@@ -23,7 +21,7 @@ module Spree
     def payload=payload
       write_attribute :payload, payload
       payload_hash = JSON.parse payload
-      add_message_id(payload_hash) if payload_hash["message_id"].blank?
+      write_message_id(payload_hash) if payload_hash["message_id"].blank?
       write_attribute :message_id, payload_hash["message_id"]
       write_attribute :message,    payload_hash["message"]
       write_attribute :payload,    JSON.pretty_generate(payload_hash)
@@ -48,6 +46,12 @@ module Spree
       response_data[:body]
     end
 
+    def update_message_id!
+      payload_hash = JSON.parse payload
+      payload_hash.delete "message_id"
+      self.payload = payload_hash.to_s
+    end
+
     def self.unique_messages
       uniq.pluck(:message)
     end
@@ -62,7 +66,7 @@ module Spree
 
       if endpoint_message = relation.first
         errors.add :message_id,
-          Spree.t("endpoint_message.errors.taken_html",
+          Spree.t("endpoint_message.errors.taken",
                   url: Spree::Core::Engine.routes.url_helpers.edit_admin_endpoint_message_path(endpoint_message),
                   id: endpoint_message.id)
       end
@@ -72,7 +76,7 @@ module Spree
       JSON.parse parameters unless parameters.blank?
     end
 
-    def add_message_id target_hash
+    def write_message_id target_hash
       target_hash["message_id"] = BSON::ObjectId.new.to_s
     end
 
