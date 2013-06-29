@@ -49,7 +49,7 @@ module Spree
     def update_message_id!
       payload_hash = JSON.parse payload
       payload_hash.delete "message_id"
-      self.payload = payload_hash.to_s
+      self.payload = payload_hash.to_json
     end
 
     def self.unique_messages

@@ -55,6 +55,12 @@ describe Spree::EndpointMessage do
       message.update_message_id!
       expect(message.message_id).to eq "1b"
     end
+
+    it "updates the payload" do
+      message.payload = "{\"message_id\":\"homer\"}"
+      message.update_message_id!
+      expect(message.payload).to eq "{\n  \"message_id\": \"1b\"\n}"
+    end
   end
 
   describe "#payload=" do
