@@ -46,9 +46,10 @@
 <% if @endpoint_messages.any? %>
   <table class="index" id='listing_endpoint_messages'>
     <colgroup>
-      <col style="width: 60%">
-      <col style="width: 30%">
-      <col style="width: 10%">
+      <col style="width: 40%" />
+      <col style="width: 30%" />
+      <col style="width: 15%" />
+      <col style="width: 15%" />
     </colgroup>
     <thead>
       <tr data-hook="admin_endpoint_messages_index_headers">
@@ -65,7 +66,8 @@
           <td class="align-center"><%= message.created_at %></td>
           <td class="align-center"><%= message.response_code %></td>
           <td data-hook="admin_endpoint_messages_index_row_actions" class="actions">
-            <%= link_to_edit message, :no_text => true %>
+            <%= link_to_edit message,  no_text: true %>
+            <%= link_to_clone message, no_text: true %>
           </td>
         </tr>
       <% end %>

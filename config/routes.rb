@@ -10,9 +10,13 @@ Spree::Core::Engine.routes.draw do
     match 'integration/disconnect' => 'integration#disconnect'
     match 'integration/*backbone' => 'integration#show'
 
-    get 'endpoint_testing', to: redirect("/admin/endpoint_messages/new")
+    get 'endpoint_testing', to: redirect('/admin/endpoint_messages/new')
 
-    resources :endpoint_messages, except: [:show, :destroy]
+    resources :endpoint_messages, except: [:show, :destroy] do
+      member do
+        get :clone
+      end
+    end
   end
 
   namespace :api, :defaults => { :format => 'json' } do

@@ -115,3 +115,4 @@ describe Spree::EndpointMessage do
     end
   end
 end
+

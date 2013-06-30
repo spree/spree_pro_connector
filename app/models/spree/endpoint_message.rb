@@ -14,20 +14,22 @@ module Spree
     default_scope order: "created_at DESC"
 
     def uri=uri
-      uri = "http://#{uri}" if !uri.blank? && !uri.match(/^https?:\/\//)
+      uri = "http://#{uri}" if uri.present? && !uri.match(/^https?:\/\//)
       write_attribute :uri, uri
     end
 
     def payload=payload
       write_attribute :payload, payload
       @payload_hash = nil
-      payload_hash && update_payload
+      return unless payload_hash
+      update_payload
     end
 
     def parameters=parameters
       write_attribute :parameters, parameters
       @parameters_hash = nil
-      parameters_hash && write_attribute(:parameters, JSON.pretty_generate(parameters_hash))
+      return unless parameters_hash
+      write_attribute(:parameters, JSON.pretty_generate(parameters_hash))
     end
 
     def send_request request_client=Spree::Admin::ApiRequest
@@ -36,12 +38,21 @@ module Spree
       save
     end
 
+    def duplicate
+      clone = dup.tap do |new_clone|
+        new_clone.response_data = nil
+        new_clone.update_message_id!
+      end
+      clone.save
+      clone
+    end
+
     def response_headers
       response_data[:headers]
     end
 
     def response_code
-      response_data[:code]
+      response_data && response_data[:code]
     end
 
     def response_body
@@ -57,7 +68,7 @@ module Spree
       uniq.pluck(:message)
     end
 
-    private :save, :create
+    protected :save, :create
 
     private
 
@@ -71,8 +82,7 @@ module Spree
 
 
     def to_hash data
-      return unless data
-      JSON.parse data
+      JSON.parse(data) if data
     rescue JSON::ParserError
     end
 
