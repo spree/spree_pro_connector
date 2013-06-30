@@ -11,10 +11,10 @@ describe Spree::EndpointMessage do
   let(:token)           { "maggie" }
 
   let(:payload_hash)    { { "message_id" => "1a" } }
-  let(:payload)         { "{\"message_id\":\"1a\"}" }
+  let(:payload)         { %Q{{"message_id":"1a"}} }
 
   let(:parameters_hash) { { "parameters" => [ { "name" => "name", "key" => "key"} ] } }
-  let(:parameters)      { "{ \"parameters\":[  { \"name\":\"name\",\"key\":\"key\"}]}" }
+  let(:parameters)      { %Q{{ "parameters":[  { "name":"name","key":"key"}]}} }
 
   let(:api_request)     { double "API Request" }
 
@@ -50,31 +50,35 @@ describe Spree::EndpointMessage do
   end
 
   describe "#update_message_id!" do
-    it "updates the message_id" do
-      message.payload = "{\"message_id\":\"homer\"}"
+    before do
+      message.payload = %Q{{"message_id":"homer"}}
       message.update_message_id!
-      expect(message.message_id).to eq "1b"
     end
 
-    it "updates the payload" do
-      message.payload = "{\"message_id\":\"homer\"}"
-      message.update_message_id!
-      expect(message.payload).to eq "{\n  \"message_id\": \"1b\"\n}"
-    end
+    its(:message_id) { should eq "1b" }
+    its(:payload)    { should eq %Q{{\n  "message_id": "1b"\n}} }
+  end
+
+  describe "#duplicate" do
+    subject(:clone) { message.duplicate }
+
+    its(:response_data) { should be_nil }
+    its(:message_id)    { should_not eq message.message_id }
+    its(:persisted?)    { should be }
   end
 
   describe "#parameters=" do
     it "prettifies parameters" do
-      message.parameters = "{\"key\":\"key\",\"keys\":[{\"key\":\"key\"}]}"
-      expect(message.parameters).to eq "{\n  \"key\": \"key\",\n  \"keys\": [\n    {\n      \"key\": \"key\"\n    }\n  ]\n}"
+      message.parameters = %Q{{"key":"key","keys":[{"key":"key"}]}}
+      expect(message.parameters).to eq %Q{{\n  "key": "key",\n  "keys": [\n    {\n      "key": "key"\n    }\n  ]\n}}
     end
 
-    it "skips when invalid" do
+    it "skips invalid" do
       message.parameters = "homer"
       expect(message.parameters).to eq "homer"
     end
 
-    it "skips when nil" do
+    it "skips nil" do
       message.parameters = nil
       expect(message.parameters).to be_nil
     end
@@ -82,23 +86,23 @@ describe Spree::EndpointMessage do
 
   describe "#payload=" do
     it "prettifies payload" do
-      message.payload = "{\"key\":\"key\",\"keys\":[{\"key\":\"key\"}]}"
-      expect(message.payload).to eq "{\n  \"key\": \"key\",\n  \"keys\": [\n    {\n      \"key\": \"key\"\n    }\n  ],\n  \"message_id\": \"1b\"\n}"
+      message.payload = %Q{{"key":"key","keys":[{"key":"key"}]}}
+      expect(message.payload).to eq %Q{{\n  "key": "key",\n  "keys": [\n    {\n      "key": "key"\n    }\n  ],\n  "message_id": "1b"\n}}
     end
 
-    it "skips when invalid" do
+    it "skips invalid" do
       message.payload = "homer"
       expect(message.payload).to eq "homer"
     end
 
-    it "skips when nil" do
+    it "skips nil" do
       message.payload = nil
       expect(message.payload).to be_nil
     end
 
     it "appends message_id" do
       message.payload = "{}"
-      expect(message.payload).to eq "{\n  \"message_id\": \"1b\"\n}"
+      expect(message.payload).to eq %Q{{\n  "message_id": "1b"\n}}
     end
   end
 
@@ -110,7 +114,7 @@ describe Spree::EndpointMessage do
     end
 
     it "sends request with payload and parameters" do
-      api_request.should_receive(:post).with token, uri, "{\"message_id\":\"1a\",\"parameters\":[{\"name\":\"name\",\"key\":\"key\"}]}"
+      api_request.should_receive(:post).with token, uri, %Q{{"message_id":"1a","parameters":[{"name":"name","key":"key"}]}}
       message.send_request api_request
     end
   end

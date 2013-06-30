@@ -38,22 +38,26 @@ describe Spree::Admin::EndpointTestingPresenter do
       expect(presenter.response_json?).to be
     end
 
-    it "returns false" do
-      message.stub response_headers: { "content-type" => "text/html; charset=utf-8" }
-      expect(presenter.response_json?).to_not be
+    context "when invalid" do
+      it "returns false" do
+        message.stub response_headers: { "content-type" => "text/html; charset=utf-8" }
+        expect(presenter.response_json?).to_not be
+      end
     end
 
-    it "returns false when nil" do
-      message.stub response_headers: {}
-      expect(presenter.response_json?).to_not be
+    context "when nil" do
+      it "returns false" do
+        message.stub response_headers: {}
+        expect(presenter.response_json?).to_not be
+      end
     end
   end
 
   describe "#response_json" do
-    it "returns pretty json" do
+    it "prettifies json" do
       json = { status: "ok" }.to_json
       message.stub response_body: json
-      expect(presenter.response_json).to eq "{\n  \"status\": \"ok\"\n}"
+      expect(presenter.response_json).to eq %Q{{\n  "status": "ok"\n}}
     end
   end
 

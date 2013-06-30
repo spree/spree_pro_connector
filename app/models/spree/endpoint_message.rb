@@ -65,7 +65,7 @@ module Spree
     end
 
     def self.unique_messages
-      uniq.pluck(:message)
+      uniq.pluck :message
     end
 
     protected :save, :create
