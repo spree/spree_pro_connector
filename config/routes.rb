@@ -22,5 +22,7 @@ Spree::Core::Engine.routes.draw do
   namespace :api, :defaults => { :format => 'json' } do
     get :integrator, :to => 'integrator#index'
   end
+
+  mount MochaRails::Engine => 'mocha' unless Rails.env.production?
 end
 
