@@ -3,7 +3,7 @@
 //= require underscore
 //= require backbone
 //= require backbone-validation-min
-//= require admin/augury
+//= require augury
 //= require_tree ./extensions
 //= require_tree ./models
 //= require_tree ./collections
