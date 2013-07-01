@@ -7,6 +7,7 @@ en:
     endpoint_testing: "Endpoint Testing"
     response_data:
       uri: "URI"
+      request: "Request"
       code: "Code"
       content-trpe: "Content-Type"
       date: "Date"

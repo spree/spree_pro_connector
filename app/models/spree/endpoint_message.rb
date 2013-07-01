@@ -56,7 +56,7 @@ module Spree
     end
 
     def response_code_class
-      # Returns the class of the status code.
+      # Returns the class of the response status code.
       case response_code.to_s
       when /^2[0-9]{2}$/
         "success"

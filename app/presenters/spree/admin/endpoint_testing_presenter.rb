@@ -2,7 +2,7 @@ require "samples"
 
 module Spree::Admin
   class EndpointTestingPresenter
-    delegate :uri, :response_code, :response_body, :response_headers, :response_data, 
+    delegate :uri, :response_code, :response_body, :response_headers, :response_data, :response_code_class,
       to: :@message
 
     def initialize message
@@ -20,9 +20,7 @@ module Spree::Admin
     end
 
     def each_response_data
-      { uri: uri, code: response_code}.
-        merge(response_headers)
-      .each do |key, value|
+        response_headers.each do |key, value|
         yield key, value.kind_of?(Array) ? value.join(", ") :
           value
       end

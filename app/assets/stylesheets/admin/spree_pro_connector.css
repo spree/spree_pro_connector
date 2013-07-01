@@ -49,3 +49,15 @@ body .modal-header, .modal-footer {
   background-color: #ccc;
   text-align: center;
 }
+
+.admin-response-code-class-success {
+  color: #9fc820;
+}
+
+.admin-response-code-class-client-error, .admin-response-code-class-server-error {
+  color: #f57e80;
+}
+
+.admin-response-code-class-other {
+  color: #FFF4E5;
+}
