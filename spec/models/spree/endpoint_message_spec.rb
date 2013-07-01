@@ -22,6 +22,21 @@ describe Spree::EndpointMessage do
     BSON::ObjectId.stub new: "1b"
   end
 
+  describe "#response_code_class" do
+    { "success"      => [200, 250, 299],
+      "client-error" => [400, 450, 499],
+      "server-error" => [500, 550, 599],
+      "other"        => [100, 150, 199, 300, 350, 399, nil] }.each_pair do |key, codes|
+
+        codes.each do |code|
+          it "returns #{key} for #{code}" do
+            message.stub response_code: code
+            expect(message.response_code_class).to eq key
+          end
+        end
+      end
+  end
+
   describe "#uri=" do
     it "appends http" do
       message.uri = "0.0.0.0"

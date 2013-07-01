@@ -55,6 +55,20 @@ module Spree
       response_data && response_data[:code]
     end
 
+    def response_code_class
+      # Returns the class of the status code.
+      case response_code.to_s
+      when /^2[0-9]{2}$/
+        "success"
+      when /^4[0-9]{2}$/
+        "client-error"
+      when /^5[0-9]{2}$/
+        "server-error"
+      else
+        "other"
+      end
+    end
+
     def response_body
       response_data[:body]
     end
