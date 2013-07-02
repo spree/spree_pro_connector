@@ -20,8 +20,10 @@
         <legend align="center"><%= Spree.t(:response) %></legend>
         <ul>
           <dt><%= Spree.t("request", scope: :response_data) %></dt>
-          <dl class="admin-response-code-class-<%= @presenter.response_code_class %>"><strong><%= @presenter.response_code %></strong> - <%= @presenter.uri %></dl>
-          <% @presenter.each_response_data do |key, value| %>
+          <dl class="admin-response-code-class-<%= @presenter.response_code_class %>">
+            <strong>[<%= @presenter.response_code %>] [<%= @presenter.response_time %> sec]</strong> <%= @presenter.uri %>
+        </dl>
+        <% @presenter.each_response_data do |key, value| %>
             <dt><%= Spree.t(key, scope: :response_data) %></dt>
             <dl><%= value %></dl>
           <% end %>

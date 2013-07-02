@@ -61,5 +61,12 @@ describe Spree::Admin::EndpointTestingPresenter do
       expect(presenter.response_html_safe).to eq "<xcriptx>alert('Hello');</xcriptx>"
     end
   end
+
+  describe "#response_time" do
+    it "rounds to 2" do
+      message.stub response_time: 1.1234
+      expect(presenter.response_time).to eq 1.12
+    end
+  end
 end
 

@@ -73,6 +73,10 @@ module Spree
       response_data[:body]
     end
 
+    def response_time
+      response_data[:response_time]
+    end
+
     def update_message_id!
       payload_hash.delete "message_id"
       update_payload

@@ -3,10 +3,10 @@ require "samples"
 module Spree::Admin
   class EndpointTestingPresenter
     delegate :uri, :response_code, :response_body, :response_headers, :response_data, :response_code_class,
-      to: :@message
+      to: :@endpoint_message
 
-    def initialize message
-      @message = message
+    def initialize endpoint_message
+      @endpoint_message = endpoint_message
     end
 
     def samples
@@ -20,7 +20,7 @@ module Spree::Admin
     end
 
     def each_response_data
-        response_headers.each do |key, value|
+      response_headers.each do |key, value|
         yield key, value.kind_of?(Array) ? value.join(", ") :
           value
       end
@@ -36,6 +36,10 @@ module Spree::Admin
 
     def response_json?
       response_headers.fetch("Content-Type", "").include? "application/json"
+    end
+
+    def response_time
+      @endpoint_message.response_time.round 2
     end
   end
 end
