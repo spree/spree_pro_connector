@@ -59,7 +59,7 @@ Augury.Views.Connections.New = Backbone.View.extend
     if env == 'custom'
       Augury.url = @$el.find('input.url').val()
     else
-      Augury.url = Augury.SignUp[env]
+      Augury.url = Augury.SignUp.urls[env]
 
   login: ->
     @set_url()
