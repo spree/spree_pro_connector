@@ -43,8 +43,12 @@ Augury.Routers.Integrations = Backbone.Router.extend(
   signup: (integration_id) ->
     Augury.update_nav('integrations')
 
-    integration = _.findWhere Augury.integrations.models,
+    integration = _.findWhere Augury.global_integrations.models,
       id: integration_id
+
+    unless integration?
+      integration = _.findWhere Augury.store_integrations.models,
+        id: integration_id
 
     view = new Augury.Views.Integrations.Signup(model: integration)
     $("#integration_main").html view.render().el
