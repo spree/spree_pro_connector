@@ -4,15 +4,23 @@
 en:
   order_events: "Order Events"
   spree:
+    request: "Request"
+    response: "Response"
+    show_all: "Show all"
+    hide_all: "Hide all"
+    uri: "URI"
+    message: "Message"
+    token: "Token"
+    payload: "Payload"
+    parameters: "Parameters"
+    integration:  "Integration"
     endpoint_testing: "Endpoint Testing"
+    hide_headers: "Hide headers"
+    show_headers: "Show headers"
+    actions:
+      send: "Send"
     response_data:
-      uri: "URI"
-      request: "Request"
-      code: "Code"
-      content-trpe: "Content-Type"
-      date: "Date"
-      content-length: "Content-Length"
-      connection: "Connection"
+      body: "Body"
     endpoint_message:
       errors:
         cant_be_updated: "Messages already be sent can't be updated"

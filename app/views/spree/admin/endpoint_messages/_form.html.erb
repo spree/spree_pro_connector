@@ -6,7 +6,7 @@
 
 <% content_for :page_actions do %>
   <li>
-  <%= button_link_to Spree.t(:show_all), collection_url, :icon => 'icon-plus', :id => 'admin_new_messages_link' %>
+  <%= button_link_to Spree.t(:show_all), collection_url, id: 'admin_new_messages_link' %>
   </li>
 <% end %>
 
@@ -14,74 +14,75 @@
 
 <%= form_for [:admin, @endpoint_message] do |f| %>
   <div class="preferences">
-
     <% if @presenter.response_data %>
       <fieldset class="general no-border-top">
         <legend align="center"><%= Spree.t(:response) %></legend>
-        <ul>
-          <dt><%= Spree.t("request", scope: :response_data) %></dt>
-          <dl class="admin-response-code-class-<%= @presenter.response_code_class %>">
-            <strong>[<%= @presenter.response_code %>] [<%= @presenter.response_time %>]</strong> <%= @presenter.uri %>
-        </dl>
-        <% @presenter.each_response_data do |key, value| %>
-            <dt><%= Spree.t(key, scope: :response_data) %></dt>
-            <dl><%= value %></dl>
+        <div class="field">
+          <label><%= Spree.t("request") %></label> <br/>
+          <span class="admin-response-code-class-<%= @presenter.response_code_class %>"><i><%= @presenter.response_code %></i> <i><%= @presenter.response_time %> sec</i> <%= @presenter.uri %></span>
+        </div>
+        <%= button_link_to Spree.t(:show_headers), "javascript:void(0);", id: 'admin-response-headers-button', "data-toggle-text" => Spree.t(:hide_headers) %>
+        <dl id="admin-response-headers-container">
+          <% @presenter.each_response_data do |key, value| %>
+            <dt><%= key %></dt>
+            <dd><%= value %></dd>
           <% end %>
-          <dt><%= Spree.t(:body, scope: :response_data) %></dt>
-          <dl>
-            <% if @presenter.response_json? %>
-              <%= render partial: "body_json" %>
-            <% else %>
-              <%= render partial: "body_html" %>
-            <% end %>
-          </dl>
-        </ul>
+        </dl>
+        <div class="field">
+          <label><%= Spree.t(:body, scope: :response_data) %></label> <br/>
+          <% if @presenter.response_json? %>
+            <%= render partial: "body_json" %>
+          <% else %>
+            <%= render partial: "body_html" %>
+          <% end %>
+        </div>
       </fieldset>
+    </div>
+  <% end %>
+
+  <fieldset class="general no-border-top">
+    <legend align="center"><%= Spree.t(:request) %></legend>
+
+    <%= f.field_container :message do %>
+      <%= f.label :message, Spree.t(:message) %>
+      <%= f.collection_select :message, @presenter.samples, :message, :message, { include_blank: true }, { class: "select2 fullwidth" } %>
+      <%= f.error_message_on :message %>
     <% end %>
 
-    <fieldset class="general no-border-top">
-      <legend align="center"><%= Spree.t(:request) %></legend>
-
-      <%= f.field_container :message do %>
-        <%= f.label :message, Spree.t(:message) %>
-        <%= f.collection_select :message, @presenter.samples, :message, :message, { include_blank: true }, { class: "select2 fullwidth" } %>
-        <%= f.error_message_on :message %>
-      <% end %>
-
-      <div class="row">
-        <div class="alpha six columns">
-          <%=f.field_container :uri do %>
-            <%= f.label :uri, Spree.t(:uri) %> <span class="required">*</span><br />
-            <%= f.text_field :uri, :class => "fullwidth title" %>
-            <%= f.error_message_on :uri %>
-          <% end %>
-        </div>
-
-        <div class="omega six columns">
-          <%= f.field_container :token do %>
-            <%= f.label :token, Spree.t(:token) %> <span class="required">*</span><br />
-            <%= f.text_field :token, :class => "fullwidth title" %>
-            <%= f.error_message_on :token %>
-          <% end %>
-        </div>
+    <div class="row">
+      <div class="alpha six columns">
+        <%=f.field_container :uri do %>
+          <%= f.label :uri, Spree.t(:uri) %> <span class="required">*</span><br />
+          <%= f.text_field :uri, :class => "fullwidth title" %>
+          <%= f.error_message_on :uri %>
+        <% end %>
       </div>
 
-      <%= f.field_container :payload do %>
-        <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
-        <%= f.text_area :payload, :class => "fullwidth title" %>
-        <%= f.error_message_on :payload %>
-        <div id="endpoint_message_payload_editor"></div>
-      <% end %>
+      <div class="omega six columns">
+        <%= f.field_container :token do %>
+          <%= f.label :token, Spree.t(:token) %> <span class="required">*</span><br />
+          <%= f.text_field :token, :class => "fullwidth title" %>
+          <%= f.error_message_on :token %>
+        <% end %>
+      </div>
+    </div>
 
-      <%= f.field_container :parameters do %>
-        <%= f.label :parameters, Spree.t(:parameters) %><br/>
-        <%= f.text_area :parameters, :class => "fullwidth title" %>
-        <%= f.error_message_on :parameters %>
-        <div id="endpoint_message_parameters_editor"></div>
-      <% end %>
-      <%= render partial: "spree/admin/shared/new_resource_links", locals: { button_create_label: Spree.t("actions.send") }%>
-    </fieldset>
-  </div>
+    <%= f.field_container :payload do %>
+      <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
+      <%= f.text_area :payload, :class => "fullwidth title" %>
+      <%= f.error_message_on :payload %>
+      <div id="endpoint_message_payload_editor"></div>
+    <% end %>
+
+    <%= f.field_container :parameters do %>
+      <%= f.label :parameters, Spree.t(:parameters) %><br/>
+      <%= f.text_area :parameters, :class => "fullwidth title" %>
+      <%= f.error_message_on :parameters %>
+      <div id="endpoint_message_parameters_editor"></div>
+    <% end %>
+    <%= render partial: "spree/admin/shared/new_resource_links", locals: { button_create_label: Spree.t("actions.send") }%>
+  </fieldset>
+</div>
 <% end %>
 
 <script id="messages" type="application/vnd.spree-admin-messages">
@@ -90,6 +91,15 @@
 
 <script>
   $(function(){
+
+    $("#admin-response-headers-button").click(function(){
+      var $this = $(this);
+      var toggleText = $this.data("toggle-text");
+      $this.data("toggle-text", $this.text());
+      $this.text(toggleText);
+      $("#admin-response-headers-container").toggle("display");
+    });
+
     var $textarea = $("#endpoint_message_payload");
 
     // Creates ACE editor for parameters' field

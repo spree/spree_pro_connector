@@ -54,10 +54,46 @@ body .modal-header, .modal-footer {
   color: #9fc820;
 }
 
+.admin-response-code-class-success i {
+  color: #FFF;
+  background-color: #9fc820;
+  font-weight: bold;
+  font-style: normal;
+  padding: 2px;
+  margin: 1px;
+}
+
 .admin-response-code-class-client-error, .admin-response-code-class-server-error {
   color: #f57e80;
 }
 
+.admin-response-code-class-client-error i, .admin-response-code-class-server-error i {
+  color: #FFF;
+  background-color: #f57e80;
+  font-weight: bold;
+  font-style: normal;
+  padding: 2px;
+  margin: 1px;
+}
+
 .admin-response-code-class-other {
   color: #FFF4E5;
+}
+
+.admin-response-code-class-other i {
+  color: #FFF;
+  background-color: #FFF4E5;
+  font-weight: bold;
+  font-style: normal;
+  padding: 2px;
+  margin: 1px;
+}
+#admin-response-headers-container {
+  display: none;
+}
+
+#admin-response-headers-container dt, #admin-response-headers-container dd {
+  height: 32px;
+  word-break: break-all;
+  word-wrap: break-word;
 }
