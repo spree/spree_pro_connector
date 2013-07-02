@@ -39,7 +39,7 @@ module Spree::Admin
     end
 
     def response_time
-      @endpoint_message.response_time.round 2
+      @endpoint_message.response_time.to_f.round 2
     end
   end
 end
