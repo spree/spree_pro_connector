@@ -67,6 +67,13 @@ describe Spree::Admin::EndpointTestingPresenter do
       message.stub response_time: 1.1234
       expect(presenter.response_time).to eq 1.12
     end
+
+    context "nil" do
+      it "returns 0.0" do
+        message.stub response_time: nil
+        expect(presenter.response_time).to eq 0.0
+      end
+    end
   end
 end
 

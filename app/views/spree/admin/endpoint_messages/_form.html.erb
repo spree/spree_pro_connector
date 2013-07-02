@@ -21,7 +21,7 @@
         <ul>
           <dt><%= Spree.t("request", scope: :response_data) %></dt>
           <dl class="admin-response-code-class-<%= @presenter.response_code_class %>">
-            <strong>[<%= @presenter.response_code %>] [<%= @presenter.response_time %> sec]</strong> <%= @presenter.uri %>
+            <strong>[<%= @presenter.response_code %>] <%= "[#{@presenter.response_time} sec]" if @presenter.response_time %></strong> <%= @presenter.uri %>
         </dl>
         <% @presenter.each_response_data do |key, value| %>
             <dt><%= Spree.t(key, scope: :response_data) %></dt>
