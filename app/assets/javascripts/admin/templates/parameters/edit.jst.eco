@@ -1,5 +1,8 @@
-<fieldset class="no-border-top">
+<fieldset>
+  <legend><%= @parameter.get('name') %></legend>
+
   <div class="error-message"></div>
+
   <div class="row">
     <div class="alpha six columns">
       <div class="field">
@@ -17,10 +20,11 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="actions">
-      <button id="save">Save</button>
-      <button id="cancel">Cancel</button>
+
+    <div class="form-buttons filter-actions actions">
+      <button id="save" class="button icon-ok">Save</button>
+      <span class="or">or</span>
+      <button id="cancel" class="button icon-remove">Cancel</button>
     </div>
-  </div>
+
 </fieldset>

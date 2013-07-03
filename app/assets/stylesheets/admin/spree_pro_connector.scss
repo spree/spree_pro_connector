@@ -116,3 +116,20 @@ body .modal-header, .modal-footer {
     margin: 0;
   }
 }
+
+#connected-message {
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 20px 0;
+  color: lighten($color-body-text, 15);
+
+  strong {
+    color: $color-body-text;
+  }
+
+  i {
+    font-size: 40px;
+    color: $color-2;
+  }
+}

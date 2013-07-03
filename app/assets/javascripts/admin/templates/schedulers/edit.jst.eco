@@ -28,11 +28,11 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="actions">
-      <button id="save">Save</button>
-      <button id="cancel">Cancel</button>
-    </div>
+  <div class="form-buttons filter-actions actions">
+    <button id="save" class="icon-refresh button">Save</button>
+    <span class="or">or</span>
+    <button id="cancel" class="button icon_link with-tip icon-remove">Cancel</button>
   </div>
+
 </fieldset>
 
