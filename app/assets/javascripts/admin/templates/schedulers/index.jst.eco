@@ -1,5 +1,3 @@
-<h2>Schedulers</h2>
-
 <p>Here's the complete list of Integrator schedulers (<%= _(@schedulers).size() %>).</p>
 
 <table class="index">

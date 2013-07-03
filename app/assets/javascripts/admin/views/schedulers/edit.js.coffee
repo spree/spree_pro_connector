@@ -16,6 +16,8 @@ Augury.Views.Schedulers.Edit = Backbone.View.extend(
       @model.get('key')
     )
 
+    $('#content-header').find('.page-title').text(if @model.isNew() then 'New Scheduler' else 'Edit Scheduler')
+
     $('#content-header').find('.page-actions').remove()
     $('#content-header').find('.table-cell').after JST["admin/templates/schedulers/back_button"]
 

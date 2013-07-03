@@ -1,11 +1,3 @@
-<h2>
-  <% if @registration.isNew(): %>
-    New Registration
-  <% else: %>
-    Edit Registration
-  <% end %>
-</h2>
-
 <fieldset class="no-border-top">
   <div class="error-message"></div>
   <div class="alpha twelve columns">

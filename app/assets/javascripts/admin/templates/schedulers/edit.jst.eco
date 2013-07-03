@@ -1,11 +1,3 @@
-<h2>
-  <% if @scheduler.isNew(): %>
-    New Scheduler
-  <% else: %>
-    Edit Scheduler
-  <% end %>
-</h2>
-
 <fieldset class="no-border-top">
   <div class="error-message"></div>
   <div class="alpha six columns">

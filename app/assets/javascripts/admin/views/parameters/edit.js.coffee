@@ -12,6 +12,8 @@ Augury.Views.Parameters.Edit = Backbone.View.extend(
     @$el.html JST["admin/templates/parameters/edit"](parameter: @model)
     Backbone.Validation.bind @
 
+    $('#content-header').find('.page-title').text(if @model.isNew() then 'New Parameter' else 'Edit Parameter')
+
     $('#content-header').find('.page-actions').remove()
     $('#content-header').find('.table-cell').after JST["admin/templates/parameters/back_button"]
 
