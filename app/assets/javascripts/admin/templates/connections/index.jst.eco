@@ -31,7 +31,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div class="actions">
-  <a href="/admin/integration/connections/new" class="new icon_link with-tip icon-plus">New Connection</a>
-</div>

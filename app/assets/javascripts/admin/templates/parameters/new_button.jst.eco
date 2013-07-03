@@ -1,0 +1,7 @@
+<div class="page-actions table-cell toolbar" data-hook="toolbar">
+  <ul class="inline-menu">
+    <li>
+      <a href="/admin/integration/parameters/new" class="new button icon_link icon-plus">New Parameter</a>
+    </li>
+  </ul>
+</div>

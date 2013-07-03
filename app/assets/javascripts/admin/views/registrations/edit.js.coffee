@@ -13,6 +13,10 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     Backbone.Validation.bind @
     @prepareClickHandlers()
     @prepareForm()
+
+    $('#content-header').find('.page-actions').remove()
+    $('#content-header').find('.table-cell').after JST["admin/templates/registrations/back_button"]
+
     @
 
   save: (e) ->

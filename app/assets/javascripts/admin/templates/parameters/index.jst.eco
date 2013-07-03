@@ -28,7 +28,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div class="actions">
-  <a href="/admin/integration/parameters/new" class="new icon_link with-tip icon-plus">New Parameter</a>
-</div>

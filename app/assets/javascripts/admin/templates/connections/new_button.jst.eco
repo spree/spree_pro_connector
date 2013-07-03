@@ -1,0 +1,7 @@
+<div class="page-actions table-cell toolbar" data-hook="toolbar">
+  <ul class="inline-menu">
+    <li>
+      <a href="/admin/integration/connections/new" class="new button icon_link icon-plus">New Connection</a>
+    </li>
+  </ul>
+</div>
