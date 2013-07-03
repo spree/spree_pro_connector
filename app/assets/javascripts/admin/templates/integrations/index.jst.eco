@@ -1,80 +1,223 @@
-<h2>Global Integrations</h2>
+<fieldset class="no-border-bottom">
+  <legend>Filters</legend>
 
-<table class="index">
-  <colgroup>
-    <col style="width: 70%" />
-    <col style="width: 15%" />
-    <col style="width: 15%" />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Category</th>
-      <th class="actions"></th>
-    </tr>
-  </thead>
-  <tbody>
+  <div id="integration-filters">
+    <div class="field alpha six columns">
+      <label>Integration Level</label>
+      <ul>
+        <li class="filter" data-filter="all" data-filter-type='category'>Show all</li>
+        <li class="filter" data-filter="global" data-filter-type='integration'>Global</li>
+        <li class="filter" data-filter="custom" data-filter-type='integration'>Custom</li>
+      </ul>
+    </div>
+
+    <div class="field omega six columns">
+      <label>Category</label>
+      <ul>
+        <li class="filter" data-filter="all" data-filter-type='category'>Show all</li>
+        <li class="filter" data-filter="email" data-filter-type='category'>Email</li>
+        <li class="filter" data-filter="accounting" data-filter-type='category'>Accounting</li>
+        <li class="filter" data-filter="Test" data-filter-type='category'>Test</li>
+      </ul>
+    </div>
+  </div>
+
+</fieldset>
+
+<fieldset class="no-border-bottom">
+  <legend>Integrations</legend>
+  <ul id="integrations-list">
+
     <% for integration in @global_integrations.models: %>
-      <tr>
-        <td>
-          <h6><%= integration.get('display') or integration.get('name') %></h6>
-          <% if integration.get('description')?: %>
+
+      <li class="integration-item mix global hidden four columns <%= integration.get('category') %>" data-integration='global' data-category='<%= integration.get('category') %>'>
+        <hgroup>
+          <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
+          <h6 class="integration-category"><%= integration.get('category') %></h6>
+        </hgroup>
+
+        <img src="/assets/integrations/mandrill.png" alt="" class="integration-icon">
+
+        <% if integration.get('description')?: %>
+          <p class="integration-description">
             <%= integration.get('description') %>
-          <% end %>
-        </td>
-        <td><%= integration.get('category') %></td>
-        <td class="actions">
+          </p>
+        <% end %>
+
+        <ul class="integration-actions">
           <% if integration.registrations().length!=0: %>
-            <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+            <li>
+              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+            </li>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+            </li>
           <% else: %>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-link no-text" title="Sign up" data-action="signup"></a>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="button" title="Sign up">
+                <i class="icon-link"></i>
+                Sign up
+              </a>
+            </li>
           <% end %>
-        </td>
-      </tr>
+        </ul>
+      </li>
+
     <% end %>
-  </tbody>
-</table>
 
-<h2>Store Integrations</h2>
-
-<table class="index">
-  <colgroup>
-    <col style="width: 70%" />
-    <col style="width: 15%" />
-    <col style="width: 15%" />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Category</th>
-      <th class="actions"></th>
-    </tr>
-  </thead>
-  <tbody>
     <% for integration in @store_integrations.models: %>
-      <tr>
-        <td>
-          <h6><%= integration.get('display') or integration.get('name') %></h6>
-          <% if integration.get('description')?: %>
+
+      <li class="integration-item mix custom hidden four columns <%= integration.get('category') %>" data-integration='store' data-category='<%= integration.get('category') %>'>
+        <hgroup>
+          <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
+          <h6 class="integration-category"><%= integration.get('category') %></h6>
+        </hgroup>
+
+        <img src="/assets/integrations/quickbooks.png" alt="" class="integration-icon">
+
+        <% if integration.get('description')?: %>
+          <p class="integration-description">
             <%= integration.get('description') %>
-          <% end %>
-        </td>
-        <td><%= integration.get('category') %></td>
-        <td class="actions">
-            <a href="/admin/integration/integrations/<%= integration.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
-            <a href="/admin/integration/integrations/delete/<%= integration.get('id') %>?confirm=false" class="delete icon_link with-tip icon-trash no-text" title="Delete" data-action="delete"></a>
+          </p>
+        <% end %>
+
+        <ul class="integration-actions">
           <% if integration.registrations().length!=0: %>
-            <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+            <li>
+              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+            </li>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+            </li>
           <% else: %>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-link no-text" title="Sign up" data-action="signup"></a>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="button" title="Sign up">
+                <i class="icon-link"></i>
+                Sign up
+              </a>
+            </li>
           <% end %>
-        </td>
-      </tr>
+        </ul>
+      </li>
+
     <% end %>
-  </tbody>
-</table>
+
+  </ul>
+</fieldset>
+
+<script>
+  $(function(){
+
+    // INSTANTIATE MIXITUP
+
+    $('#integrations-list').mixitup({
+      layoutMode: 'list', // Start in list mode (display: block) by default
+      listClass: 'list', // Container class for when in list mode
+      gridClass: 'grid', // Container class for when in grid mode
+      effects: ['fade','blur'], // List of effects
+      listEffects: ['fade','rotateX'] // List of effects ONLY for list mode
+    });
+
+    // HANDLE LAYOUT CHANGES
+
+    // Bind layout buttons to toList and toGrid methods:
+
+    $('#to-list').on('click',function(){
+      $('.button').removeClass('active');
+      $(this).addClass('active');
+      $('#integrations-list').mixitup('toList');
+    });
+
+    $('#to-grid').on('click',function(){
+      $('.button').removeClass('active');
+      $(this).addClass('active');
+      $('#integrations-list').mixitup('toGrid');
+    });
+
+    // HANDLE MULTI-DIMENSIONAL CHECKBOX FILTERING
+
+    /*
+    * The desired behaviour of multi-dimensional filtering can differ greatly
+    * from project to project. MixItUp's built in filter button handlers are best
+    * suited to simple filter operations, so we will need to build our own handlers
+    * for this demo to achieve the precise behaviour we need.
+    */
+
+    var $filters = $('#integration-filters').find('li'),
+      dimensions = {
+        integration: 'all', // Create string for first dimension
+        category: 'all' // Create string for second dimension
+      };
+
+    // Bind checkbox click handlers:
+
+    $filters.on('click',function(){
+      var $t = $(this),
+        dimension = $t.attr('data-filter-type'),
+        filter = $t.attr('data-filter'),
+        filterString = dimensions[dimension];
+
+        console.log("Filter: " + filter)
+        console.log("Dimension: " + dimension)
+        console.log("Filter String: " + filterString)
+
+      console.log($t)
+
+      if(filter == 'all'){
+        // If "all"
+        if(!$t.hasClass('active')){
+          // if unchecked, check "all" and uncheck all other active filters
+          $t.addClass('active').siblings().removeClass('active');
+          // Replace entire string with "all"
+          filterString = 'all';
+        } else {
+          console.log($t + ' has class active')
+          // Uncheck
+          $t.removeClass('active');
+          // Emtpy string
+          filterString = '';
+        }
+      } else {
+        // Else, uncheck "all"
+        $t.siblings('[data-filter="all"]').removeClass('active');
+        // Remove "all" from string
+        filterString = filterString.replace('all','');
+        if(!$t.hasClass('active')){
+          // Check checkbox
+          $t.addClass('active');
+          // Append filter to string
+          filterString = filterString == '' ? filter : filterString+' '+filter;
+        } else {
+          // Uncheck
+          $t.removeClass('active');
+          // Remove filter and preceeding space from string with RegEx
+          var re = new RegExp('(\\s|^)'+filter);
+          filterString = filterString.replace(re,'');
+        };
+      };
+
+      // Set demension with filterString
+      dimensions[dimension] = filterString;
+
+      // We now have two strings containing the filter arguments for each dimension:
+      console.log('integration: '+dimensions.integration);
+      console.log('category: '+dimensions.category);
+      console.log(filterString);
+
+      /*
+      * We then send these strings to MixItUp using the filter method. We can send as
+      * many dimensions to MixitUp as we need using an array as the second argument
+      * of the "filter" method. Each dimension must be a space seperated string.
+      *
+      * In this case, MixItUp will show elements using OR logic within each dimension and
+      * AND logic between dimensions. At least one dimension must pass for the element to show.
+      */
+
+      $('#integrations-list').mixitup('filter',[dimensions.integration, dimensions.category])
+    });
+  });
+</script>
 
 <div class="actions">
-  <a href="/admin/integration/integrations/new" class="new icon_link with-tip icon-plus">New Integration</a>
+  <a href="/admin/integration/integrations/new" class="new icon_link icon-plus">New Integration</a>
+</div>

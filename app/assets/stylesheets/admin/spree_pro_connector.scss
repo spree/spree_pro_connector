@@ -1,3 +1,7 @@
+@import 'admin/globals/functions';
+@import 'admin/globals/mixins';
+@import 'admin/globals/variables';
+
 .order_events_iframe {
   border: none;
   width: 100%;
@@ -60,4 +64,54 @@ body .modal-header, .modal-footer {
 
 .admin-response-code-class-other {
   color: #FFF4E5;
+}
+
+/*---------------------------------------------*/
+/* Integration filters
+/*---------------------------------------------*/
+#integration-filters {
+  .active {
+    background-color: $color-2;
+    color: $color-1;
+    border-radius: $border-radius;
+  }
+
+  .filter {
+    cursor: pointer;
+    text-align: center;
+    padding: 2px 5px;
+  }
+}
+#integrations-list {
+  margin: 0 -10px 0 -10px;
+
+  .integration-item {
+    padding: 10px;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    text-align: center;
+
+    .integration-category {
+      font-size: $body-font-size - 1;
+      font-weight: normal;
+      color: lighten($color-body-text, 10);
+      text-transform: uppercase;
+    }
+
+    p {
+      color: $color-body-text;
+      margin: 10px 0;
+      font-style: italic;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .integration-actions {
+    list-style: none;
+    padding: none;
+    margin: 0;
+  }
 }
