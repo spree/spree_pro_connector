@@ -19,7 +19,7 @@ Augury.Models.Integration = Backbone.Model.extend(
 
   signup: (parameters,enabled) ->
     $.ajax
-      url: "/integrations/#{@.id}/signup"
+      url: "/stores/#{Augury.store_id}/integrations/#{@.id}/signup"
       type: 'POST'
       data:
         store_id: Augury.store_id
