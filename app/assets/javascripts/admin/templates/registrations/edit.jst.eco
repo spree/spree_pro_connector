@@ -52,9 +52,14 @@
       </div>
     </div>
   </div>
-  <div class="row event-keys">
-    <h4>Event Keys</h4>
-    <p class="add"><a href="#" class="add-event-fields">add row</a></p>
+
+  <fieldset class="no-border-bottom event-keys">
+    <legend>Event Keys</legend>
+
+    <p class="add">
+      <a href="#" class="add-event-fields button icon-plus">add row</a>
+    </p>
+
     <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
       <div class="alpha twelve columns event-fields">
         <div class="alpha six columns">
@@ -74,10 +79,15 @@
         </div>
       </div>
     <% end %>
-  </div>
-  <div class="row event-details">
-    <h4>Event Details</h4>
-    <p class="add"><a href="#" class="add-event-fields">add row</a></p>
+  </fieldset>
+
+  <fieldset class="event-details no-border-bottom">
+    <legend>Event Details</legend>
+
+    <p class="add">
+      <a href="#" class="add-event-fields button icon-plus">add row</a>
+    </p>
+
     <% for own eventDetailName, eventDetailPath of @registration.get('event_details'): %>
       <div class="alpha twelve columns event-fields">
         <div class="alpha six columns">
@@ -97,10 +107,15 @@
         </div>
       </div>
     <% end %>
-  </div>
-  <div class="row filters">
-    <h4>Filters</h4>
-    <p class="add"><a href="#" class="add-filter-fields">add row</a></p>
+  </fieldset>
+
+  <fieldset class="filters no-border-bottom">
+    <legend>Filters</legend>
+
+    <p class="add">
+      <a href="#" class="add-filter-fields button icon-plus">Add Row</a>
+    </p>
+
     <% for filter in @registration.get('filters'): %>
       <div class="alpha twelve columns filter-fields" data-operator="<%= filter.operator %>">
         <div class="alpha four columns">
@@ -113,9 +128,9 @@
           <div class="field">
             <label for="operator">Operator</label>
             <select class="fullwidth" id="operator" name="operator">
-              <option value="eq">Equal</options>
-              <option value="gt">Greater Than</options>
-              <option value="lt">Less Than</options>
+              <option value="eq">Equal</option>
+              <option value="gt">Greater Than</option>
+              <option value="lt">Less Than</option>
             </select>
           </div>
         </div>
@@ -130,7 +145,7 @@
         </div>
       </div>
     <% end %>
-  </div>
+  </fieldset>
 
   <div class="form-buttons filter-actions actions">
     <button id="save" class="icon-refresh button">Save</button>
