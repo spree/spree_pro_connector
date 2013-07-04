@@ -1,5 +1,3 @@
-<h2>Connections</h2>
-
 <p>Here's the complete list of Integrator connections (<%= _(@connections).size() %>).</p>
 
 <table class="index">
@@ -31,7 +29,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div class="actions">
-  <a href="/admin/integration/connections/new" class="new icon_link with-tip icon-plus">New Connection</a>
-</div>

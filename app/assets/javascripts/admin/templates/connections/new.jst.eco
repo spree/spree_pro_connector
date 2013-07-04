@@ -5,7 +5,7 @@
   <div class="alpha six columns left">
     <div class="field">
       <label for="env">Integrator Environment</label><br>
-      <select class="select2" id="env" name="env">
+      <select class="select2 fullwidth" id="env" name="env">
         <option value="staging">Staging</option>
         <option value="production">Production</option>
         <option value="custom">Custom</option>
@@ -60,7 +60,7 @@
     </div>
   </fieldset>
 
-  <fieldset id="store_details" style="border-bottom:0px;">
+  <fieldset id="store_details" class="no-border-bottom">
     <legend>Store Details</legend>
     <div class="alpha six columns left">
       <div class="field">

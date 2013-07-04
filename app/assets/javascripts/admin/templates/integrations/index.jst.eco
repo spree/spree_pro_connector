@@ -1,80 +1,153 @@
-<h2>Global Integrations</h2>
+<fieldset class="no-border-bottom">
+  <legend>Filters</legend>
 
-<table class="index">
-  <colgroup>
-    <col style="width: 70%" />
-    <col style="width: 15%" />
-    <col style="width: 15%" />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Category</th>
-      <th class="actions"></th>
-    </tr>
-  </thead>
-  <tbody>
+  <div id="integration-filters">
+    <div class="field alpha six columns">
+      <label>Integration Level</label>
+      <ul>
+        <li class="filter" data-filter="global">Global</li>
+        <li class="filter" data-filter="custom">Custom</li>
+      </ul>
+    </div>
+
+    <div class="field omega six columns">
+      <label>Categories</label>
+      <input name="filter" id="category-filter" class="select2 fullwidth" value='email, accounting, Test'>
+    </div>
+  </div>
+
+</fieldset>
+
+<fieldset class="no-border-bottom">
+  <legend>Integrations</legend>
+  <ul id="integrations-list">
+
     <% for integration in @global_integrations.models: %>
-      <tr>
-        <td>
-          <h6><%= integration.get('display') or integration.get('name') %></h6>
-          <% if integration.get('description')?: %>
+
+      <li class="integration-item mix global hidden four columns <%= integration.get('category') %>">
+        <hgroup>
+          <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
+          <h6 class="integration-category"><%= integration.get('category') %></h6>
+        </hgroup>
+
+        <img src="/assets/integrations/mandrill.png" alt="" class="integration-icon">
+
+        <% if integration.get('description')?: %>
+          <p class="integration-description">
             <%= integration.get('description') %>
-          <% end %>
-        </td>
-        <td><%= integration.get('category') %></td>
-        <td class="actions">
+          </p>
+        <% end %>
+
+        <ul class="integration-actions">
           <% if integration.registrations().length!=0: %>
-            <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+            <li>
+              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+            </li>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+            </li>
           <% else: %>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-link no-text" title="Sign up" data-action="signup"></a>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="button" title="Sign up">
+                <i class="icon-link"></i>
+                Sign up
+              </a>
+            </li>
           <% end %>
-        </td>
-      </tr>
+        </ul>
+      </li>
+
     <% end %>
-  </tbody>
-</table>
 
-<h2>Store Integrations</h2>
-
-<table class="index">
-  <colgroup>
-    <col style="width: 70%" />
-    <col style="width: 15%" />
-    <col style="width: 15%" />
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Category</th>
-      <th class="actions"></th>
-    </tr>
-  </thead>
-  <tbody>
     <% for integration in @store_integrations.models: %>
-      <tr>
-        <td>
-          <h6><%= integration.get('display') or integration.get('name') %></h6>
-          <% if integration.get('description')?: %>
-            <%= integration.get('description') %>
-          <% end %>
-        </td>
-        <td><%= integration.get('category') %></td>
-        <td class="actions">
-            <a href="/admin/integration/integrations/<%= integration.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
-            <a href="/admin/integration/integrations/delete/<%= integration.get('id') %>?confirm=false" class="delete icon_link with-tip icon-trash no-text" title="Delete" data-action="delete"></a>
-          <% if integration.registrations().length!=0: %>
-            <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
-          <% else: %>
-            <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-link no-text" title="Sign up" data-action="signup"></a>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<div class="actions">
-  <a href="/admin/integration/integrations/new" class="new icon_link with-tip icon-plus">New Integration</a>
+      <li class="integration-item mix custom hidden four columns <%= integration.get('category') %>">
+        <hgroup>
+          <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
+          <h6 class="integration-category"><%= integration.get('category') %></h6>
+        </hgroup>
+
+        <img src="/assets/integrations/quickbooks.png" alt="" class="integration-icon">
+
+        <% if integration.get('description')?: %>
+          <p class="integration-description">
+            <%= integration.get('description') %>
+          </p>
+        <% end %>
+
+        <ul class="integration-actions">
+          <% if integration.registrations().length!=0: %>
+            <li>
+              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+            </li>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+            </li>
+          <% else: %>
+            <li>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="button" title="Sign up">
+                <i class="icon-link"></i>
+                Sign up
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+
+    <% end %>
+
+  </ul>
+</fieldset>
+
+<script>
+  $(function(){
+
+    var list = $('#integrations-list');
+
+    // INSTANTIATE MIXITUP
+    list.mixitup({
+      showOnLoad: 'global custom accounting Test email',
+      multiFilter: true
+    });
+
+    // INSTANTIATE Select2
+    $('.select2').select2({
+      placeholder: "Choose categories",
+      tags: ['email', 'accounting', 'Test', 'all']
+    });
+
+    $('.select2').on('change', function(e) {
+      var tags = new Array();
+      var filters = new Array();
+
+      $('#integration-filters').find('.active').each(function(){
+        filters.push($(this).attr('data-filter'));
+        tags.push($(this).attr('data-filter'))
+      });
+
+      tags.push.apply(tags, e.val);
+
+      list.mixitup('filter', tags.join(' '));
+      $.each(filters, function(index, filter){
+        $('#integration-filters').find('[data-filter="'+filter+'"]').addClass('active');
+      })
+    });
+
+    // HANDLE LAYOUT CHANGES
+
+    // Bind layout buttons to toList and toGrid methods:
+
+    // $('#to-list').on('click',function(){
+    //   $('.button').removeClass('active');
+    //   $(this).addClass('active');
+    //   $('#integrations-list').mixitup('toList');
+    // });
+
+    // $('#to-grid').on('click',function(){
+    //   $('.button').removeClass('active');
+    //   $(this).addClass('active');
+    //   $('#integrations-list').mixitup('toGrid');
+    // });
+
+  });
+</script>

@@ -1,5 +1,3 @@
-<h2>Registrations</h2>
-
 <p>Here's the complete list of registrations (<%= @registrations.size() %>).</p>
 
 <table class="index">
@@ -31,7 +29,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div class="actions">
-  <a href="/admin/integration/registrations/new" class="new icon_link with-tip icon-plus">New Registration</a>
-</div>

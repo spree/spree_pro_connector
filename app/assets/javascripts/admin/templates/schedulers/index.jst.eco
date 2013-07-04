@@ -1,5 +1,3 @@
-<h2>Schedulers</h2>
-
 <p>Here's the complete list of Integrator schedulers (<%= _(@schedulers).size() %>).</p>
 
 <table class="index">
@@ -31,7 +29,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div class="actions">
-  <a href="/admin/integration/schedulers/new" class="new icon_link with-tip icon-plus">New Scheduler</a>
-</div>

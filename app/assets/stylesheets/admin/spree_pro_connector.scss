@@ -1,0 +1,135 @@
+@import 'admin/globals/functions';
+@import 'admin/globals/mixins';
+@import 'admin/globals/variables';
+
+.order_events_iframe {
+  border: none;
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  overflow-x:hidden;
+  overflow-y:scroll;
+}
+
+#endpoint_message_payload_editor {
+  height: 400px;
+  width: 100%;
+  border: 1px solid lightgray;
+}
+
+#endpoint_message_parameters_editor {
+  width: 100%;
+  height: 200px;
+  border: 1px solid lightgray;
+}
+
+#endpoint_message_payload, #endpoint_message_parameters {
+  display: none;
+}
+
+#admin-response-body-preview, #admin-response-body-json {
+  width: 100%;
+  height: 300px;
+  max-height: 300px;
+  border: 1px solid lightgray;
+}
+
+/* Simple modal */
+#simplemodal-container {
+  border-color: #000;
+  background-color: #ccc;
+  width: 620px;
+  height: auto;
+  top: 50px !important;
+  padding: 0;
+  position: relative;
+}
+
+label.large {
+  font-size: 90%
+}
+
+body .modal-header, .modal-footer {
+  background-color: #ccc;
+  text-align: center;
+}
+
+.admin-response-code-class-success {
+  color: #9fc820;
+}
+
+.admin-response-code-class-client-error, .admin-response-code-class-server-error {
+  color: #f57e80;
+}
+
+.admin-response-code-class-other {
+  color: #FFF4E5;
+}
+
+/*---------------------------------------------*/
+/* Integration filters
+/*---------------------------------------------*/
+#integration-filters {
+  .active {
+    background-color: $color-2;
+    color: $color-1;
+    border-radius: $border-radius;
+  }
+
+  .filter {
+    cursor: pointer;
+    text-align: center;
+    padding: 2px 5px;
+  }
+}
+#integrations-list {
+  margin: 0 -10px 0 -10px;
+
+  .integration-item {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    text-align: center;
+
+    .integration-category {
+      font-size: $body-font-size - 1;
+      font-weight: normal;
+      color: lighten($color-body-text, 10);
+      text-transform: uppercase;
+    }
+
+    p {
+      color: $color-body-text;
+      margin: 10px 0;
+      font-style: italic;
+    }
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .integration-actions {
+    list-style: none;
+    padding: none;
+    margin: 0;
+  }
+}
+
+#connected-message {
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 20px 0;
+  color: lighten($color-body-text, 15);
+
+  strong {
+    color: $color-body-text;
+  }
+
+  i {
+    font-size: 40px;
+    color: $color-2;
+  }
+}

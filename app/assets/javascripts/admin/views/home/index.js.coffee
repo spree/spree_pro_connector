@@ -5,5 +5,8 @@ Augury.Views.Home.Index = Backbone.View.extend(
     @env = _(Augury.connections).findWhere(id: Augury.env.id)
 
     @$el.html JST["admin/templates/home/index"](env: @env)
+
+    $('#content-header').find('.page-title').text('Overview')
+
     this
 )

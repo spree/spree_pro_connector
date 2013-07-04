@@ -1,3 +1,5 @@
-<h2>Overview</h2>
-
-<p>Connected to the <strong><%= @env['environment'] %></strong> Integrator as <strong><%= @env['user'] %></strong>.</p>
+<div id="connected-message">
+  <i class="icon-link"></i>
+  <br>
+  Connected to the <strong><%= @env['environment'] %></strong> Integrator as <strong><%= @env['user'] %></strong>.
+</div>

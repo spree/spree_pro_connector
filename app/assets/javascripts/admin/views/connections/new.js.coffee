@@ -13,6 +13,12 @@ Augury.Views.Connections.New = Backbone.View.extend
     @$('.select2').select2(minimumResultsForSearch: 5)
     @toggle_new_or_existing()
     @toggle_env()
+
+    $('#content-header').find('.page-title').text('New Connection')
+
+    $('#content-header').find('.page-actions').remove()
+    $('#content-header').find('.table-cell').after JST["admin/templates/connections/back_button"]
+
     @
 
   toggle_new_or_existing: ->
