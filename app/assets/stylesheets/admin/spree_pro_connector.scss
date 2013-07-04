@@ -127,12 +127,34 @@ body .modal-header, .modal-footer {
     border: 1px solid $color-border;
     border-radius: $border-radius;
     text-align: center;
+    position: relative;
 
     .integration-category {
       font-size: $body-font-size - 1;
       font-weight: normal;
       color: lighten($color-body-text, 10);
       text-transform: uppercase;
+    }
+
+    .integration-label {
+      position: absolute;
+      right: -5px;
+      top: 5px;
+      padding: 2px 5px;
+      background-color: $color-2;
+      color: $color-1;
+      text-transform: uppercase;
+      font-size: 11px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 19px;
+        width: 0;
+        height: 0;
+        border-top: 5px solid darken($color-2, 10);
+        border-right: 5px solid transparent;
+      }
     }
 
     p {

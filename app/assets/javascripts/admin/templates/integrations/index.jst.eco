@@ -25,6 +25,7 @@
     <% for integration in @global_integrations.models: %>
 
       <li class="integration-item mix global hidden four columns <%= integration.get('category') %>">
+
         <hgroup>
           <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
           <h6 class="integration-category"><%= integration.get('category') %></h6>
@@ -62,6 +63,9 @@
     <% for integration in @store_integrations.models: %>
 
       <li class="integration-item mix custom hidden four columns <%= integration.get('category') %>">
+
+        <span class="integration-label">Custom</span>
+
         <hgroup>
           <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
           <h6 class="integration-category"><%= integration.get('category') %></h6>
