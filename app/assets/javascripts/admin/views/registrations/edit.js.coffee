@@ -89,6 +89,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
       event.preventDefault()
       template = JST['admin/templates/registrations/filter_fields']
       $(template()).insertAfter($(@).context)
+      $('#operator').select2()
 
   prepareForm: ->
     @$('#registration-keys.select2').select2().select2(
