@@ -4,15 +4,12 @@
   <div id="integration-filters">
     <div class="field alpha six columns">
       <label>Integration Level</label>
-      <ul>
-        <li class="filter" data-filter="global">Global</li>
-        <li class="filter" data-filter="custom">Custom</li>
-      </ul>
+      <input name="filter" id="filter-integration" class="select2 fullwidth" value='global, custom'>
     </div>
 
     <div class="field omega six columns">
       <label>Categories</label>
-      <input name="filter" id="category-filter" class="select2 fullwidth" value='email, accounting, Test'>
+      <input name="filter" id="filter-category" class="select2 fullwidth" value='email, accounting, Test'>
     </div>
   </div>
 
@@ -24,7 +21,7 @@
 
     <% for integration in @global_integrations.models: %>
 
-      <li class="integration-item mix global hidden four columns <%= integration.get('category') %>">
+      <li class="integration-item mix all global hidden four columns <%= integration.get('category') %>">
 
         <hgroup>
           <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
@@ -62,7 +59,7 @@
 
     <% for integration in @store_integrations.models: %>
 
-      <li class="integration-item mix custom hidden four columns <%= integration.get('category') %>">
+      <li class="integration-item mix all custom hidden four columns <%= integration.get('category') %>">
 
         <span class="integration-label">Custom</span>
 
@@ -109,32 +106,35 @@
     var list = $('#integrations-list');
 
     // INSTANTIATE MIXITUP
-    list.mixitup({
-      showOnLoad: 'global custom accounting Test email',
-      multiFilter: true
-    });
+    list.mixitup();
 
     // INSTANTIATE Select2
-    $('.select2').select2({
-      placeholder: "Choose categories",
+    $('#filter-integration').select2({
+      placeholder: "Choose Ingetration Level",
+      tags: ['global', 'custom', 'all']
+    });
+    $('#filter-category').select2({
+      placeholder: "Choose Categories",
       tags: ['email', 'accounting', 'Test', 'all']
     });
 
+    var filters_integration = new Array();
+    var filters_categories  = new Array();
+
+    filters_integration.push.apply(filters_integration, $('#filter-integration').select2("val"));
+    filters_categories.push.apply(filters_categories, $('#filter-category').select2("val"));
+
+    $('#filter-integration').on('change', function(e) {
+      filters_integration.length = 0
+      filters_integration.push.apply(filters_integration, e.val);
+    });
+    $('#filter-category').on('change', function(e) {
+      filters_categories.length = 0
+      filters_categories.push.apply(filters_categories, e.val);
+    });
+
     $('.select2').on('change', function(e) {
-      var tags = new Array();
-      var filters = new Array();
-
-      $('#integration-filters').find('.active').each(function(){
-        filters.push($(this).attr('data-filter'));
-        tags.push($(this).attr('data-filter'))
-      });
-
-      tags.push.apply(tags, e.val);
-
-      list.mixitup('filter', tags.join(' '));
-      $.each(filters, function(index, filter){
-        $('#integration-filters').find('[data-filter="'+filter+'"]').addClass('active');
-      })
+      list.mixitup('filter',[filters_integration.join(','), filters_categories.join(',')])
     });
 
     // HANDLE LAYOUT CHANGES
