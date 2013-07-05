@@ -109,11 +109,14 @@
     list.mixitup();
 
     // INSTANTIATE Select2
-    $('#filter-integration').select2({
+    var input_integration = $('#filter-integration');
+    var input_categories  = $('#filter-category');
+
+    input_integration.select2({
       placeholder: "Choose Ingetration Level",
       tags: ['global', 'custom', 'all']
     });
-    $('#filter-category').select2({
+    input_categories.select2({
       placeholder: "Choose Categories",
       tags: ['email', 'accounting', 'Test', 'all']
     });
@@ -121,14 +124,14 @@
     var filters_integration = new Array();
     var filters_categories  = new Array();
 
-    filters_integration.push.apply(filters_integration, $('#filter-integration').select2("val"));
-    filters_categories.push.apply(filters_categories, $('#filter-category').select2("val"));
+    filters_integration.push.apply(filters_integration, input_integration.select2("val"));
+    filters_categories.push.apply(filters_categories, input_categories.select2("val"));
 
-    $('#filter-integration').on('change', function(e) {
+    input_integration.on('change', function(e) {
       filters_integration.length = 0
       filters_integration.push.apply(filters_integration, e.val);
     });
-    $('#filter-category').on('change', function(e) {
+    input_categories.on('change', function(e) {
       filters_categories.length = 0
       filters_categories.push.apply(filters_categories, e.val);
     });
