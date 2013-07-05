@@ -17,6 +17,11 @@ Augury.Views.Integrations.Signup = Backbone.View.extend(
 
     @toggle_enabled_consumers()
 
+    $('#content-header').find('.page-title').text(@model.get('display') + ' Setup')
+
+    $('#content-header').find('.page-actions').remove()
+    $('#content-header').find('.table-cell').after JST["admin/templates/integrations/back_button"]
+
     @
 
   parameters_by_consumer: ->

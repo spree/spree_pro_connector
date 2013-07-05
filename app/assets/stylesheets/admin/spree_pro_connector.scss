@@ -200,3 +200,9 @@ body .modal-header, .modal-footer {
     font-size: 20px;
   }
 }
+
+fieldset .description {
+  font-style: italic;
+  text-align: center;
+  color: $color-body-text;
+}
