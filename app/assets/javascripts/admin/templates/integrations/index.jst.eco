@@ -17,6 +17,9 @@
 
 <fieldset class="no-border-bottom">
   <legend>Integrations</legend>
+
+  <div class="no-objects-found hidden filter-fail-message">Sorry &mdash; we could not find any integrations matching these criteria</div>
+
   <ul id="integrations-list">
 
     <% for integration in @global_integrations.models: %>
@@ -106,7 +109,16 @@
     var list = $('#integrations-list');
 
     // INSTANTIATE MIXITUP
-    list.mixitup();
+    list.mixitup({
+      onMixEnd: function(){
+        if($('#integrations-list > li.integration-item:visible').length < 1){
+          $('.no-objects-found').fadeIn();
+        }
+        else {
+          $('.no-objects-found').fadeOut();
+        }
+      }
+    });
 
     // INSTANTIATE Select2
     var input_integration = $('#filter-integration');
@@ -137,7 +149,7 @@
     });
 
     $('.select2').on('change', function(e) {
-      list.mixitup('filter',[filters_integration.join(','), filters_categories.join(',')])
+      list.mixitup('filter',[filters_integration.join(','), filters_categories.join(',')]);
     });
 
     // HANDLE LAYOUT CHANGES
