@@ -199,10 +199,15 @@ body .modal-header, .modal-footer {
     text-align: center;
     font-size: 20px;
   }
-}
 
-fieldset .description {
-  font-style: italic;
-  text-align: center;
-  color: $color-body-text;
+  .description {
+    font-style: italic;
+    text-align: center;
+    color: $color-body-text;
+
+    &.table {
+      text-align: left;
+      margin-bottom: 10px;
+    }
+  }
 }

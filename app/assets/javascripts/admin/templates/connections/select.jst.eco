@@ -1,6 +1,4 @@
-<h1>Connect</h1>
-
-<p>You've already registered the following stores, which one corresponds to this Spree instance?</p>
+<p class="description table">You've already registered the following stores, which one corresponds to this Spree instance?</p>
 
 <table class="index">
   <colgroup>

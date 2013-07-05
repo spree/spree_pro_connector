@@ -1,4 +1,4 @@
-<p>Here's the complete list of Integrator connections (<%= _(@connections).size() %>).</p>
+<p class="description table">Here's the complete list of Integrator connections (<%= _(@connections).size() %>).</p>
 
 <table class="index">
   <colgroup>
