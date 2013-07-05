@@ -6,6 +6,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
 
     @$el.html JST["admin/templates/home/index"](env: @env)
 
+    $('#content-header').find('.page-actions').remove()
     $('#content-header').find('.page-title').text('Overview')
 
     this
