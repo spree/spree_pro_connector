@@ -5,11 +5,10 @@ module Spree
     validates :payload    , presence: true , json: true
     validates :uri        , presence: true
     validates :token      , presence: true
-    validates :parameters , json: true
 
     validate :validates_uniqueness_of_message_id
 
-    attr_accessible :message, :uri, :token, :payload, :parameters
+    attr_accessible :message, :uri, :token, :payload
 
     default_scope order: "created_at DESC"
 
@@ -25,11 +24,13 @@ module Spree
       update_payload
     end
 
-    def parameters=parameters
-      write_attribute :parameters, parameters
-      @parameters_hash = nil
-      return unless parameters_hash
-      write_attribute(:parameters, JSON.pretty_generate(parameters_hash))
+    def parameters_hash=parameters_hash
+      write_attribute :parameters, JSON.pretty_generate(parameters_hash)
+    end
+
+    def parameters_hash
+      return { "parameters" => [] } if parameters.blank?
+      @parameters_hash ||= to_hash parameters
     end
 
     def send_request request_client=Spree::Admin::ApiRequest
@@ -93,11 +94,6 @@ module Spree
     def payload_hash
       @payload_hash ||= to_hash payload
     end
-
-    def parameters_hash
-      @parameters_hash ||= to_hash parameters
-    end
-
 
     def to_hash data
       JSON.parse(data) if data

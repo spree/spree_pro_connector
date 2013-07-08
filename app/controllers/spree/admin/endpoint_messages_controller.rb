@@ -14,6 +14,7 @@ module Spree::Admin
 
     def create
       @endpoint_message = Spree::EndpointMessage.new params[:endpoint_message]
+      @endpoint_message.parameters_hash = parse_parameters(params[:new_parameter_pairs])
       if @endpoint_message.send_request
         redirect_to edit_admin_endpoint_message_path(@endpoint_message)
       else
@@ -24,7 +25,7 @@ module Spree::Admin
     def update
       @endpoint_message = Spree::EndpointMessage.find params[:id]
       @endpoint_message.assign_attributes params[:endpoint_message]
-
+      @endpoint_message.parameters_hash = parse_parameters(params[:new_parameter_pairs])
       if @endpoint_message.send_request
         redirect_to edit_admin_endpoint_message_path(@endpoint_message)
       else
@@ -50,6 +51,12 @@ module Spree::Admin
 
     def update_message_id
       @endpoint_message.update_message_id!
+    end
+
+    private
+
+    def parse_parameters parameters
+      { "parameters" => parameters.values }
     end
   end
 end

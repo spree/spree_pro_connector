@@ -4,8 +4,7 @@ describe Spree::EndpointMessage do
   subject(:message)     { described_class.new token: token,
                           message:    "batman",
                           uri:        uri,
-                          payload:    payload,
-                          parameters: parameters }
+                          payload:    payload }
 
   let(:uri)             { "http://0.0.0.0" }
   let(:token)           { "maggie" }
@@ -82,20 +81,31 @@ describe Spree::EndpointMessage do
     its(:persisted?)    { should be }
   end
 
-  describe "#parameters=" do
+  describe "#parameters_hash=" do
     it "prettifies parameters" do
-      message.parameters = %Q{{"key":"key","keys":[{"key":"key"}]}}
-      expect(message.parameters).to eq %Q{{\n  "key": "key",\n  "keys": [\n    {\n      "key": "key"\n    }\n  ]\n}}
+      message.parameters_hash = parameters_hash
+      expect(message.parameters).to eq %Q{{\n  \"parameters\": [\n    {\n      \"name\": \"name\",\n      \"key\": \"key\"\n    }\n  ]\n}}
+    end
+  end
+
+  describe "#parametes_hash" do
+    context "when blank" do
+      it "returns default" do
+        message.parameters = ""
+        expect(message.parameters_hash).to eq ({ "parameters" => [] })
+      end
     end
 
-    it "skips invalid" do
-      message.parameters = "homer"
-      expect(message.parameters).to eq "homer"
+    context "when nil" do
+      it "returns default" do
+        message.parameters = nil
+        expect(message.parameters_hash).to eq ({ "parameters" => [] })
+      end
     end
 
-    it "skips nil" do
-      message.parameters = nil
-      expect(message.parameters).to be_nil
+    it "returns hash representation" do
+      message.parameters = parameters
+      expect(message.parameters_hash).to eq parameters_hash
     end
   end
 
@@ -122,14 +132,8 @@ describe Spree::EndpointMessage do
   end
 
   describe "#send_request" do
-    it "sends request with payload" do
-      message.parameters = nil
-      api_request.should_receive(:post).with token, uri, payload
-      message.send_request api_request
-    end
-
-    it "sends request with payload and parameters" do
-      api_request.should_receive(:post).with token, uri, %Q{{"message_id":"1a","parameters":[{"name":"name","key":"key"}]}}
+    it "makes a request" do
+      api_request.should_receive(:post).with token, uri, %Q{{"message_id":"1a","parameters":[]}}
       message.send_request api_request
     end
   end

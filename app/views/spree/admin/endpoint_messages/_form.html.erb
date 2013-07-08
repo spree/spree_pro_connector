@@ -15,13 +15,13 @@
 <%= form_for [:admin, @endpoint_message] do |f| %>
   <div class="preferences">
     <% if @presenter.response_data %>
-      <fieldset class="general no-border-top">
+      <fieldset class="no-border-bottom">
         <legend align="center"><%= Spree.t(:response) %></legend>
         <div class="field">
           <label><%= Spree.t("request") %></label> <br/>
           <span class="admin-response-code-class-<%= @presenter.response_code_class %>"><i><%= @presenter.response_code %></i> <i><%= @presenter.response_time %> sec</i> <%= @presenter.uri %></span>
         </div>
-        <%= button_link_to Spree.t(:show_headers), "javascript:void(0);", id: 'admin-response-headers-button', "data-toggle-text" => Spree.t(:hide_headers) %>
+        <%= link_to Spree.t(:show_headers), '#' , id: 'admin-response-headers-button', 'data-toggle-text' => Spree.t(:hide_headers), class: 'button' %>
         <dl id="admin-response-headers-container">
           <% @presenter.each_response_data do |key, value| %>
             <dt><%= key %></dt>
@@ -40,7 +40,7 @@
     </div>
   <% end %>
 
-  <fieldset class="general no-border-top">
+  <fieldset class="no-border-bottom">
     <legend align="center"><%= Spree.t(:request) %></legend>
 
     <%= f.field_container :message do %>
@@ -73,13 +73,33 @@
       <%= f.error_message_on :payload %>
       <div id="endpoint_message_payload_editor"></div>
     <% end %>
-
-    <%= f.field_container :parameters do %>
-      <%= f.label :parameters, Spree.t(:parameters) %><br/>
-      <%= f.text_area :parameters, :class => "fullwidth title" %>
-      <%= f.error_message_on :parameters %>
-      <div id="endpoint_message_parameters_editor"></div>
+  </fieldset>
+  <fieldset class="no-border-bottom">
+    <legend align="center"><%= Spree.t(:parameters) %></legend>
+    <div id="new-parameters" class="row frameless">
+      <% @endpoint_message.parameters_hash["parameters"].each_with_index do |hash, i| %>
+      <div class="new_parameter_pairs row">
+        <div class="field">
+          <div class="five columns">
+            <label for="new_parameter_pairs_<%= i %>_name"><%= Spree.t(:name) %></label>
+            <input class="fullwidth" id="new_parameter_pairs_<%= i %>_name" name="new_parameter_pairs[<%= i %>][name]" type="text" value="<%=hash["name"]%>"><br>
+          </div>
+          <div class="five columns">
+            <label for="new_parameter_pairs_<%= i %>_value"><%= Spree.t(:value) %></label>
+            <input class="fullwidth" id="new_parameter_pairs_<%= i %>_value" name="new_parameter_pairs[<%= i %>][value]" type="text" value="<%=hash["value"]%>">
+          </div>
+          <div class="two columns">
+            <a class="destroy_new_parameter_pairs with-tip button" href="#" style="margin-top: 19px;" title="<%= Spree.t(:destroy) %>"><em class="icon-trash"></em>&nbsp; <%= Spree.t(:destroy) %></a>
+          </div>
+        </div>
+      </div>
     <% end %>
+    </div>
+
+    <div class="field">
+      <%= link_to_with_icon 'icon-plus', Spree.t(:add_new_parameter), '#', :class => 'add-new-parameter button' %>
+    </div>
+
     <%= render partial: "spree/admin/shared/new_resource_links", locals: { button_create_label: Spree.t("actions.send") }%>
   </fieldset>
 </div>
