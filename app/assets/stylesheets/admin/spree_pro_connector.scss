@@ -218,3 +218,32 @@ body .modal-header, .modal-footer {
     }
   }
 }
+
+#integration-menu {
+  li:hover {
+    a {
+      color: $color-link;
+    }
+    a:hover {
+      color: $color-link-hover;
+    }
+  }
+  li.active a {
+    color: $color-link-active;
+  }
+  ul.sub-menu {
+    padding-left: 0px;
+    border-left: 1px solid $color-border;
+    margin-left: 8px;
+    margin-top: -18px;
+    padding-top: 15px;
+
+    li {
+      a {
+        text-transform: none;
+        padding: 5px 0 5px 15px;
+        font-weight: normal;
+      }
+    }
+  }
+}
