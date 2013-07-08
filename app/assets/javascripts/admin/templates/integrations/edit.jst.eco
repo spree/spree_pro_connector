@@ -1,45 +1,49 @@
 <fieldset class="no-border-top">
-  <div class="error-message"></div>
-  <div class="alpha six columns">
-    <div class="field">
-      <label for="integration-name">Name</label>
-      <div class="error"></div>
-      <input class="fullwidth" type="text" id="integration-name" name="name" value="<%= @integration.get('name') %>" />
+  <div class="row">
+    <div class="error-message"></div>
+
+    <div class="alpha six columns">
+      <div class="field">
+        <label for="integration-name">Name</label>
+        <div class="error"></div>
+        <input class="fullwidth" type="text" id="integration-name" name="name" value="<%= @integration.get('name') %>" />
+      </div>
     </div>
-  </div>
-  <div class="omega six columns">
-    <div class="field">
-      <label for="integration-url">URL</label>
-      <div class="error"></div>
-      <input class="fullwidth" type="text" id="integration-url" name="url" value="<%= @integration.get('url') %>" />
+    <div class="omega six columns">
+      <div class="field">
+        <label for="integration-url">URL</label>
+        <div class="error"></div>
+        <input class="fullwidth" type="text" id="integration-url" name="url" value="<%= @integration.get('url') %>" />
+      </div>
     </div>
-  </div>
-  <div class="alpha six columns">
-    <div class="field">
-      <label for="integration-category">Category</label>
-      <div class="error"></div>
-      <input class="fullwidth" type="text" id="integration-category" name="category" value="<%= @integration.get('category') %>" />
+    <div class="alpha six columns">
+      <div class="field">
+        <label for="integration-category">Category</label>
+        <div class="error"></div>
+        <input class="fullwidth" type="text" id="integration-category" name="category" value="<%= @integration.get('category') %>" />
+      </div>
     </div>
-  </div>
-  <div class="omega six columns">
-    <div class="field">
-      <label for="integration-display">Display</label>
-      <div class="error"></div>
-      <input class="fullwidth" type="text" id="integration-display" name="display" value="<%= @integration.get('display') %>" />
+    <div class="omega six columns">
+      <div class="field">
+        <label for="integration-display">Display</label>
+        <div class="error"></div>
+        <input class="fullwidth" type="text" id="integration-display" name="display" value="<%= @integration.get('display') %>" />
+      </div>
     </div>
-  </div>
-  <div class="alpha twelve columns">
-    <div class="field">
-      <label for="integration-description">Description</label>
-      <div class="error"></div>
-      <input class="fullwidth" type="text" id="integration-description" name="description" value="<%= @integration.get('description') %>" />
+    <div class="alpha twelve columns">
+      <div class="field">
+        <label for="integration-description">Description</label>
+        <div class="error"></div>
+        <input class="fullwidth" type="text" id="integration-description" name="description" value="<%= @integration.get('description') %>" />
+      </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="actions">
-      <button id="save">Save</button>
-      <button id="cancel">Cancel</button>
-    </div>
+
+  <div class="form-buttons filter-actions actions">
+    <button id="save" class="icon-refresh button">Save</button>
+    <span class="or">or</span>
+    <button id="cancel" class="button icon_link with-tip icon-remove">Cancel</button>
   </div>
+
 </fieldset>

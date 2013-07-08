@@ -194,6 +194,24 @@ body .modal-header, .modal-footer {
 }
 
 #integration_main {
+
+  .field {
+    position: relative;
+
+    div.error {
+      position: absolute;
+      color: $color-error;
+      margin-top: -15px;
+      font-size: 11px;
+      font-style: italic;
+      right: 0px;
+    }
+
+    input.invalid {
+      border-color: very-light($color-error, 10)
+    }
+  }
+
   .filter-fail-message {
     position:absolute;
     width:100%;
