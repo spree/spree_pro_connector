@@ -11,5 +11,5 @@
 //= require_tree ./routers
 //= require_tree ./views
 //= require_tree ./templates
-//= require_tree ./ace
+//= require_tree ../../../../vendor/assets/javascripts/ace
 
