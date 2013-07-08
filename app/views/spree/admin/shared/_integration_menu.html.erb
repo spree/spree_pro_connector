@@ -8,7 +8,7 @@
       <li class="overview"><a href="/admin/integration">Overview</a></li>
       <li class="integrations"><a href="/admin/integration/integrations">Integrations</a></li>
       <li class="advanced">
-        <a href="#" class='collapse'><i class="icon-caret-down"></i> Advanced</a>
+        <a href="#" class='collapse'><i class="icon-caret-right"></i> Advanced</a>
         <ul class="sub-menu">
           <li class="registrations"><a href="/admin/integration/registrations">Registrations</a></li>
           <li class="schedulers"><a href="/admin/integration/schedulers">Schedulers</a></li>
@@ -24,7 +24,12 @@
 <script>
   $(function(){
     $('#integration-menu').find('.collapse').click(function(){
-      $(this).find('.icon-caret-down').toggleClass('icon-caret-right')
+      if($(this).find('.icon-caret-right').length > 0){
+        $(this).find('.icon-caret-right').removeClass('icon-caret-right').addClass('icon-caret-down');
+      }
+      else {
+        $(this).find('.icon-caret-down').removeClass('icon-caret-down').addClass('icon-caret-right');
+      }
       $(this).next().toggle('fast');
     })
   });
