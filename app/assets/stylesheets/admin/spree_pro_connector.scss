@@ -129,6 +129,7 @@ body .modal-header, .modal-footer {
     text-align: center;
     position: relative;
     background-color: white;
+    min-height: 290px;
 
     .integration-category {
       font-size: $body-font-size - 1;
@@ -235,6 +236,16 @@ body .modal-header, .modal-footer {
       margin-bottom: 10px;
     }
   }
+
+  .integration-actions {
+    li {
+      a.icon-filter, a.icon-bolt {
+        padding: 3px 10px;
+        font-size: 10px;
+        margin-bottom: 5px;
+      }
+    }
+  }
 }
 
 #integration-menu {
@@ -253,7 +264,7 @@ body .modal-header, .modal-footer {
     display: none;
     padding-left: 0px;
     border-left: 1px solid $color-border;
-    margin-left: 7px;
+    margin-left: 8px;
     margin-top: -18px;
     padding-top: 15px;
 
@@ -265,4 +276,9 @@ body .modal-header, .modal-footer {
       }
     }
   }
+}
+
+.integration-description {
+  font-style: italic;
+  margin-bottom: 20px;
 }

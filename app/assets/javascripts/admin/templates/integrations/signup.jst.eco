@@ -1,7 +1,8 @@
 <p class="integration-description"><%= @integration.get('description') %></p>
 
 <p class="integration-help">
-  <a href="<%= @integration.get('help') %>"><%= @integration.get('help') %></a>
+  Help:
+  <a href="<%= @integration.get('help') %>" target="_blank"><%= @integration.get('help') %></a>
 </p>
 
 <% if @integration.get('consumers')?: %>
@@ -16,7 +17,7 @@
           <p class='description'><%= consumer['description'] %></p>
 
             <div class="alpha twelve columns">
-              <div class="field">
+              <div class="field align-center">
                 <input class="enabled" type="checkbox" name="enabled" value="<%= consumer['name'] %>" <%= 'checked' if Augury.registrations.findWhere(name: "#{@integration.get('name')}.#{consumer_name}")? %>>
                 <label for="enabled">Enable this consumer?</label>
               </div>
