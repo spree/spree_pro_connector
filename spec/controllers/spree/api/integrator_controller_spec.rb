@@ -53,6 +53,7 @@ module Spree
                       stock_transfers_per_page: 1
 
       transfer = json_response['stock_transfers']['page'].first
+      transfer.key?('number').should be_true
       transfer['destination_location']['name'].should eq 'DEST101'
       transfer['destination_movements'].first['quantity'].should eq 1
     end

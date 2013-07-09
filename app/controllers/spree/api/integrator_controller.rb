@@ -38,8 +38,8 @@ module Spree
         [:id, :number, :item_total, :total, :state, :adjustment_total, :user_id, :created_at, :updated_at, :completed_at, :payment_total, :shipment_state, :payment_state, :email, :special_instructions, :total_weight, :locked_at]
       end
 
-      def stock_transfer_attributes
-        [:id, :reference_number, :created_at, :updated_at]
+     def stock_transfer_attributes
+        [:id, :reference_number, :number, :created_at, :updated_at]
       end
     end
   end
