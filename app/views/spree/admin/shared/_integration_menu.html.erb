@@ -23,7 +23,8 @@
 
 <script>
   $(function(){
-    $('#integration-menu').find('.collapse').click(function(){
+    $('#integration-menu').find('.collapse').click(function(e){
+      e.preventDefault();
       if($(this).find('.icon-caret-right').length > 0){
         $(this).find('.icon-caret-right').removeClass('icon-caret-right').addClass('icon-caret-down');
       }
