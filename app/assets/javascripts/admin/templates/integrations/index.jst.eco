@@ -24,7 +24,7 @@
 
     <% for integration in @global_integrations.models: %>
 
-      <li class="integration-item mix all global hidden four columns <%= integration.get('category') %>">
+      <li class="integration-item mix all global hidden four columns <%= integration.get('category') %> <% if integration.registrations().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
 
         <hgroup>
           <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
@@ -42,10 +42,10 @@
         <ul class="integration-actions">
           <% if integration.registrations().length!=0: %>
             <li>
-              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="button icon-filter">Show registrations</a>
             </li>
             <li>
-              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>
+              <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="button icon-bolt">Reset to default</a>
             </li>
           <% else: %>
             <li>
@@ -62,7 +62,7 @@
 
     <% for integration in @store_integrations.models: %>
 
-      <li class="integration-item mix all custom hidden four columns <%= integration.get('category') %>">
+      <li class="integration-item mix all custom hidden four columns <%= integration.get('category') %> <% if integration.registrations().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
 
         <span class="integration-label">Custom</span>
 
@@ -71,7 +71,7 @@
           <h6 class="integration-category"><%= integration.get('category') %></h6>
         </hgroup>
 
-        <img src="/assets/integrations/quickbooks.png" alt="" class="integration-icon">
+        <i class="icon-cogs integration-custom-icon"></i>
 
         <% if integration.get('description')?: %>
           <p class="integration-description">
