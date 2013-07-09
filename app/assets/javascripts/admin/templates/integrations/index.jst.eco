@@ -71,7 +71,7 @@
           <h6 class="integration-category"><%= integration.get('category') %></h6>
         </hgroup>
 
-        <img src="/assets/integrations/quickbooks.png" alt="" class="integration-icon">
+        <i class="icon-cogs integration-custom-icon"></i>
 
         <% if integration.get('description')?: %>
           <p class="integration-description">
