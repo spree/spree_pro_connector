@@ -82,11 +82,11 @@
         <div class="field">
           <div class="five columns">
             <label for="new_parameter_pairs_<%= i %>_name"><%= Spree.t(:name) %></label>
-            <input class="fullwidth" id="new_parameter_pairs_<%= i %>_name" name="new_parameter_pairs[<%= i %>][name]" type="text" value="<%=hash["name"]%>"><br>
+            <input class="fullwidth new-parameter-name" id="new_parameter_pairs_<%= i %>_name" name="new_parameter_pairs[<%= i %>][name]" type="text" value="<%=hash["name"]%>"><br>
           </div>
           <div class="five columns">
             <label for="new_parameter_pairs_<%= i %>_value"><%= Spree.t(:value) %></label>
-            <input class="fullwidth" id="new_parameter_pairs_<%= i %>_value" name="new_parameter_pairs[<%= i %>][value]" type="text" value="<%=hash["value"]%>">
+            <input class="fullwidth new-parameter-value" id="new_parameter_pairs_<%= i %>_value" name="new_parameter_pairs[<%= i %>][value]" type="text" value="<%=hash["value"]%>">
           </div>
           <div class="two columns">
             <a class="destroy_new_parameter_pairs with-tip button" href="#" style="margin-top: 19px;" title="<%= Spree.t(:destroy) %>"><em class="icon-trash"></em>&nbsp; <%= Spree.t(:destroy) %></a>
@@ -105,7 +105,13 @@
 </div>
 <% end %>
 
-<script id="messages" type="application/vnd.spree-admin-messages">
-  <%= raw @presenter.samples.to_json %>
+<script id="messages" type="application/vnd.spree-sample-messages">
+  <%== @presenter.samples.to_json %>
+</script>
+
+<script>
+  <% if @environment %>
+    Augury.Preload.parameters = <%== @parameters_json %>;
+  <% end %>
 </script>
 

@@ -1,6 +1,6 @@
 module Spree::Admin
   class EndpointMessagesController  < ResourceController
-    before_filter :load_presenter    , only: [:new, :create, :edit, :update]
+    before_filter :load_data         , only: [:new, :create, :edit, :update]
     before_filter :update_message_id , only: :edit
 
     helper_method :clone_object_url
@@ -45,8 +45,15 @@ module Spree::Admin
       clone_admin_endpoint_message_url resource
     end
 
-    def load_presenter
+    def load_data
       @presenter = EndpointTestingPresenter.new @endpoint_message
+      # copied from app/controllers/spree/admin/integration_controller.rb#show
+      if @environment = AuguryEnvironment.where(id: Spree::Config.augury_current_env).first
+        preloader = SpreeProConnector::Preloader.new(@environment.url,
+                                                     @environment.store_id,
+                                                     @environment.token)
+        @parameters_json = preloader.parameters
+      end
     end
 
     def update_message_id
