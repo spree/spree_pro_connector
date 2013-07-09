@@ -56,7 +56,7 @@ module Spree::Admin
     private
 
     def parse_parameters parameters
-      { "parameters" => parameters.values }
+      { "parameters" => (parameters || {}).values }
     end
   end
 end
