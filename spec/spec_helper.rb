@@ -37,8 +37,8 @@ require 'spree_pro_connector/factories'
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Spree::Api::TestingSupport::Helpers, :type => :controller
+  config.include Spree::TestingSupport::ControllerRequests, :type => :controller
   config.extend Spree::Api::TestingSupport::Setup, :type => :controller
-
   # == URL Helpers
   #
   # Allows access to Spree's routes in specs:
