@@ -16,10 +16,39 @@ module Spree::Admin
         expect(assigns(:endpoint_messages)).to match_array([em1, em2])
       end
 
-      it "searches by query" do
-        em1, em2 = create(:endpoint_message, payload: %Q{{"message":"test:search"}}, uri: "spreecommerce.com"), create(:endpoint_message)
-        spree_get :index, q: { message_eq: "test:search", uri_cont: "spree" }
-        expect(assigns(:endpoint_messages)).to match_array([em1])
+      context "search" do
+        it "filter by message" do
+          em1, em2 = create(:endpoint_message, payload: %Q{{"message":"test:search"}}, uri: "spreecommerce.com"), create(:endpoint_message)
+          spree_get :index, q: { message_eq: "test:search" }
+          expect(assigns(:endpoint_messages)).to match_array([em1])
+        end
+
+        it "filter by uri" do
+          em1, em2 = create(:endpoint_message, payload: %Q{{"message":"test:search"}}, uri: "spreecommerce.com"), create(:endpoint_message)
+          spree_get :index, q: { uri_cont: "spree" }
+          expect(assigns(:endpoint_messages)).to match_array([em1])
+        end
+      end
+    end
+
+    describe "#create" do
+      before do
+        Spree::Admin::ApiRequest.stub post: {}
+      end
+
+      it "creates a new message" do
+        expect {
+          spree_post :create, endpoint_message: attributes_for(:endpoint_message),
+            new_parameter_pairs: { "1" => { "name" => "super.token", "value" => "ABC" } }
+        }.to change(Spree::EndpointMessage, :count).by 1
+      end
+
+      context "parameters is empty" do
+        it "creates a new message" do
+          expect {
+            spree_post :create, endpoint_message: attributes_for(:endpoint_message), new_parameter_pairs: nil
+          }.to change(Spree::EndpointMessage, :count).by 1
+        end
       end
     end
   end
