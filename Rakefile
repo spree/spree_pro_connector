@@ -18,7 +18,7 @@ end
 
 desc 'Generates sample data for VPD endpoint'
 task :vpd_data do
-  size = (ENV['size'] || 1).to_i
+  size = ENV.fetch('size', 1).to_i
   (1..size).each do |i|
     puts "\n--------VPD DATA #{i}-------------\n"
     puts JSON.pretty_generate(Samples::VPD.ready)
