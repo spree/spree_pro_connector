@@ -54,7 +54,7 @@
     $(".add-new-parameter").click (e) ->
       e.preventDefault()
       parameterFieldsCount++
-      $("#new-parameters").append generateHTMLForParameters("new_parameter_pairs", parameterFieldsCount)
+      $("#new-parameters").append generateHTMLForParameters(parameterFieldsCount)
       bindParametersAutoCompleteTo $("input.new-parameter-name:last")
 
     $(document).on "click", ".destroy_new_parameter_pairs", (e) ->
@@ -63,19 +63,28 @@
 
     # Generates html for new parameters
     # Copied from backend/app/assets/javascripts/admin/image_settings.js.erb
-    generateHTMLForParameters = (hash_name, index) ->
-      html = '<div class="' + hash_name + ' row"><div class="field">'
-      html += '<div class="five columns">'
-      html += '<label for="' + hash_name + '_' + index + '_name">'
-      html += Spree.translations.name + '</label>'
-      html += '<input id="' + hash_name + '_' + index + '_name" name="' + hash_name + '[' + index + '][name]" type="text" class="fullwidth new-parameter-name"><br>'
-      html += '</div><div class="five columns">'
-      html += '<label for="' + hash_name + '_' + index + '_value">'
-      html += Spree.translations.value + '</label>'
-      html += '<input id="' + hash_name + '_' + index + '_value" name="' + hash_name + '[' + index + '][value]" type="text" class="fullwidth new-parameter-value">'
-      html += '</div><div class="two columns">'
-      html += '<a href="#" title="' + Spree.translations.destroy + '" class="destroy_' + hash_name + ' with-tip button" style="margin-top: 19px;"><i class="icon-trash"></i> &nbsp; ' + Spree.translations.destroy + '</a>'
-      html += '</div></div></div>'
+    generateHTMLForParameters = (index) ->
+      "<div class='new_parameter_pairs row'>
+        <div class='field'>
+          <div class='five columns'>
+            <label for='new_parameter_pairs_#{index}_name'>#{Spree.translations.name}</label>
+            <input class='fullwidth new-parameter-name' id='new_parameter_pairs_#{index}_name'
+              name='new_parameter_pairs[#{index}][name]' type='text'><br>
+          </div>
+
+          <div class='five columns'>
+            <label for='new_parameter_pairs_#{index}_value'>#{Spree.translations.value}</label>
+            <input class='fullwidth new-parameter-value' id='new_parameter_pairs_#{index}_value'
+              name='new_parameter_pairs[#{index}][value]' type='text'>
+          </div>
+
+          <div class='two columns'>
+            <a class='destroy_new_parameter_pairs with-tip button' href='#'
+              style='margin-top: 19px;' title='#{Spree.translations.destroy}'>
+                <em class='icon-trash'></em> &nbsp; #{Spree.translations.destroy}
+            </a>
+          </div>
+        </div>"
 
     bindParametersAutoCompleteTo $("input.new-parameter-name")
 
