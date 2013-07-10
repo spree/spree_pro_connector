@@ -1,17 +1,31 @@
-<fieldset>
+<fieldset class="no-border-top">
   <legend><%= @parameter.get('name') %></legend>
 
   <div class="error-message"></div>
 
-  <div class="row">
-    <div class="alpha six columns">
-      <div class="field">
-        <label for="parameter-name">Name</label>
-        <div class="error"></div>
-        <input class="fullwidth" type="text" id="parameter-name" name="name" value="<%= @parameter.get('name') %>" />
-      </div>
+  <div class="alpha six columns">
+    <div class="field">
+      <label for="parameter-name">Name</label>
+      <div class="error"></div>
+      <input class="fullwidth" type="text" id="parameter-name" name="name" value="<%= @parameter.get('name') %>" />
     </div>
-    <div class="omega six columns">
+  </div>
+  <div class="omega six columns">
+    <div class="field">
+      <label for="parameter-data-type">Data type</label>
+      <div class="error"></div>
+      <select class="fullwidth" id="parameter-data-type" name="data-type">
+        <option value="string">String</option>
+        <option value="integer">Integer</option>
+        <option value="float">Float</option>
+        <option value="boolean">Boolean</option>
+        <option value="list">List</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="alpha twelve columns">
       <div class="field">
         <label for="parameter-value">Value</label>
         <div class="error"></div>
@@ -20,11 +34,9 @@
     </div>
   </div>
 
-
-    <div class="form-buttons filter-actions actions">
-      <button id="save" class="button icon-ok">Save</button>
-      <span class="or">or</span>
-      <button id="cancel" class="button icon-remove">Cancel</button>
-    </div>
-
+  <div class="form-buttons filter-actions actions">
+    <button id="save" class="button icon-ok">Save</button>
+    <span class="or">or</span>
+    <button id="cancel" class="button icon-remove">Cancel</button>
+  </div>
 </fieldset>
