@@ -14,6 +14,8 @@
   <%= Spree.t(:search) %>
 <% end %>
 
+<fieldset>
+  <legend><%= Spree.t(:filter_results) %></legend>
 
   <div data-hook="admin_orders_index_search">
     <%= search_form_for [:admin, @search] do |f| %>
@@ -26,7 +28,7 @@
       <div class="six columns omega">
         <div class="field">
           <%= label_tag nil, Spree.t(:uri) %>
-          <%= f.text_field :uri_cont %>
+          <%= f.text_field :uri_cont, :class => 'fullwidth' %>
         </div>
       </div>
 
@@ -40,6 +42,7 @@
     <% end %>
   </div>
 
+</fieldset>
 
 <%= paginate @endpoint_messages %>
 
