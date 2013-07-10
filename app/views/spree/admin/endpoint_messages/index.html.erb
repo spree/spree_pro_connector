@@ -6,7 +6,7 @@
 
 <% content_for :page_actions do %>
   <li>
-  <%= button_link_to Spree.t(:new_message), new_object_url, :icon => 'icon-plus', :id => 'admin_new_endpoint_messages_link' %>
+    <%= button_link_to Spree.t(:new_message), new_object_url, :icon => 'icon-plus', :id => 'admin_new_endpoint_messages_link' %>
   </li>
 <% end %>
 
@@ -14,7 +14,7 @@
   <%= Spree.t(:search) %>
 <% end %>
 
-<% content_for :table_filter do %>
+
   <div data-hook="admin_orders_index_search">
     <%= search_form_for [:admin, @search] do |f| %>
       <div class="alpha six columns">
@@ -39,7 +39,7 @@
       </div>
     <% end %>
   </div>
-<% end %>
+
 
 <%= paginate @endpoint_messages %>
 

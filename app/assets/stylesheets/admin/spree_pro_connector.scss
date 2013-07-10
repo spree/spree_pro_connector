@@ -287,3 +287,21 @@ body .modal-header, .modal-footer {
   font-size: 80px;
   color: $color-2;
 }
+
+.integration-unavailable {
+  color: $color-error;
+
+  i {
+    font-size: 40px;
+  }
+}
+
+#admin-response-headers-container {
+  dt {
+    color: $color-2;
+    font-size: $body-font-size;
+    padding: 5px 0 0 10px;
+    border: 1px solid #FFF;
+    background-color: very-light($color-border);
+  }
+}

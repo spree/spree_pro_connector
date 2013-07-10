@@ -61,7 +61,7 @@
     </p>
 
     <% for own eventKeyName, eventKeyPath of @registration.get('event_key'): %>
-      <div class="alpha twelve columns event-fields">
+      <div class="alpha twelve columns event-fields additional-fields">
         <div class="alpha six columns">
           <div class="field">
             <label for="name">Name</label>
@@ -75,7 +75,7 @@
           </div>
         </div>
         <div class="omega one columns">
-          <a href="#" class="remove-fields">x</a>
+          <a href="#" class="remove-fields"><i class="icon-cancel"></i></a>
         </div>
       </div>
     <% end %>
@@ -89,7 +89,7 @@
     </p>
 
     <% for own eventDetailName, eventDetailPath of @registration.get('event_details'): %>
-      <div class="alpha twelve columns event-fields">
+      <div class="alpha twelve columns event-fields additional-fields">
         <div class="alpha six columns">
           <div class="field">
             <label for="name">Name</label>
@@ -103,7 +103,7 @@
           </div>
         </div>
         <div class="omega one columns">
-          <a href="#" class="remove-fields">x</a>
+          <a href="#" class="remove-fields"><i class="icon-cancel"></i></a>
         </div>
       </div>
     <% end %>
@@ -117,7 +117,7 @@
     </p>
 
     <% for filter in @registration.get('filters'): %>
-      <div class="alpha twelve columns filter-fields" data-operator="<%= filter.operator %>">
+      <div class="alpha twelve columns filter-fields additional-fields" data-operator="<%= filter.operator %>">
         <div class="alpha four columns">
           <div class="field">
             <label for="path">Path</label>
@@ -127,7 +127,7 @@
         <div class="three columns">
           <div class="field">
             <label for="operator">Operator</label>
-            <select class="fullwidth" id="operator" name="operator">
+            <select class="fullwidth select2" id="operator" name="operator">
               <option value="eq">Equal</option>
               <option value="gt">Greater Than</option>
               <option value="lt">Less Than</option>
@@ -141,7 +141,7 @@
           </div>
         </div>
         <div class="omega one columns">
-          <a href="#" class="remove-fields">x</a>
+          <a href="#" class="remove-fields"><i class="icon-cancel"></i></a>
         </div>
       </div>
     <% end %>

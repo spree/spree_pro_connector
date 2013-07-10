@@ -13,6 +13,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     Backbone.Validation.bind @
     @prepareClickHandlers()
     @prepareForm()
+    $('.select2').select2()
 
     $('#content-header').find('.page-title').text(if @model.isNew() then 'New Registration' else 'Edit Registration')
 
@@ -84,7 +85,7 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
       $(template()).insertAfter($(@).context)
     @$el.on 'click', '.remove-fields', (event) ->
       event.preventDefault()
-      $(@).closest('.row').remove()
+      $(@).closest('.additional-fields').remove()
     @$el.on 'click', '.add-filter-fields', (event) ->
       event.preventDefault()
       template = JST['admin/templates/registrations/filter_fields']

@@ -1,9 +1,11 @@
 <p class="integration-description"><%= @integration.get('description') %></p>
 
-<p class="integration-help">
-  Help:
-  <a href="<%= @integration.get('help') %>" target="_blank"><%= @integration.get('help') %></a>
-</p>
+<% if @integration.get('help')?: %>
+  <div class="integration-help">
+    <i class="icon-question-sign"></i> Help:
+    <a href="<%= @integration.get('help') %>" target="_blank"><%= @integration.get('help') %></a>
+  </div>
+<% end %>
 
 <% if @integration.get('consumers')?: %>
   <p>You need to complete the following required configuration parameters:</p>
@@ -44,5 +46,9 @@
     </div>
   </fieldset>
 <% else: %>
-  <p>This Integration is currently unavailable, please try again later.</p>
+  <div class="integration-unavailable no-objects-found">
+    <i class="icon-warning-sign"></i>
+    <br>
+    This Integration is currently unavailable, please try again later.
+  </div>
 <% end %>
