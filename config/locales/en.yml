@@ -4,6 +4,7 @@
 en:
   order_events: "Order Events"
   spree:
+    available_services: "Available Services"
     request: "Request"
     response: "Response"
     show_all: "Show all"

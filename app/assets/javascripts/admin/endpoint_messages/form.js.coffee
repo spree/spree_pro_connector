@@ -1,5 +1,5 @@
   $ ->
-    return unless $("#endpoint_message_message").length
+    return unless $("#endpoint_sample_message").length
 
     $("#admin-response-headers-button").click ->
       $this = $(this)
@@ -8,7 +8,7 @@
       $this.text(toggleText)
       $("#admin-response-headers-container").toggle("display")
 
-    $("#endpoint_message_message").change (e) ->
+    $("#endpoint_sample_message").change (e) ->
       message = messageSearch($(e.target).val())
       if(message)
         # JSON.stringify(value [, replacer] [, space])

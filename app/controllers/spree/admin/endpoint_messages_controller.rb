@@ -41,30 +41,31 @@ module Spree::Admin
 
     protected
 
-    def clone_object_url resource
-      clone_admin_endpoint_message_url resource
-    end
-
-    def load_data
-      @presenter = EndpointTestingPresenter.new @endpoint_message
-      # copied from app/controllers/spree/admin/integration_controller.rb#show
-      if @environment = AuguryEnvironment.where(id: Spree::Config.augury_current_env).first
-        preloader = SpreeProConnector::Preloader.new(@environment.url,
-                                                     @environment.store_id,
-                                                     @environment.token)
-        @parameters_json = preloader.parameters
+      def clone_object_url(resource)
+        clone_admin_endpoint_message_url(resource)
       end
-    end
 
-    def update_message_id
-      @endpoint_message.update_message_id!
-    end
+      def load_data
+        # copied from app/controllers/spree/admin/integration_controller.rb#show
+        if @environment = AuguryEnvironment.where(id: Spree::Config.augury_current_env).first
+          preloader = SpreeProConnector::Preloader.new(@environment.url,
+                                                       @environment.store_id,
+                                                       @environment.token)
+          @parameters_json = preloader.parameters
+        end
+
+        @presenter = EndpointTestingPresenter.new(@endpoint_message, @environment)
+      end
+
+      def update_message_id
+        @endpoint_message.update_message_id!
+      end
 
     private
 
-    def parse_parameters parameters
-      { "parameters" => (parameters || {}).values }
-    end
+      def parse_parameters parameters
+        { "parameters" => (parameters || {}).values }
+      end
   end
 end
 

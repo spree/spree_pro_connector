@@ -5,24 +5,38 @@ module Spree::Admin
     delegate :uri, :response_code, :response_body, :response_headers, :response_data, :response_code_class,
       to: :@endpoint_message
 
-    def initialize endpoint_message
+    def initialize(endpoint_message, environment)
       @endpoint_message = endpoint_message
+      @environment      = environment
     end
 
     def samples
-      [
-        OpenStruct.new(message: "order:persist"          , payload: Samples::Order.persist)          ,
-        OpenStruct.new(message: "order:ship"             , payload: Samples::Order.ship)             ,
-        OpenStruct.new(message: "order:capture"          , payload: Samples::Order.capture)          ,
-        OpenStruct.new(message: "order:payment:captured" , payload: Samples::Order.payment_captured) ,
-        OpenStruct.new(message: "shipment:confirmation"  , payload: Samples::Shipment.confirmation)
-      ]
+      Samples.all
+    end
+
+    def each_parameter_hash_with_index
+      @endpoint_message.parameters_hash["parameters"].each_with_index do |parameter_hash, index|
+        yield parameter_hash, index
+      end
+    end
+
+    def available_services
+      @available_services ||= begin
+                                global_integrations = JSON.parse(preloader.global_integrations)
+                                global_integrations.map do |integration|
+                                  (integration["consumers"] || []).map do |consumer|
+                                    OpenStruct.new(
+                                      name:      "#{integration["name"]}##{consumer["name"]}",
+                                      full_url:  "#{integration["url"]}/#{consumer["path"]}",
+                                      payload:   consumer.to_json)
+                                  end
+                                end
+                              end.flatten
     end
 
     def each_response_data
       response_headers.each do |key, value|
-        yield key, value.kind_of?(Array) ? value.join(", ") :
-          value
+        yield key, value.kind_of?(Array) ? value.join(", ") : value
       end
     end
 
@@ -41,7 +55,19 @@ module Spree::Admin
     def response_time
       @endpoint_message.response_time.to_f.round 2
     end
+
+    private
+
+    def preloader
+      @preloader ||= if @environment
+                       SpreeProConnector::Preloader.new(@environment.url,
+                                                        @environment.store_id,
+                                                        @environment.token)
+                     else
+                       # Null Object
+                       OpenStruct.new(global_integrations: "{}")
+                     end
+    end
   end
 end
-
 
