@@ -51,7 +51,7 @@
         <select class="select2 fullwidth" id="endpoint_message_available_services">
           <option value=""></option>
           <% @presenter.available_services.each do |service| %>
-            <option value="<%= service.name %>" data-payload='<%== service.payload %>'><%= service.name %></option>
+            <option value="<%= service.full_url %>" data-payload='<%== service.payload %>'><%= service.name %></option>
           <% end %>
         </select>
       <% end %>

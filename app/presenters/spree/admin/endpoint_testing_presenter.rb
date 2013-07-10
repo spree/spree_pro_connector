@@ -25,10 +25,7 @@ module Spree::Admin
                                 global_integrations = JSON.parse(preloader.global_integrations)
                                 global_integrations.map do |integration|
                                   (integration["consumers"] || []).map do |consumer|
-                                    OpenStruct.new(
-                                      name:      "#{integration["name"]}##{consumer["name"]}",
-                                      full_url:  "#{integration["url"]}/#{consumer["path"]}",
-                                      payload:   consumer.to_json)
+                                    create_consumer_struct(integration, consumer)
                                   end
                                 end
                               end.flatten
@@ -62,16 +59,23 @@ module Spree::Admin
 
     private
 
-    def preloader
-      @preloader ||= if @environment
-                       SpreeProConnector::Preloader.new(@environment.url,
-                                                        @environment.store_id,
-                                                        @environment.token)
-                     else
-                       # Null Object
-                       OpenStruct.new(global_integrations: "{}", parameters: "{}")
-                     end
-    end
+      def preloader
+        @preloader ||= if @environment
+                         SpreeProConnector::Preloader.new(@environment.url,
+                                                          @environment.store_id,
+                                                          @environment.token)
+                       else
+                         # Null Object
+                         OpenStruct.new(global_integrations: "{}", parameters: "{}")
+                       end
+      end
+
+      def create_consumer_struct(integration, consumer)
+        OpenStruct.new(
+          name:      "#{integration["name"]}##{consumer["name"]}",
+          full_url:  "#{integration["url"]}#{consumer["path"]}",
+          payload:   consumer.to_json)
+      end
   end
 end
 
