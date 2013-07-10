@@ -5,10 +5,10 @@ module Spree
     validates :payload    , presence: true , json: true
     validates :uri        , presence: true
     validates :token      , presence: true
+    validates :message    , presence: true
+    validates :message_id , uniqueness: true, presence: true
 
-    validate :validates_uniqueness_of_message_id
-
-    attr_accessible :message, :uri, :token, :payload
+    attr_accessible :message, :message_id, :uri, :token, :payload
 
     default_scope order: "created_at DESC"
 
@@ -105,18 +105,6 @@ module Spree
       write_attribute :message_id, payload_hash["message_id"]
       write_attribute :message,    payload_hash["message"]
       write_attribute :payload,    JSON.pretty_generate(payload_hash)
-    end
-
-    def validates_uniqueness_of_message_id
-      relation = self.class.where(message_id: message_id)
-      relation = relation.where(self.class.arel_table[:id].not_eq(id)) if persisted?
-
-      if endpoint_message = relation.first
-        errors.add :message_id,
-          Spree.t("endpoint_message.errors.taken",
-                  url: Spree::Core::Engine.routes.url_helpers.edit_admin_endpoint_message_path(endpoint_message),
-                  id: endpoint_message.id)
-      end
     end
 
     def write_message_id

@@ -10,10 +10,10 @@ describe Spree::EndpointMessage do
   let(:token)           { "maggie" }
 
   let(:payload_hash)    { { "message_id" => "1a" } }
-  let(:payload)         { %Q{{"message_id":"1a"}} }
+  let(:payload)         { %Q{{"message":"test:test","message_id":"1a"}} }
 
   let(:parameters_hash) { { "parameters" => [ { "name" => "name", "key" => "key"} ] } }
-  let(:parameters)      { %Q{{ "parameters":[  { "name":"name","key":"key"}]}} }
+  let(:parameters)      { %Q{{"parameters":[{"name":"name","key":"key"}]}}}
 
   let(:api_request)     { double "API Request" }
 
@@ -133,7 +133,7 @@ describe Spree::EndpointMessage do
 
   describe "#send_request" do
     it "makes a request" do
-      api_request.should_receive(:post).with token, uri, %Q{{"message_id":"1a","parameters":[]}}
+      api_request.should_receive(:post).with token, uri, %Q{{"message":"test:test","message_id":"1a","parameters":[]}}
       message.send_request api_request
     end
   end
