@@ -13,6 +13,7 @@ Augury.Views.Parameters.Edit = Backbone.View.extend(
     Backbone.Validation.bind @
 
     @$('#parameter-data-type').val @model.get('data_type')
+    @$('#parameter-data-type').select2()
 
     $('#content-header').find('.page-title').text(if @model.isNew() then 'New Parameter' else 'Edit Parameter')
 
