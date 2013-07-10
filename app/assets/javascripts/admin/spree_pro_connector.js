@@ -12,5 +12,4 @@
 //= require_tree ./views
 //= require_tree ./templates
 //= require_tree ./endpoint_messages
-//= require_tree ../../../../vendor/assets/javascripts/ace
 
