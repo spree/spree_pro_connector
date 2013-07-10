@@ -46,15 +46,8 @@ module Spree::Admin
       end
 
       def load_data
-        # copied from app/controllers/spree/admin/integration_controller.rb#show
-        if @environment = AuguryEnvironment.where(id: Spree::Config.augury_current_env).first
-          preloader = SpreeProConnector::Preloader.new(@environment.url,
-                                                       @environment.store_id,
-                                                       @environment.token)
-          @parameters_json = preloader.parameters
-        end
-
-        @presenter = EndpointTestingPresenter.new(@endpoint_message, @environment)
+        @environment = AuguryEnvironment.where(id: Spree::Config.augury_current_env).first
+        @presenter   = EndpointTestingPresenter.new(@endpoint_message, @environment)
       end
 
       def update_message_id

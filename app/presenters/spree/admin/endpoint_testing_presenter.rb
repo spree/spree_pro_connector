@@ -34,6 +34,10 @@ module Spree::Admin
                               end.flatten
     end
 
+    def parameters_json
+      @parameters_json ||= preloader.parameters
+    end
+
     def each_response_data
       response_headers.each do |key, value|
         yield key, value.kind_of?(Array) ? value.join(", ") : value
@@ -65,7 +69,7 @@ module Spree::Admin
                                                         @environment.token)
                      else
                        # Null Object
-                       OpenStruct.new(global_integrations: "{}")
+                       OpenStruct.new(global_integrations: "{}", parameters: "{}")
                      end
     end
   end

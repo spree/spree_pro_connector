@@ -43,14 +43,16 @@
   <fieldset class="no-border-bottom">
     <legend align="center"><%= Spree.t(:request) %></legend>
 
-    <%= f.field_container :available_services do %>
-      <%= f.label :available_services, Spree.t(:available_services) %>
-      <select class="select2 fullwidth" id="endpoint_message_available_services">
-        <option value=""></option>
-        <% @presenter.available_services.each do |service| %>
-          <option value="<%= service.name %>" data-payload='<%== service.payload %>'><%= service.name %></option>
-        <% end %>
-      </select>
+    <% if @presenter.available_services.any? %>
+      <%= f.field_container :available_services do %>
+        <%= f.label :available_services, Spree.t(:available_services) %>
+        <select class="select2 fullwidth" id="endpoint_message_available_services">
+          <option value=""></option>
+          <% @presenter.available_services.each do |service| %>
+            <option value="<%= service.name %>" data-payload='<%== service.payload %>'><%= service.name %></option>
+          <% end %>
+        </select>
+      <% end %>
     <% end %>
 
     <%= f.field_container :sample_message do %>
@@ -127,7 +129,7 @@
 
 <script>
   <% if @environment %>
-    Augury.Preload.parameters = <%== @parameters_json %>;
+    Augury.Preload.parameters = <%== @presenter.parameters_json %>;
   <% end %>
 </script>
 
