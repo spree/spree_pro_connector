@@ -8,6 +8,16 @@
       $this.text(toggleText)
       $("#admin-response-headers-container").toggle("display")
 
+    $("#endpoint_message_available_services").change (e) ->
+      $service = $(this).find("option:selected")
+      payload = $service.data("payload")
+      return unless payload || payload.requires || payload.parameters
+      for parameter in payload.requires.parameters
+        $parameter = $("input.new-parameter-name[value='#{parameter.name}']")
+        unless $parameter.length
+          addParameterField parameter.name
+
+
     $("#endpoint_sample_message").change (e) ->
       message = messageSearch($(e.target).val())
       if(message)
@@ -49,13 +59,19 @@
     # Creates ACE editor for payload
     payloadEditor = createEditor("endpoint_message_payload_editor", "endpoint_message_payload")
 
-    parameterFieldsCount = $("#new-parameters .new_parameter_pairs").length
+    addParameterField = (->
+      parameterFieldsIndex = $("#new-parameters .new_parameter_pairs").length
+
+      return (name = "") ->
+        parameterFieldsIndex++
+        $("#new-parameters").append generateHTMLForParameters(name, parameterFieldsIndex)
+        bindParametersAutoCompleteTo $("input.new-parameter-name:last")
+    )()
+
 
     $(".add-new-parameter").click (e) ->
       e.preventDefault()
-      parameterFieldsCount++
-      $("#new-parameters").append generateHTMLForParameters(parameterFieldsCount)
-      bindParametersAutoCompleteTo $("input.new-parameter-name:last")
+      addParameterField()
 
     $(document).on "click", ".destroy_new_parameter_pairs", (e) ->
       e.preventDefault()
@@ -63,13 +79,13 @@
 
     # Generates html for new parameters
     # Copied from backend/app/assets/javascripts/admin/image_settings.js.erb
-    generateHTMLForParameters = (index) ->
+    generateHTMLForParameters = (name, index) ->
       "<div class='new_parameter_pairs row'>
         <div class='field'>
           <div class='five columns'>
             <label for='new_parameter_pairs_#{index}_name'>#{Spree.translations.name}</label>
             <input class='fullwidth new-parameter-name' id='new_parameter_pairs_#{index}_name'
-              name='new_parameter_pairs[#{index}][name]' type='text'><br>
+              name='new_parameter_pairs[#{index}][name]' type='text' value='#{name}'><br>
           </div>
 
           <div class='five columns'>
