@@ -17,7 +17,7 @@
       for parameter in payload.requires.parameters
         $parameter = $("input.new-parameter-name[value='#{parameter.name}']")
         unless $parameter.length
-          addParameterField parameter.name
+          addParameterField parameter.name, getParameterValueByName(parameter.name)
 
 
     $("#endpoint_sample_message").change (e) ->
@@ -64,12 +64,16 @@
     addParameterField = (->
       parameterFieldsIndex = $("#new-parameters .new_parameter_pairs").length
 
-      return (name = "") ->
+      return (name = "", value="") ->
         parameterFieldsIndex++
-        $("#new-parameters").append generateHTMLForParameters(name, parameterFieldsIndex)
+        $("#new-parameters").append generateHTMLForParameters(name, value, parameterFieldsIndex)
         bindParametersAutoCompleteTo $("input.new-parameter-name:last")
     )()
 
+    getParameterValueByName = (name) ->
+      return "" unless availableTags
+      for tag in availableTags
+        return tag.extra if tag.label == name
 
     $(".add-new-parameter").click (e) ->
       e.preventDefault()
@@ -81,7 +85,7 @@
 
     # Generates html for new parameters
     # Copied from backend/app/assets/javascripts/admin/image_settings.js.erb
-    generateHTMLForParameters = (name, index) ->
+    generateHTMLForParameters = (name, value, index) ->
       "<div class='new_parameter_pairs row'>
         <div class='field'>
           <div class='five columns'>
@@ -93,7 +97,7 @@
           <div class='five columns'>
             <label for='new_parameter_pairs_#{index}_value'>#{Spree.translations.value}</label>
             <input class='fullwidth new-parameter-value' id='new_parameter_pairs_#{index}_value'
-              name='new_parameter_pairs[#{index}][value]' type='text'>
+              name='new_parameter_pairs[#{index}][value]' type='text' value='#{value}'>
           </div>
 
           <div class='two columns'>

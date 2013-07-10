@@ -24,6 +24,6 @@ en:
       body: "Body"
     endpoint_message:
       errors:
-        cant_be_updated: "Messages already be sent can't be updated"
         taken: "has already been taken check it out at %{url}"
+        parameter_cannot_be_blank: "Parameter '%{attr_name}'  can't be blank"
 

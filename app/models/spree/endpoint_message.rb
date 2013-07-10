@@ -12,6 +12,8 @@ module Spree
 
     default_scope order: "created_at DESC"
 
+    validate :validate_each_parameter_has_value
+
     def uri=uri
       uri = "http://#{uri}" if uri.present? && !uri.match(/^https?:\/\//)
       write_attribute :uri, uri
@@ -91,29 +93,37 @@ module Spree
 
     private
 
-    def payload_hash
-      @payload_hash ||= to_hash payload
-    end
+      def payload_hash
+        @payload_hash ||= to_hash payload
+      end
 
-    def to_hash data
-      JSON.parse(data) if data
-    rescue JSON::ParserError
-    end
+      def to_hash data
+        JSON.parse(data) if data
+      rescue JSON::ParserError
+      end
 
-    def update_payload
-      write_message_id if payload_hash["message_id"].blank?
-      write_attribute :message_id, payload_hash["message_id"]
-      write_attribute :message,    payload_hash["message"]
-      write_attribute :payload,    JSON.pretty_generate(payload_hash)
-    end
+      def update_payload
+        write_message_id if payload_hash["message_id"].blank?
+        write_attribute :message_id, payload_hash["message_id"]
+        write_attribute :message,    payload_hash["message"]
+        write_attribute :payload,    JSON.pretty_generate(payload_hash)
+      end
 
-    def write_message_id
-      payload_hash["message_id"] = BSON::ObjectId.new.to_s
-    end
+      def write_message_id
+        payload_hash["message_id"] = BSON::ObjectId.new.to_s
+      end
 
-    def full_payload
-      payload_hash.merge(parameters_hash || {}).to_json
-    end
+      def full_payload
+        payload_hash.merge(parameters_hash || {}).to_json
+      end
+
+      def validate_each_parameter_has_value
+        parameters_hash["parameters"].each do |parameter|
+          if parameter["value"].blank?
+            errors.add(:base, Spree.t("endpoint_message.errors.parameter_cannot_be_blank", { attr_name: parameter["name"] }))
+          end
+        end
+      end
   end
 end
 
