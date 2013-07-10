@@ -7,7 +7,7 @@
 Backbone.View = Backbone.View.extend(
   changed: (evt) ->
     field = $(evt.currentTarget)
-    name = field.attr("name")
+    name = field.attr("name").replace("-", "_")
     if name.indexOf("[") > -1
       pattern = /((?:[a-z][a-z]+)).*?((?:[a-z][a-z0-9_]*))/i
       matches = name.match(pattern)
