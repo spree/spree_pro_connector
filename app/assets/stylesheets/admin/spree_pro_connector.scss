@@ -305,3 +305,11 @@ body .modal-header, .modal-footer {
     background-color: very-light($color-border);
   }
 }
+
+.retries-allowed {
+  padding-top: 25px;
+
+  label {
+    display: inline-block !important;
+  }
+}

@@ -13,7 +13,6 @@ Augury.Views.Registrations.Edit = Backbone.View.extend(
     Backbone.Validation.bind @
     @prepareClickHandlers()
     @prepareForm()
-    $('.select2').select2()
 
     $('#content-header').find('.page-title').text(if @model.isNew() then 'New Registration' else 'Edit Registration')
 
