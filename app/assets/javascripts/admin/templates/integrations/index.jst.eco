@@ -31,7 +31,7 @@
           <h6 class="integration-category"><%= integration.get('category') %></h6>
         </hgroup>
 
-        <img src="/assets/integrations/<%= integration.get('display').toLowerCase() or integration.get('name').toLowerCase() %>.png" alt="" class="integration-icon">
+        <img src="/assets/integrations/<%= integration.get('display') or integration.get('name') %>.png" alt="" class="integration-icon">
 
         <% if integration.get('description')?: %>
           <p class="integration-description">
