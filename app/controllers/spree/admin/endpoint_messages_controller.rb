@@ -43,29 +43,29 @@ module Spree::Admin
     def clone
       @clone = Spree::EndpointMessage.find(params[:id]).duplicate
       flash[:success] = Spree.t 'notice_messages.message_cloned'
-      redirect_to edit_object_url @clone
+      redirect_to edit_admin_endpoint_message_path @clone
     end
 
     protected
 
-      def clone_object_url(resource)
-        clone_admin_endpoint_message_url(resource)
-      end
+    def clone_object_url(resource)
+      clone_admin_endpoint_message_url(resource)
+    end
 
-      def load_data
-        @environment = AuguryEnvironment.where(id: Spree::Config.augury_current_env).first
-        @presenter   = EndpointTestingPresenter.new(@endpoint_message, @environment)
-      end
+    def load_data
+      @environment = AuguryEnvironment.where(id: Spree::Config.augury_current_env).first
+      @presenter   = EndpointTestingPresenter.new(@endpoint_message, @environment)
+    end
 
-      def update_message_id
-        @endpoint_message.update_message_id!
-      end
+    def update_message_id
+      @endpoint_message.update_message_id!
+    end
 
     private
 
-      def parse_parameters parameters
-        { "parameters" => (parameters || {}).values }
-      end
+    def parse_parameters parameters
+      { "parameters" => (parameters || {}).values }
+    end
   end
 end
 

@@ -54,7 +54,7 @@
 
     bindParametersAutoCompleteTo = (target) ->
       return unless availableTags
-      target.autocomplete source: availableTags, select: (event, ui) ->
+      target.autocomplete source: availableTags, minLength: 0, select: (event, ui) ->
         $(this).closest("div").next("div").children("input.new-parameter-value").val ui.item.extra
 
     $textarea = $("#endpoint_message_payload")

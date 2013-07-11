@@ -39,8 +39,10 @@ module Spree::Admin
       it "creates a new message" do
         expect {
           spree_post :create, endpoint_message: attributes_for(:endpoint_message),
-            new_parameter_pairs: { "1" => { "name" => "super.token", "value" => "ABC" } }
+          new_parameter_pairs: { "1" => { "name" => "super.token", "value" => "ABC" } }
         }.to change(Spree::EndpointMessage, :count).by 1
+
+        expect(response).to redirect_to spree.edit_admin_endpoint_message_path(Spree::EndpointMessage.last)
       end
 
       context "parameters is empty" do
@@ -49,6 +51,19 @@ module Spree::Admin
             spree_post :create, endpoint_message: attributes_for(:endpoint_message), new_parameter_pairs: nil
           }.to change(Spree::EndpointMessage, :count).by 1
         end
+      end
+    end
+
+    describe "#clone" do
+      before do
+        Spree::Admin::ApiRequest.stub post: {}
+      end
+
+      it "duplicates a new message" do
+        original = create(:endpoint_message)
+        expect {
+          spree_post :clone, id: original.id
+        }.to change(Spree::EndpointMessage, :count).by 1
       end
     end
   end
