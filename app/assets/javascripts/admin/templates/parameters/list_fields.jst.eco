@@ -1,0 +1,11 @@
+<fieldset class="no-border-bottom values">
+  <legend>Value(s)</legend>
+  <div class="row">
+    <p class="add">
+      <a href="#" class="add-value button icon-plus">add list value</a>
+    </p>
+  </div>
+
+  <div class="values-container">
+  </div>
+</fieldset>

@@ -24,14 +24,7 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="alpha twelve columns">
-      <div class="field">
-        <label for="parameter-value">Value</label>
-        <div class="error"></div>
-        <input class="fullwidth" type="text" id="parameter-value" name="value" value="<%= @parameter.get('value') %>" />
-      </div>
-    </div>
+  <div class="value-fields-container">
   </div>
 
   <div class="form-buttons filter-actions actions">

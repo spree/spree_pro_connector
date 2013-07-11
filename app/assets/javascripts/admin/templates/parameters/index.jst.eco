@@ -3,13 +3,15 @@
 <table class="index">
   <colgroup>
     <col style="width: 32%" />
-    <col style="width: 52%" />
+    <col style="width: 37%" />
+    <col style="width: 15%" />
     <col style="width: 16%" />
   </colgroup>
   <thead>
     <tr>
       <th>Name</th>
       <th>Value</th>
+      <th>Data Type</th>
       <th class="actions"></th>
     </tr>
   </thead>
@@ -17,7 +19,14 @@
     <% for parameter in @parameters.models: %>
       <tr>
         <td><%= parameter.get('name') %></td>
-        <td><%= parameter.get('value') %></td>
+        <td>
+          <% if parameter.get('data_type') != 'list': %>
+            <%= parameter.get('value') %>
+          <% else: %>
+            Edit parameter to view list values
+          <% end %>
+        </td>
+        <td><%= parameter.get('data_type') %></td>
         <td class="actions">
           <a href="/admin/integration/parameters/<%= parameter.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
           <a href="/admin/integration/parameters/delete/<%= parameter.get('id') %>?confirm=false" class="delete icon_link with-tip icon-trash no-text" title="Delete" data-action="delete"></a>

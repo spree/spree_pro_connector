@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="alpha twelve columns">
+    <div class="field">
+      <label for="parameter-value">Value</label>
+      <div class="error"></div>
+      <div class="value-fields">
+        <input class="fullwidth" type="text" id="parameter-value" name="value" value="<%= @parameter.get('value') %>" />
+      </div>
+    </div>
+  </div>
+</div>
