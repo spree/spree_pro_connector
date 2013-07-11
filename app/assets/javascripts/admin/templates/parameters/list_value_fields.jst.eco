@@ -1,0 +1,29 @@
+<div class="list-item">
+  <div class="alpha twelve columns">
+    <label>List Value</label>
+  </div>
+  <p class="add">
+    <a href="#" class="add-key-value-pair button icon-plus">add row</a>
+  </p>
+  <div class="list-values">
+    <% for own key, value of @item: %>
+      <div class="alpha twelve columns list-value additional-fields">
+        <div class="alpha six columns">
+          <div class="field">
+            <label>Key</label>
+            <input class="fullwidth" type="text" name="key" value="<%= key %>" />
+          </div>
+        </div>
+        <div class="five columns">
+          <div class="field">
+            <label>Value</label>
+            <input class="fullwidth" type="text" name="value" value="<%= value %>" />
+          </div>
+        </div>
+        <div class="omega one columns">
+          <a href="#" class="remove-key-value-pair"><i class="icon-cancel"></i></a>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

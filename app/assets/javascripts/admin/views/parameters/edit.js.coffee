@@ -4,6 +4,7 @@ Augury.Views.Parameters.Edit = Backbone.View.extend(
     @keyValueTemplate = JST['admin/templates/parameters/key_value_fields']
     @defaultTemplate = JST['admin/templates/parameters/default_fields']
     @listTemplate = JST['admin/templates/parameters/list_fields']
+    @listValueFieldsTemplate = JST['admin/templates/parameters/list_value_fields']
 
   events:
     'click button#save': 'save'
@@ -20,15 +21,19 @@ Augury.Views.Parameters.Edit = Backbone.View.extend(
 
     @prepareForm()
 
-    $('#content-header').find('.page-title').text(if @model.isNew() then 'New Parameter' else 'Edit Parameter')
+    if @model.get('data_type') == 'list'
+      for item in @model.get('value') 
+        @$('.values-container').append @listValueFieldsTemplate(item: item)
 
+    $('#content-header').find('.page-title').text(if @model.isNew() then 'New Parameter' else 'Edit Parameter')
     $('#content-header').find('.page-actions').remove()
     $('#content-header').find('.table-cell').after JST["admin/templates/parameters/back_button"]
-
     @
 
   save: (e) ->
     e.preventDefault()
+    if @listTypeSelected()
+      @buildValues()
     @model.validate()
     if @model.isValid()
       @model.save {}, success: @saved, error: @displayErrors
@@ -55,16 +60,17 @@ Augury.Views.Parameters.Edit = Backbone.View.extend(
       if @listTypeSelected()
         @showListFields()
       else
+        @model.set value: ''
         @showDefaultFields()
-    $(@).submit (e) =>
-      if @listTypeSelected()
-        @buildValues()
 
   showDefaultFields: ->
     @$('.value-fields-container').html @defaultTemplate(parameter: @model)
 
   showListFields: ->
     @$('.value-fields-container').html @listTemplate(parameter: @model)
+    if typeof @model.get('value') != "object"
+      @$('.values-container').append @listValueFieldsTemplate()
+      @$('.list-values').append @keyValueTemplate()
 
   setupClickHandlers: ->
     $(document).on 'click', '.add-key-value-pair', (e) =>
@@ -74,9 +80,24 @@ Augury.Views.Parameters.Edit = Backbone.View.extend(
       $(e.currentTarget).closest('.list-value').remove()
       false
     $(document).on 'click', '.add-value', (e) =>
-      $(@).find('.list-item:last').after(@listTemplate())
+      @$('.list-item:last').after @listValueFieldsTemplate()
+      @$('.list-values:last').append @keyValueTemplate()
       false
 
   listTypeSelected: ->
     @$('#parameter-data-type').val() == 'list'
+
+  buildValues: (e) ->
+    finalValue = []
+    _(@$('.list-item')).each (value) ->
+      currentValue = new Object()
+      _($(value).find('.list-value')).each (element) ->
+        key = $(element).find('input[name=key]').val()
+        value = $(element).find('input[name=value]').val()
+        if key && value
+          currentValue[key] = value
+      finalValue.push currentValue
+    if Object.keys(finalValue).length > 0
+      finalValueJSON = JSON.stringify(finalValue)
+      @model.set(value: finalValueJSON)
 )

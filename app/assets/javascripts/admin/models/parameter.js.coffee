@@ -2,6 +2,9 @@ Augury.Models.Parameter = Backbone.Model.extend(
   initialize: ->
     @urlRoot = "/stores/#{Augury.store_id}/parameters"
 
+  defaults:
+    data_type: 'string'
+
   validation:
     name:
       required: true
