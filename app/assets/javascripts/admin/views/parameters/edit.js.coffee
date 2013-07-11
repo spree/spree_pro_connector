@@ -96,8 +96,8 @@ Augury.Views.Parameters.Edit = Backbone.View.extend(
         value = $(element).find('input[name=value]').val()
         if key && value
           currentValue[key] = value
-      finalValue.push currentValue
-    if Object.keys(finalValue).length > 0
-      finalValueJSON = JSON.stringify(finalValue)
-      @model.set(value: finalValueJSON)
+      if Object.keys(currentValue).length > 0
+        finalValue.push currentValue
+    finalValueJSON = JSON.stringify(finalValue)
+    @model.set(value: finalValueJSON)
 )
