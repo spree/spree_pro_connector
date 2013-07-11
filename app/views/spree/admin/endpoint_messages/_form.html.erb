@@ -45,27 +45,31 @@
   <fieldset class="no-border-bottom">
     <legend align="center"><%= Spree.t(:request) %></legend>
 
-    <% if @presenter.available_services.any? %>
-      <%= f.field_container :available_services do %>
-        <%= f.label :available_services, Spree.t(:available_services) %>
-        <select class="select2 fullwidth" id="endpoint_message_available_services">
+    <div class="field alpha six columns">
+      <% if @presenter.available_services.any? %>
+        <%= f.field_container :available_services do %>
+          <%= f.label :available_services, Spree.t(:available_services) %>
+          <select class="select2 fullwidth" id="endpoint_message_available_services">
+            <option value=""></option>
+            <% @presenter.available_services.each do |service| %>
+              <option value="<%= service.full_url %>" data-payload='<%== service.payload %>'><%= service.name %></option>
+            <% end %>
+          </select>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="field omega six columns">
+      <%= f.field_container :sample_message do %>
+        <%= f.label :sample_message, Spree.t(:message) %>
+        <select class="select2 fullwidth" id="endpoint_sample_message">
           <option value=""></option>
-          <% @presenter.available_services.each do |service| %>
-            <option value="<%= service.full_url %>" data-payload='<%== service.payload %>'><%= service.name %></option>
+          <% @presenter.samples.each do |sample| %>
+            <option value="<%= sample.message %>"><%= sample.message %></option>
           <% end %>
         </select>
       <% end %>
-    <% end %>
-
-    <%= f.field_container :sample_message do %>
-      <%= f.label :sample_message, Spree.t(:message) %>
-      <select class="select2 fullwidth" id="endpoint_sample_message">
-        <option value=""></option>
-        <% @presenter.samples.each do |sample| %>
-          <option value="<%= sample.message %>"><%= sample.message %></option>
-        <% end %>
-      </select>
-    <% end %>
+    </div>
 
     <div class="row">
       <div class="alpha six columns">
