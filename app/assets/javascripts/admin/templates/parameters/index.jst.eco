@@ -19,7 +19,13 @@
     <% for parameter in @parameters.models: %>
       <tr>
         <td><%= parameter.get('name') %></td>
-        <td><%= parameter.get('value') %></td>
+        <td>
+          <% if parameter.get('data_type') != 'list': %>
+            <%= parameter.get('value') %>
+          <% else: %>
+            Edit parameter to view list values
+          <% end %>
+        </td>
         <td><%= parameter.get('data_type') %></td>
         <td class="actions">
           <a href="/admin/integration/parameters/<%= parameter.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
