@@ -1,0 +1,17 @@
+<div class="alpha twelve columns list-value additional-fields">
+  <div class="alpha six columns">
+    <div class="field">
+      <label>Key</label>
+      <input class="fullwidth" type="text" name="key" value="" />
+    </div>
+  </div>
+  <div class="five columns">
+    <div class="field">
+      <label>Value</label>
+      <input class="fullwidth" type="text" name="value" value="" />
+    </div>
+  </div>
+  <div class="omega one columns">
+    <a href="#" class="remove-key-value-pair"><i class="icon-cancel"></i></a>
+  </div>
+</div>
