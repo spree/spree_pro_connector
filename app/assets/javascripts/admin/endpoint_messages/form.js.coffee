@@ -12,6 +12,7 @@
       $service = $(this).find("option:selected")
       return if $service.val() == ""
       $("#endpoint_message_uri").val($service.val())
+      $(".new_parameter_pairs").remove()
       payload = $service.data("payload")
       return unless payload || payload.requires || payload.parameters
       for parameter in payload.requires.parameters
