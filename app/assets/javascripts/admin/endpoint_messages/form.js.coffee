@@ -8,17 +8,36 @@
       $this.text(toggleText)
       $("#admin-response-headers-container").toggle("display")
 
+    $("#endpoint_message_available_endpoints").change (e) ->
+      $service = $("#endpoint_message_available_services")
+      $service.find("option").remove()
+      $(".new_parameter_pairs").remove()
+      $("#endpoint_message_uri").val ""
+      $service.select2(val: "")
+      $service.append("<option value='' selected='selected'></option>")
+
+      $endpoint = $(this).find("option:selected")
+      return if $endpoint.val() == ""
+
+      _.each JSON.parse($endpoint.val()), (consumer) ->
+        $service.append("<option value='#{JSON.stringify(consumer)}'>#{consumer.name}</option>")
+
     $("#endpoint_message_available_services").change (e) ->
+      $(".new_parameter_pairs").remove()
+
       $service = $(this).find("option:selected")
       return if $service.val() == ""
-      $("#endpoint_message_uri").val($service.val())
-      $(".new_parameter_pairs").remove()
-      payload = $service.data("payload")
-      return unless payload || payload.requires || payload.parameters
+
+      payload = JSON.parse($service.val())
+
+      $endpoint = $("#endpoint_message_available_endpoints").find("option:selected")
+
+      $("#endpoint_message_uri").val "#{$endpoint.data("url")}#{payload.path}"
+
+      return unless payload.requires || payload.parameters
+
       for parameter in payload.requires.parameters
-        $parameter = $("input.new-parameter-name[value='#{parameter.name}']")
-        unless $parameter.length
-          addParameterField parameter.name, getParameterValueByName(parameter.name)
+        addParameterField parameter.name, getParameterValueByName(parameter.name)
 
 
     $("#endpoint_sample_message").change (e) ->

@@ -20,15 +20,13 @@ module Spree::Admin
       end
     end
 
-    def available_services
-      @available_services ||= begin
+    def available_endpoints
+      @available_endpoints ||= begin
                                 global_integrations = JSON.parse(preloader.global_integrations)
                                 global_integrations.map do |integration|
-                                  (integration["consumers"] || []).map do |consumer|
-                                    create_consumer_struct(integration, consumer)
-                                  end
+                                    create_endpoint_struct(integration)
                                 end
-                              end.flatten
+                              end
     end
 
     def parameters_json
@@ -70,11 +68,11 @@ module Spree::Admin
                        end
       end
 
-      def create_consumer_struct(integration, consumer)
+      def create_endpoint_struct(integration)
         OpenStruct.new(
-          name:      "#{integration["name"]}##{consumer["name"]}",
-          full_url:  "#{integration["url"]}#{consumer["path"]}",
-          payload:   consumer.to_json)
+          name:      integration["name"],
+          consumers: integration["consumers"].to_json,
+          url:       integration["url"])
       end
   end
 end

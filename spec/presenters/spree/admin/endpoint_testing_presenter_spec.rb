@@ -16,17 +16,25 @@ describe Spree::Admin::EndpointTestingPresenter do
     end
   end
 
-  describe "#available_services" do
-    context "when environement is present" do
+  describe "#available_endpoints" do
+    context "when environment is present" do
       let(:preloader)  { double("Preloader") }
 
       before do
         SpreeProConnector::Preloader.stub(new: preloader)
       end
 
-      context "when environment is nil" do
-        subject(:presenter) { described_class.new(message, nil) }
+      it "returns endpoints" do
+        endpoint_json = %Q{[{"name": "name", "consumers": null, "url": "url" }]}
+        preloader.stub global_integrations: endpoint_json
+        endpoints = presenter.available_endpoints
+
+        expect(endpoints.first).to eq OpenStruct.new(name: "name", consumers: "null", url: "url")
       end
+    end
+
+    context "when environment is nil" do
+      subject(:presenter) { described_class.new(message, nil) }
     end
   end
 

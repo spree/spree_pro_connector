@@ -45,61 +45,68 @@
   <fieldset class="no-border-bottom">
     <legend align="center"><%= Spree.t(:request) %></legend>
 
-    <div class="field alpha six columns">
-      <% if @presenter.available_services.any? %>
-        <%= f.field_container :available_services do %>
-          <%= f.label :available_services, Spree.t(:available_services) %>
-          <select class="select2 fullwidth" id="endpoint_message_available_services">
+    <% if @presenter.available_endpoints.any? %>
+      <div class="field alpha six columns">
+        <%= f.field_container :available_endpoints do %>
+          <%= f.label :available_endpoints, Spree.t(:available_endpoints) %>
+          <select class="select2 fullwidth" id="endpoint_message_available_endpoints">
             <option value=""></option>
-            <% @presenter.available_services.each do |service| %>
-              <option value="<%= service.full_url %>" data-payload='<%== service.payload %>'><%= service.name %></option>
-            <% end %>
-          </select>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="field omega six columns">
-      <%= f.field_container :sample_message do %>
-        <%= f.label :sample_message, Spree.t(:message) %>
-        <select class="select2 fullwidth" id="endpoint_sample_message">
-          <option value=""></option>
-          <% @presenter.samples.each do |sample| %>
-            <option value="<%= sample.message %>"><%= sample.message %></option>
+            <% @presenter.available_endpoints.each do |endpoint| %>
+              <option value='<%= endpoint.consumers %>' data-url='<%= endpoint.url %>'><%= endpoint.name %></option>
           <% end %>
         </select>
       <% end %>
     </div>
 
-    <div class="row">
-      <div class="alpha six columns">
-        <%=f.field_container :uri do %>
-          <%= f.label :uri, Spree.t(:uri) %> <span class="required">*</span><br />
-          <%= f.text_field :uri, :class => "fullwidth title" %>
-          <%= f.error_message_on :uri %>
-        <% end %>
-      </div>
+    <div class="field omega six columns">
+      <%= f.field_container :available_services do %>
+        <%= f.label :available_services, Spree.t(:available_services) %>
+        <select class="select2 fullwidth" id="endpoint_message_available_services">
+          <option value=""></option>
+        </select>
+      <% end %>
+    </div>
+  <% end %>
 
-      <div class="omega six columns">
-        <%= f.field_container :token do %>
-          <%= f.label :token, Spree.t(:token) %> <span class="required">*</span><br />
-          <%= f.text_field :token, :class => "fullwidth title" %>
-          <%= f.error_message_on :token %>
+    <%= f.field_container :sample_message do %>
+      <%= f.label :sample_message, Spree.t(:message) %>
+      <select class="select2 fullwidth" id="endpoint_sample_message">
+        <option value=""></option>
+        <% @presenter.samples.each do |sample| %>
+          <option value="<%= sample.message %>"><%= sample.message %></option>
         <% end %>
-      </div>
+      </select>
+    <% end %>
+
+  <div class="row">
+    <div class="alpha six columns">
+      <%=f.field_container :uri do %>
+        <%= f.label :uri, Spree.t(:uri) %> <span class="required">*</span><br />
+        <%= f.text_field :uri, :class => "fullwidth title" %>
+        <%= f.error_message_on :uri %>
+      <% end %>
     </div>
 
-    <%= f.field_container :payload do %>
-      <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
-      <%= f.text_area :payload, :class => "fullwidth title" %>
-      <%= f.error_message_on :payload %>
-      <div id="endpoint_message_payload_editor"></div>
-    <% end %>
-  </fieldset>
-  <fieldset>
-    <legend align="center"><%= Spree.t(:parameters) %></legend>
-    <div id="new-parameters" class="row frameless">
-      <% @presenter.each_parameter_hash_with_index do |parameter_hash, index| %>
+    <div class="omega six columns">
+      <%= f.field_container :token do %>
+        <%= f.label :token, Spree.t(:token) %> <span class="required">*</span><br />
+        <%= f.text_field :token, :class => "fullwidth title" %>
+        <%= f.error_message_on :token %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.field_container :payload do %>
+    <%= f.label :payload, Spree.t(:payload) %> <span class="required">*</span><br />
+    <%= f.text_area :payload, :class => "fullwidth title" %>
+    <%= f.error_message_on :payload %>
+    <div id="endpoint_message_payload_editor"></div>
+  <% end %>
+</fieldset>
+<fieldset>
+  <legend align="center"><%= Spree.t(:parameters) %></legend>
+  <div id="new-parameters" class="row frameless">
+    <% @presenter.each_parameter_hash_with_index do |parameter_hash, index| %>
       <div class="new_parameter_pairs row">
         <div class="field">
           <div class="five columns">
@@ -116,16 +123,16 @@
         </div>
       </div>
     <% end %>
-    </div>
+  </div>
 
-    <div class="field">
-      <%= link_to_with_icon 'icon-plus', Spree.t(:add_new_parameter), '#', :class => 'add-new-parameter button' %>
-    </div>
+  <div class="field">
+    <%= link_to_with_icon 'icon-plus', Spree.t(:add_new_parameter), '#', :class => 'add-new-parameter button' %>
+  </div>
 
-    <%= render partial: "spree/admin/shared/new_resource_links", locals: { button_create_label: Spree.t("actions.send") }%>
+  <%= render partial: "spree/admin/shared/new_resource_links", locals: { button_create_label: Spree.t("actions.send") }%>
 
 
-  </fieldset>
+</fieldset>
 </div>
 <% end %>
 
