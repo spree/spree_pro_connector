@@ -34,7 +34,7 @@
 
       $("#endpoint_message_uri").val "#{$endpoint.data("url")}#{payload.path}"
 
-      return unless payload.requires || payload.parameters
+      return unless payload?.requires?.parameters?
 
       for parameter in payload.requires.parameters
         addParameterField parameter.name, getParameterValueByName(parameter.name)
