@@ -1,16 +1,22 @@
 <fieldset class="no-border-top">
   <div class="error-message"></div>
-  <div class="alpha nine columns">
+  <div class="alpha six columns">
     <div class="field">
       <label for="registration-name">Name</label>
       <div class="error"></div>
       <input class="fullwidth" type="text" id="registration-name" name="name" value="<%= @registration.get('name') %>" />
     </div>
   </div>
-  <div class="omega three columns">
+  <div class="three columns">
     <div class="field checkbox retries-allowed">
       <input class="checkbox fullwidth" type="checkbox" id="registration-retries-allowed" name="options[retries_allowed]" <% if @registration.get('options').retries_allowed: %>checked="checked"<% end %> />
       <label for="registration-retries-allowed">Retries Allowed?</label>
+    </div>
+  </div>
+  <div class="omega three columns">
+    <div class="field checkbox enabled">
+      <input class="checkbox fullwidth" type="checkbox" id="registration-enabled" name="enabled" <% if @registration.get('enabled'): %>checked="checked"<% end %> />
+      <label for="registration-enabled">Enabled?</label>
     </div>
   </div>
   <div class="alpha six columns">
