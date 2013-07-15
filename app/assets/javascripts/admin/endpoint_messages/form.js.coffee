@@ -119,7 +119,7 @@
         @endpoint.find("option:selected")
 
       addNewEndpoint: ->
-        if endpointURL = prompt("Please fill the endpoint url")
+        if endpointURL = prompt("Please fill the base endpoint url")
           $.post("/admin/endpoint_messages/load_endpoint", { "endpoint_url": endpointURL }).
             done((data) ->
               return alert(data.error) if data.error

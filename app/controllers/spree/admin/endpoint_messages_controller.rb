@@ -49,6 +49,7 @@ module Spree::Admin
     def load_endpoint
       begin
         url = SpreeProConnector::URLUtil.ensure_http_preffix(params[:endpoint_url])
+        url = URI.join(url, "endpoint.json").to_s unless url.end_with? "endpoint.json"
         result = HTTParty.get url
       rescue => e
         result = { error: e.message }
