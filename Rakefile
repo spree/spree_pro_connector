@@ -5,6 +5,7 @@ require 'rspec/core/rake_task'
 require 'spree/testing_support/extension_rake'
 require 'json'
 require 'samples/vpd'
+require 'httparty'
 
 RSpec::Core::RakeTask.new
 
@@ -21,7 +22,13 @@ task :vpd_data do
   size = ENV.fetch('size', 1).to_i
   (1..size).each do |i|
     puts "\n--------VPD DATA #{i}-------------\n"
-    puts JSON.pretty_generate(Samples::VPD.ready)
+    url = 'http://srv.vpdinc.com/dev/devr.wsc/service/spree_order.p'
+    url = 'http://requestb.in/14jfman1'
+    res = HTTParty.post(url,
+                  body: Samples::VPD.ready.to_json,
+                  headers: { 'X-Augury-Token' => '123123123123123123123',
+                             'Content-Type' => 'application/json' })
+    puts res
   end
 end
 

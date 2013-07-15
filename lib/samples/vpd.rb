@@ -57,14 +57,16 @@ module Samples
           }
         ]
       }
-      full_payload[:payload][:shipment].merge items
+      full_payload[:payload][:shipment].merge! items
       full_payload
     end
 
-    private 
+    private
 
     def items
-      items = (0..(rand(4) + 1)).map do |i|
+      refs = %w{QTRNWT04 QTRCGQ01 QTRPIG05}
+
+      items = (0..(rand(3) + 1)).map do |i|
         {
           quantity: 1 + rand(10),
           product: {
@@ -72,7 +74,8 @@ module Samples
             name: Faker::Lorem.sentence(1 + rand(4)),
             variant: {
               id: 1 + rand(999999999),
-              sku: Faker::Lorem.word.upcase
+              sku: Faker::Lorem.word.upcase,
+              external_ref: refs[i-1]
             }
           }
         }
