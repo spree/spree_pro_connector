@@ -107,52 +107,75 @@
 
     Endpoints = new class
       constructor: ->
-        $("#endpoint_message_available_endpoints").change (e) =>
-          Services.removeAll()
-          Parameters.removeAll()
-          $("#endpoint_message_uri").val ""
+        @endpoint = $("#endpoint_message_available_endpoints")
 
-          $endpoint = @selected()
+        $("a.add-new-endpoint").click (e) =>
+          e.preventDefault()
+          @addNewEndpoint()
 
-          return if $endpoint.val() == ""
-
-          Services.populate($endpoint.val())
+        @endpoint.on "change", (e) -> onSelect()
 
       selected: ->
-        $("#endpoint_message_available_endpoints").find("option:selected")
+        @endpoint.find("option:selected")
+
+      addNewEndpoint: ->
+        if endpointURL = prompt("Please fill the endpoint url")
+          $.post("/admin/endpoint_messages/load_endpoint", { "endpoint_url": endpointURL }).
+            done((data) ->
+              return alert(data.error) if data.error
+              Endpoints.addNewOptionEndpoint data
+            ).fail((data) -> alert "Endpoint is unavailable")
+
+      addNewOptionEndpoint: (data) =>
+        @endpoint.
+          append "<option value='#{JSON.stringify(data.consumers)}' data-url='#{data.url}' selected='selected'>#{data.name}</option>"
+        @endpoint.select2 val: data.name
+        onSelect()
+
+      onSelect = ->
+        Services.removeAll()
+        Parameters.removeAll()
+
+        $("#endpoint_message_uri").val ""
+
+        $selectedEndpoint = Endpoints.selected()
+
+        return if $selectedEndpoint.val() == ""
+
+        Services.populate($selectedEndpoint.val())
+
 
     Services = new class
       constructor: ->
-        $("#endpoint_message_available_services").change (e) =>
-          Parameters.removeAll()
-
-          $service = @selected()
-
-          return if $service.val() == ""
-
-          payload = JSON.parse($service.val())
-
-          $endpoint = Endpoints.selected()
-
-          $("#endpoint_message_uri").val "#{$endpoint.data("url")}#{payload.path}"
-
-          return unless payload.requires?.parameters?
-
-          for parameter in payload.requires.parameters
-            Parameters.addParameter parameter.name, Parameters.getParameterValueByName(parameter.name)
+        @service = $("#endpoint_message_available_services")
+        @service.change (e) =>
+          onSelect()
 
       selected: ->
-        $("#endpoint_message_available_services").find("option:selected")
+        @service.find("option:selected")
 
       removeAll: ->
-        $service = $("#endpoint_message_available_services")
-        $service.find("option").remove()
-        $service.select2(val: "")
-        $service.append("<option value='' selected='selected'></option>")
+        @service.find("option").remove()
+        @service.select2 val: ""
+        @service.append "<option value='' selected='selected'></option>"
 
       populate: (consumers) ->
-        $service = $("#endpoint_message_available_services")
-
         _.each JSON.parse(consumers), (consumer) ->
-          $service.append("<option value='#{JSON.stringify(consumer)}'>#{consumer.name}</option>")
+          $("#endpoint_message_available_services").
+            append "<option value='#{JSON.stringify(consumer)}'>#{consumer.name}</option>"
 
+      onSelect = ->
+        Parameters.removeAll()
+
+        $selectedService = Services.selected()
+
+        return if $selectedService.val() == ""
+
+        payload = JSON.parse($selectedService.val())
+
+        $("#endpoint_message_uri").val "#{Endpoints.selected().data("url")}#{payload.path}"
+
+        return unless payload.requires?.parameters?
+
+        for parameter in payload.requires.parameters
+          Parameters.addParameter parameter.name, Parameters.getParameterValueByName(parameter.name)

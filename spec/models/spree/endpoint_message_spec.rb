@@ -37,29 +37,12 @@ describe Spree::EndpointMessage do
   end
 
   describe "#uri=" do
-    it "appends http" do
-      message.uri = "0.0.0.0"
-      expect(message.uri).to eq "http://0.0.0.0"
-    end
-
-    it "keeps http" do
-      message.uri = "http://0.0.0.0"
-      expect(message.uri).to eq "http://0.0.0.0"
-    end
-
-    it "keeps https" do
-      message.uri = "https://0.0.0.0"
-      expect(message.uri).to eq "https://0.0.0.0"
-    end
-
-    it "ignores empty" do
-      message.uri = ""
-      expect(message.uri).to be_empty
-    end
-
-    it "ignores nil" do
-      message.uri = nil
-      expect(message.uri).to be_nil
+    it "sets an uri" do
+      uri = "0.0.0.0"
+      http_uri = "http://0.0.0.0"
+      message.should_receive(:write_attribute).with(:uri, http_uri)
+      message.uri = uri
+      expect(message.uri).to eq http_uri
     end
   end
 

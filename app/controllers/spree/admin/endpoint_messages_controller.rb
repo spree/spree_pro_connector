@@ -46,6 +46,16 @@ module Spree::Admin
       redirect_to edit_admin_endpoint_message_path @clone
     end
 
+    def load_endpoint
+      begin
+        url = SpreeProConnector::URLUtil.ensure_http_preffix(params[:endpoint_url])
+        result = HTTParty.get url
+      rescue => e
+        result = { error: e.message }
+      end
+      render json: result
+    end
+
     protected
 
     def clone_object_url(resource)

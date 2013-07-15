@@ -22,7 +22,7 @@ describe Spree::Admin::ApiRequest do
 
     context "when the server is unavailable" do
       it "returns connection refused hash" do
-        HTTParty.should_receive(:post).with(uri, body: payload, headers: headers).and_raise Errno::ECONNREFUSED
+        HTTParty.should_receive(:post).with(uri, body: payload, headers: headers).and_raise(Errno::ECONNREFUSED)
         connection_refused_hash = { code: 0, body: "Connection refused", headers: {}, response_time: 0.0 }
 
         expect(described_class.post(token, uri, payload)).to eq connection_refused_hash

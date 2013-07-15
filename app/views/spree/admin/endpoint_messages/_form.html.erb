@@ -8,7 +8,7 @@
 
 <% content_for :page_actions do %>
   <li>
-    <%= button_link_to Spree.t(:show_all), collection_url, id: 'admin_new_messages_link', :icon => 'icon-eye-open' %>
+  <%= button_link_to Spree.t(:show_all), collection_url, id: 'admin_new_messages_link', :icon => 'icon-eye-open' %>
   </li>
 <% end %>
 
@@ -45,38 +45,39 @@
   <fieldset class="no-border-bottom">
     <legend align="center"><%= Spree.t(:request) %></legend>
 
-    <% if @presenter.available_endpoints.any? %>
-      <div class="field alpha six columns">
-        <%= f.field_container :available_endpoints do %>
-          <%= f.label :available_endpoints, Spree.t(:available_endpoints) %>
-          <select class="select2 fullwidth" id="endpoint_message_available_endpoints">
-            <option value=""></option>
-            <% @presenter.available_endpoints.each do |endpoint| %>
-              <option value='<%= endpoint.consumers %>' data-url='<%= endpoint.url %>'><%= endpoint.name %></option>
-          <% end %>
-        </select>
-      <% end %>
-    </div>
-
-    <div class="field omega six columns">
-      <%= f.field_container :available_services do %>
-        <%= f.label :available_services, Spree.t(:available_services) %>
-        <select class="select2 fullwidth" id="endpoint_message_available_services">
+    <div class="field alpha five columns">
+      <%= f.field_container :available_endpoints do %>
+        <%= f.label :available_endpoints, Spree.t(:available_endpoints) %>
+        <select class="select2 fullwidth" id="endpoint_message_available_endpoints">
           <option value=""></option>
-        </select>
-      <% end %>
-    </div>
-  <% end %>
-
-    <%= f.field_container :sample_message do %>
-      <%= f.label :sample_message, Spree.t(:message) %>
-      <select class="select2 fullwidth" id="endpoint_sample_message">
-        <option value=""></option>
-        <% @presenter.samples.each do |sample| %>
-          <option value="<%= sample.message %>"><%= sample.message %></option>
+          <% @presenter.available_endpoints.each do |endpoint| %>
+            <option value='<%= endpoint.consumers %>' data-url='<%= endpoint.url %>'><%= endpoint.name %></option>
         <% end %>
       </select>
     <% end %>
+  </div>
+  <div class="field one columns">
+    <a href="#" class="add-new-endpoint add-fields"><i class="icon-plus"></i></a>
+  </div>
+
+  <div class="field omega six columns">
+    <%= f.field_container :available_services do %>
+      <%= f.label :available_services, Spree.t(:available_services) %>
+      <select class="select2 fullwidth" id="endpoint_message_available_services">
+        <option value=""></option>
+      </select>
+    <% end %>
+  </div>
+
+  <%= f.field_container :sample_message do %>
+    <%= f.label :sample_message, Spree.t(:message) %>
+    <select class="select2 fullwidth" id="endpoint_sample_message">
+      <option value=""></option>
+      <% @presenter.samples.each do |sample| %>
+        <option value="<%= sample.message %>"><%= sample.message %></option>
+      <% end %>
+    </select>
+  <% end %>
 
   <div class="row">
     <div class="alpha six columns">

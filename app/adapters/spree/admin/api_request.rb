@@ -8,8 +8,8 @@ module Spree::Admin
         body: body,
         headers: { "X-Augury-Token" => token }
       })).merge({ response_time: Time.now - start })
-    rescue Errno::ECONNREFUSED
-      { code: 0, body: "Connection refused", headers: {}, response_time: 0.0 }
+    rescue => e
+      { code: 0, body: e.message, headers: {}, response_time: 0.0 }
     end
 
     private

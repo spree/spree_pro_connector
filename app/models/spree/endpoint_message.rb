@@ -15,8 +15,7 @@ module Spree
     validate :validate_each_parameter_has_value
 
     def uri=uri
-      uri = "http://#{uri}" if uri.present? && !uri.match(/^https?:\/\//)
-      write_attribute :uri, uri
+      write_attribute :uri, SpreeProConnector::URLUtil.ensure_http_preffix(uri)
     end
 
     def payload=payload

@@ -16,6 +16,9 @@ Spree::Core::Engine.routes.draw do
       member do
         get :clone
       end
+      collection do
+        post :load_endpoint
+      end
     end
   end
 
