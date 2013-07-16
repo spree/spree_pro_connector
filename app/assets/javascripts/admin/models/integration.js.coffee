@@ -25,21 +25,21 @@ Augury.Models.Integration = Backbone.Model.extend(
         store_id: Augury.store_id
         parameters: parameters
         enabled: enabled
-      success: (registrations, response, opts)=>
+      success: (mappings, response, opts)=>
         Augury.parameters.fetch()
 
-        _(registrations).each (reg) ->
-          existing = Augury.registrations.findWhere(name: reg['name'])
+        _(mappings).each (reg) ->
+          existing = Augury.mappings.findWhere(name: reg['name'])
 
           if existing?
-            Augury.registrations.remove existing
+            Augury.mappings.remove existing
 
-          Augury.registrations.add new Augury.Models.Registration(reg)
+          Augury.mappings.add new Augury.Models.Mapping(reg)
 
-        Backbone.history.navigate "registrations/filter/#{@.id}", trigger: true
+        Backbone.history.navigate "mappings/filter/#{@.id}", trigger: true
       failure: =>
         console.log 'something went wrong'
 
-  registrations: ->
-    Augury.registrations.where(integration_id: @id)
+  mappings: ->
+    Augury.mappings.where(integration_id: @id)
 )

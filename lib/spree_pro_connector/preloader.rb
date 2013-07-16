@@ -29,8 +29,8 @@ module SpreeProConnector
       check_response response
     end
 
-    def registrations
-      response = self.class.get("/stores/#{@store_id}/registrations", default_headers)
+    def mappings
+      response = self.class.get("/stores/#{@store_id}/mappings", default_headers)
       check_response response
     end
 

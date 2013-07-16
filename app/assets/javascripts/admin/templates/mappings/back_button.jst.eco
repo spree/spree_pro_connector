@@ -1,7 +1,7 @@
 <div class="page-actions table-cell toolbar" data-hook="toolbar">
   <ul class="inline-menu">
     <li>
-      <a href="/admin/integration/registrations/new" class="new button icon_link icon-plus">New Registration</a>
+      <a href="/admin/integration/mappings" class="button icon-arrow-left" icon="icon-arrow-left">Back to Mappings List</a>
     </li>
   </ul>
 </div>

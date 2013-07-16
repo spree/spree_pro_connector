@@ -1,6 +1,6 @@
-Augury.Models.Registration = Backbone.Model.extend(
+Augury.Models.Mapping = Backbone.Model.extend(
   initialize: ->
-    @urlRoot = "/stores/#{Augury.store_id}/registrations"
+    @urlRoot = "/stores/#{Augury.store_id}/mappings"
 
   validation:
     name:
@@ -18,5 +18,5 @@ Augury.Models.Registration = Backbone.Model.extend(
 
   toJSON: ->
     @attributes = _.omit(@attributes, ['id', 'formatted_filters', 'undefined'])
-    return registration: _(@attributes).clone()
+    return mapping: _(@attributes).clone()
 )

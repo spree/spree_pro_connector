@@ -1,0 +1,36 @@
+<% if @mappings.size() == 0: %>
+  <div class="no-objects-found">No Mappings Found. <a href='/admin/integration/mappings/new'>Create One!</a></div>
+<% else: %>
+  <p class="description table">Here's the complete list of mappings (<%= @mappings.size() %>).</p>
+
+  <table class="index">
+    <colgroup>
+      <col style="width: 30%" />
+      <col style="width: 25%" />
+      <col style="width: 30%" />
+      <col style="width: 15%" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Keys</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for mapping in @mappings.models: %>
+        <tr>
+          <td><%= mapping.get('name') %></td>
+          <td><%= mapping.get('url') %></td>
+          <td><%= mapping.get('keys') %></td>
+          <td class="actions">
+            <a href="/admin/integration/mappings/<%= mapping.get('id') %>/edit" class="edit icon_link with-tip icon-edit no-text" title="Edit" data-action="edit"></a>
+            <a href="/admin/integration/mappings/delete/<%= mapping.get('id') %>?confirm=false" class="delete icon_link with-tip icon-trash no-text" title="Delete" data-action="delete"></a>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% end %>

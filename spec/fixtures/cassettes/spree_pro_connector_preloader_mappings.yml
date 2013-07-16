@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://augury.dev/api/stores/store/registrations
+    uri: http://augury.dev/api/stores/store/mappings
     body:
       encoding: US-ASCII
       string: ''

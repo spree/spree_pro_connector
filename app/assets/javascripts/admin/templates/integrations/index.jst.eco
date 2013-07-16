@@ -24,7 +24,7 @@
 
     <% for integration in @global_integrations.models: %>
 
-      <li class="integration-item mix all global hidden four columns <%= integration.get('category') %> <% if integration.registrations().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
+      <li class="integration-item mix all global hidden four columns <%= integration.get('category') %> <% if integration.mappings().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
 
         <hgroup>
           <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
@@ -40,9 +40,9 @@
         <% end %>
 
         <ul class="integration-actions">
-          <% if integration.registrations().length!=0: %>
+          <% if integration.mappings().length!=0: %>
             <li>
-              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="button icon-filter">Show registrations</a>
+              <a href="/admin/integration/mappings/filter/<%= integration.id %>" class="button icon-filter">Show mappings</a>
             </li>
             <li>
               <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="button icon-bolt">Reset to default</a>
@@ -62,7 +62,7 @@
 
     <% for integration in @store_integrations.models: %>
 
-      <li class="integration-item mix all custom hidden four columns <%= integration.get('category') %> <% if integration.registrations().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
+      <li class="integration-item mix all custom hidden four columns <%= integration.get('category') %> <% if integration.mappings().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
 
         <span class="integration-label">Custom</span>
 
@@ -80,9 +80,9 @@
         <% end %>
 
         <ul class="integration-actions">
-          <% if integration.registrations().length!=0: %>
+          <% if integration.mappings().length!=0: %>
             <li>
-              <a href="/admin/integration/registrations/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show registrations" data-action="filter"></a>
+              <a href="/admin/integration/mappings/filter/<%= integration.id %>" class="edit icon_link with-tip icon-filter no-text" title="Show mappings" data-action="filter"></a>
             </li>
             <li>
               <a href="/admin/integration/integrations/<%= integration.id %>/signup" class="edit icon_link with-tip icon-bolt no-text" title="Reset to default" data-action="signup"></a>

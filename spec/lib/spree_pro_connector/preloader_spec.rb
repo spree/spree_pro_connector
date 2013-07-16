@@ -16,9 +16,9 @@ describe SpreeProConnector::Preloader do
     end
   end
 
-  it 'gets registrations' do
-    VCR.use_cassette('spree_pro_connector.preloader.registrations') do
-      response = subject.registrations
+  it 'gets mappings' do
+    VCR.use_cassette('spree_pro_connector.preloader.mappings') do
+      response = subject.mappings
       response.should match /{\"id\"\:\"store\",\"name\"\:/
     end
   end

@@ -29,7 +29,7 @@ window.Augury =
     @init()
     @global_integrations = new @Collections.Integrations(@Preload.global_integrations)
     @store_integrations = new @Collections.Integrations(@Preload.store_integrations)
-    @registrations = new @Collections.Registrations(@Preload.registrations)
+    @mappings = new @Collections.Mappings(@Preload.mappings)
     @schedulers = new @Collections.Schedulers(@Preload.schedulers)
     @parameters = new @Collections.Parameters(@Preload.parameters)
     @keys = @Preload.keys
@@ -37,8 +37,8 @@ window.Augury =
     @Routers._active['home'] = new @Routers.Home()
     @Routers._active['common'] = new @Routers.Common()
     @Routers._active['integrations'] = new @Routers.Integrations()
-    @Routers._active['registrations'] = new @Routers.Registrations
-      collection: @registrations
+    @Routers._active['mappings'] = new @Routers.Mappings
+      collection: @mappings
       parameters: @parameters
     @Routers._active['schedulers'] = new @Routers.Schedulers
       collection: @schedulers
@@ -51,7 +51,7 @@ window.Augury =
   Models: {}
   Collections: {}
   Routers: { _active: {} }
-  Views: { Home: {}, Integrations: {}, Registrations: {}, Connections: {}, Schedulers: {}, Parameters: {} }
+  Views: { Home: {}, Integrations: {}, Mappings: {}, Connections: {}, Schedulers: {}, Parameters: {} }
   Preload: {}
 
   SignUp: {}
