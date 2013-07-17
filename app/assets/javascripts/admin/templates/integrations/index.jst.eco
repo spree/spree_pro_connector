@@ -1,21 +1,4 @@
 <fieldset class="no-border-bottom">
-  <legend>Filters</legend>
-
-  <div id="integration-filters">
-    <div class="field alpha six columns">
-      <label>Integration Level</label>
-      <input name="filter" id="filter-integration" class="select2 fullwidth" value='global, custom'>
-    </div>
-
-    <div class="field omega six columns">
-      <label>Categories</label>
-      <input name="filter" id="filter-category" class="select2 fullwidth" value='email, accounting, Test'>
-    </div>
-  </div>
-
-</fieldset>
-
-<fieldset class="no-border-bottom">
   <legend>Integrations</legend>
 
   <div class="no-objects-found hidden filter-fail-message">Sorry &mdash; we could not find any integrations matching these criteria</div>
@@ -24,7 +7,7 @@
 
     <% for integration in @global_integrations.models: %>
 
-      <li class="integration-item mix all global hidden four columns <%= integration.get('category') %> <% if integration.mappings().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
+      <li class="integration-item global four columns <%= integration.get('category') %> <% if integration.mappings().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
 
         <hgroup>
           <h4 class="integration-title"><%= integration.get('display') or integration.get('name') %></h4>
@@ -62,7 +45,7 @@
 
     <% for integration in @store_integrations.models: %>
 
-      <li class="integration-item mix all custom hidden four columns <%= integration.get('category') %> <% if integration.mappings().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
+      <li class="integration-item custom four columns <%= integration.get('category') %> <% if integration.mappings().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
 
         <span class="integration-label">Custom</span>
 
@@ -102,71 +85,3 @@
 
   </ul>
 </fieldset>
-
-<script>
-  $(function(){
-
-    var list = $('#integrations-list');
-
-    // INSTANTIATE MIXITUP
-    list.mixitup({
-      onMixEnd: function(){
-        if($('#integrations-list > li.integration-item:visible').length < 1){
-          $('.no-objects-found').fadeIn();
-        }
-        else {
-          $('.no-objects-found').fadeOut();
-        }
-      }
-    });
-
-    // INSTANTIATE Select2
-    var input_integration = $('#filter-integration');
-    var input_categories  = $('#filter-category');
-
-    input_integration.select2({
-      placeholder: "Choose Ingetration Level",
-      tags: ['global', 'custom', 'all']
-    });
-    input_categories.select2({
-      placeholder: "Choose Categories",
-      tags: ['email', 'accounting', 'Test', 'all']
-    });
-
-    var filters_integration = new Array();
-    var filters_categories  = new Array();
-
-    filters_integration.push.apply(filters_integration, input_integration.select2("val"));
-    filters_categories.push.apply(filters_categories, input_categories.select2("val"));
-
-    input_integration.on('change', function(e) {
-      filters_integration.length = 0
-      filters_integration.push.apply(filters_integration, e.val);
-    });
-    input_categories.on('change', function(e) {
-      filters_categories.length = 0
-      filters_categories.push.apply(filters_categories, e.val);
-    });
-
-    $('.select2').on('change', function(e) {
-      list.mixitup('filter',[filters_integration.join(','), filters_categories.join(',')]);
-    });
-
-    // HANDLE LAYOUT CHANGES
-
-    // Bind layout buttons to toList and toGrid methods:
-
-    // $('#to-list').on('click',function(){
-    //   $('.button').removeClass('active');
-    //   $(this).addClass('active');
-    //   $('#integrations-list').mixitup('toList');
-    // });
-
-    // $('#to-grid').on('click',function(){
-    //   $('.button').removeClass('active');
-    //   $(this).addClass('active');
-    //   $('#integrations-list').mixitup('toGrid');
-    // });
-
-  });
-</script>
