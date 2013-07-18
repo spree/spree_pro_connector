@@ -55,5 +55,5 @@ Augury.Views.Integrations.Signup = Backbone.View.extend(
     enabled = $(".enabled:checked").map ->
       $(@).val()
 
-    @model.signup(parameters,enabled.get())
+    @model.signup parameters, enabled.get(), error: @displayErrors
 )

@@ -17,28 +17,27 @@ Augury.Models.Integration = Backbone.Model.extend(
     @attributes = _.omit(@attributes, 'id')
     return integration: _(@attributes).clone()
 
-  signup: (parameters,enabled) ->
-    $.ajax
-      url: "/stores/#{Augury.store_id}/integrations/#{@.id}/signup"
-      type: 'POST'
-      data:
-        store_id: Augury.store_id
-        parameters: parameters
-        enabled: enabled
-      success: (mappings, response, opts)=>
+  signup: (parameters, enabled, options={}) ->
+    $.post("/stores/#{Augury.store_id}/integrations/#{@.id}/signup",
+      store_id: Augury.store_id
+      parameters: parameters
+      enabled: enabled).
+      done((mappings, textStatus, jqXHR) =>
         Augury.parameters.fetch()
 
-        _(mappings).each (reg) ->
-          existing = Augury.mappings.findWhere(name: reg['name'])
+        _(mappings).each (mapping) ->
+          existing = Augury.mappings.findWhere(name: mapping['name'])
 
           if existing?
             Augury.mappings.remove existing
 
-          Augury.mappings.add new Augury.Models.Mapping(reg)
+          Augury.mappings.add new Augury.Models.Mapping(mapping)
 
         Backbone.history.navigate "mappings/filter/#{@.id}", trigger: true
-      failure: =>
-        console.log 'something went wrong'
+      ).fail((jqXHR, textStatus, errorThrown) =>
+        # options.errors is displayErrors: (model, xhr, options)
+        options.error(null, jqXHR, options) if options.error
+      )
 
   mappings: ->
     Augury.mappings.where(integration_id: @id)
