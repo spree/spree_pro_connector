@@ -13,12 +13,14 @@
       <label for="mapping-retries-allowed">Retries Allowed?</label>
     </div>
   </div>
-  <div class="omega three columns">
-    <div class="field checkbox enabled">
-      <input class="checkbox fullwidth" type="checkbox" id="mapping-enabled" name="enabled" <% if @mapping.get('enabled'): %>checked="checked"<% end %> />
-      <label for="mapping-enabled">Enabled?</label>
+  <% unless @mapping.get('required'): %>
+    <div class="omega three columns">
+      <div class="field checkbox enabled">
+        <input class="checkbox fullwidth" type="checkbox" id="mapping-enabled" name="enabled" <% if @mapping.get('enabled'): %>checked="checked"<% end %> />
+        <label for="mapping-enabled">Enabled?</label>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="alpha six columns">
     <div class="field">
       <label for="mapping-url">URL</label>

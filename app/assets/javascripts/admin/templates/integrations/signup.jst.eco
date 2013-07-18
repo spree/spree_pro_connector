@@ -20,9 +20,7 @@
 
           <div class="alpha twelve columns">
             <div class="field align-center">
-              <% if consumer["required"]? : %>
-                  <span class="info">This consumer is mandatory, you can't disable it.</span>
-              <% else : %>
+              <% unless consumer['required']? : %>
                   <input class="enabled" type="checkbox" name="enabled" value="<%= consumer['name'] %>" <%= 'checked' if Augury.mappings.findWhere(name: "#{@integration.get('name')}.#{consumer_name}")? %>>
                   <label for="enabled">Enable this consumer?</label>
               <% end %>
