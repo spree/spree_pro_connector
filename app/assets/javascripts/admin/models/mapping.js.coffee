@@ -12,9 +12,9 @@ Augury.Models.Mapping = Backbone.Model.extend(
     token:
       required: true
       msg: "Token is required"
-    keys:
+    messages:
       required: true
-      msg: "At least one key is required"
+      msg: "At least one message is required"
 
   toJSON: ->
     @attributes = _.omit(@attributes, ['id', 'formatted_filters', 'undefined'])

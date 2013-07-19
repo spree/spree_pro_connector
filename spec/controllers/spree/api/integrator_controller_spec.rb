@@ -32,7 +32,7 @@ module Spree
       stock_transfer = StockTransfer.create do |transfer|
         transfer.source_location_id = source.id
         transfer.destination_location_id = destination.id
-        transfer.reference_number = 'PO 666'
+        transfer.reference = 'PO 666'
       end
       StockTransfer.update_all(:updated_at => 2.days.ago)
 

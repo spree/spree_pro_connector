@@ -45,7 +45,7 @@ module Spree
                                                        @environment.store_id,
                                                        @environment.token)
 
-          @keys_json = preloader.keys
+          @messages_json = preloader.messages
           @store_integrations_json = preloader.store_integrations
           @global_integrations_json = preloader.global_integrations
           @mappings_json = preloader.mappings

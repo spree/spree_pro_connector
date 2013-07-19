@@ -9,7 +9,7 @@ Augury.Views.Mappings.Edit = Backbone.View.extend(
     'focusout :input': 'validate'
 
   render: ->
-    @$el.html JST["admin/templates/mappings/edit"](mapping: @model, parameters: @options.parameters, keys: @options.keys)
+    @$el.html JST["admin/templates/mappings/edit"](mapping: @model, parameters: @options.parameters, messages: @options.messages)
     Backbone.Validation.bind @
     @prepareClickHandlers()
     @prepareForm()
@@ -92,9 +92,9 @@ Augury.Views.Mappings.Edit = Backbone.View.extend(
       $('#operator').select2()
 
   prepareForm: ->
-    @$('#mapping-keys.select2').select2().select2(
+    @$('#mapping-messages.select2').select2().select2(
       'val',
-      @model.get('keys')
+      @model.get('messages')
     )
     @$('#mapping-parameters.select2').select2().select2('val', @model.get('parameters'))
     _.each @$('.filters .row'), (row) ->

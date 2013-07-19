@@ -28,14 +28,14 @@ Augury.Routers.Mappings = Backbone.Router.extend(
     Augury.mappings.add mapping
     mapping.set filters: []
     mapping.set options: retries_allowed: false
-    view = new Augury.Views.Mappings.Edit(model: mapping, parameters: @parameters, keys: Augury.keys)
+    view = new Augury.Views.Mappings.Edit(model: mapping, parameters: @parameters, messages: Augury.messages)
     $("#integration_main").html view.render().el
 
   edit: (id) ->
     Augury.update_nav('mappings')
 
     mapping = @collection.get(id)
-    view = new Augury.Views.Mappings.Edit(model: mapping, parameters: @parameters, keys: Augury.keys )
+    view = new Augury.Views.Mappings.Edit(model: mapping, parameters: @parameters, messages: Augury.messages )
     $("#integration_main").html view.render().el
 
   delete: (id, confirm) ->

@@ -94,8 +94,8 @@ describe Spree::EndpointMessage do
 
   describe "#payload=" do
     it "prettifies payload" do
-      message.payload = %Q{{"key":"key","keys":[{"key":"key"}]}}
-      expect(message.payload).to eq %Q{{\n  "key": "key",\n  "keys": [\n    {\n      "key": "key"\n    }\n  ],\n  "message_id": "1b"\n}}
+      message.payload = %Q{{"key":"key","messages":[{"key":"key"}]}}
+      expect(message.payload).to eq %Q{{\n  "key": "key",\n  "messages": [\n    {\n      "key": "key"\n    }\n  ],\n  "message_id": "1b"\n}}
     end
 
     it "skips invalid" do

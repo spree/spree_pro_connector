@@ -14,8 +14,8 @@ module SpreeProConnector
       @api_key = api_key
     end
 
-    def keys
-      response = self.class.get("/stores/#{@store_id}/available_keys", default_headers)
+    def messages
+      response = self.class.get("/stores/#{@store_id}/available_messages", default_headers)
       check_response response
     end
 

@@ -38,11 +38,11 @@
   <div class="row">
     <div class="alpha six columns">
       <div class="field">
-        <label for="mapping-keys">Keys</label>
+        <label for="mapping-messages">Messages</label>
         <div class="error"></div>
-        <select class="select2 fullwidth" id="mapping-keys" name="keys" multiple="true">
-          <% for key in @keys: %>
-            <option value="<%= key %>"><%= key %></option>
+        <select class="select2 fullwidth" id="mapping-messages" name="messages" multiple="true">
+          <% for message in @messages: %>
+            <option value="<%= message %>"><%= message %></option>
           <% end %>
         </select>
       </div>

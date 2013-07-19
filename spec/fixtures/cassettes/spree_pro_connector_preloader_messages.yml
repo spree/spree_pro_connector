@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://augury.dev/api/stores/store/available_messages
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Augury-Token:
+      - token
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"2b21c45a6ae8aae915c8978e6c0e6f4e"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - e9c1bde539ac3fde52d1fc4c00c56809
+      X-Runtime:
+      - '0.030622'
+      Date:
+      - Fri, 19 Jul 2013 17:40:39 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '["order:persist","order:new","order:updated","order:canceled","order:capture","order:payment:captured","order:ship","quickbooks:order:verify","shipment:dispatch","shipment:confirmation","spree:order:poll","spree:order:import","spree:stock_transfer:poll","stock_transfer:new","stock_transfer:persist","pch:do:confirmation","pch:gan:poll","pch:gan:update","pch:sc:poll","pch:sc:received","spec:order:import","monitor:order:polls","monitor:failing:jobs","statsd:counts","remote:poll","endpoint:poll","endpoint:query","notification:info","notification:warn","notification:error","not:used"]'
+    http_version: 
+  recorded_at: Fri, 19 Jul 2013 17:40:39 GMT
+recorded_with: VCR 2.5.0

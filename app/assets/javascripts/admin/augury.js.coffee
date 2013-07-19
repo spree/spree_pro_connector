@@ -32,7 +32,7 @@ window.Augury =
     @mappings = new @Collections.Mappings(@Preload.mappings)
     @schedulers = new @Collections.Schedulers(@Preload.schedulers)
     @parameters = new @Collections.Parameters(@Preload.parameters)
-    @keys = @Preload.keys
+    @messages = @Preload.messages
 
     @Routers._active['home'] = new @Routers.Home()
     @Routers._active['common'] = new @Routers.Common()

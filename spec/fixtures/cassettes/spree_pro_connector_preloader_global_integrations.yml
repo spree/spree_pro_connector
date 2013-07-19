@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://augury.dev/api/stores/store/integrations?global=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Augury-Token:
+      - token
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Ua-Compatible:
+      - IE=Edge
+      Etag:
+      - '"ddeb9afa26809339b3e8dd667d68f3ba"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 2fca8810ffa9c3c4250578d6d7d7688f
+      X-Runtime:
+      - '0.026881'
+      Date:
+      - Fri, 19 Jul 2013 17:40:39 GMT
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: '[{"id":"store","name":"mandrill","display":"Mandrill","description":"Sends
+        transactional emails using Mandrill","help":"http://guides.spreecommerce.com/integration/endpoints/mandrill","url":"http://mandrill-stg.spree.mx","category":"email","consumers":[{"name":"order_confirmation","path":"/order_confirmation","description":"Send
+        order confirmation emails when new orders are placed.","requires":{"parameters":[{"name":"api_key","description":"Mandril
+        API key"},{"name":"order_confirmation.from","description":"Reply-to address
+        for email"},{"name":"order_confirmation.subject","description":"Subject of
+        email"},{"name":"order_confirmation.template","description":"Mandrill template
+        name"}],"humanizers":{"200":"Order Confirmation email sent to {{email}}","400":"Order
+        Confirmation email could not be sent to {{email}}"}},"recommends":{"keys":["order:new","order:update"],"event_key":{"order_number":"payload.order.actual.number"},"event_details":{"email":"payload.order.actual.email"},"filters":[{"path":"payload.actual.order.complete","operator":"eq","value":"complete"}],"options":{"retries_allowed":true}},"produces":{"messages":[{"message":"email:sent","schema":"/email.sent.json"},{"message":"email:failure","schema":"/email.failure.json"}]}},{"name":"order_cancellation","path":"/order_cancellation","description":"Send
+        order cancellation emails when orders are cancelled.","requires":{"parameters":[{"name":"api_key","description":"Mandril
+        API key"},{"name":"order_cancellation.from","description":"Reply-to address
+        for email"},{"name":"order_cancellation.subject","description":"Subject of
+        email"},{"name":"order_cancellation.template","description":"Mandrill template
+        name"}],"humanizers":{"200":"Order Cancellation email sent to {{email}}","400":"Order
+        Cancellation email could not be sent to {{email}}"}},"recommends":{"keys":["order:canceled"],"event_key":{"order_number":"payload.order.actual.number"},"event_details":{"email":"payload.order.actual.email"},"options":{"allow_retries":true}},"produces":{"messages":[{"message":"email:sent","schema":"/email.sent.json"},{"message":"email:failure","schema":"/email.failure.json"}]}},{"name":"shipment_confirmation","path":"/shipment_confirmation","description":"Send
+        shipment confirmation emails when shipments are dispatched.","requires":{"parameters":[{"name":"api_key","description":"Mandril
+        API key"},{"name":"shipment_confirmation.from","description":"Reply-to address
+        for email"},{"name":"shipment_confirmation.subject","description":"Subject
+        of email"},{"name":"shipment_confirmation.template","description":"Mandrill
+        template name"}],"humanizers":{"200":"Shipment Confirmation email sent to
+        {{email}}","400":"Shipment Confirmation email could not be sent to {{email}}"}},"recommends":{"keys":["shipment:confirmation"],"event_key":{"order_number":"payload.order.actual.number"},"event_details":{"email":"payload.order.actual.email"},"options":{"retries_allowed":true}},"produces":{"messages":[{"message":"email:sent","schema":"/email.sent.json"},{"message":"email:failure","schema":"/email.failure.json"}]}}],"store_id":null},{"id":"store","name":"quickbooks","display":"Quickbooks","description":"Updates
+        Quickbooks with completed order details","help":"http://guides.spreecommerce.com/integration/endpoints/quickbooks","url":"http://quickbooks-stg.spree.mx","category":"accounting","consumers":[{"name":"import","path":"/import","description":"Import
+        new order to Quickbooks.","requires":{"parameters":[{"name":"access_token","description":"Quickbooks
+        Access Token"},{"name":"access_secret","description":"Quickbooks Access Secret"},{"name":"realm","description":"Quickbooks
+        Realm"}],"humanizers":{}},"recommends":{"keys":["order:new"],"event_key":{"order_number":"payload.order.actual.number"},"options":{"retries_allowed":true}},"produces":{}},{"name":"updater","path":"/update","description":"Update
+        already imported Order.","requires":{"parameters":[{"name":"access_token","description":"Quickbooks
+        Access Token"},{"name":"access_secret","description":"Quickbooks Access Secret"},{"name":"realm","description":"Quickbooks
+        Realm"}],"humanizers":{}},"recommends":{"keys":["order:updated"],"event_key":{"order_number":"payload.order.actual.number"},"options":{"allow_retries":true}},"produces":{}}],"store_id":null}]'
+    http_version: 
+  recorded_at: Fri, 19 Jul 2013 17:40:39 GMT
+recorded_with: VCR 2.5.0
