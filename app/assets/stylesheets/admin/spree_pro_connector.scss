@@ -35,24 +35,8 @@
   border: 1px solid lightgray;
 }
 
-/* Simple modal */
-#simplemodal-container {
-  border-color: #000;
-  background-color: #ccc;
-  width: 620px;
-  height: auto;
-  top: 50px !important;
-  padding: 0;
-  position: relative;
-}
-
 label.large {
   font-size: 90%
-}
-
-body .modal-header, .modal-footer {
-  background-color: #ccc;
-  text-align: center;
 }
 
 a.add-fields {
@@ -319,5 +303,45 @@ a.add-fields {
 
   label {
     display: inline-block !important;
+  }
+}
+
+// Simplemodal styles
+// #simplemodal-container {
+//   width: 620px;
+//   height: auto;
+//   top: 50px !important;
+//   padding: 0;
+//   position: relative;
+// }
+
+#simplemodal-overlay {
+  background-color: $color-1;
+}
+
+#simplemodal-data {
+  text-align: center;
+  border-radius: $border-radius;
+  background-color: $color-1;
+  border: 1px solid $color-border;
+}
+
+.simplemodal-wrap {
+  height: auto !important;
+}
+
+// .modal-header {
+//   font-
+// }
+
+.modal-header, .modal-body, .modal-footer {
+  padding: 10px 20px;
+}
+
+.modal-header.delete {
+  background-color: $color-error;
+
+  h6 {
+    color: white;
   }
 }
