@@ -123,12 +123,12 @@
           $.post("/admin/endpoint_messages/load_endpoint", { "endpoint_url": endpointURL }).
             done((data) ->
               return alert(data.error) if data.error
-              Endpoints.addNewOptionEndpoint data
+              Endpoints.addNewOptionEndpoint data, endpointURL
             ).fail((data) -> alert "Endpoint is unavailable")
 
-      addNewOptionEndpoint: (data) =>
+      addNewOptionEndpoint: (data, endpointURL) =>
         @endpoint.
-          append "<option value='#{JSON.stringify(data.consumers)}' data-url='#{data.url}' selected='selected'>#{data.name}</option>"
+          append "<option value='#{JSON.stringify(data.consumers)}' data-url='#{endpointURL}' selected='selected'>#{data.name}</option>"
         @endpoint.select2 val: data.name
         onSelect()
 
