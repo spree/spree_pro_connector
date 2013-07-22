@@ -1,4 +1,4 @@
-<div class="alpha twelve columns event-fields additional-fields">
+<div class="alpha twelve columns identifier-fields additional-fields">
   <div class="alpha six columns">
     <div class="field">
       <label for="name">Name</label>

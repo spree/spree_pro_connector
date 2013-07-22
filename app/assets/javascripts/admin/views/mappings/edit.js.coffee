@@ -23,7 +23,7 @@ Augury.Views.Mappings.Edit = Backbone.View.extend(
 
   save: (e) ->
     e.preventDefault()
-    @buildEventKey()
+    @buildIdentifiers()
     @buildFilters()
     @model.validate()
     if @model.isValid()
@@ -38,16 +38,17 @@ Augury.Views.Mappings.Edit = Backbone.View.extend(
   saved: ->
     Augury.Flash.success "The mapping has been successfully saved."
 
-  buildEventKey: ->
-    eventKey = new Object()
-    $.each @$('.event-keys .event-fields'), (index, value) =>
+  buildIdentifiers: ->
+    identifiers = new Object()
+    $.each @$('.identifiers .identifier-fields'), (index, value) =>
       name = @$(value).find('input#name').first().val()
       path = @$(value).find('input#path').first().val()
       if path && name
-        eventKey[name] = path
-    eventKeyJSON = JSON.stringify(eventKey)
-    @$('.event-keys').append("<input id='mapping-event-key' name='event-key' type='hidden' value='#{eventKeyJSON}' />")
-    @model.set(event_key: @$('input[name=event-key]').val())
+        identifiers[name] = path
+    identifiersJSON = JSON.stringify(identifiers)
+    @$('.identifiers').append("<input id='mapping-identifiers' name='identifiers' type='hidden' value='#{identifiersJSON}' />")
+    console.log identifiersJSON
+    @model.set(identifiers: @$('input[name=identifiers]').val())
 
   buildFilters: ->
     filters = []
@@ -66,9 +67,9 @@ Augury.Views.Mappings.Edit = Backbone.View.extend(
     @model.set(filters: @$('input[name=filters]').val())
 
   prepareClickHandlers: ->
-    @$el.on 'click', '.add-event-fields', (event) ->
+    @$el.on 'click', '.add-identifier-fields', (event) ->
       event.preventDefault()
-      template = JST['admin/templates/mappings/event_fields']
+      template = JST['admin/templates/mappings/identifier_fields']
       $(template()).insertAfter($(@).context)
     @$el.on 'click', '.remove-fields', (event) ->
       event.preventDefault()

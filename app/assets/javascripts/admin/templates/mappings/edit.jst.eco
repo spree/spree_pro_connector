@@ -59,25 +59,25 @@
     </div>
   </div>
 
-  <fieldset class="no-border-bottom event-keys">
-    <legend>Event Keys</legend>
+  <fieldset class="no-border-bottom identifiers">
+    <legend>Identifiers</legend>
 
     <p class="add">
-      <a href="#" class="add-event-fields button icon-plus">add row</a>
+      <a href="#" class="add-identifier-fields button icon-plus">add row</a>
     </p>
 
-    <% for own eventKeyName, eventKeyPath of @mapping.get('event_key'): %>
-      <div class="alpha twelve columns event-fields additional-fields">
+    <% for own identifierName, identifierPath of @mapping.get('identifiers'): %>
+      <div class="alpha twelve columns identifier-fields additional-fields">
         <div class="alpha six columns">
           <div class="field">
             <label for="name">Name</label>
-            <input class="fullwidth" type="text" id="name" value="<%= eventKeyName %>" />
+            <input class="fullwidth" type="text" id="name" value="<%= identifierName %>" />
           </div>
         </div>
         <div class="five columns">
           <div class="field">
             <label for="path">Path</label>
-            <input class="fullwidth" type="text" id="path" value="<%= eventKeyPath %>" />
+            <input class="fullwidth" type="text" id="path" value="<%= identifierPath %>" />
           </div>
         </div>
         <div class="omega one columns">
