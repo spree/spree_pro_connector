@@ -24,7 +24,6 @@ Augury.Views.Mappings.Edit = Backbone.View.extend(
   save: (e) ->
     e.preventDefault()
     @buildEventKey()
-    @buildEventDetails()
     @buildFilters()
     @model.validate()
     if @model.isValid()
@@ -49,17 +48,6 @@ Augury.Views.Mappings.Edit = Backbone.View.extend(
     eventKeyJSON = JSON.stringify(eventKey)
     @$('.event-keys').append("<input id='mapping-event-key' name='event-key' type='hidden' value='#{eventKeyJSON}' />")
     @model.set(event_key: @$('input[name=event-key]').val())
-
-  buildEventDetails: ->
-    eventDetails = new Object()
-    $.each @$('.event-details .event-fields'), (index, value) =>
-      name = @$(value).find('input#name').first().val()
-      path = @$(value).find('input#path').first().val()
-      if path && name
-        eventDetails[name] = path
-    eventDetailsJSON = JSON.stringify(eventDetails)
-    @$('.event-details').append("<input id='mapping-event-details' name='event-details' type='hidden' value='#{eventDetailsJSON}' />")
-    @model.set(event_details: @$('input[name=event-details]').val())
 
   buildFilters: ->
     filters = []
