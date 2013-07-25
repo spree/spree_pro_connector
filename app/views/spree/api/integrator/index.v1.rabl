@@ -4,6 +4,8 @@ child(:orders => :orders) do
   child(@orders => :page) do
     attributes *order_attributes
 
+    attribute :currency, :ship_total, :tax_total
+
     child :billing_address => :bill_address do
       extends "spree/api/addresses/show"
     end
