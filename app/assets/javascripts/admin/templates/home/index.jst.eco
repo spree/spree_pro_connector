@@ -76,11 +76,11 @@
           <div class="integration-toggle"></div>
 
           <ul class="actions">
-            <li class="action">
+            <!--<li class="action">
               <a href="#" title='Edit Properties'>
                 <i class="icon-pencil"></i>
               </a>
-            </li>
+            </li>-->
             <li class="action">
               <a href="#" title='Edit Mappings'>
                 <i class="icon-sitemap"></i>
