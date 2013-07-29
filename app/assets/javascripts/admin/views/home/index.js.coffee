@@ -5,6 +5,9 @@ Augury.Views.Home.Index = Backbone.View.extend(
     @env = _(Augury.connections).findWhere(id: Augury.env.id)
 
     @collection = Augury.store_integrations.add(Augury.global_integrations.models)
+    # Remove integrations from the collections that don't have any mappings
+    @collection = @collection.remove _(@collection.models).reject (integration) ->
+      !_(integration.get('mappings')).isEmpty()
 
     @$el.html JST["admin/templates/home/index"](
       env: @env
