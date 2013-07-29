@@ -4,7 +4,12 @@ Augury.Views.Home.Index = Backbone.View.extend(
   render: ->
     @env = _(Augury.connections).findWhere(id: Augury.env.id)
 
-    @$el.html JST["admin/templates/home/index"](env: @env)
+    @collection = Augury.store_integrations.add(Augury.global_integrations.models)
+
+    @$el.html JST["admin/templates/home/index"](
+      env: @env
+      collection: @collection
+    )
 
     $('#content-header').find('.page-actions').remove()
     $('#content-header').find('.page-title').text('Overview')
