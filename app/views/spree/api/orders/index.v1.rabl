@@ -3,15 +3,15 @@ child(@orders) do
   attributes *order_attributes
 
   child :billing_address => :bill_address do
-    extends "spree/api/v1/addresses/show"
+    extends "spree/api/addresses/show"
   end
 
   child :shipping_address => :ship_address do
-    extends "spree/api/v1/addresses/show"
+    extends "spree/api/addresses/show"
   end
 
   child :line_items => :line_items do
-    extends "spree/api/v1/line_items/show"
+    extends "spree/api/line_items/show"
   end
 
   child :payments => :payments do
@@ -22,7 +22,7 @@ child(@orders) do
   end
 
   child :shipments => :shipments do
-    extends "spree/api/v1/shipments/show"
+    extends "spree/api/shipments/show"
   end
 
   child :adjustments => :adjustments do
