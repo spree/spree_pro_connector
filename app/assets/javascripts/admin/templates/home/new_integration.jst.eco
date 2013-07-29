@@ -30,7 +30,11 @@
     $.modal("<div><h1>SimpleModal</h1></div>", {
       closeHTML: '<i class="icon-remove"></i>',
       minHeight: 400,
-      minWidth: 400
+      minWidth: 400,
+      onClose: function(dialog){
+        $.modal.close();
+        $('#integrations-select').select2("val", "");
+      }
     });
   });
 
