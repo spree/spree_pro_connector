@@ -37,7 +37,7 @@ Augury.Routers.Integrations = Backbone.Router.extend(
       $.modal.close()
       integration.destroy()
       Augury.store_integrations.remove integration
-      Backbone.history.navigate '/integrations', trigger: true
+      Backbone.history.navigate '/', trigger: true
       Augury.Flash.notice "The integration has been deleted."
 
   signup: (integration_id) ->

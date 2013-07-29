@@ -66,7 +66,7 @@
         <%#---------------------------------------%>
         <li class="integration enabled" data-vendor="">
           <figure>
-            <img src="/assets/integrations/<%= integration.get('name') %>.png" alt="<%= integration.get('display') %>">
+            <img src="/assets/integrations/<%= integration.get('name').toLowerCase() %>.png" alt="<%= integration.get('display') %>">
           </figure>
 
           <figcaption>
@@ -92,7 +92,7 @@
               </a>
             </li>
             <li class="action">
-              <a href="#" title='Remove'>
+              <a href="/admin/integration/integrations/delete/<%= integration.get('id') %>?confirm=no" title='Remove'>
                 <i class="icon-trash"></i>
               </a>
             </li>
