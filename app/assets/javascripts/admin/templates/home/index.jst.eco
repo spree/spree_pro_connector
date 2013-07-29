@@ -1,5 +1,481 @@
-<div id="connected-message">
-  <i class="icon-link"></i>
-  <br>
-  Connected to the <strong><%= @env['environment'] %></strong> Integrator as <strong><%= @env['user'] %></strong>.
-</div>
+<%#---------------------------------------%>
+<%#  Connecion Details                    %>
+<%#---------------------------------------%>
+<fieldset class="no-border-bottom" id="connection-details">
+  <legend>Connection Details</legend>
+
+  <div class="row">
+    <%#---------------------------------------%>
+    <%#  Connected Message                    %>
+    <%#---------------------------------------%>
+    <div id="connected-message">
+
+      <%# Link -> Connected Icon %>
+      <span class="icon-stack">
+        <i class="icon-circle icon-stack-base"></i>
+        <i class="icon-link icon-light"></i>
+      </span>
+
+      <%# Connected Message %>
+      Connected to the <strong><%= @env['environment'] %></strong> Integrator as <strong><%= @env['user'] %></strong>.
+
+    </div>
+    <%# / Connected Message%>
+
+    <%#---------------------------------------%>
+    <%#  Connection Actions                   %>
+    <%#---------------------------------------%>
+    <div id="connection-actions" class='filter-actions actions'>
+
+      <%# Edit Connection %>
+      <a href="#" class="button">
+        <i class="icon-edit"></i>
+        Edit Connection
+      </a>
+
+      <%# Or Splitter %>
+      <span class="or">or</span>
+
+      <%# Close Connection %>
+      <a href="#" class="button">
+        <i class="icon-unlink"></i>
+        Close Connection
+      </a>
+
+    </div>
+    <%# / Connection Actions %>
+  </div>
+
+</fieldset>
+<%# / Connection Details %>
+
+<%#---------------------------------------%>
+<%#  Active Integrations                  %>
+<%#---------------------------------------%>
+<fieldset class="no-border-bottom" id="active-integrations">
+  <legend>Active Integrations</legend>
+
+  <div class="row">
+
+    <ul id="integrations-list">
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/quickbooks.png" alt="Quick Books">
+        </figure>
+
+        <figcaption>
+          Quick Books
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/mailchimp.png" alt="Quick Books">
+        </figure>
+
+        <figcaption>
+          Quick Books
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/mandrill.png" alt="Mandrill">
+        </figure>
+
+        <figcaption>
+          Mandrill
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/zendesk.png" alt="Zendesk">
+        </figure>
+
+        <figcaption>
+          Zendesk
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/shipwire.png" alt="Shipwire">
+        </figure>
+
+        <figcaption>
+          Shipwire
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/xero.png" alt="Xero">
+        </figure>
+
+        <figcaption>
+          Xero
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/amazon.png" alt="Amazon">
+        </figure>
+
+        <figcaption>
+          Amazon
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/hubspot.png" alt="Hubspot">
+        </figure>
+
+        <figcaption>
+          Hubspot
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/google_analytics.png" alt="Google Analytics">
+        </figure>
+
+        <figcaption>
+          Google Analytics
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+      <%#---------------------------------------%>
+      <%#  Integration                          %>
+      <%#---------------------------------------%>
+      <li class="integration enabled" data-vendor="">
+        <figure>
+          <img src="/assets/integrations/quiet_logistics.png" alt="Quiet Logistics">
+        </figure>
+
+        <figcaption>
+          Quiet Logistics
+        </figcaption>
+
+        <div class="integration-toggle"></div>
+
+        <ul class="actions">
+          <li class="action">
+            <a href="#" title='Edit Properties'>
+              <i class="icon-pencil"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Edit Mappings'>
+              <i class="icon-sitemap"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Refresh'>
+              <i class="icon-refresh"></i>
+            </a>
+          </li>
+          <li class="action">
+            <a href="#" title='Remove'>
+              <i class="icon-trash"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <%# / Integration%>
+
+    </ul>
+
+  </div>
+
+</fieldset>
+<%# / Active Integrations %>
+
+<script>
+  $('.integration-toggle').toggles({
+    text: {
+      on: 'Enabled', // text for the ON position
+      off: 'Disabled' // and off
+    },
+    on: true,
+    width: 90
+  });
+
+  $('.integration-toggle').on('toggle', function (e, active) {
+    if (active) {
+      $(this).parent().removeClass('disabled').addClass('enabled');
+    } else {
+      $(this).parent().removeClass('enabled').addClass('disabled');
+    }
+  });
+
+  $('#integrations-list').find('.actions a').powerTip({
+    popupId: 'integration-tooltip'
+  });
+</script>
+

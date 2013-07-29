@@ -1,9 +1,9 @@
-<% content_for :sidebar_title do %>
-  <%= Spree.t(:integration) %>
-<% end %>
+<%# content_for :sidebar_title do %>
+  <%#= Spree.t(:integration) %>
+<%# end %>
 
-<% content_for :sidebar do %>
-  <nav class="menu" id="integration-menu">
+<%# content_for :sidebar do %>
+  <!-- <nav class="menu" id="integration-menu">
     <ul class="sidebar">
       <li class="overview"><a href="/admin/integration">Overview</a></li>
       <li class="integrations"><a href="/admin/integration/integrations">Integrations</a></li>
@@ -18,20 +18,20 @@
         </ul>
       </li>
     </ul>
-  </nav>
-<% end %>
+  </nav> -->
+<%# end %>
 
 <script>
-  $(function(){
-    $('#integration-menu').find('.collapse').click(function(e){
-      e.preventDefault();
-      if($(this).find('.icon-caret-right').length > 0){
-        $(this).find('.icon-caret-right').removeClass('icon-caret-right').addClass('icon-caret-down');
-      }
-      else {
-        $(this).find('.icon-caret-down').removeClass('icon-caret-down').addClass('icon-caret-right');
-      }
-      $(this).next().toggle('fast');
-    })
-  });
-</script>
+//   $(function(){
+//     $('#integration-menu').find('.collapse').click(function(e){
+//       e.preventDefault();
+//       if($(this).find('.icon-caret-right').length > 0){
+//         $(this).find('.icon-caret-right').removeClass('icon-caret-right').addClass('icon-caret-down');
+//       }
+//       else {
+//         $(this).find('.icon-caret-down').removeClass('icon-caret-down').addClass('icon-caret-right');
+//       }
+//       $(this).next().toggle('fast');
+//     })
+//   });
+  </script>

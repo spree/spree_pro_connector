@@ -1,3 +1,7 @@
+/*
+ *= require toggles
+*/
+
 @import 'admin/globals/functions';
 @import 'admin/globals/mixins';
 @import 'admin/globals/variables';
@@ -95,80 +99,21 @@ a.add-fields {
 }
 
 /*---------------------------------------------*/
-/* Integration filters
+/* Integrations
 /*---------------------------------------------*/
-#integration-filters {
-  .active {
-    background-color: $color-2;
-    color: $color-1;
-    border-radius: $border-radius;
-  }
 
-  .filter {
-    cursor: pointer;
-    text-align: center;
-    padding: 2px 5px;
-  }
-}
-#integrations-list {
-  margin: 0 -10px 0 -10px;
-
-  .integration-item {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid $color-border;
-    border-radius: $border-radius;
-    text-align: center;
-    position: relative;
-    background-color: white;
-    min-height: 290px;
-
-    .integration-category {
-      font-size: $body-font-size - 1;
-      font-weight: normal;
-      color: lighten($color-body-text, 10);
-      text-transform: uppercase;
-    }
-
-    .integration-label {
-      position: absolute;
-      right: -5px;
-      top: 5px;
-      padding: 2px 5px;
-      background-color: $color-2;
-      color: $color-1;
-      text-transform: uppercase;
-      font-size: 11px;
-
-      &:after {
-        content: '';
-        position: absolute;
-        top: 19px;
-        width: 0;
-        height: 0;
-        border-top: 5px solid darken($color-2, 10);
-        border-right: 5px solid transparent;
-      }
-    }
-
-    p {
-      color: $color-body-text;
-      margin: 10px 0;
-      font-style: italic;
-    }
-
-    &.hidden {
-      display: none;
-    }
-  }
-
-  .integration-actions {
-    list-style: none;
-    padding: none;
-    margin: 0;
+/**
+  Basic
+*/
+#integration_main {
+  b, strong {
+    -webkit-font-smoothing: antialiased;
   }
 }
 
+/**
+  Connected message
+*/
 #connected-message {
   text-align: center;
   font-size: 14px;
@@ -177,171 +122,219 @@ a.add-fields {
   color: lighten($color-body-text, 15);
 
   strong {
-    color: $color-body-text;
+    color: $color-2;
+  }
+
+  .icon-stack {
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    width: 100%;
   }
 
   i {
-    font-size: 40px;
-    color: $color-2;
+    &.icon-light {
+      color: white;
+      font-size: 40px;
+      margin-top: 14px;
+    }
+    &.icon-circle {
+      color: $color-2;
+      font-size: 80px;
+    }
   }
 }
 
-#integration_main {
+#active-integrations {
+  margin-top: 20px;
+}
 
-  .field {
-    position: relative;
+/**
+  Active Integrations List
+*/
+#integrations-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-right: -20px;
 
-    div.error {
-      position: absolute;
-      color: $color-error;
-      margin-top: -15px;
-      font-size: 11px;
-      font-style: italic;
-      right: 0px;
+  /**
+    Integration
+  */
+  .integration {
+    display: inline-block;
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    border-bottom-width: 3px;
+    padding: 10px 15px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+    &.disabled {
+      figure, figcaption {
+        opacity: 0.2
+      }
     }
 
-    input.invalid {
-      border-color: very-light($color-error, 10)
+    /**
+      Integration Actions
+    */
+    .actions {
+      list-style: none;
+      margin: 10px 0 5px;
+      padding: 0;
+      text-align: center;
+
+      .action {
+        display: inline-block;
+
+        a {
+          display: inline-block;
+          margin: 0 2px;
+          width: 28px;
+          height: 28px;
+          text-align: center;
+          background-color: #EFF5FC;
+          border: 1px solid #DEEBF8;
+          border-radius: 15px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: $color-2;
+            border-color: darken($color-2, 5);
+
+            i {
+              color: $color-1;
+            }
+          }
+        }
+
+        i {
+          color: $color-body-text;
+          font-size: 14px;
+          padding-top: 6px;
+          display: inline-block;
+        }
+      }
     }
   }
 
-  .filter-fail-message {
-    position:absolute;
-    width:100%;
-    text-align:center;
+  /**
+    Integration Image
+  */
+  figure {
+    text-align: center;
   }
 
-  .remove-fields {
+  /**
+    Integration Title
+  */
+  figcaption {
+    text-align: center;
+    text-transform: uppercase;
+    color: $color-body-text;
+    font-weight: 600;
     display: block;
-    margin-top: 30px;
-    text-align: center;
-    font-size: 20px;
+    margin: 10px 0 20px;
   }
 
-  .description {
-    font-style: italic;
-    text-align: center;
-    color: $color-body-text;
+  /**
+    Integration Toggle
+  */
+  .integration-toggle {
+    margin: 0 auto 20px;
+    width: 100px !important;
 
-    &.table {
-      text-align: left;
-      margin-bottom: 10px;
+    .toggle-slide {
+      width: 100px !important;
+      background-color: #EFF5FC;
+      border: 1px solid #DEEBF8;
+      border-radius: 15px;
     }
-  }
 
-  .integration-actions {
-    li {
-      a.icon-filter, a.icon-bolt {
-        padding: 3px 10px;
-        font-size: 10px;
-        margin-bottom: 5px;
+    .toggle-on, .toggle-off {
+      width: 95px !important;
+      font-weight: 600;
+      font-size: $body-font-size - 2;
+      text-transform: uppercase;
+      color: $color-body-text;
+    }
+
+    .toggle-on {
+      text-indent: -90px !important;
+
+      &.active {
+        text-indent: -20px !important;
+      }
+    }
+
+    .toggle-off {
+      text-indent: 90px !important;
+
+      &.active {
+        margin-left: -60px !important;
+        text-indent: 10px !important;
+      }
+    }
+
+    .toggle-inner {
+      width: 200px !important;
+      margin-left: -30px !important;
+    }
+
+    .toggle-blob {
+      background-color: $color-body-text;
+      border-radius: 15px;
+      width: 18px !important;
+      height: 18px !important;
+      margin-top: 1px;
+      margin-left: -64px !important;
+    }
+
+    .toggle-slide.active {
+      background-color: $color-2;
+      border-color: darken($color-2, 5);
+
+      .toggle-blob {
+        margin-left: -17px !important;
+        background-color: darken($color-2, 10);
+      }
+      .toggle-inner {
+        margin-left: 0px !important;
+      }
+      .toggle-on, .toggle-off {
+        color: $color-1;
       }
     }
   }
 }
 
-#integration-menu {
-  li:hover {
-    a {
-      color: $color-link;
-    }
-    a:hover {
-      color: $color-link-hover;
-    }
-  }
-  li.active a {
-    color: $color-link-active;
-  }
-  ul.sub-menu {
-    display: none;
-    padding-left: 0px;
-    border-left: 1px solid $color-border;
-    margin-left: 8px;
-    margin-top: -18px;
-    padding-top: 15px;
-
-    li {
-      a {
-        text-transform: none;
-        padding: 5px 0 5px 15px;
-        font-weight: normal;
-      }
-    }
-  }
-}
-
-.integration-description {
-  font-style: italic;
-  margin-bottom: 20px;
-}
-
-.integration-custom-icon {
-  font-size: 80px;
-  color: $color-2;
-}
-
-.integration-unavailable {
-  color: $color-error;
-
-  i {
-    font-size: 40px;
-  }
-}
-
-#admin-response-headers-container {
-  dt {
-    color: $color-2;
-    font-size: $body-font-size;
-    padding: 5px 0 0 10px;
-    border: 1px solid #FFF;
-    background-color: very-light($color-border);
-  }
-}
-
-.retries-allowed, .enabled {
-  padding-top: 25px;
-
-  label {
-    display: inline-block !important;
-  }
-}
-
-// Simplemodal styles
-// #simplemodal-container {
-//   width: 620px;
-//   height: auto;
-//   top: 50px !important;
-//   padding: 0;
-//   position: relative;
-// }
-
-#simplemodal-overlay {
-  background-color: $color-1;
-}
-
-#simplemodal-data {
-  text-align: center;
+/**
+  Integration Tooltip
+*/
+#integration-tooltip {
+  position: absolute;
+  display: none;
+  z-index: 2147483647;
+  padding: 5px 15px;
   border-radius: $border-radius;
-  background-color: $color-1;
-  border: 1px solid $color-border;
-}
+  background-color: $color-2;
+  color: $color-1;
+  text-transform: uppercase;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
 
-.simplemodal-wrap {
-  height: auto !important;
-}
-
-// .modal-header {
-//   font-
-// }
-
-.modal-header, .modal-body, .modal-footer {
-  padding: 10px 20px;
-}
-
-.modal-header.delete {
-  background-color: $color-error;
-
-  h6 {
-    color: white;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid $color-2;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -5px;
   }
 }
