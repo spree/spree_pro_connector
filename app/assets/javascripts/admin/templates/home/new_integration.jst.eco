@@ -1,0 +1,37 @@
+<select id="integrations-select" class='select2'>
+  <option></option>
+  <option value="Quick Books">QuickBooks</option>
+  <option value="Mandrill">Mandrill</option>
+  <option value="Mailchimp">Mailchimp</option>
+  <option value="Xero">Xero</option>
+  <option value="Amazon">Amazon</option>
+  <option value="Quiet Logistics">Quiet Logistics</option>
+  <option value="Zendesk">Zendesk</option>
+  <option value="Hubspot">Hubspot</option>
+  <option value="Shipwire">Shipwire</option>
+  <option value="Google Analytics">Google Analytics</option>
+</select>
+
+<script>
+  $('#integrations-select').select2({
+    placeholder: "Add New Integration",
+    formatSelection: function(item){
+      return 'Adding ' + item.text + ' Integration'
+    },
+    formatResult: function(item){
+      return ' <div class="integration-image"><img height="30" src="/assets/integrations/' + item.text.toLowerCase().replace(' ', '_') + '.png"></div><div class="integration-name">' + item.text + '</div>'
+    },
+    containerCssClass: 'new-integration-container',
+    dropdownCssClass: 'new-integration-dropdown'
+  });
+
+  $('#integrations-select').on('select2-selected', function(val, object){
+    $('.new-integration-container').find('.select2-choice span').addClass('adding-integration');
+    $.modal("<div><h1>SimpleModal</h1></div>", {
+      closeHTML: '<i class="icon-remove"></i>',
+      minHeight: 400,
+      minWidth: 400
+    });
+  });
+
+</script>

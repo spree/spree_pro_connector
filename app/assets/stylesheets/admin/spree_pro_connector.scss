@@ -5,6 +5,7 @@
 @import 'admin/globals/functions';
 @import 'admin/globals/mixins';
 @import 'admin/globals/variables';
+@import 'font-awesome';
 
 .order_events_iframe {
   border: none;
@@ -336,5 +337,103 @@ a.add-fields {
     bottom: -5px;
     left: 50%;
     margin-left: -5px;
+  }
+}
+
+/**
+  New Integration Select
+*/
+.new-integration-container {
+  width: 217px !important;
+
+  .select2-choice span {
+    @extend .icon-plus;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    &:before {
+      font-family: 'FontAwesome';
+      display: inline-block;
+      padding-right: 5px;
+    }
+
+    &.adding-integration {
+      &:before {
+        content: ''
+      }
+    }
+  }
+
+  b {
+    @extend .icon-caret-down;
+    font-family: 'FontAwesome';
+    top: -1px;
+    position: relative;
+    margin-right: 10px;
+  }
+}
+
+.new-integration-dropdown {
+  width: 300px !important;
+  margin-left: -83px;
+  margin-top: -2px;
+  border-top: 1px solid $color-2;
+
+  .select2-search {
+    @extend .icon-search;
+
+    &:before {
+      font-family: 'FontAwesome';
+      display: inline-block;
+    }
+  }
+
+  .select2-results {
+    max-height: 400px;
+  }
+
+  .integration-image, .integration-name {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .integration-image {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+  }
+  .integration-name {
+    text-transform: uppercase;
+  }
+  .select2-result {
+    border-bottom: 1px dotted $color-border;
+  }
+  .select2-highlighted {
+    background-color: $color-1;
+
+    .integration-name {
+      color: $color-2;
+    }
+  }
+}
+
+/**/
+
+#simplemodal-overlay {
+  background-color: black
+}
+#simplemodal-data {
+  padding: 30px;
+  background-color: white;
+  border-radius: $border-radius;
+}
+.simplemodal-close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 40px;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-2;
   }
 }
