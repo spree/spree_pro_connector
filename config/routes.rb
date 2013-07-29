@@ -1,7 +1,7 @@
 Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :orders do
-      resources :events, :only => :index
+      resources :notifications, :only => :index
     end
 
     match 'integration' => 'integration#show'

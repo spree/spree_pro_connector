@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  order_events: "Order Events"
+  order_notifications: "Order Notifications"
   spree:
     available_services: "Available Services"
     request: "Request"

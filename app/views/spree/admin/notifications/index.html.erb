@@ -1,0 +1,12 @@
+<%= render :partial => 'spree/admin/shared/order_tabs', :locals => { :current => 'Notifications' } %>
+
+<% content_for :page_title do %>
+  <i class="icon-arrow-right"></i> <%= t(:order_notifications) %>
+<% end %>
+
+<div data-hook="order_notifications_iframe_container" class="order_notifications_iframe_container">
+  <iframe width="100%" src="<%= @integration_url %>/notifications/embedded?store_id=<%= @environment.store_id %>&order_number=<%= @order.number %>&auth_token=<%= @environment.token %>" class="order_notifications_iframe"></iframe>
+</div>
+
+<%= button_link_to t(:continue), admin_orders_url %>
+
