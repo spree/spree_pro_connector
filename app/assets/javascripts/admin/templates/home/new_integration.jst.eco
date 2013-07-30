@@ -1,15 +1,8 @@
 <select id="integrations-select" class='select2'>
   <option></option>
-  <option value="Quick Books">QuickBooks</option>
-  <option value="Mandrill">Mandrill</option>
-  <option value="Mailchimp">Mailchimp</option>
-  <option value="Xero">Xero</option>
-  <option value="Amazon">Amazon</option>
-  <option value="Quiet Logistics">Quiet Logistics</option>
-  <option value="Zendesk">Zendesk</option>
-  <option value="Hubspot">Hubspot</option>
-  <option value="Shipwire">Shipwire</option>
-  <option value="Google Analytics">Google Analytics</option>
+  <% for integration in @collection.models: %>
+    <option value="<%= integration.get('name') %>"><%= integration.get('name') %></option>
+  <% end %>
 </select>
 
 <script>

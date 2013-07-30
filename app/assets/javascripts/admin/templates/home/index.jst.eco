@@ -64,7 +64,7 @@
         <%#---------------------------------------%>
         <%#  Integration                          %>
         <%#---------------------------------------%>
-        <li class="integration <%= if integration.is_enabled 'enabled' else 'disabled' %>" data-vendor="" data-integration-id="<%= integration.get('id') %>">
+        <li class="integration <% if integration.is_enabled(): %>enabled<% else: %>disabled<% end %>" data-vendor="" data-integration-id="<%= integration.get('id') %>">
           <figure>
             <img src="/assets/integrations/<%= integration.get('name').toLowerCase() %>.png" alt="<%= integration.get('display') %>">
           </figure>

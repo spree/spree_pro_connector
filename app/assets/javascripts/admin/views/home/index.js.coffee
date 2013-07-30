@@ -7,21 +7,24 @@ Augury.Views.Home.Index = Backbone.View.extend(
   render: ->
     @env = _(Augury.connections).findWhere(id: Augury.env.id)
 
-    @collection = Augury.integrations
-    # Remove integrations from the collection that don't have any mappings
-    @collection = @collection.remove _(@collection.models).reject (integration) ->
+    # Filter integrations from the collection that don't have any mappings
+    activeIntegrations = Augury.integrations.filter (integration) ->
       !_(integration.get('mappings')).isEmpty()
+    inactiveIntegrations = Augury.integrations.filter (integration) ->
+      _(integration.get('mappings')).isEmpty()
+
+    @active = new Augury.Collections.Integrations(activeIntegrations)
+    @inactive = new Augury.Collections.Integrations(inactiveIntegrations)
 
     @$el.html JST["admin/templates/home/index"](
       env: @env
-      collection: @collection
+      collection: @active
     )
 
     $('#content-header .container .block-table').append('<div class="table-cell"><ul class="page-actions"></ul></div>')
     $('#content-header').find('.page-actions').html JST["admin/templates/home/new_integration"]
+      collection: @inactive
     @$el.append JST["admin/templates/home/modal"]
-
-
 
     $('#content-header').find('.page-title').text('Overview')
 
@@ -38,7 +41,8 @@ Augury.Views.Home.Index = Backbone.View.extend(
     @$el.find('#integrations-list').find('.actions a').powerTip({
       popupId: 'integration-tooltip'
     })
-    _(@collection.models).each (integration) =>
+    _(@active.models).each (integration) =>
+      console.log integration
       unless integration.is_enabled()
         id = integration.get('id')
         @$el.find("*[data-integration-id=#{id}] .integration-toggle").first().trigger('toggleOff')
@@ -57,7 +61,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
           integrationDiv.removeClass('enabled').addClass('disabled')
           Augury.integrations.fetch()
           Augury.mappings.fetch()
-          @collection = Augury.integrations
+          @active = Augury.integrations
         error: ->
           Augury.Flash.error "There was a problem updating the integration."
     else
@@ -68,7 +72,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
           integrationDiv.removeClass('disabled').addClass('enabled')
           Augury.integrations.fetch()
           Augury.mappings.fetch()
-          @collection = Augury.integrations
+          @active = Augury.integrations
         error: ->
           Augury.Flash.error "There was a problem updating the integration."
 )
