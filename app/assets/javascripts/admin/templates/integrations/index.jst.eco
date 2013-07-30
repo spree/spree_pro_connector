@@ -5,7 +5,7 @@
 
   <ul id="integrations-list">
 
-    <% for integration in @global_integrations.models: %>
+    <% for integration in Augury.integrations.models: %>
 
       <li class="integration-item global four columns <%= integration.get('category') %> <% if integration.mappings().length!=0: %>action-buttons <% else: %> signup-button <% end %> ">
 

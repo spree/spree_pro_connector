@@ -1,7 +1,7 @@
 <select id="integrations-select" class='select2'>
   <option></option>
   <% for integration in @collection.models: %>
-    <option value="<%= integration.get('name') %>"><%= integration.get('name') %></option>
+    <option value="<%= integration.get('name') %>" data-integration-id="<%= integration.get('id') %>"><%= integration.get('name') %></option>
   <% end %>
 </select>
 

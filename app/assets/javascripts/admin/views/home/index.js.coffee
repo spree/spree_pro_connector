@@ -2,7 +2,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
   initialize: ->
 
   events:
-    'click .integration-toggle': 'toggle_integration'
+    'click .integration-toggle': 'toggleIntegration'
 
   render: ->
     @env = _(Augury.connections).findWhere(id: Augury.env.id)
@@ -24,10 +24,18 @@ Augury.Views.Home.Index = Backbone.View.extend(
     $('#content-header .container .block-table').append('<div class="table-cell"><ul class="page-actions"></ul></div>')
     $('#content-header').find('.page-actions').html JST["admin/templates/home/new_integration"]
       collection: @inactive
-    @$el.append JST["admin/templates/home/modal"]
 
     $('#content-header').find('.page-title').text('Overview')
 
+
+    $("#integrations-select").on "select2-selected", (val, object) =>
+      Backbone.history.navigate '/add/1', trigger: true
+
+    @setActiveIntegrations()
+
+    this
+
+  setActiveIntegrations: ->
     # TODO: Find a better way to do this
     @$el.find('.integration-toggle').toggles({
       text: {
@@ -42,14 +50,11 @@ Augury.Views.Home.Index = Backbone.View.extend(
       popupId: 'integration-tooltip'
     })
     _(@active.models).each (integration) =>
-      console.log integration
       unless integration.is_enabled()
         id = integration.get('id')
         @$el.find("*[data-integration-id=#{id}] .integration-toggle").first().trigger('toggleOff')
 
-    this
-
-  toggle_integration: (e) ->
+  toggleIntegration: (e) ->
     integrationDiv = $(e.currentTarget).closest('.integration')
     integrationId = integrationDiv.data('integration-id')
 

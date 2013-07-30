@@ -108,3 +108,5 @@
 
 </fieldset>
 <%# / Active Integrations %>
+<div id="new-integration-modal" class="container hidden integration-modal">
+</div>
