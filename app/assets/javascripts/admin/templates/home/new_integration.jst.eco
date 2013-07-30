@@ -24,18 +24,4 @@
     containerCssClass: 'new-integration-container',
     dropdownCssClass: 'new-integration-dropdown'
   });
-
-  $('#integrations-select').on('select2-selected', function(val, object){
-    $('.new-integration-container').find('.select2-choice span').addClass('adding-integration');
-    $.modal("<div><h1>SimpleModal</h1></div>", {
-      closeHTML: '<i class="icon-remove"></i>',
-      minHeight: 400,
-      minWidth: 400,
-      onClose: function(dialog){
-        $.modal.close();
-        $('#integrations-select').select2("val", "");
-      }
-    });
-  });
-
 </script>

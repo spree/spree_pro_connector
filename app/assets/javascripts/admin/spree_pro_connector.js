@@ -1,5 +1,5 @@
 //= require jquery.simplemodal.1.4.4.min
-//= require jquery.mixitup
+//= require jquery.ui.tabs
 //= require toggles
 //= require_tree ../../../../vendor/assets/javascripts/noty
 //= require underscore

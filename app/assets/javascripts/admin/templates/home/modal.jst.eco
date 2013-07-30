@@ -1,0 +1,288 @@
+<div id="new-integration-modal" class="container hidden integration-modal">
+  <header class="modal-header">
+
+    <div class="integration-image">
+      <img src="/assets/integrations/mandrill.png" alt="Mandrill">
+    </div>
+
+    <h3 class="integration-title">Adding Mandrill Integration</h3>
+
+  </header>
+
+  <form action="#">
+    <section class="modal-body">
+      <div id="modal-tabs">
+        <ul>
+          <li><a href="#tabs-1">General Properties</a></li>
+          <li><a href="#tabs-2">Order Confirmation</a></li>
+          <li><a href="#tabs-3">Shipment Confirmation</a></li>
+        </ul>
+        <div id="tabs-1">
+          <div class="row">
+            <div class="alpha four columns">
+              <div class="field">
+                <label for="">Field</label>
+                <input type="text">
+              </div>
+              <div class="field">
+                <label for="">Field</label>
+                <input type="text">
+              </div>
+            </div>
+
+            <div class="omega four columns">
+              <div class="field">
+                <label for="">Field</label>
+                <input type="text">
+              </div>
+              <div class="field">
+                <label for="">Field</label>
+                <input type="text">
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="no-border-bottom">
+            <legend>Fields List</legend>
+
+            <div class="row">
+              <div class="alpha four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="omega one columns">
+                <a href="#"><i class="icon-trash"></i></a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="alpha four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="omega one columns">
+                <a href="#"><i class="icon-trash"></i></a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="alpha four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="omega one columns">
+                <a href="#"><i class="icon-trash"></i></a>
+              </div>
+            </div>
+
+            <a href="#" class="add-new-row">
+              <i class="icon-plus"></i>
+              Add New Row
+            </a>
+
+          </fieldset>
+
+        </div>
+        <div id="tabs-2">
+          <div class="alpha four columns general-info">
+            <div class="field description">
+              <label>Description:</label>
+              <p>Sends E-Mail to client on new order.</p>
+            </div>
+
+            <div class="field state">
+              <label>State:</label>
+              <div class="integration-toggle"></div>
+            </div>
+          </div>
+
+          <div class="omega five columns">
+            <div class="field">
+              <label for="">Field</label>
+              <input type="text">
+            </div>
+            <div class="field">
+              <label for="">Field</label>
+              <input type="text">
+            </div>
+            <div class="field">
+              <label for="">Field</label>
+              <input type="text">
+            </div>
+          </div>
+
+        </div>
+        <div id="tabs-3">
+          <div class="row">
+            <div class="alpha four columns general-info">
+              <div class="field description">
+                <label>Description:</label>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, excepturi, inventore, odit similique deleniti dolore vero est dolorum perspiciatis quaerat blanditiis reiciendis.
+                </p>
+              </div>
+
+              <div class="field state">
+                <label>State:</label>
+                <div class="integration-toggle"></div>
+              </div>
+            </div>
+
+            <div class="omega five columns">
+              <div class="field">
+                <label for="">Field</label>
+                <input type="text">
+              </div>
+              <div class="field">
+                <label for="">Field</label>
+                <input type="text">
+              </div>
+              <div class="field">
+                <label for="">Field</label>
+                <input type="text">
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="no-border-bottom">
+            <legend>Fields List</legend>
+
+            <div class="row">
+              <div class="alpha four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="omega one columns">
+                <a href="#"><i class="icon-trash"></i></a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="alpha four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="omega one columns">
+                <a href="#"><i class="icon-trash"></i></a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="alpha four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="four columns">
+                <div class="field">
+                  <label for="">Field</label>
+                  <input type="text">
+                </div>
+              </div>
+
+              <div class="omega one columns">
+                <a href="#"><i class="icon-trash"></i></a>
+              </div>
+            </div>
+
+            <a href="#" class="add-new-row">
+              <i class="icon-plus"></i>
+              Add New Row
+            </a>
+
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <footer class="modal-footer">
+      <div class="form-actions">
+        <button class="save" type='submit'>
+          <i class="icon-ok"></i>
+          Save
+        </button>
+        <span class="or">or</span>
+        <button class="cancel">
+          <i class="icon-remove"></i>
+          Cancel
+        </button>
+      </div>
+    </footer>
+  </form>
+</div>
+
+<script>
+  $( "#modal-tabs" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+  $( "#modal-tabs li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+
+  $('#integrations-select').on('select2-selected', function(val, object){
+    $('.new-integration-container').find('.select2-choice span').addClass('adding-integration');
+    $("#new-integration-modal").modal({
+      closeHTML: '<i class="icon-remove"></i>',
+      minHeight: 600,
+      minWidth: 860,
+      persist: true,
+      onClose: function(dialog){
+        $.modal.close();
+        $('#integrations-select').select2("val", "");
+      }
+    });
+
+    $('button.cancel').on('click', function(){
+      $.modal.close();
+    })
+  });
+
+</script>

@@ -15,7 +15,11 @@ Augury.Views.Home.Index = Backbone.View.extend(
     )
 
     $('#content-header .container .block-table').append('<div class="table-cell"><ul class="page-actions"></ul></div>');
+
     $('#content-header').find('.page-actions').html JST["admin/templates/home/new_integration"]
+    @$el.append JST["admin/templates/home/modal"]
+
+
 
     $('#content-header').find('.page-title').text('Overview')
 
