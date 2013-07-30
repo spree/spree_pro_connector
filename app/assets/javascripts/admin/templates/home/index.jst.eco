@@ -64,7 +64,7 @@
         <%#---------------------------------------%>
         <%#  Integration                          %>
         <%#---------------------------------------%>
-        <li class="integration enabled" data-vendor="" data-integration-id="<%= integration.get('id') %>">
+        <li class="integration <%= if integration.is_enabled 'enabled' else 'disabled' %>" data-vendor="" data-integration-id="<%= integration.get('id') %>">
           <figure>
             <img src="/assets/integrations/<%= integration.get('name').toLowerCase() %>.png" alt="<%= integration.get('display') %>">
           </figure>
@@ -108,19 +108,3 @@
 
 </fieldset>
 <%# / Active Integrations %>
-
-<script>
-  $('.integration-toggle').toggles({
-    text: {
-      on: 'Enabled', // text for the ON position
-      off: 'Disabled' // and off
-    },
-    on: true,
-    width: 90
-  });
-
-  $('#integrations-list').find('.actions a').powerTip({
-    popupId: 'integration-tooltip'
-  });
-</script>
-

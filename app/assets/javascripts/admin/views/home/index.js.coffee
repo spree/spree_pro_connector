@@ -7,8 +7,8 @@ Augury.Views.Home.Index = Backbone.View.extend(
   render: ->
     @env = _(Augury.connections).findWhere(id: Augury.env.id)
 
-    @collection = Augury.store_integrations.add(Augury.global_integrations.models)
-    # Remove integrations from the collections that don't have any mappings
+    @collection = Augury.integrations
+    # Remove integrations from the collection that don't have any mappings
     @collection = @collection.remove _(@collection.models).reject (integration) ->
       !_(integration.get('mappings')).isEmpty()
 
@@ -25,6 +25,24 @@ Augury.Views.Home.Index = Backbone.View.extend(
 
     $('#content-header').find('.page-title').text('Overview')
 
+    # TODO: Find a better way to do this
+    @$el.find('.integration-toggle').toggles({
+      text: {
+        on: 'Enabled', 
+        off: 'Disabled' 
+      },
+      on: true,
+      width: 90
+    })
+
+    @$el.find('#integrations-list').find('.actions a').powerTip({
+      popupId: 'integration-tooltip'
+    })
+    _(@collection.models).each (integration) =>
+      unless integration.is_enabled()
+        id = integration.get('id')
+        @$el.find("*[data-integration-id=#{id}] .integration-toggle").first().trigger('toggleOff')
+
     this
 
   toggle_integration: (e) ->
@@ -37,14 +55,20 @@ Augury.Views.Home.Index = Backbone.View.extend(
         type: "GET"
         success: ->
           integrationDiv.removeClass('enabled').addClass('disabled')
-          Augury.global_integrations.fetch({ data: { global: 1 } })
-          @collection = Augury.global_integrations.add Augury.store_integrations.fetch().models
+          Augury.integrations.fetch()
+          Augury.mappings.fetch()
+          @collection = Augury.integrations
+        error: ->
+          Augury.Flash.error "There was a problem updating the integration."
     else
       $.ajax
         url: "/stores/#{Augury.store_id}/integrations/#{integrationId}/enable_mappings"
         type: "GET"
         success: ->
           integrationDiv.removeClass('disabled').addClass('enabled')
-          Augury.global_integrations.fetch({ data: { global: 1 } })
-          @collection = Augury.global_integrations.add Augury.store_integrations.fetch().models
+          Augury.integrations.fetch()
+          Augury.mappings.fetch()
+          @collection = Augury.integrations
+        error: ->
+          Augury.Flash.error "There was a problem updating the integration."
 )
