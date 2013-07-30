@@ -64,7 +64,7 @@
         <%#---------------------------------------%>
         <%#  Integration                          %>
         <%#---------------------------------------%>
-        <li class="integration enabled" data-vendor="">
+        <li class="integration enabled" data-vendor="" data-integration-id="<%= integration.get('id') %>">
           <figure>
             <img src="/assets/integrations/<%= integration.get('name').toLowerCase() %>.png" alt="<%= integration.get('display') %>">
           </figure>
@@ -117,14 +117,6 @@
     },
     on: true,
     width: 90
-  });
-
-  $('.integration-toggle').on('toggle', function (e, active) {
-    if (active) {
-      $(this).parent().removeClass('disabled').addClass('enabled');
-    } else {
-      $(this).parent().removeClass('enabled').addClass('disabled');
-    }
   });
 
   $('#integrations-list').find('.actions a').powerTip({
