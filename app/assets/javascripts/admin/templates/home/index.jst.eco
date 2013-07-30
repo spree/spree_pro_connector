@@ -81,11 +81,11 @@
                 <i class="icon-pencil"></i>
               </a>
             </li>
-            <li class="action">
+            <!--<li class="action">
               <a href="#" title='Edit Mappings'>
                 <i class="icon-sitemap"></i>
               </a>
-            </li>
+            </li>-->
             <li class="action">
               <a href="#" title='Refresh'>
                 <i class="icon-refresh"></i>
