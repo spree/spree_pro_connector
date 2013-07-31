@@ -32,6 +32,14 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       width: 90
     })
 
+    $('input.param').bind "keyup paste", ->
+      current = $(@)
+      console.log current
+
+      duplicates = $("[name='#{current.attr('name')}']")
+      if duplicates.length > 1
+        duplicates.val(current.val())
+
     @
 
   parametersByConsumer: ->

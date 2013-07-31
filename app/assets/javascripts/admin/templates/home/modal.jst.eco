@@ -41,7 +41,7 @@
                     <% for parameter in parameters: %>
                       <div class="field">
                         <label for="<%=parameter['name'] %>"><%= parameter['description'] %></label>
-                        <input class="<%= consumerName %>" type="text"
+                        <input class="<%= consumerName %> param" type="text"
                                id="<%= parameter['name'] %>"
                                name="<%= parameter['name'] %>"
                                value="<%= Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>"
