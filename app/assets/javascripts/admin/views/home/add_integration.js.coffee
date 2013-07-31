@@ -23,7 +23,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     $("#modal-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix")
     $("#modal-tabs li").removeClass("ui-corner-top").addClass("ui-corner-left")
 
-    @$el.find('.integration-toggle').toggles({
+    $('.integration-toggle').toggles({
       text: {
         on: 'Enabled', 
         off: 'Disabled' 

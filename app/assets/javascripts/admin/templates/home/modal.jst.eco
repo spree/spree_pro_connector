@@ -34,7 +34,6 @@
                     <div class="field state">
                       <label>State:</label>
                       <div class="integration-toggle"></div>
-                      Enable/Disable Consumer
                     </div>
                   </div>
 
