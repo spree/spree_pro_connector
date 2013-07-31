@@ -34,22 +34,21 @@
                     <div class="field state">
                       <label>State:</label>
                       <div class="integration-toggle"></div>
+                      Enable/Disable Consumer
                     </div>
                   </div>
 
                   <div class="omega five columns">
-                    <div class="field">
-                      <label for="">Field</label>
-                      <input type="text">
-                    </div>
-                    <div class="field">
-                      <label for="">Field</label>
-                      <input type="text">
-                    </div>
-                    <div class="field">
-                      <label for="">Field</label>
-                      <input type="text">
-                    </div>
+                    <% for parameter in parameters: %>
+                      <div class="field">
+                        <label for="<%=parameter['name'] %>"><%= parameter['description'] %></label>
+                        <input class="<%= consumerName %>" type="text"
+                               id="<%= parameter['name'] %>"
+                               name="<%= parameter['name'] %>"
+                               value="<%= Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>"
+                               placeholder="<%= parameter['default'] %>" />
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
