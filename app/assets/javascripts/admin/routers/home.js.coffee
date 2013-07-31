@@ -24,5 +24,7 @@ Augury.Routers.Home = Backbone.Router.extend(
       onClose: (dialog) ->
         $.modal.close()
         $("#integrations-select").select2 "val", ""
+        $("#new-integration-modal").html('')
+        Backbone.history.navigate '/', trigger: true
     )
 )
