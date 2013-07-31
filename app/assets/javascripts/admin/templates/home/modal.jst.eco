@@ -33,7 +33,7 @@
 
                     <div class="field state">
                       <label>State:</label>
-                      <div class="integration-toggle"></div>
+                      <div class="integration-toggle" data-consumer-name="<%= consumerName %>"></div>
                     </div>
                   </div>
 
