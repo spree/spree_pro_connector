@@ -45,7 +45,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
 
   save: (event) ->
     event.preventDefault()
-    console.log 'Saving...'
 
     parameters = {}
     _(@$el.find('input.param')).each (param) ->
@@ -60,4 +59,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     #   $(@).val()
 
     @model.signup parameters, 'import', error: @displayErrors
+    $.modal.close()
+    Backbone.history.navigate "/", trigger: true
+    Augury.integrations.fetch(reset: true)
 )
