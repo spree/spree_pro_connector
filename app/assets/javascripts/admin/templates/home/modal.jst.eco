@@ -5,7 +5,7 @@
       <img src="/assets/integrations/mandrill.png" alt="Mandrill">
     </div>
 
-    <h3 class="integration-title">Adding Foo</h3>
+    <h3 class="integration-title">Adding <%= @options.integration.get('name') %></h3>
 
   </header>
 

@@ -28,8 +28,10 @@ Augury.Views.Home.Index = Backbone.View.extend(
     $('#content-header').find('.page-title').text('Overview')
 
 
-    $("#integrations-select").on "select2-selected", (val, object) =>
-      Backbone.history.navigate '/add/1', trigger: true
+    $("#integrations-select").on "select2-selected", (event, object) =>
+      selected = $("#integrations-select").select2('data').element
+      integrationID = $(selected).data('integration-id')
+      Backbone.history.navigate "/add/#{integrationID}", trigger: true
 
     @setActiveIntegrations()
 

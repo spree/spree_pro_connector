@@ -10,6 +10,7 @@ Augury.Routers.Home = Backbone.Router.extend(
     $("#integration_main").html view.render().el
 
   addIntegration: (id) ->
-    view = new Augury.Views.Home.AddIntegration()
+    integration = Augury.integrations.get(id)
+    view = new Augury.Views.Home.AddIntegration(integration: integration)
     view.render()
 )

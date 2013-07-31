@@ -12,6 +12,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       onClose: (dialog) ->
         $.modal.close()
         $("#integrations-select").select2 "val", ""
+      options: @options
     )
 
     $("button.cancel").on "click", ->

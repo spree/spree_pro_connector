@@ -9,7 +9,7 @@
   $('#integrations-select').select2({
     placeholder: "Add New Integration",
     formatSelection: function(item){
-      return 'Adding ' + item.text + ' Integration'
+      return 'Adding ' + item.text + ' Integration';
     },
     formatResult: function(item){
       return ' <div class="integration-image"><img height="30" src="/assets/integrations/' + item.text.toLowerCase().replace(' ', '_') + '.png"></div><div class="integration-name">' + item.text + '</div>'
