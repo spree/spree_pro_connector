@@ -1,6 +1,8 @@
 Augury.Views.Home.AddIntegration = Backbone.View.extend(
   initialize: (attrs) ->
     @options = attrs
+    @model = attrs.integration
+    @options.parametersByConsumer = @parametersByConsumer()
 
   render: ->
     dialog = JST["admin/templates/home/modal"]
@@ -21,5 +23,22 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     $("#modal-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix")
     $("#modal-tabs li").removeClass("ui-corner-top").addClass("ui-corner-left")
 
+    @$el.find('.integration-toggle').toggles({
+      text: {
+        on: 'Enabled', 
+        off: 'Disabled' 
+      },
+      on: true,
+      width: 90
+    })
+
     @
+
+  parametersByConsumer: ->
+    @ret = {}
+
+    _.map(@model.get("consumers"), (consumer) =>
+      @ret[consumer["name"]] = consumer["requires"]["parameters"]
+    )
+    @ret
 )

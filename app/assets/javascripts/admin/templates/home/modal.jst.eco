@@ -2,7 +2,7 @@
   <header class="modal-header">
 
     <div class="integration-image">
-      <img src="/assets/integrations/mandrill.png" alt="Mandrill">
+      <img src="/assets/integrations/<%= @options.integration.get('name').toLowerCase() %>.png" alt="<%= @options.integration.get('name') %>">
     </div>
 
     <h3 class="integration-title">Adding <%= @options.integration.get('name') %></h3>
@@ -11,240 +11,52 @@
 
   <form action="#">
     <section class="modal-body">
-      <div id="modal-tabs">
-        <ul>
-          <!--<li><a href="#tabs-1">General Properties</a></li>-->
-          <li><a href="#tabs-1">Order Confirmation</a></li>
-          <li><a href="#tabs-2">Shipment Confirmation</a></li>
-        </ul>
-        <!--<div id="tabs-1">
-          <div class="row">
-            <div class="alpha four columns">
-              <div class="field">
-                <label for="">Field</label>
-                <input type="text">
-              </div>
-              <div class="field">
-                <label for="">Field</label>
-                <input type="text">
-              </div>
-            </div>
+      <% if @options.integration.get('consumers')?: %>
+        <div id="modal-tabs">
+          <ul>
+            <% i = 1 %>
+            <% for consumerName of @options.parametersByConsumer: %>
+              <li><a href="#tabs-<%= i %>"><%= consumerName %></a></li>
+              <% i = i + 1 %>
+            <% end %>
+          </ul>
+            <% i = 1 %>
+            <% for consumerName, parameters of @options.parametersByConsumer: %>
+              <% consumer = _(@options.integration.get('consumers')).findWhere(name: consumerName) %>
+              <div id="tabs-<%= i %>">
+                <div class="row">
+                  <div class="alpha four columns general-info">
+                    <div class="field description">
+                      <label>Description:</label>
+                      <p><%= consumer['description'] %></p>
+                    </div>
 
-            <div class="omega four columns">
-              <div class="field">
-                <label for="">Field</label>
-                <input type="text">
+                    <div class="field state">
+                      <label>State:</label>
+                      <div class="integration-toggle"></div>
+                    </div>
+                  </div>
+
+                  <div class="omega five columns">
+                    <div class="field">
+                      <label for="">Field</label>
+                      <input type="text">
+                    </div>
+                    <div class="field">
+                      <label for="">Field</label>
+                      <input type="text">
+                    </div>
+                    <div class="field">
+                      <label for="">Field</label>
+                      <input type="text">
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="field">
-                <label for="">Field</label>
-                <input type="text">
-              </div>
-            </div>
+              <% i = i + 1 %>
+            <% end %>
           </div>
-
-          <fieldset class="no-border-bottom">
-            <legend>Fields List</legend>
-
-            <div class="row">
-              <div class="alpha four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="omega one columns">
-                <a href="#"><i class="icon-trash"></i></a>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="alpha four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="omega one columns">
-                <a href="#"><i class="icon-trash"></i></a>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="alpha four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="omega one columns">
-                <a href="#"><i class="icon-trash"></i></a>
-              </div>
-            </div>
-
-            <a href="#" class="add-new-row">
-              <i class="icon-plus"></i>
-              Add New Row
-            </a>
-
-          </fieldset>
-
-        </div>-->
-        <div id="tabs-1">
-          <div class="alpha four columns general-info">
-            <div class="field description">
-              <label>Description:</label>
-              <p>Sends E-Mail to client on new order.</p>
-            </div>
-
-            <div class="field state">
-              <label>State:</label>
-              <div class="integration-toggle"></div>
-            </div>
-          </div>
-
-          <div class="omega five columns">
-            <div class="field">
-              <label for="">Field</label>
-              <input type="text">
-            </div>
-            <div class="field">
-              <label for="">Field</label>
-              <input type="text">
-            </div>
-            <div class="field">
-              <label for="">Field</label>
-              <input type="text">
-            </div>
-          </div>
-
-        </div>
-        <div id="tabs-2">
-          <div class="row">
-            <div class="alpha four columns general-info">
-              <div class="field description">
-                <label>Description:</label>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, excepturi, inventore, odit similique deleniti dolore vero est dolorum perspiciatis quaerat blanditiis reiciendis.
-                </p>
-              </div>
-
-              <div class="field state">
-                <label>State:</label>
-                <div class="integration-toggle"></div>
-              </div>
-            </div>
-
-            <div class="omega five columns">
-              <div class="field">
-                <label for="">Field</label>
-                <input type="text">
-              </div>
-              <div class="field">
-                <label for="">Field</label>
-                <input type="text">
-              </div>
-              <div class="field">
-                <label for="">Field</label>
-                <input type="text">
-              </div>
-            </div>
-          </div>
-
-          <fieldset class="no-border-bottom">
-            <legend>Fields List</legend>
-
-            <div class="row">
-              <div class="alpha four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="omega one columns">
-                <a href="#"><i class="icon-trash"></i></a>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="alpha four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="omega one columns">
-                <a href="#"><i class="icon-trash"></i></a>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="alpha four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="four columns">
-                <div class="field">
-                  <label for="">Field</label>
-                  <input type="text">
-                </div>
-              </div>
-
-              <div class="omega one columns">
-                <a href="#"><i class="icon-trash"></i></a>
-              </div>
-            </div>
-
-            <a href="#" class="add-new-row">
-              <i class="icon-plus"></i>
-              Add New Row
-            </a>
-
-          </fieldset>
-        </div>
-      </div>
+      <% end %>
     </section>
 
     <footer class="modal-footer">
