@@ -59,7 +59,7 @@
 
     <footer class="modal-footer">
       <div class="form-actions">
-        <button class="save" type='submit'>
+        <button id="save" class="save" type='submit'>
           <i class="icon-ok"></i>
           Save
         </button>

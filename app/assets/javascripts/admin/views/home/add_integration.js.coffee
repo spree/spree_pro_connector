@@ -5,7 +5,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @options.parametersByConsumer = @parametersByConsumer()
 
   events:
-    'click button.save': 'save'
+    'click button#save': 'save'
 
   render: ->
     # Show modal
@@ -43,6 +43,21 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     )
     @ret
 
-  save: ->
+  save: (event) ->
+    event.preventDefault()
     console.log 'Saving...'
+
+    parameters = {}
+    _(@$el.find('input.param')).each (param) ->
+      param = $(param)
+      val = param.val()
+      if val?
+        parameters[param.attr('name')] = val
+      else
+        console.log('missing')
+
+    # enabled = $(".enabled:checked").map ->
+    #   $(@).val()
+
+    @model.signup parameters, 'import', error: @displayErrors
 )

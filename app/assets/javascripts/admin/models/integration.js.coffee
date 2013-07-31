@@ -33,7 +33,7 @@ Augury.Models.Integration = Backbone.Model.extend(
 
           Augury.mappings.add new Augury.Models.Mapping(mapping)
 
-        Backbone.history.navigate "mappings/filter/#{@.id}", trigger: true
+        # Backbone.history.navigate "mappings/filter/#{@.id}", trigger: true
       ).fail((jqXHR, textStatus, errorThrown) =>
         # options.errors is displayErrors: (model, xhr, options)
         options.error(null, jqXHR, options) if options.error
