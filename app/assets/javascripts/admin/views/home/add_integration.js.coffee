@@ -60,6 +60,5 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
 
     @model.signup parameters, 'import', error: @displayErrors
     $.modal.close()
-    Backbone.history.navigate "/", trigger: true
     Augury.integrations.fetch(reset: true)
 )

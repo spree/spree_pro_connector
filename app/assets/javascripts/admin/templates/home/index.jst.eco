@@ -77,7 +77,7 @@
 
           <ul class="actions">
             <li class="action">
-              <a href="#" title='Edit Properties'>
+              <a href="/admin/integration/edit/<%= integration.get('id') %>" title='Edit Properties'>
                 <i class="edit-integration icon-pencil"></i>
               </a>
             </li>

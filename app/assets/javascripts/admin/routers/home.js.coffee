@@ -2,6 +2,7 @@ Augury.Routers.Home = Backbone.Router.extend(
   routes:
     "": "index"
     "add/:id": "addIntegration"
+    "edit/:id": "addIntegration"
     "delete/:id?confirm=:confirm": "delete"
 
   index: ->
@@ -16,7 +17,6 @@ Augury.Routers.Home = Backbone.Router.extend(
     view.render()
     modalEl = $("#new-integration-modal")
     modalEl.html(view.el)
-    console.log view.el
     modalEl.modal(
       closeHTML: "<i class=\"icon-remove\"></i>"
       minHeight: 500
