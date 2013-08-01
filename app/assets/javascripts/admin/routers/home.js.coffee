@@ -45,5 +45,5 @@ Augury.Routers.Home = Backbone.Router.extend(
       integration.destroy()
       Augury.integrations.remove integration
       Backbone.history.navigate '/', trigger: true
-      Augury.Flash.notice "The integration has been deleted."
+      Augury.Flash.success "The integration has been deleted."
 )
