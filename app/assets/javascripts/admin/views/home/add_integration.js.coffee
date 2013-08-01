@@ -3,6 +3,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @options = attrs
     @model = attrs.integration
     @options.parametersByConsumer = @parametersByConsumer()
+    @enabledMappings = []
 
   events:
     'click button#save': 'save'
@@ -34,6 +35,18 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       width: 90
     })
 
+    # Handle clicking on consumer state toggles
+    @$el.find('.integration-toggle').on 'toggle', (event, active) =>
+      target = $(event.currentTarget)
+      consumerName = target.data('consumer-name')
+      if active
+        @enabledMappings.push consumerName
+        console.log @enabledMappings
+      else
+        index = @enabledMappings.indexOf(consumerName)
+        if index != -1
+          @enabledMappings.splice(index, 1)
+
     @
 
   parametersByConsumer: ->
@@ -56,10 +69,14 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       else
         console.log('missing')
 
+    _(@$el.find('input.enabled')).each (enabled) ->
+      enabled = $(enabled)
+      console.log enabled.val()
+
     # enabled = $(".enabled:checked").map ->
     #   $(@).val()
 
-    @model.signup parameters, 'import', error: @displayErrors
+    @model.signup parameters, @enabledMappings, error: @displayErrors
     $.modal.close()
 
   cancel: (event) ->
