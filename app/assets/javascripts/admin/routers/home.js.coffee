@@ -3,6 +3,7 @@ Augury.Routers.Home = Backbone.Router.extend(
     "": "index"
     "add/:id": "addIntegration"
     "edit/:id": "addIntegration"
+    "refresh/:id": "refreshIntegration"
     "delete/:id?confirm=:confirm": "delete"
 
   index: ->
@@ -28,6 +29,11 @@ Augury.Routers.Home = Backbone.Router.extend(
         $("#new-integration-modal").html('')
         Backbone.history.navigate '/', trigger: true
     )
+
+  refreshIntegration: (id) ->
+    Augury.integrations.fetch(reset: true)
+    Augury.Flash.success "Refreshed integration."
+    Backbone.history.navigate '/', trigger: true
 
   delete: (id, confirm) ->
     integration = Augury.integrations.get id
