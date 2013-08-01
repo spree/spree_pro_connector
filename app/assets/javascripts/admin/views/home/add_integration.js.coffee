@@ -6,6 +6,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
 
   events:
     'click button#save': 'save'
+    'click button#cancel': 'cancel'
 
   render: ->
     # Show modal
@@ -61,4 +62,9 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @model.signup parameters, 'import', error: @displayErrors
     $.modal.close()
     Augury.integrations.fetch(reset: true)
+
+  cancel: (event) ->
+    event.preventDefault()
+
+    $.modal.close()
 )

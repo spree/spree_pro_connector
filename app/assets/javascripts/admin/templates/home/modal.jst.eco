@@ -64,7 +64,7 @@
           Save
         </button>
         <span class="or">or</span>
-        <button class="cancel">
+        <button id="cancel" class="cancel">
           <i class="icon-remove"></i>
           Cancel
         </button>
