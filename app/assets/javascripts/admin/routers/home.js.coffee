@@ -20,8 +20,9 @@ Augury.Routers.Home = Backbone.Router.extend(
     modalEl.html(view.el)
     modalEl.modal(
       closeHTML: "<i class=\"icon-remove\"></i>"
-      minHeight: 500
+      maxHeight: 600
       minWidth: 860
+      overflow: 'auto'
       persist: true
       onClose: (dialog) ->
         $.modal.close()

@@ -4,6 +4,8 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @model = attrs.integration
     @options.parametersByConsumer = @parametersByConsumer()
     @enabledMappings = []
+    @keyValueTemplate = JST['admin/templates/parameters/key_value_fields']
+    @listTemplate = JST['admin/templates/parameters/list_fields']
 
   events:
     'click button#save': 'save'
@@ -42,7 +44,22 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       else
         @model.disableMappings()
 
+    @listClickHandlers()
+
     @
+
+  listClickHandlers: ->
+    @$el.on 'click', '.add-new-row', (e) =>
+      $(@keyValueTemplate()).appendTo($(e.currentTarget).prevUntil('.div.field').first())
+      false
+
+    @$el.on 'click', '.remove-row', (e) =>
+      $(e.currentTarget).closest('.row').remove()
+      false
+
+    @$el.on 'click', '.add-new-value', (e) =>
+      @$el.find('.list-item:last').after(@listTemplate())
+      false
 
   parametersByConsumer: ->
     @ret = {}

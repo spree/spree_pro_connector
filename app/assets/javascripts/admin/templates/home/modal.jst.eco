@@ -38,7 +38,7 @@
                   </div>
 
                   <div class="omega five columns">
-                    <% for parameter in parameters: %>
+                    <% for parameter in parameters when parameter['data_type'] isnt 'list': %>
                       <div class="field">
                         <label for="<%=parameter['name'] %>"><%= parameter['description'] %></label>
                         <input class="<%= consumerName %> param" type="text"
@@ -49,6 +49,41 @@
                       </div>
                     <% end %>
                   </div>
+
+                  <% for parameter in parameters when parameter['data_type'] is 'list': %>
+                    <fieldset class="no-border-bottom">
+                      <legend><%= parameter['name'] %> Fields</legend>
+                      <a href="#" class="add-new-value">
+                        <i class="icon-plus"></i>
+                        Add New Value
+                      </a>
+                      <div class="list-item">
+                        <legend>List Value</legend>
+                        <div class="row">
+                          <div class="alpha four columns">
+                            <div class="field">
+                              <label for="">Key</label>
+                              <input class="list-key" type="text">
+                            </div>
+                          </div>
+                          <div class="four columns">
+                            <div class="field">
+                              <label for="">Value</label>
+                              <input class="list-value" type="text">
+                            </div>
+                          </div>
+                          <div class="omega one columns">
+                            <a href="#" class="remove-row"><i class="icon-trash"></i></a>
+                          </div>
+                        </div>
+                        <a href="#" class="add-new-row">
+                          <i class="icon-plus"></i>
+                          Add New Row
+                        </a>
+                      </div>
+                    </fieldset>
+                  <% end %>
+
                 </div>
               </div>
               <% i = i + 1 %>
