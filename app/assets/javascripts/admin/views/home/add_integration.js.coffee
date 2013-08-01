@@ -115,8 +115,8 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     # enabled = $(".enabled:checked").map ->
     #   $(@).val()
     #
-    # for consumerName of @parametersByConsumer()
-    #   @enabledMappings.push consumerName
+    for consumerName of @parametersByConsumer()
+      @enabledMappings.push consumerName
 
     @model.signup parameters, @enabledMappings, error: @displayErrors
     $.modal.close()
