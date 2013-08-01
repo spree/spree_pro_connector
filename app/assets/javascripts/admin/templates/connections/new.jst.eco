@@ -1,89 +1,204 @@
-<fieldset class="no-border-top">
-  <div class="alpha six columns left">
-    <div class="field">
-      <label for="env">Integrator Environment</label><br>
-      <select class="select2 fullwidth" id="env" name="env">
-        <option value="staging">Staging</option>
-        <option value="production">Production</option>
-        <option value="custom">Custom</option>
-      </select>
+<%#-----------------------------------------%>
+<%# Wizard Form                             %>
+<%#-----------------------------------------%>
+<form action="#" id="new-connection-wizard">
+
+  <div class="row">
+    <%#-----------------------------------------%>
+    <%# Environment                             %>
+    <%#-----------------------------------------%>
+    <div class="twelve columns offset-by-three">
+      <fieldset data-setp="environment" class="no-border-bottom">
+        <legend>Choose Environment</legend>
+
+        <div class="field-group row">
+
+          <%#-----------------------------------------%>
+          <%# Custom ENV                              %>
+          <%#-----------------------------------------%>
+          <div class="field alpha three columns env-custom">
+            <label for="env-custom">
+              <span class="icon-stack icon-3x">
+                <i class="icon-circle icon-stack-base"></i>
+                <i class="icon-cloud icon-light"></i>
+                <i class="icon-exchange"></i>
+              </span>
+              Custom
+            </label>
+            <input type="radio" id="env-custom" name="environment" value="custom">
+          </div>
+          <%# / Custom ENV %>
+
+          <%#-----------------------------------------%>
+          <%# Staging ENV                             %>
+          <%#-----------------------------------------%>
+          <div class="field three columns env-staging">
+            <label for="env-staging">
+              <span class="icon-stack icon-3x">
+                <i class="icon-circle icon-stack-base"></i>
+                <i class="icon-cloud icon-light"></i>
+                <i class="icon-exchange"></i>
+              </span>
+              Staging
+            </label>
+            <input type="radio" id="env-staging" name="environment" value="staging" checked>
+          </div>
+          <%# / Staging ENV %>
+
+          <%#-----------------------------------------%>
+          <%# Production ENV                          %>
+          <%#-----------------------------------------%>
+          <div class="field omega three columns env-production">
+            <label for="env-production">
+              <span class="icon-stack icon-3x">
+                <i class="icon-circle icon-stack-base"></i>
+                <i class="icon-cloud icon-light"></i>
+                <i class="icon-exchange"></i>
+              </span>
+              Production
+            </label>
+            <input type="radio" id="env-production" name="environment" value="production">
+          </div>
+          <%# / Production ENV %>
+
+        </div>
+
+        <%#-----------------------------------------%>
+        <%# Integrator URL                          %>
+        <%#-----------------------------------------%>
+        <div class="field">
+          <label for="">Integrator URL:</label>
+          <div id="integration-url">
+            <input type="url" placeholder="Enter custom URL" value="http://localhost:4000"/>
+            <span>http://aug-stg1.spree.mx</span>
+          </div>
+        </div>
+        <%# / Integrator URL %>
+
+      </fieldset>
     </div>
+    <%# / Environment %>
   </div>
 
-  <div class="omega six columns left">
-    <div class="field">
-      <label for="url">Integrator URL</label><br>
-      <p class="url"></p>
-      <input class="fullwidth url" type="text" name="name" id="url" style="display:none;" value="http://localhost:4000"/>
+  <div class="row">
+    <%#-----------------------------------------%>
+    <%# User                                    %>
+    <%#-----------------------------------------%>
+    <div class="eleven columns offset-by-four">
+      <fieldset data-step="user" class="no-border-bottom">
+        <legend>Choose User</legend>
+
+        <div class="field-group">
+
+          <%#-----------------------------------------%>
+          <%# New User                                %>
+          <%#-----------------------------------------%>
+          <div class="field alpha three columns">
+            <label for="user-new">
+              <span class="icon-stack icon-3x">
+                <i class="icon-user"></i>
+                <i class="icon-plus"></i>
+              </span>
+              I'm a new User
+            </label>
+            <input type="radio" name="user" value="new" id="user-new">
+          </div>
+          <%# / New User %>
+
+          <%#-----------------------------------------%>
+          <%# Registered User                         %>
+          <%#-----------------------------------------%>
+          <div class="field omega four columns offset-by-one">
+            <label for="user-registered">
+              <span class="icon-stack icon-3x">
+                <i class="icon-user"></i>
+                <i class="icon-ok"></i>
+              </span>
+              I'm a registered user
+            </label>
+            <input type="radio" name="user" value="registered" id="user-registered">
+          </div>
+          <%# / Registered User %>
+
+        </div>
+
+      </fieldset>
     </div>
+    <%# / User %>
   </div>
 
-  <div id="invite" class="alpha twelve columns">
-    <div class="field">
-      <label for="invite_code">Invite Code</label><br>
-      <input class="fullwidth invite_code" type="text" id="invite_code" name="invite_code"/>
+  <div class="row">
+    <%#-----------------------------------------%>
+    <%# User Details                            %>
+    <%#-----------------------------------------%>
+    <div class="alpha seven columns offset-by-one">
+      <fieldset data-step="user" class="no-border-bottom">
+        <legend>User Details</legend>
+
+        <%#-----------------------------------------%>
+        <%# User Email                              %>
+        <%#-----------------------------------------%>
+        <div class="field">
+          <label for="user-email">Email</label>
+          <input type="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>">
+        </div>
+
+        <%#-----------------------------------------%>
+        <%# User Password                           %>
+        <%#-----------------------------------------%>
+        <div class="field">
+          <label for="user-password">Password</label>
+          <input type="password" name="user[password]" id="user-password">
+        </div>
+
+      </fieldset>
     </div>
+    <%# / User Details %>
+
+    <%#-----------------------------------------%>
+    <%# Store Details                           %>
+    <%#-----------------------------------------%>
+    <div class="omega eight columns offset-by-two">
+      <fieldset data-step="user" class="no-border-bottom">
+        <legend>Store Details</legend>
+
+        <%#-----------------------------------------%>
+        <%# Store Name                              %>
+        <%#-----------------------------------------%>
+        <div class="field">
+          <label for="store-name">Store Name</label>
+          <input type="text" name="store[name]" placeholder="Spree Demo Site" id="store-name" value="<%= Augury.SignUp.name %>">
+        </div>
+
+        <%#-----------------------------------------%>
+        <%# Store API URL                           %>
+        <%#-----------------------------------------%>
+        <div class="field">
+          <label for="store-api-url">Store API URL</label>
+          <input type="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>">
+        </div>
+
+        <input type="hidden" id="version" value="<%= Augury.SignUp.version %>" />
+        <input type="hidden" id="api_key" value="<%= Augury.SignUp.api_key %>" />
+
+      </fieldset>
+    </div>
+    <%# / Store Details %>
   </div>
 
-  <br>
+  <div class="form-actions">
+    <button class="connect" type="submit">
+      <i class="icon-ok"></i>
+      Connect
+    </button>
 
-  <div class="field" style="clear:both;">
-    <ul style="border-top:none;">
-      <li>
-        <input checked="checked" id="new" name="new_or_existing" type="radio" value="new">
-        <label class="large">I am a new user or</label>
-      </li>
-      <li>
-        <input id="existing" name="new_or_existing" type="radio" value="existing">
-        <label class="large">I'm already registered on the <strong id="env_label">staging</strong> Integrator.</label>
-      </li>
-    </ul>
-  </div>
-
-
-  <fieldset style="border-bottom:none;">
-    <legend>User Details</legend>
-    <div class="alpha six columns left">
-      <div class="field">
-        <label for="email">Email</label>
-        <input class="fullwidth" type="text" id="email" name="email" value="<%= Augury.SignUp.user %>" />
-      </div>
-    </div>
-    <div class="omega six columns right">
-      <div class="field">
-        <label for="password">Password</label>
-        <input class="fullwidth" type="password" id="password" name="password" />
-      </div>
-    </div>
-  </fieldset>
-
-  <fieldset id="store_details" class="no-border-bottom">
-    <legend>Store Details</legend>
-    <div class="alpha six columns left">
-      <div class="field">
-        <label for="name">Store Name</label>
-        <input class="fullwidth" type="text" id="name" name="name" value="<%= Augury.SignUp.name %>" />
-      </div>
-    </div>
-    <div class="omega six columns right">
-      <div class="field">
-        <label for="url">Store API URL</label>
-        <input class="fullwidth" type="text" id="url" name="url" value="<%= Augury.SignUp.url %>" />
-      </div>
-    </div>
-    <input type="hidden" id="version" value="<%= Augury.SignUp.version %>" />
-    <input type="hidden" id="api_key" value="<%= Augury.SignUp.api_key %>" />
-  </fieldset>
-
-  <div style="display:none;" class="form-buttons filter-actions actions" id="login_buttons">
-    <button id="login" class="icon-refresh button">Login</button>
     <span class="or">or</span>
-    <button id="cancel" class="button icon_link with-tip icon-remove">Cancel</button>
+
+    <button class="cancel">
+      <i class="icon-remove"></i>
+      Cancel
+    </button>
   </div>
 
-  <div class="form-buttons filter-actions actions" id="connect_buttons">
-    <button id="connect" class="icon-refresh button">Connect</button>
-    <span class="or">or</span>
-    <button id="cancel" class="button icon_link with-tip icon-remove">Cancel</button>
-  </div>
-</fieldset>
+</form>
+<%# / Wizard Form %>

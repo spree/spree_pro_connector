@@ -6,7 +6,7 @@
 @import 'admin/globals/functions';
 @import 'admin/globals/mixins';
 @import 'admin/globals/variables';
-@import 'font-awesome';
+@import 'plugins/font-awesome';
 
 .order_events_iframe {
   border: none;
@@ -422,7 +422,9 @@ a.add-fields {
   }
 }
 
-/**/
+/**
+  Simple Modal Styles
+*/
 
 #simplemodal-overlay {
   background-color: black
@@ -656,3 +658,99 @@ a.add-fields {
     }
   }
 }
+
+/**
+  New Connection Wizard
+*/
+#new-connection-wizard {
+  .field {
+    text-align: center;
+
+    label {
+      font-size: 100%;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    label, .icon-stack {
+      display: block;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .icon-stack {
+      .icon-exchange {
+        font-size: 18px;
+      }
+      .icon-user {
+        margin-left: -10px;
+      }
+      .icon-plus, .icon-ok {
+        margin-top: 20px;
+        margin-left: 10px;
+      }
+    }
+
+    label[for='user-new'], label[for='user-registered'] {
+      i { font-size: 85% }
+    }
+    label[for='user-new'] {
+      i {
+        color: $color-3
+      }
+    }
+    label[for='user-registered'] {
+      i {
+        color: $color-2
+      }
+    }
+
+    input[type="text"], input[type="email"],
+    input[type="url"], input[type="password"] {
+      width: 100%;
+    }
+  }
+
+  .env-custom {
+    label, .icon-circle, .icon-exchange {
+      color: $color-3;
+    }
+  }
+  .env-staging {
+    label, .icon-circle, .icon-exchange {
+      color: $color-6;
+    }
+  }
+  .env-production {
+    label, .icon-circle, .icon-exchange {
+      color: $color-2;
+    }
+  }
+
+  .form-actions {
+    text-align: center;
+
+    * {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    span.or {
+      text-transform: uppercase;
+      display: inline-block;
+      font-weight: 600;
+      padding: 0 10px;
+    }
+
+    button {
+      font-size: 100%;
+    }
+
+    .connect {
+      background-color: $color-2;
+    }
+    .cancel {
+      background-color: $color-4;
+    }
+  }
+}
+
+
