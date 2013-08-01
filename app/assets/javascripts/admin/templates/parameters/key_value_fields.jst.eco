@@ -1,14 +1,14 @@
-<div class="row">
+<div class="list-row row">
   <div class="alpha four columns">
     <div class="field">
       <label for="">Key</label>
-      <input class="list-key" type="text">
+      <input name="key" class="list-key" type="text">
     </div>
   </div>
   <div class="four columns">
     <div class="field">
       <label for="">Value</label>
-      <input class="list-value" type="text">
+      <input name="value" class="list-value" type="text">
     </div>
   </div>
   <div class="omega one columns">

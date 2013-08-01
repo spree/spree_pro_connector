@@ -54,7 +54,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       false
 
     @$el.on 'click', '.remove-row', (e) =>
-      $(e.currentTarget).closest('.row').remove()
+      $(e.currentTarget).closest('.list-row').remove()
       false
 
     @$el.on 'click', '.add-new-value', (e) =>
@@ -69,8 +69,27 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     )
     @ret
 
+  buildValues: (e) ->
+    _($('fieldset.list-value')).each (fieldset) =>
+      finalValue = []
+      paramName = $(fieldset).data('parameter-name')
+      _($(fieldset).find('.list-item')).each (value) =>
+        currentValue = new Object()
+        _($(value).find('.list-row')).each (element) ->
+          key = $(element).find('input[name=key]').val()
+          value = $(element).find('input[name=value]').val()
+          console.log key, value
+          if key && value
+            currentValue[key] = value
+        finalValue.push currentValue
+      finalValueJSON = JSON.stringify(finalValue)
+      @$el.append("<input class='parameter_value' name='#{paramName}' type='hidden' value='#{finalValueJSON}' />")
+    console.log @$el.find('input.parameter_value')
+
   save: (event) ->
     event.preventDefault()
+
+    @buildValues()
 
     parameters = {}
     _(@$el.find('input.param')).each (param) ->
@@ -81,14 +100,23 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       else
         console.log('missing')
 
+    if @$el.find('input.parameter_value').length > 0
+      _(@$el.find('input.parameter_value')).each (param) ->
+        param = $(param)
+        val = param.val()
+        if val?
+          parameters[param.attr('name')] = val
+        else
+          console.log 'missing'
+
     # _(@$el.find('input.enabled')).each (enabled) ->
     #   enabled = $(enabled)
 
     # enabled = $(".enabled:checked").map ->
     #   $(@).val()
     #
-    for consumerName of @parametersByConsumer()
-      @enabledMappings.push consumerName
+    # for consumerName of @parametersByConsumer()
+    #   @enabledMappings.push consumerName
 
     @model.signup parameters, @enabledMappings, error: @displayErrors
     $.modal.close()

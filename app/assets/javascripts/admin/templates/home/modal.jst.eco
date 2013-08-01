@@ -37,21 +37,23 @@
                     </div>
                   </div>
 
-                  <div class="omega five columns">
-                    <% for parameter in parameters when parameter['data_type'] isnt 'list': %>
-                      <div class="field">
-                        <label for="<%=parameter['name'] %>"><%= parameter['description'] %></label>
-                        <input class="<%= consumerName %> param" type="text"
-                               id="<%= parameter['name'] %>"
-                               name="<%= parameter['name'] %>"
-                               value="<%= Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>"
-                               placeholder="<%= parameter['default'] %>" />
-                      </div>
-                    <% end %>
+                  <div class="row">
+                    <div class="omega five columns">
+                      <% for parameter in parameters when parameter['data_type'] isnt 'list': %>
+                        <div class="field">
+                          <label for="<%=parameter['name'] %>"><%= parameter['description'] %></label>
+                          <input class="<%= consumerName %> param" type="text"
+                                 id="<%= parameter['name'] %>"
+                                 name="<%= parameter['name'] %>"
+                                 value="<%= Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>"
+                                 placeholder="<%= parameter['default'] %>" />
+                        </div>
+                      <% end %>
+                    </div>
                   </div>
 
                   <% for parameter in parameters when parameter['data_type'] is 'list': %>
-                    <fieldset class="no-border-bottom">
+                    <fieldset class="no-border-bottom list-value" data-parameter-name="<%= parameter['name'] %>">
                       <legend><%= parameter['name'] %> Fields</legend>
                       <a href="#" class="add-new-value">
                         <i class="icon-plus"></i>
@@ -59,17 +61,17 @@
                       </a>
                       <div class="list-item">
                         <legend>List Value</legend>
-                        <div class="row">
+                        <div class="list-row row">
                           <div class="alpha four columns">
                             <div class="field">
                               <label for="">Key</label>
-                              <input class="list-key" type="text">
+                              <input name="key" class="list-key" type="text">
                             </div>
                           </div>
                           <div class="four columns">
                             <div class="field">
                               <label for="">Value</label>
-                              <input class="list-value" type="text">
+                              <input name="value" class="list-value" type="text">
                             </div>
                           </div>
                           <div class="omega one columns">
