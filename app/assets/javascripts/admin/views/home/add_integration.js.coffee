@@ -61,7 +61,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
 
     @model.signup parameters, 'import', error: @displayErrors
     $.modal.close()
-    Augury.integrations.fetch(reset: true)
 
   cancel: (event) ->
     event.preventDefault()

@@ -35,6 +35,7 @@ Augury.Models.Integration = Backbone.Model.extend(
           url: "/stores/#{Augury.store_id}/integrations/#{@.id}/disable_mappings"
           type: "GET"
           success: ->
+            Augury.integrations.fetch(reset: true)
           error: ->
             Augury.Flash.error "There was a problem updating the integration."
 
@@ -47,7 +48,7 @@ Augury.Models.Integration = Backbone.Model.extend(
     Augury.mappings.where(integration_id: @id)
 
   is_enabled: ->
-    mappings = @.mappings()
+    mappings = @['attributes']['mappings']
     _(mappings).any (mapping) ->
-      mapping.get('enabled') == true
+      mapping['enabled'] == true
 )
