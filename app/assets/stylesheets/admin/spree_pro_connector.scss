@@ -663,12 +663,17 @@ a.add-fields {
   New Connection Wizard
 */
 #new-connection-wizard {
+  .disabled {
+    opacity: 0.3
+  }
+
   .field {
     text-align: center;
 
     label {
       font-size: 100%;
       -webkit-font-smoothing: antialiased;
+      cursor: pointer;
     }
 
     label, .icon-stack {
@@ -742,6 +747,7 @@ a.add-fields {
 
     button {
       font-size: 100%;
+      min-width: 110px;
     }
 
     .connect {

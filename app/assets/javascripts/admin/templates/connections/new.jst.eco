@@ -8,7 +8,7 @@
     <%# Environment                             %>
     <%#-----------------------------------------%>
     <div class="twelve columns offset-by-three">
-      <fieldset data-setp="environment" class="no-border-bottom">
+      <fieldset data-step="environment" class="no-border-bottom">
         <legend>Choose Environment</legend>
 
         <div class="field-group row">
@@ -41,7 +41,7 @@
               </span>
               Staging
             </label>
-            <input type="radio" id="env-staging" name="environment" value="staging" checked>
+            <input type="radio" id="env-staging" name="environment" value="staging">
           </div>
           <%# / Staging ENV %>
 
@@ -66,11 +66,12 @@
         <%#-----------------------------------------%>
         <%# Integrator URL                          %>
         <%#-----------------------------------------%>
-        <div class="field">
+        <div class="field hidden" data-step='integrator-url'>
           <label for="">Integrator URL:</label>
           <div id="integration-url">
-            <input type="url" placeholder="Enter custom URL" value="http://localhost:4000"/>
-            <span>http://aug-stg1.spree.mx</span>
+            <input data-env='custom' type="url" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden" />
+            <span data-env='staging' class='hidden'>http://aug-stg1.spree.mx</span>
+            <span data-env='production' class='hidden'>http://aug-stg1.spree.mx</span>
           </div>
         </div>
         <%# / Integrator URL %>
@@ -85,7 +86,7 @@
     <%# User                                    %>
     <%#-----------------------------------------%>
     <div class="eleven columns offset-by-four">
-      <fieldset data-step="user" class="no-border-bottom">
+      <fieldset data-step="user" class="no-border-bottom hidden">
         <legend>Choose User</legend>
 
         <div class="field-group">
@@ -132,7 +133,7 @@
     <%# User Details                            %>
     <%#-----------------------------------------%>
     <div class="alpha seven columns offset-by-one">
-      <fieldset data-step="user" class="no-border-bottom">
+      <fieldset data-step="user-details" class="no-border-bottom hidden">
         <legend>User Details</legend>
 
         <%#-----------------------------------------%>
@@ -159,7 +160,7 @@
     <%# Store Details                           %>
     <%#-----------------------------------------%>
     <div class="omega eight columns offset-by-two">
-      <fieldset data-step="user" class="no-border-bottom">
+      <fieldset data-step="store-details" class="no-border-bottom hidden">
         <legend>Store Details</legend>
 
         <%#-----------------------------------------%>
@@ -187,14 +188,14 @@
   </div>
 
   <div class="form-actions">
-    <button class="connect" type="submit">
+    <button class="connect disabled" type="submit" disabled>
       <i class="icon-ok"></i>
       Connect
     </button>
 
     <span class="or">or</span>
 
-    <button class="cancel">
+    <button class="cancel disabled" disabled>
       <i class="icon-remove"></i>
       Cancel
     </button>
@@ -202,3 +203,74 @@
 
 </form>
 <%# / Wizard Form %>
+
+<script>
+  var form      = $('#new-connection-wizard');
+  var env_check = form.find('fieldset[data-step="environment"]').find('input[type="radio"]');
+
+  var step1     = form.find('[data-step="environment"]');
+  var step1_5   = form.find('[data-step="integrator-url"]');
+  var step2     = form.find('[data-step="user"]');
+  var step3     = form.find('[data-step="store-details"], [data-step="user-details"]');
+
+  var submit    = form.find('button[type="submit"]');
+  var cancel    = form.find('button.cancel');
+
+  //--------------------------------------------
+  // Add disabled class to env other than staging by default
+  //--------------------------------------------
+  function disable_env(){
+    step1.find('input[type="radio"]:not(:checked)').parent().addClass('disabled');
+    step1.find('input[type="radio"]:checked').parent().removeClass('disabled');
+  }
+
+  //--------------------------------------------
+  // Disable unchecked env on select
+  //--------------------------------------------
+  env_check.on('change', function(){
+    disable_env();
+
+    //--------------------------------------------
+    // Show next step -> Integrator URL
+    //--------------------------------------------
+
+    step1_5.show();
+    step1_5.find('[data-env]').hide();
+    step1_5.find('[data-env="' + $(this).val() + '"]').show();
+
+    cancel.removeClass('disabled').removeAttr('disabled');
+
+    //--------------------------------------------
+    // Unless ENV != custom go to next step
+    //--------------------------------------------
+    if ($(this).val() != 'custom') {
+      step2.show();
+    }
+  });
+
+  //--------------------------------------------
+  // Choose registration or signup
+  //--------------------------------------------
+  var user_check = step2.find('input[type="radio"]');
+
+  user_check.on('change', function(){
+    step3.show();
+
+    submit.removeAttr('disabled').removeClass('disabled');
+  });
+
+  //--------------------------------------------
+  // Cancel action
+  //--------------------------------------------
+  cancel.on('click', function(e){
+    e.preventDefault();
+
+    step3.hide();
+    step2.hide();
+    step1_5.hide();
+
+    submit.attr('disabled', 'disabled').addClass('disabled');
+    $(this).attr('disabled', 'disabled').addClass('disabled');
+  });
+
+</script>
