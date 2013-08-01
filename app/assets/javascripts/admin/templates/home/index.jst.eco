@@ -78,7 +78,7 @@
           <ul class="actions">
             <li class="action">
               <a href="#" title='Edit Properties'>
-                <i class="icon-pencil"></i>
+                <i class="edit-integration icon-pencil"></i>
               </a>
             </li>
             <!--<li class="action">
@@ -88,12 +88,12 @@
             </li>-->
             <li class="action">
               <a href="#" title='Refresh'>
-                <i class="icon-refresh"></i>
+                <i class="refresh-integration icon-refresh"></i>
               </a>
             </li>
             <li class="action">
-              <a href="/admin/integration/integrations/delete/<%= integration.get('id') %>?confirm=no" title='Remove'>
-                <i class="icon-trash"></i>
+              <a href="/admin/integration/delete/<%= integration.get('id') %>?confirm=no" title='Remove'>
+                <i class="delete-integration icon-trash"></i>
               </a>
             </li>
           </ul>

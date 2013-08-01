@@ -2,6 +2,8 @@ Augury.Views.Home.Index = Backbone.View.extend(
   initialize: ->
     _.bindAll @, 'render'
     @collection.bind 'reset', @render
+    @collection.bind 'add', @render
+    @collection.bind 'remove', @render
 
   events:
     'click .integration-toggle': 'toggleIntegration'
