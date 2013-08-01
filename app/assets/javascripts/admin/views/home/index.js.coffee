@@ -63,27 +63,24 @@ Augury.Views.Home.Index = Backbone.View.extend(
   toggleIntegration: (e) ->
     integrationDiv = $(e.currentTarget).closest('.integration')
     integrationId = integrationDiv.data('integration-id')
+    integration = Augury.integrations.get integrationId
 
     if integrationDiv.hasClass 'enabled'
-      $.ajax
-        url: "/stores/#{Augury.store_id}/integrations/#{integrationId}/disable_mappings"
-        type: "GET"
-        success: ->
-          integrationDiv.removeClass('enabled').addClass('disabled')
-          Augury.integrations.fetch()
-          Augury.mappings.fetch()
-          @active = Augury.integrations
-        error: ->
-          Augury.Flash.error "There was a problem updating the integration."
+      integration.disableMappings().done(->
+        integrationDiv.removeClass('enabled').addClass('disabled')
+        Augury.integrations.fetch()
+        Augury.mappings.fetch()
+        @active = Augury.integrations
+      ).fail(->
+        Augury.Flash.error "There was a problem updating the integration."
+      )
     else
-      $.ajax
-        url: "/stores/#{Augury.store_id}/integrations/#{integrationId}/enable_mappings"
-        type: "GET"
-        success: ->
-          integrationDiv.removeClass('disabled').addClass('enabled')
-          Augury.integrations.fetch()
-          Augury.mappings.fetch()
-          @active = Augury.integrations
-        error: ->
-          Augury.Flash.error "There was a problem updating the integration."
+      integration.enableMappings().done(->
+        integrationDiv.removeClass('disabled').addClass('enabled')
+        Augury.integrations.fetch()
+        Augury.mappings.fetch()
+        @active = Augury.integrations
+      ).fail(->
+        Augury.Flash.error "There was a problem updating the integration."
+      )
 )

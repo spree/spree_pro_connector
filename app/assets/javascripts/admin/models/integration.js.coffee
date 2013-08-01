@@ -47,6 +47,26 @@ Augury.Models.Integration = Backbone.Model.extend(
   mappings: ->
     Augury.mappings.where(integration_id: @id)
 
+  enableMappings: ->
+    defer = $.Deferred()
+    $.ajax
+      url: "/stores/#{Augury.store_id}/integrations/#{@.id}/enable_mappings"
+      type: "GET"
+      success: ->
+        defer.resolve(true)
+      error: ->
+    defer.promise()
+
+  disableMappings: ->
+    defer = $.Deferred()
+    $.ajax
+      url: "/stores/#{Augury.store_id}/integrations/#{@.id}/disable_mappings"
+      type: "GET"
+      success: ->
+        defer.resolve(true)
+      error: ->
+    defer.promise()
+
   is_enabled: ->
     mappings = @['attributes']['mappings']
     _(mappings).any (mapping) ->
