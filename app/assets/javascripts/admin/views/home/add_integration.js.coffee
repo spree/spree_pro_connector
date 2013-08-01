@@ -35,16 +35,12 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       width: 90
     })
 
-    # # Handle clicking on consumer state toggles
-    # @$el.find('.integration-toggle').on 'toggle', (event, active) =>
-    #   target = $(event.currentTarget)
-    #   consumerName = target.data('consumer-name')
-    #   if active
-    #     @enabledMappings.push consumerName
-    #   else
-    #     index = @enabledMappings.indexOf(consumerName)
-    #     if index != -1
-    #       @enabledMappings.splice(index, 1)
+    # Handle clicking on consumer state toggles
+    @$el.find('.integration-toggle').on 'toggle', (event, active) =>
+      if active
+        @model.enableMappings()
+      else
+        @model.disableMappings()
 
     @
 
