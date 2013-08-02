@@ -20,6 +20,9 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @$el.find("#modal-tabs li").removeClass("ui-corner-top").addClass("ui-corner-left")
 
 
+    # All inputs are disabled by default
+    @$el.find('input').attr('disabled', true)
+
     # Copy text across duplicate inputs across consumers
     @$el.find('input.param').bind "keyup paste", ->
       current = $(@)
@@ -39,13 +42,16 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
 
     # Handle clicking on consumer toggle
     @$el.find('.integration-toggle').on 'toggle', (e, active) =>
-      consumerName = $(e.currentTarget).data('consumer-name')
+      target = $(e.currentTarget)
+      consumerName = target.data('consumer-name')
       if active
         @enabledMappings.push consumerName
+        target.closest('.row').find('input').attr('disabled', false)
       else
         index = @enabledMappings.indexOf consumerName
         if index != -1
           @enabledMappings.splice(index, 1)
+          target.closest('.row').find('input').attr('disabled', true)
 
     @listClickHandlers()
 
@@ -79,8 +85,8 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       _($(fieldset).find('.list-item')).each (value) =>
         currentValue = new Object()
         _($(value).find('.list-row')).each (element) ->
-          key = $(element).find('input[name=key]').val()
-          value = $(element).find('input[name=value]').val()
+          key = $(element).find('input[name=key]:enabled').val()
+          value = $(element).find('input[name=value]:enabled').val()
           if key && value
             currentValue[key] = value
         finalValue.push currentValue
@@ -93,7 +99,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @buildValues()
 
     parameters = {}
-    _(@$el.find('input.param')).each (param) ->
+    _(@$el.find('input.param:enabled')).each (param) ->
       param = $(param)
       val = param.val()
       if val?
