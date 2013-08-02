@@ -33,16 +33,19 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
         on: 'Enabled', 
         off: 'Disabled' 
       },
-      on: true,
+      on: false,
       width: 90
     })
 
-    # Handle clicking on consumer state toggles
-    @$el.find('.integration-toggle').on 'toggle', (event, active) =>
+    # Handle clicking on consumer toggle
+    @$el.find('.integration-toggle').on 'toggle', (e, active) =>
+      consumerName = $(e.currentTarget).data('consumer-name')
       if active
-        @model.enableMappings()
+        @enabledMappings.push consumerName
       else
-        @model.disableMappings()
+        index = @enabledMappings.indexOf consumerName
+        if index != -1
+          @enabledMappings.splice(index, 1)
 
     @listClickHandlers()
 
@@ -78,13 +81,11 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
         _($(value).find('.list-row')).each (element) ->
           key = $(element).find('input[name=key]').val()
           value = $(element).find('input[name=value]').val()
-          console.log key, value
           if key && value
             currentValue[key] = value
         finalValue.push currentValue
       finalValueJSON = JSON.stringify(finalValue)
       @$el.append("<input class='parameter_value' name='#{paramName}' type='hidden' value='#{finalValueJSON}' />")
-    console.log @$el.find('input.parameter_value')
 
   save: (event) ->
     event.preventDefault()
@@ -108,15 +109,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
           parameters[param.attr('name')] = val
         else
           console.log 'missing'
-
-    # _(@$el.find('input.enabled')).each (enabled) ->
-    #   enabled = $(enabled)
-
-    # enabled = $(".enabled:checked").map ->
-    #   $(@).val()
-    #
-    for consumerName of @parametersByConsumer()
-      @enabledMappings.push consumerName
 
     @model.signup parameters, @enabledMappings, error: @displayErrors
     $.modal.close()
