@@ -9,7 +9,7 @@
 
   </header>
 
-  <form action="#">
+  <form action="#" id="new-integration">
     <section class="modal-body">
       <% if @options.integration.get('consumers')?: %>
         <div id="modal-tabs">
@@ -42,7 +42,7 @@
                       <% for parameter in parameters when parameter['data_type'] isnt 'list': %>
                         <div class="field">
                           <label for="<%=parameter['name'] %>"><%= parameter['description'] %></label>
-                          <input class="<%= consumerName %> param" type="text"
+                          <input class="<%= consumerName %> param required" type="text"
                                  id="<%= parameter['name'] %>"
                                  name="<%= parameter['name'] %>"
                                  value="<%= Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>"

@@ -1,5 +1,6 @@
 //= require jquery.simplemodal.1.4.4.min
 //= require jquery.ui.tabs
+//= require parsley.min
 //= require toggles
 //= require_tree ../../../../vendor/assets/javascripts/noty
 //= require underscore

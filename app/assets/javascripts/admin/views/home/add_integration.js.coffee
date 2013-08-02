@@ -8,12 +8,21 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @listTemplate = JST['admin/templates/parameters/list_fields']
 
   events:
-    'click button#save': 'save'
+    # 'click button#save': 'save'
     'click button#cancel': 'cancel'
 
   render: ->
     # Show modal
     @$el.html JST["admin/templates/home/modal"](options: @options)
+
+    # Validation
+    @$el.find('form#new-integration').parsley
+      trigger: "change"
+      listeners:
+        onFormSubmit: (isFormValid, e) =>
+          e.preventDefault()
+          if isFormValid
+            @save()
 
     # Setup modal tabs
     @$el.find("#modal-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix")
@@ -33,8 +42,8 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     # Prepare consumer state toggle
     @$el.find('.integration-toggle').toggles({
       text: {
-        on: 'Enabled', 
-        off: 'Disabled' 
+        on: 'Enabled',
+        off: 'Disabled'
       },
       on: false,
       width: 90
@@ -93,9 +102,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       finalValueJSON = JSON.stringify(finalValue)
       @$el.append("<input class='parameter_value' name='#{paramName}' type='hidden' value='#{finalValueJSON}' />")
 
-  save: (event) ->
-    event.preventDefault()
-
+  save: ->
     @buildValues()
 
     parameters = {}
