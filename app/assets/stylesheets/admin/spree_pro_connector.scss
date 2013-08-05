@@ -353,29 +353,17 @@ a.add-fields {
   width: 217px !important;
 
   .select2-choice span {
-    @extend .icon-plus;
     text-transform: uppercase;
     font-weight: 600;
-
-    &:before {
-      font-family: 'FontAwesome';
-      display: inline-block;
-      padding-right: 5px;
-    }
-
-    &.adding-integration {
-      &:before {
-        content: ''
-      }
-    }
+    text-align: left;
   }
 
   b {
-    @extend .icon-caret-down;
-    font-family: 'FontAwesome';
-    top: -1px;
-    position: relative;
-    margin-right: 10px;
+    padding-right: 10px;
+  }
+
+  .select2-choice .select2-search-choice-close {
+    display: none !important;
   }
 }
 
@@ -384,15 +372,6 @@ a.add-fields {
   margin-left: -83px;
   margin-top: -2px;
   border-top: 1px solid $color-2;
-
-  .select2-search {
-    @extend .icon-search;
-
-    &:before {
-      font-family: 'FontAwesome';
-      display: inline-block;
-    }
-  }
 
   .select2-results {
     max-height: 400px;
