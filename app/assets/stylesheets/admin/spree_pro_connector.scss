@@ -391,7 +391,12 @@ a.add-fields {
   }
   .select2-result {
     border-bottom: 1px dotted $color-border;
+
+    &:last-child {
+      border-bottom-width: 0
+    }
   }
+
   .select2-highlighted {
     background-color: $color-1;
 

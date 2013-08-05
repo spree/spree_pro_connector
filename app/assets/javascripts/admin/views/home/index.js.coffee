@@ -25,9 +25,10 @@ Augury.Views.Home.Index = Backbone.View.extend(
       collection: @active
     )
 
-    $('#content-header .container .block-table').append('<div class="table-cell"><ul class="page-actions"></ul></div>')
-    $('#content-header').find('.page-actions').html JST["admin/templates/home/new_integration"]
-      collection: @inactive
+    if $('#content-header .container .block-table').find('.page-actions').length < 1
+      $('#content-header .container .block-table').append('<div class="table-cell"><ul class="page-actions"></ul></div>')
+      $('#content-header').find('.page-actions').html JST["admin/templates/home/new_integration"]
+        collection: @inactive
 
     $('#content-header').find('.page-title').text('Overview')
 
@@ -45,8 +46,8 @@ Augury.Views.Home.Index = Backbone.View.extend(
     # TODO: Find a better way to do this
     @$el.find('.integration-toggle').toggles({
       text: {
-        on: 'Enabled', 
-        off: 'Disabled' 
+        on: 'Enabled',
+        off: 'Disabled'
       },
       on: true,
       width: 90
