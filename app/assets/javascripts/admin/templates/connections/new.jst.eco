@@ -7,7 +7,7 @@
     <%#-----------------------------------------%>
     <%# Environment                             %>
     <%#-----------------------------------------%>
-    <div class="twelve columns offset-by-three">
+    <div class="fourteen columns offset-by-two">
       <fieldset data-step="environment" class="no-border-bottom">
         <legend>Choose Environment</legend>
 
@@ -16,7 +16,7 @@
           <%#-----------------------------------------%>
           <%# Custom ENV                              %>
           <%#-----------------------------------------%>
-          <div class="field alpha three columns env-custom">
+          <div class="field alpha four columns env-custom">
             <label for="env-custom">
               <span class="icon-stack icon-3x">
                 <i class="icon-circle icon-stack-base"></i>
@@ -32,7 +32,7 @@
           <%#-----------------------------------------%>
           <%# Staging ENV                             %>
           <%#-----------------------------------------%>
-          <div class="field three columns env-staging">
+          <div class="field four columns env-staging">
             <label for="env-staging">
               <span class="icon-stack icon-3x">
                 <i class="icon-circle icon-stack-base"></i>
@@ -48,7 +48,7 @@
           <%#-----------------------------------------%>
           <%# Production ENV                          %>
           <%#-----------------------------------------%>
-          <div class="field omega three columns env-production">
+          <div class="field omega four columns env-production">
             <label for="env-production">
               <span class="icon-stack icon-3x">
                 <i class="icon-circle icon-stack-base"></i>
@@ -85,7 +85,7 @@
     <%#-----------------------------------------%>
     <%# User                                    %>
     <%#-----------------------------------------%>
-    <div class="eleven columns offset-by-four">
+    <div class="twelve columns offset-by-four">
       <fieldset data-step="user" class="no-border-bottom hidden">
         <legend>Choose User</legend>
 
@@ -94,7 +94,7 @@
           <%#-----------------------------------------%>
           <%# New User                                %>
           <%#-----------------------------------------%>
-          <div class="field alpha three columns">
+          <div class="field alpha four columns">
             <label for="user-new">
               <span class="icon-stack icon-3x">
                 <i class="icon-user"></i>
@@ -187,18 +187,20 @@
     <%# / Store Details %>
   </div>
 
-  <div class="form-actions">
-    <button class="connect disabled" type="submit" disabled>
-      <i class="icon-ok"></i>
-      Connect
-    </button>
+  <div class="sixteen columns">
+    <div class="form-actions">
+      <button class="connect disabled" type="submit" disabled>
+        <i class="icon-ok"></i>
+        Connect
+      </button>
 
-    <span class="or">or</span>
+      <span class="or">or</span>
 
-    <button class="cancel disabled" disabled>
-      <i class="icon-remove"></i>
-      Cancel
-    </button>
+      <button class="cancel disabled" disabled>
+        <i class="icon-remove"></i>
+        Cancel
+      </button>
+    </div>
   </div>
 
 </form>
@@ -234,9 +236,9 @@
     // Show next step -> Integrator URL
     //--------------------------------------------
 
-    step1_5.show();
-    step1_5.find('[data-env]').hide();
-    step1_5.find('[data-env="' + $(this).val() + '"]').show();
+    step1_5.fadeIn();
+    step1_5.find('[data-env]').fadeOut();
+    step1_5.find('[data-env="' + $(this).val() + '"]').fadeIn();
 
     cancel.removeClass('disabled').removeAttr('disabled');
 
@@ -244,7 +246,7 @@
     // Unless ENV != custom go to next step
     //--------------------------------------------
     if ($(this).val() != 'custom') {
-      step2.show();
+      step2.fadeIn();
     }
   });
 
@@ -254,7 +256,7 @@
   var user_check = step2.find('input[type="radio"]');
 
   user_check.on('change', function(){
-    step3.show();
+    step3.fadeIn();
 
     submit.removeAttr('disabled').removeClass('disabled');
   });
@@ -265,9 +267,14 @@
   cancel.on('click', function(e){
     e.preventDefault();
 
-    step3.hide();
-    step2.hide();
-    step1_5.hide();
+    step3.fadeOut();
+    step2.fadeOut();
+    step1_5.fadeOut();
+
+    env_check.removeAttr('checked')
+    env_check.parent().removeClass('disabled');
+
+    step2.find('input[type="radio"]').removeAttr('checked');
 
     submit.attr('disabled', 'disabled').addClass('disabled');
     $(this).attr('disabled', 'disabled').addClass('disabled');

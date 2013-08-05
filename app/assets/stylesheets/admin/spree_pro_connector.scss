@@ -646,6 +646,12 @@ a.add-fields {
     opacity: 0.3
   }
 
+  #integration-url * {
+    position: absolute;
+    width: 50%;
+    left: 25%;
+  }
+
   .field {
     text-align: center;
 
@@ -688,10 +694,10 @@ a.add-fields {
       }
     }
 
-    input[type="text"], input[type="email"],
-    input[type="url"], input[type="password"] {
-      width: 100%;
-    }
+    // input[type="text"], input[type="email"],
+    // input[type="url"], input[type="password"] {
+    //   width: 100%;
+    // }
   }
 
   .env-custom {
@@ -710,11 +716,19 @@ a.add-fields {
     }
   }
 
+  [data-step="user-details"], [data-step="store-details"] {
+    input[type="text"], input[type="email"],
+    input[type="url"], input[type="password"] {
+      width: 100%;
+    }
+  }
+
   .form-actions {
     text-align: center;
 
     * {
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     span.or {
