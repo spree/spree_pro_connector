@@ -77,8 +77,8 @@
 
           <ul class="actions">
             <li class="action">
-              <a href="/admin/integration/edit/<%= integration.get('id') %>" title='Edit Properties'>
-                <i class="edit-integration icon-pencil"></i>
+              <a href="/admin/integration/edit/<%= integration.get('id') %>" title='Edit Properties' class='edit-integration'>
+                <i class="icon-pencil"></i>
               </a>
             </li>
             <!--<li class="action">
@@ -87,13 +87,13 @@
               </a>
             </li>-->
             <li class="action">
-              <a href="/admin/integration/refresh/<%= integration.get('id') %>" title='Refresh'>
-                <i class="refresh-integration icon-refresh"></i>
+              <a href="/admin/integration/refresh/<%= integration.get('id') %>" title='Refresh' class='refresh-integration'>
+                <i class="icon-refresh"></i>
               </a>
             </li>
             <li class="action">
-              <a href="/admin/integration/delete/<%= integration.get('id') %>?confirm=no" title='Remove'>
-                <i class="delete-integration icon-trash"></i>
+              <a href="/admin/integration/delete/<%= integration.get('id') %>?confirm=no" title='Remove' class='delete-integration'>
+                <i class="icon-trash"></i>
               </a>
             </li>
           </ul>

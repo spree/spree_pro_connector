@@ -44,18 +44,21 @@ Augury.Views.Home.Index = Backbone.View.extend(
 
   setActiveIntegrations: ->
     # TODO: Find a better way to do this
-    @$el.find('.integration-toggle').toggles({
-      text: {
-        on: 'Enabled',
-        off: 'Disabled'
-      },
-      on: true,
+    @$el.find('.integration-toggle').toggles
+      on:    true
       width: 90
-    })
+      text:
+        on:  'Enabled',
+        off: 'Disabled'
 
-    @$el.find('#integrations-list').find('.actions a').powerTip({
+    @$el.find('#integrations-list').find('.actions a').powerTip
       popupId: 'integration-tooltip'
-    })
+
+    @$el.find('#integrations-list').find('.actions a').on
+      powerTipRender: () ->
+        $('#integration-tooltip').addClass $(this).attr('class')
+
+
     _(@active.models).each (integration) =>
       unless integration.is_enabled()
         id = integration.get('id')

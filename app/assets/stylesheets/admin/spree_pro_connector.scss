@@ -209,6 +209,19 @@ a.add-fields {
               color: $color-1;
             }
           }
+
+          &.refresh-integration {
+            &:hover {
+              background-color: $color-6;
+              border-color: darken($color-6, 5);
+            }
+          }
+          &.delete-integration {
+            &:hover {
+              background-color: $color-5;
+              border-color: darken($color-5, 5);
+            }
+          }
         }
 
         i {
