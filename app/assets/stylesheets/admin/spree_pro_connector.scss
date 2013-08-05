@@ -358,6 +358,21 @@ a.add-fields {
     left: 50%;
     margin-left: -5px;
   }
+
+  &.refresh-integration {
+    background-color: $color-6;
+
+    &:after {
+      border-top-color: $color-6;
+    }
+  }
+  &.delete-integration {
+    background-color: $color-5;
+
+    &:after {
+      border-top-color: $color-5;
+    }
+  }
 }
 
 /**
