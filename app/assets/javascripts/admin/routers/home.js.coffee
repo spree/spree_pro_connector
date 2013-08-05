@@ -20,7 +20,8 @@ Augury.Routers.Home = Backbone.Router.extend(
     modalEl.html(view.el)
     modalEl.modal(
       closeHTML: "<i class=\"icon-remove\"></i>"
-      maxHeight: 600
+      maxHeight: 500
+      minHeight: 400
       minWidth: 860
       overflow: 'auto'
       persist: true

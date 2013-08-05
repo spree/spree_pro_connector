@@ -60,33 +60,35 @@
                         Add New Value
                       </a>
                       <% existingValues = Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>
-                        <% for existingValue in existingValues: %>
-                          <div class="list-item">
-                            <legend>List Value</legend>
-                                <% for key, value of existingValue: %>
-                                  <div class="list-row row">
-                                    <div class="alpha four columns">
-                                      <div class="field">
-                                        <label for="">Key</label>
-                                        <input name="key" class="list-key" type="text" value="<%= key %>">
+                        <% if existingValues: %>
+                          <% for existingValue in existingValues: %>
+                            <div class="list-item">
+                              <legend>List Value</legend>
+                                  <% for key, value of existingValue: %>
+                                    <div class="list-row row">
+                                      <div class="alpha four columns">
+                                        <div class="field">
+                                          <label for="">Key</label>
+                                          <input name="key" class="list-key" type="text" value="<%= key %>">
+                                        </div>
+                                      </div>
+                                      <div class="four columns">
+                                        <div class="field">
+                                          <label for="">Value</label>
+                                          <input name="value" class="list-value" type="text" value="<%= value %>">
+                                        </div>
+                                      </div>
+                                      <div class="omega one columns">
+                                        <a href="#" class="remove-row"><i class="icon-trash"></i></a>
                                       </div>
                                     </div>
-                                    <div class="four columns">
-                                      <div class="field">
-                                        <label for="">Value</label>
-                                        <input name="value" class="list-value" type="text" value="<%= value %>">
-                                      </div>
-                                    </div>
-                                    <div class="omega one columns">
-                                      <a href="#" class="remove-row"><i class="icon-trash"></i></a>
-                                    </div>
-                                  </div>
-                                <% end %>
-                            <a href="#" class="add-new-row">
-                              <i class="icon-plus"></i>
-                              Add New Row
-                            </a>
-                          </div>
+                                  <% end %>
+                              <a href="#" class="add-new-row">
+                                <i class="icon-plus"></i>
+                                Add New Row
+                              </a>
+                            </div>
+                          <% end %>
                         <% end %>
                     </fieldset>
                   <% end %>

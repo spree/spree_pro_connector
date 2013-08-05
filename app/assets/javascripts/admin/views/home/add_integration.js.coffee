@@ -89,18 +89,19 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
 
   buildValues: (e) ->
     _($('fieldset.list-value')).each (fieldset) =>
-      finalValue = []
-      paramName = $(fieldset).data('parameter-name')
-      _($(fieldset).find('.list-item')).each (value) =>
-        currentValue = new Object()
-        _($(value).find('.list-row')).each (element) ->
-          key = $(element).find('input[name=key]:enabled').val()
-          value = $(element).find('input[name=value]:enabled').val()
-          if key && value
-            currentValue[key] = value
-        finalValue.push currentValue
-      finalValueJSON = JSON.stringify(finalValue)
-      @$el.append("<input class='parameter_value' name='#{paramName}' type='hidden' value='#{finalValueJSON}' />")
+      if $(fieldset).find('.list-item').length > 0
+        finalValue = []
+        paramName = $(fieldset).data('parameter-name')
+        _($(fieldset).find('.list-item')).each (value) =>
+          currentValue = new Object()
+          _($(value).find('.list-row')).each (element) ->
+            key = $(element).find('input[name=key]:enabled').val()
+            value = $(element).find('input[name=value]:enabled').val()
+            if key && value
+              currentValue[key] = value
+          finalValue.push currentValue
+        finalValueJSON = JSON.stringify(finalValue)
+        @$el.append("<input class='parameter_value' name='#{paramName}' type='hidden' value='#{finalValueJSON}' />")
 
   save: ->
     @buildValues()
