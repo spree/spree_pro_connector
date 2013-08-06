@@ -69,7 +69,7 @@
         <div class="field hidden" data-step='integrator-url'>
           <label for="">Integrator URL:</label>
           <div id="integration-url">
-            <input data-env='custom' type="url" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden" />
+            <input data-env='custom' class="url" type="url" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden" />
             <span data-env='staging' class='hidden'>http://aug-stg1.spree.mx</span>
             <span data-env='production' class='hidden'>http://aug-stg1.spree.mx</span>
           </div>
@@ -141,7 +141,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="user-email">Email</label>
-          <input type="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>">
+          <input type="email" id="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>">
         </div>
 
         <%#-----------------------------------------%>
@@ -149,7 +149,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="user-password">Password</label>
-          <input type="password" name="user[password]" id="user-password">
+          <input type="password" id="password" name="user[password]" id="user-password">
         </div>
 
       </fieldset>
@@ -168,7 +168,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="store-name">Store Name</label>
-          <input type="text" name="store[name]" placeholder="Spree Demo Site" id="store-name" value="<%= Augury.SignUp.name %>">
+          <input type="text" id="name" name="store[name]" placeholder="Spree Demo Site" id="store-name" value="<%= Augury.SignUp.name %>">
         </div>
 
         <%#-----------------------------------------%>
@@ -176,8 +176,9 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="store-api-url">Store API URL</label>
-          <input type="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>">
+          <input type="url" id="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>">
         </div>
+
 
         <input type="hidden" id="version" value="<%= Augury.SignUp.version %>" />
         <input type="hidden" id="api_key" value="<%= Augury.SignUp.api_key %>" />
@@ -187,11 +188,24 @@
     <%# / Store Details %>
   </div>
 
-  <div class="sixteen columns">
-    <div class="form-actions">
-      <button class="connect disabled" type="submit" disabled>
+  <div class="sixteen columns" data-step="actions">
+    <div class="form-actions" data-user="new">
+      <button id="connect" class="connect disabled" type="submit" disabled>
         <i class="icon-ok"></i>
         Connect
+      </button>
+
+      <span class="or">or</span>
+
+      <button class="cancel disabled" disabled>
+        <i class="icon-remove"></i>
+        Cancel
+      </button>
+    </div>
+    <div class="form-actions" data-user="registered">
+      <button id="login" class="login disabled" type="submit" disabled>
+        <i class="icon-ok"></i>
+        Login
       </button>
 
       <span class="or">or</span>
@@ -207,77 +221,23 @@
 <%# / Wizard Form %>
 
 <script>
-  var form      = $('#new-connection-wizard');
-  var env_check = form.find('fieldset[data-step="environment"]').find('input[type="radio"]');
+  /* //-------------------------------------------- */
+  /* // Cancel action */
+  /* //-------------------------------------------- */
+  /* cancel.on('click', function(e){ */
+  /*   e.preventDefault(); */
 
-  var step1     = form.find('[data-step="environment"]');
-  var step1_5   = form.find('[data-step="integrator-url"]');
-  var step2     = form.find('[data-step="user"]');
-  var step3     = form.find('[data-step="store-details"], [data-step="user-details"]');
+  /*   step3.fadeOut(); */
+  /*   step2.fadeOut(); */
+  /*   step1_5.fadeOut(); */
 
-  var submit    = form.find('button[type="submit"]');
-  var cancel    = form.find('button.cancel');
+  /*   env_check.removeAttr('checked') */
+  /*   env_check.parent().removeClass('disabled'); */
 
-  //--------------------------------------------
-  // Add disabled class to env other than staging by default
-  //--------------------------------------------
-  function disable_env(){
-    step1.find('input[type="radio"]:not(:checked)').parent().addClass('disabled');
-    step1.find('input[type="radio"]:checked').parent().removeClass('disabled');
-  }
+  /*   step2.find('input[type="radio"]').removeAttr('checked'); */
 
-  //--------------------------------------------
-  // Disable unchecked env on select
-  //--------------------------------------------
-  env_check.on('change', function(){
-    disable_env();
-
-    //--------------------------------------------
-    // Show next step -> Integrator URL
-    //--------------------------------------------
-
-    step1_5.fadeIn();
-    step1_5.find('[data-env]').fadeOut();
-    step1_5.find('[data-env="' + $(this).val() + '"]').fadeIn();
-
-    cancel.removeClass('disabled').removeAttr('disabled');
-
-    //--------------------------------------------
-    // Unless ENV != custom go to next step
-    //--------------------------------------------
-    if ($(this).val() != 'custom') {
-      step2.fadeIn();
-    }
-  });
-
-  //--------------------------------------------
-  // Choose registration or signup
-  //--------------------------------------------
-  var user_check = step2.find('input[type="radio"]');
-
-  user_check.on('change', function(){
-    step3.fadeIn();
-
-    submit.removeAttr('disabled').removeClass('disabled');
-  });
-
-  //--------------------------------------------
-  // Cancel action
-  //--------------------------------------------
-  cancel.on('click', function(e){
-    e.preventDefault();
-
-    step3.fadeOut();
-    step2.fadeOut();
-    step1_5.fadeOut();
-
-    env_check.removeAttr('checked')
-    env_check.parent().removeClass('disabled');
-
-    step2.find('input[type="radio"]').removeAttr('checked');
-
-    submit.attr('disabled', 'disabled').addClass('disabled');
-    $(this).attr('disabled', 'disabled').addClass('disabled');
-  });
+  /*   submit.attr('disabled', 'disabled').addClass('disabled'); */
+  /*   $(this).attr('disabled', 'disabled').addClass('disabled'); */
+  /* }); */
 
 </script>

@@ -1,73 +1,68 @@
 Augury.Views.Connections.New = Backbone.View.extend
-  initialize: ->
-
   events:
     'click button#connect': 'connect'
     'click button#cancel': 'cancel'
     'click button#login': 'login'
-    "change [name='new_or_existing']": 'toggle_new_or_existing'
-    "change [name='env']": 'toggle_env'
 
   render: ->
     @$el.html JST["admin/templates/connections/new"]()
-    @$('.select2').select2(minimumResultsForSearch: 5)
-    @toggle_new_or_existing()
-    @toggle_env()
+
+    @form = @$el.find('#new-connection-wizard')
+    @envCheck = @form.find("fieldset[data-step=\"environment\"]").find("input[type=\"radio\"]")
+    @step1 = @form.find("[data-step=\"environment\"]")
+    @step1_5 = @form.find("[data-step=\"integrator-url\"]")
+    @step2 = @form.find("[data-step=\"user\"]")
+    @step3 = @form.find("[data-step=\"store-details\"], [data-step=\"user-details\"]")
+    @step4 = @form.find("[data-step=\"actions\"]")
+    @submit = @form.find("button[type=\"submit\"]")
+    @cancel = @form.find("button.cancel")
 
     $('#content-header').find('.page-title').text('New Connection')
 
     $('#content-header').find('.page-actions').remove()
     $('#content-header').find('.table-cell').after JST["admin/templates/connections/back_button"]
 
+    @toggle_env()
+    @toggle_new_or_existing()
+
     @
 
   toggle_new_or_existing: ->
-    new_or_existing = @$el.find("[name='new_or_existing']:checked").val()
-
-    if new_or_existing=='new'
-      @$el.find("#login_buttons").hide()
-      @$el.find("#invite").show()
-      @$el.find("#connect_buttons").show()
-    else
-      @$el.find("#login_buttons").show()
-      @$el.find("#invite").hide()
-      @$el.find("#connect_buttons").hide()
+    @step4.find("[data-user]").hide()
+    user_check = @step2.find("input[type=\"radio\"]")
+    user_check.on "change", (e) =>
+      @step3.fadeIn()
+      @step4.find("[data-user]").fadeOut()
+      @step4.find("[data-user=\"" + $(e.currentTarget).val() + "\"]").fadeIn()
+      @step4.find('button').removeAttr("disabled").removeClass "disabled"
 
   toggle_env: ->
-    # update label with env name
-    env = @$el.find("[name='env']").val()
-    @$el.find('#env_label').text env
+    @envCheck.on 'change', (e) =>
+      @disable_env()
 
-    # hide invite code (only needed in production)
-    @$el.find("#invite").hide()
-
-    switch env
-      when 'custom'
-        # custom envs can input a url for the integrator
-        @$el.find("p.url").hide()
-        @$el.find("input.url").show()
-      when 'production'
-        # production needs an invite code
-        @$el.find("#invite").show()
-      else
-        # other not input for url, just show hardcoded url
-        url = @$el.find("p.url")
-        url.text Augury.SignUp.urls[env]
-        url.show()
-        @$el.find("input.url").hide()
+      @step1_5.fadeIn()
+      @step1_5.find("[data-env]").fadeOut()
+      @step1_5.find("[data-env=\"" + $(e.currentTarget).val() + "\"]").fadeIn()
+      @cancel.removeClass("disabled").removeAttr "disabled"
+      @step2.fadeIn()
 
   cancel: (e) ->
     e.preventDefault()
     Backbone.history.navigate '/connections', trigger: true
 
+  disable_env: ->
+    @step1.find('input[type="radio"]:not(:checked)').parent().addClass('disabled')
+    @step1.find('input[type="radio"]:checked').parent().removeClass('disabled')
+
   set_url: ->
-    env = @$el.find("[name='env']").val()
+    env = @envCheck.val()
     if env == 'custom'
       Augury.url = @$el.find('input.url').val()
     else
       Augury.url = Augury.SignUp.urls[env]
 
-  login: ->
+  login: (e) ->
+    e.preventDefault()
     @set_url()
 
     $.ajax
@@ -91,7 +86,8 @@ Augury.Views.Connections.New = Backbone.View.extend
         alert('login failed')
 
 
-  connect: ->
+  connect: (e) ->
+    e.preventDefault()
     @set_url()
 
     $.ajax
