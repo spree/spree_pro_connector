@@ -48,6 +48,12 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       width: 90
     })
 
+
+    @prepareClickHandlers()
+
+    @
+
+  prepareClickHandlers: ->
     # Handle clicking on consumer toggle
     @$el.find('.integration-toggle').on 'toggle', (e, active) =>
       target = $(e.currentTarget)
@@ -61,11 +67,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
           @enabledMappings.splice(index, 1)
           target.closest('.row').find('input').attr('disabled', true)
 
-    @listClickHandlers()
-
-    @
-
-  listClickHandlers: ->
     @$el.on 'click', '.add-new-row', (e) =>
       $(@keyValueTemplate()).appendTo($(e.currentTarget).prevUntil('.div.field').first())
       false

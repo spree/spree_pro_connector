@@ -58,7 +58,7 @@
                       </a>
                       <% existingValues = Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>
                         <% if existingValues: %>
-                          <% for existingValue in existingValues: %>
+                          <% for existingValue in existingValues when existingValues: %>
                             <div class="list-item">
                               <legend>List Value</legend>
                                   <% for key, value of existingValue: %>
