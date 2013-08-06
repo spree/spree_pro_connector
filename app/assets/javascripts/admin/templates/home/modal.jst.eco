@@ -14,16 +14,13 @@
       <% if @options.integration.get('consumers')?: %>
         <div id="modal-tabs">
           <ul>
-            <% i = 1 %>
             <% for consumerName of @options.parametersByConsumer: %>
-              <li><a href="#tabs-<%= i %>"><%= consumerName %></a></li>
-              <% i = i + 1 %>
+              <li><a href="#tabs-<%= consumerName %>"><%= consumerName %></a></li>
             <% end %>
           </ul>
-            <% i = 1 %>
             <% for consumerName, parameters of @options.parametersByConsumer: %>
               <% consumer = _(@options.integration.get('consumers')).findWhere(name: consumerName) %>
-              <div id="tabs-<%= i %>">
+              <div id="tabs-<%= consumerName %>">
                 <div class="row">
                   <div class="alpha four columns general-info">
                     <div class="field description">
@@ -92,10 +89,8 @@
                         <% end %>
                     </fieldset>
                   <% end %>
-
                 </div>
               </div>
-              <% i = i + 1 %>
             <% end %>
           </div>
       <% end %>

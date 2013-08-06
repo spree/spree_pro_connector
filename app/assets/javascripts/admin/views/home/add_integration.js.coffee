@@ -28,7 +28,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @$el.find("#modal-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix")
     @$el.find("#modal-tabs li").removeClass("ui-corner-top").addClass("ui-corner-left")
 
-
     # All inputs are disabled by default
     @$el.find('input').attr('disabled', true)
 
