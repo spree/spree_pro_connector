@@ -3,7 +3,7 @@ Augury.Routers.Connections = Backbone.Router.extend(
     "connections": "index"
     "connections/new": "new"
     "connections/:id/connect": "connect"
-    "connections/:id/disconnect": "disconnect"
+    "connections/disconnect": "disconnect"
 
   new: ->
     Augury.update_nav('overview')
@@ -20,6 +20,6 @@ Augury.Routers.Connections = Backbone.Router.extend(
   connect: (id) ->
     window.location.href = "/admin/integration/connect?env_id=#{id}"
 
-  disconnect: (id) ->
+  disconnect: ->
     window.location.href = "/admin/integration/disconnect"
 )

@@ -37,7 +37,7 @@
       <span class="or">or</span>
 
       <%# Close Connection %>
-      <a href="#" class="button">
+      <a href="integration/connections/disconnect" class="button">
         <i class="icon-unlink"></i>
         Close Connection
       </a>
