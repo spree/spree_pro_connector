@@ -38,7 +38,7 @@
     Augury.Preload.parameters = <%== @parameters_json %>;
     Augury.Preload.messages = <%== @messages_json %>;
 
-    Augury.env_id = <%= @environment.id %>;
+    Augury.env_id = '<%= @environment.id %>';
 
     $(function() {
       return Augury.start();

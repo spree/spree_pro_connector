@@ -9,7 +9,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
     'click .integration-toggle': 'toggleIntegration'
 
   render: ->
-    @env = _(Augury.connections).findWhere(id: Augury.env.id)
+    @env = Augury.connections[Augury.env_id]
 
     # Filter integrations from the collection that don't have any mappings
     activeIntegrations = @collection.filter (integration) ->
