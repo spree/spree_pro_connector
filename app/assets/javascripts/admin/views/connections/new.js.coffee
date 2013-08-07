@@ -78,12 +78,15 @@ Augury.Views.Connections.New = Backbone.View.extend
           password: @$el.find('input#password').val()
 
       success: (signup, response, opts)=>
-        view = new Augury.Views.Connections.Select(signup: signup)
-        $("#integration_main").html view.render().el
+        if signup.stores.length == 1
+          store_id = signup.stores[0].id
+          window.location.href = "/admin/integration/register?url=#{Augury.url}&env=#{signup.env}&user=#{signup.user}&user_token=#{signup.auth_token}&store_id=#{store_id}"
+        else
+          view = new Augury.Views.Connections.Select(signup: signup)
+          $("#integration_main").html view.render().el
 
       error: (x,y,z) =>
-        alert('login failed')
-
+        Augury.Flash.error 'Signup Failed'
 
   connect: (e) ->
     e.preventDefault()
