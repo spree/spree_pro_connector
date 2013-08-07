@@ -28,7 +28,7 @@
     <div id="connection-actions" class='filter-actions actions'>
 
       <%# Edit Connection %>
-      <a href="connections" class="button">
+      <a href="integration/connections" class="button">
         <i class="icon-eye-open"></i>
         Show Connections
       </a>
@@ -37,7 +37,7 @@
       <span class="or">or</span>
 
       <%# Close Connection %>
-      <a href="connections/disconnect" class="button">
+      <a href="integration/connections/disconnect" class="button">
         <i class="icon-unlink"></i>
         Close Connection
       </a>
