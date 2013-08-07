@@ -12,5 +12,4 @@ Augury.Views.Connections.Select = Backbone.View.extend
   select: (evt) ->
     evt.preventDefault()
     store_id = $(evt.target).data('store-id')
-    window.location.href = "/admin/integration/register?url=#{Augury.url}&env=#{@signup.env}&user=#{@signup.user}&user_token=#{@signup.auth_token}&store_id=#{store_id}"
-
+    Augury.vent.trigger 'connection:select', @signup, store_id

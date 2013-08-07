@@ -8,6 +8,7 @@
 //= require backbone-validation-min
 //= require admin/augury
 //= require_tree ./extensions
+//= require_tree ./events
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./routers

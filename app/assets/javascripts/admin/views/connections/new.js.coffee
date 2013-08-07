@@ -80,7 +80,7 @@ Augury.Views.Connections.New = Backbone.View.extend
       success: (signup, response, opts)=>
         if signup.stores.length == 1
           store_id = signup.stores[0].id
-          window.location.href = "/admin/integration/register?url=#{Augury.url}&env=#{signup.env}&user=#{signup.user}&user_token=#{signup.auth_token}&store_id=#{store_id}"
+          Augury.vent.trigger 'connection:select', signup, store_id
         else
           view = new Augury.Views.Connections.Select(signup: signup)
           $("#integration_main").html view.render().el

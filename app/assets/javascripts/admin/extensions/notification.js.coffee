@@ -6,7 +6,7 @@ window.Augury.Flash =
     @notification 'alert', false, msg
 
   error: (msg) ->
-    @notification 'error', false, msg
+    @notification 'error', 5000, msg
 
   success: (msg) ->
     @notification 'success', 5000, msg
