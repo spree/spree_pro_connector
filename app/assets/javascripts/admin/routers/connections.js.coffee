@@ -1,6 +1,5 @@
 Augury.Routers.Connections = Backbone.Router.extend(
   routes:
-    "connections": "index"
     "connections/new": "new"
     "connections/:id/connect": "connect"
     "connections/disconnect": "disconnect"
