@@ -25,6 +25,11 @@ Augury.Routers.Home = Backbone.Router.extend(
       minWidth: 860
       overflow: 'auto'
       persist: true
+      onOpen: (dialog) ->
+        dialog.overlay.fadeIn 500
+        dialog.container.fadeIn 500
+        dialog.data.fadeIn 500
+
       onClose: (dialog) ->
         $.modal.close()
         $("#integrations-select").select2 "val", ""

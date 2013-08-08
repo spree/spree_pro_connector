@@ -501,6 +501,10 @@ a.add-fields {
     color: $color-2;
   }
 }
+.simplemodal-wrap {
+  overflow: hidden !important;
+}
+
 .modal-body {
   border: 1px solid $color-border;
   border-width: 1px 0 1px 0;
@@ -532,6 +536,7 @@ a.add-fields {
 
   label {
     display: block;
+    color: lighten($color-body-text, 10);
   }
 
   input[type="text"], input[type="url"],
@@ -540,6 +545,8 @@ a.add-fields {
   }
 
   .field {
+    padding: 0 0 10px 0;
+
     &.description {
       p {
         font-style: italic;
@@ -549,6 +556,9 @@ a.add-fields {
     }
     &.state {
       font-size: 100%;
+    }
+    input[disabled="disabled"] {
+      opacity: 0.2;
     }
   }
 
@@ -616,6 +626,8 @@ a.add-fields {
     font-family: $base-font-family;
     font-size: $body-font-size;
     background-color: transparent;
+    overflow: auto;
+    max-height: 300px;
   }
 
   &.ui-tabs-vertical {

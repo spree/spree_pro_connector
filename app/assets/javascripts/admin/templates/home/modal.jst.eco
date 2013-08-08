@@ -49,7 +49,7 @@
                     </div>
                   </div>
 
-                  <% for parameter in parameters when parameter['data_type'] is 'list': %>
+                  <% for parameter in parameters when parameter['data_type'] isnt 'list': %>
                     <fieldset class="no-border-bottom list-value" data-parameter-name="<%= parameter['name'] %>">
                       <legend><%= parameter['name'] %> Fields</legend>
                       <a href="#" class="add-new-value">
