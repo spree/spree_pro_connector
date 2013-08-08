@@ -31,7 +31,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
         collection: @inactive
 
     # Append connection select dropdown
-    @$el.find('#connection-actions').append JST["admin/templates/home/select_connection"](connections: Augury.connections)
+    @$el.find('#connection-actions').html JST["admin/templates/home/select_connection"](connections: Augury.connections)
 
     $('#content-header').find('.page-title').text('Overview')
 
@@ -40,6 +40,14 @@ Augury.Views.Home.Index = Backbone.View.extend(
       selected = $("#integrations-select").select2('data').element
       integrationID = $(selected).data('integration-id')
       Backbone.history.navigate "/add/#{integrationID}", trigger: true
+
+    @$el.find("#connections-select").on "select2-selected", (event, object) =>
+      selected = $("#connections-select").select2('data').element
+      connectionId = $(selected).val()
+      if connectionId == 'new-connection'
+        Backbone.history.navigate '/connections/new', trigger: true
+      else
+        Augury.vent.trigger 'connection:change', connectionId
 
     @setActiveIntegrations()
 
