@@ -1,0 +1,21 @@
+<select id="connections-select" class='select2'>
+  <option></option>
+  <% for id, connection of @connections: %>
+    <option value="<%= id %>"><%= connection['url'] %> (<%= connection['environment'] %>)</option>
+  <% end %>
+  <option value="new-connection">Add New Connection</option>
+</select>
+
+<script>
+  $('#connections-select').select2({
+    placeholder: "Change Connection",
+    formatSelection: function(item){
+      return 'Changing to ' + item.text + ' Connection';
+    },
+    formatResult: function(item){
+      return '<div class="integration-name">' + item.text.toLowerCase() + '</div>'
+    },
+    containerCssClass: 'new-integration-container',
+    dropdownCssClass: 'new-integration-dropdown'
+  });
+</script>

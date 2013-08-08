@@ -30,6 +30,9 @@ Augury.Views.Home.Index = Backbone.View.extend(
       $('#content-header').find('.page-actions').html JST["admin/templates/home/new_integration"]
         collection: @inactive
 
+    # Append connection select dropdown
+    @$el.find('#connection-actions').append JST["admin/templates/home/select_connection"](connections: Augury.connections)
+
     $('#content-header').find('.page-title').text('Overview')
 
 
