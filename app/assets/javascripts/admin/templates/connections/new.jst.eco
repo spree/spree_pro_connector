@@ -69,7 +69,7 @@
         <div class="field hidden" data-step='integrator-url'>
           <label for="">Integrator URL:</label>
           <div id="integration-url">
-            <input data-env='custom' class="url" type="url" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden" />
+            <input data-env='custom' class="url" type="text" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden required" />
             <span data-env='staging' class='hidden'>http://aug-stg1.spree.mx</span>
             <span data-env='production' class='hidden'>http://aug-stg1.spree.mx</span>
           </div>
@@ -141,7 +141,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="user-email">Email</label>
-          <input type="email" id="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>">
+          <input type="email" id="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>" class="required">
         </div>
 
         <%#-----------------------------------------%>
@@ -149,7 +149,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="user-password">Password</label>
-          <input type="password" id="password" name="user[password]" id="user-password">
+          <input type="password" id="password" name="user[password]" id="user-password" class="required">
         </div>
 
       </fieldset>
@@ -168,7 +168,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="store-name">Store Name</label>
-          <input type="text" id="name" name="store[name]" placeholder="Spree Demo Site" id="store-name" value="<%= Augury.SignUp.name %>">
+          <input type="text" id="name" name="store[name]" placeholder="Spree Demo Site" id="store-name" value="<%= Augury.SignUp.name %>" class="required">
         </div>
 
         <%#-----------------------------------------%>
@@ -176,7 +176,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="store-api-url">Store API URL</label>
-          <input type="url" id="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>">
+          <input type="text" id="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>" class="required">
         </div>
 
 

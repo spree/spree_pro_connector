@@ -1,8 +1,6 @@
 Augury.Views.Connections.New = Backbone.View.extend
   events:
-    'click button#connect': 'connect'
     'click button#cancel': 'cancel'
-    'click button#login': 'login'
 
   render: ->
     @$el.html JST["admin/templates/connections/new"]()
@@ -26,6 +24,16 @@ Augury.Views.Connections.New = Backbone.View.extend
 
     @
 
+  enableValidation: ->
+    @$el.find('form#new-connection-wizard').parsley
+      listeners:
+        onFormSubmit: (isFormValid, e) =>
+          e.preventDefault()
+          connectOrLogin = $.trim($('button[type=submit]:visible').first().text().toLowerCase())
+          if isFormValid
+            @[connectOrLogin].apply @
+
+
   toggle_new_or_existing: ->
     @step4.find("[data-user]").hide()
     user_check = @step2.find("input[type=\"radio\"]")
@@ -34,6 +42,7 @@ Augury.Views.Connections.New = Backbone.View.extend
       @step4.find("[data-user]").fadeOut()
       @step4.find("[data-user=\"" + $(e.currentTarget).val() + "\"]").fadeIn()
       @step4.find('button').removeAttr("disabled").removeClass "disabled"
+    @enableValidation()
 
   toggle_env: ->
     @envCheck.on 'change', (e) =>
@@ -60,8 +69,7 @@ Augury.Views.Connections.New = Backbone.View.extend
     else
       Augury.url = Augury.SignUp.urls[env]
 
-  login: (e) ->
-    e.preventDefault()
+  login: ->
     @set_url()
 
     $.ajax
@@ -88,8 +96,7 @@ Augury.Views.Connections.New = Backbone.View.extend
       error: (xhr, textStatus, errorThrown) ->
         Augury.Flash.error 'There was a problem logging in. Please check your credentials and try again.'
 
-  connect: (e) ->
-    e.preventDefault()
+  connect: ->
     @set_url()
 
     $.ajax
