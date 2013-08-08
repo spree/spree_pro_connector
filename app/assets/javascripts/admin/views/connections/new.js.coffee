@@ -85,8 +85,8 @@ Augury.Views.Connections.New = Backbone.View.extend
           view = new Augury.Views.Connections.Select(signup: signup)
           $("#integration_main").html view.render().el
 
-      error: (x,y,z) =>
-        Augury.Flash.error 'Signup Failed'
+      error: (xhr, textStatus, errorThrown) ->
+        Augury.Flash.error 'There was a problem logging in. Please check your credentials and try again.'
 
   connect: (e) ->
     e.preventDefault()
@@ -108,5 +108,5 @@ Augury.Views.Connections.New = Backbone.View.extend
       success: (login, response, opts)=>
         window.location.href = "/admin/integration/register?url=#{Augury.url}&env=#{login.env}&user_token=#{login.auth_token}&store_id=#{login.store_id}&user=#{login.user}"
       error: (x,y,z) =>
-        alert('signup failed')
+        Augury.Flash.error 'There was a problem connecting. Please check your credentials and try again.'
 
