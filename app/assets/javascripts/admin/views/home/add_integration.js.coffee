@@ -8,7 +8,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @listTemplate = JST['admin/templates/parameters/list_fields']
 
   events:
-    # 'click button#save': 'save'
     'click button#cancel': 'cancel'
 
   render: ->
@@ -47,7 +46,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       on: false,
       width: 90
     })
-
 
     @prepareClickHandlers()
 
