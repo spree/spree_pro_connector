@@ -90,6 +90,8 @@ Augury.Views.Connections.New = Backbone.View.extend
           store_id = signup.stores[0].id
           Augury.vent.trigger 'connection:select', signup, store_id
         else
+          console.log signup
+          return
           view = new Augury.Views.Connections.Select(signup: signup)
           $("#integration_main").html view.render().el
 
