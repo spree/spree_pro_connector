@@ -111,6 +111,14 @@ a.add-fields {
   b, strong {
     -webkit-font-smoothing: antialiased;
   }
+
+  h4.description {
+    text-align: center;
+    margin-bottom: 20px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 /**
@@ -154,7 +162,7 @@ a.add-fields {
 /**
   Active Integrations List
 */
-#integrations-list {
+#integrations-list, #stores-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -163,7 +171,43 @@ a.add-fields {
   /**
     Integration
   */
-  .integration {
+  .store {
+    text-align: center;
+
+    .icon-circle {
+      color: $color-2;
+    }
+
+    .icon-hdd {
+      font-size: 60%;
+      margin-top: 2px;
+      color: $color-2;
+    }
+
+    hgroup {
+      margin-top: 20px;
+      min-height: 55px;
+    }
+
+    .store-name {
+      font-size: 14px;
+      border-bottom: 1px dotted $color-border;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .store-url {
+      font-size: 12px;
+      font-weight: 400;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+
+  .integration, .store {
     display: inline-block;
     border: 1px solid $color-border;
     border-radius: $border-radius;

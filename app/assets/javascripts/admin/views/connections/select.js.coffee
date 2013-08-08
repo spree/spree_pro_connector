@@ -7,6 +7,9 @@ Augury.Views.Connections.Select = Backbone.View.extend
 
   render: ->
     @$el.html JST["admin/templates/connections/select"](signup: @signup)
+
+    $('#content-header').find('.page-title').text('Select Store')
+
     @
 
   select: (evt) ->

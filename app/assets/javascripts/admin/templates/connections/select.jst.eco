@@ -1,6 +1,41 @@
-<p class="description table">You've already registered the following stores, which one corresponds to this Spree instance?</p>
+<h4 class="description">You've already registered the following stores, which one corresponds to this Spree instance?</h4>
 
-<table class="index">
+<%#---------------------------------------%>
+<%# Connected Stores                      %>
+<%#---------------------------------------%>
+<ul id="stores-list" class='row'>
+
+  <% for store in @signup.stores: %>
+
+    <%#---------------------------------------%>
+    <%# Store                                 %>
+    <%#---------------------------------------%>
+    <li class="store four columns">
+      <span class="icon-stack icon-3x">
+        <i class="icon-circle icon-stack-base"></i>
+        <i class="icon-cloud icon-light"></i>
+        <i class="icon-hdd"></i>
+      </span>
+
+      <hgroup>
+        <h3 class="store-name"><%= store['name'] %></h3>
+        <h6 class="store-url"><%= store['api_url'] %></h6>
+      </hgroup>
+
+      <ul class="actions">
+        <li class='action'>
+          <a href="#" title="Select" class='connect-to-store' data-store-id="<%= store['id'] %>" data-action="select">
+            <i class="icon-ok"></i>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+  <% end %>
+
+</ul>
+
+<!-- <table class="index">
   <colgroup>
     <col style="width: 30%" />
     <col style="width: 60%" />
@@ -25,3 +60,4 @@
     <% end %>
   </tbody>
 </table>
+ -->
