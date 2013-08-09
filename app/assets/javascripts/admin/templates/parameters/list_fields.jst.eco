@@ -1,5 +1,5 @@
 <div class="list-item">
-  <legend>List Value</legend>
+  <h5 class="list-value-title">List Value</h5>
   <div class="list-row row">
     <div class="alpha four columns">
       <div class="field">

@@ -484,7 +484,8 @@ a.add-fields {
 */
 
 #simplemodal-overlay {
-  background-color: black
+  background-color: black;
+  width: 100% !important;
 }
 .simplemodal-data {
   background-color: white;
@@ -522,9 +523,11 @@ a.add-fields {
   .integration-title, .integration-image {
     display: table-cell;
     vertical-align: middle;
-    -webkit-font-smoothing: antialiased;
     text-transform: uppercase;
     padding-right: 20px;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -536,7 +539,10 @@ a.add-fields {
 
   label {
     display: block;
-    color: lighten($color-body-text, 10);
+    color: lighten($color-body-text, 15);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   input[type="text"], input[type="url"],
@@ -568,8 +574,8 @@ a.add-fields {
     .icon-trash {
       font-size: 20px;
       color: $color-body-text;
-      top: 33px;
       position: relative;
+      top: 22px;
 
       &:hover {
         color: $color-error;
@@ -577,10 +583,62 @@ a.add-fields {
     }
   }
 
+  fieldset.list-value  {
+    legend {
+      text-align: inherit;
+      top: -10px;
+      position: relative;
+      background-color: transparent;
+      padding: 0;
+      width: 100%;
+      border-bottom: 1px solid $color-border;
+      color: $color-body-text;
+    }
+
+    .add-new-value {
+      position: absolute;
+      top: -10px;
+      right: 0;
+      text-transform: uppercase;
+      color: $color-2;
+
+      &:hover {
+        color: darken($color-2, 5);
+      }
+    }
+
+    label {
+
+    }
+    input {
+
+    }
+    .list-value-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: $color-body-text;
+      border-bottom: 1px dotted $color-border;
+      margin-bottom: 5px;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .list-row {
+
+    }
+  }
+
+  .list-item {
+    position: relative;
+    margin-bottom: 10px;
+  }
+
   button, .button {
-    -webkit-font-smoothing: antialiased;
     font-weight: 600;
     font-size: 100%;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .add-new-row {
@@ -588,10 +646,15 @@ a.add-fields {
     text-transform: uppercase;
     color: $color-2;
     font-weight: 600;
+    font-size: 11px;
     display: block;
     margin-top: 20px;
+    position: absolute;
+    top: -15px;
+    right: 0;
 
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     i {
       padding-right: 5px
@@ -662,6 +725,7 @@ a.add-fields {
           padding: 15px 20px;
 
           -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
         }
 
         &.ui-state-active {
@@ -748,8 +812,10 @@ a.add-fields {
 
     label {
       font-size: 100%;
-      -webkit-font-smoothing: antialiased;
       cursor: pointer;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     label, .icon-stack {
@@ -784,11 +850,6 @@ a.add-fields {
         color: $color-2
       }
     }
-
-    // input[type="text"], input[type="email"],
-    // input[type="url"], input[type="password"] {
-    //   width: 100%;
-    // }
   }
 
   .env-custom {
