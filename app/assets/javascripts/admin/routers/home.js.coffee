@@ -39,6 +39,7 @@ Augury.Routers.Home = Backbone.Router.extend(
 
   refreshIntegration: (id) ->
     Augury.integrations.fetch(reset: true)
+    Augury.mappings.fetch(reset: true)
     Augury.Flash.success "Refreshed integration."
     Backbone.history.navigate '/', trigger: true
 
@@ -50,6 +51,7 @@ Augury.Routers.Home = Backbone.Router.extend(
     else
       $.modal.close()
       integration.destroy()
+      Augury.mappings.fetch reset: true
       Augury.integrations.remove integration
       Augury.integrations.fetch reset: true
       Backbone.history.navigate '/'

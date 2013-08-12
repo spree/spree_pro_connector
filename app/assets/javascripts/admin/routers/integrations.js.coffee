@@ -24,7 +24,6 @@ Augury.Routers.Integrations = Backbone.Router.extend(
     Augury.update_nav('integrations')
 
     integration = Augury.store_integrations.get id
-    console.log integration
     view = new Augury.Views.Integrations.Edit(model: integration)
     $("#integration_main").html view.render().el
 

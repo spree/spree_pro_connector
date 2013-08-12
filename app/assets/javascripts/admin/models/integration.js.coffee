@@ -60,7 +60,7 @@ Augury.Models.Integration = Backbone.Model.extend(
     defer.promise()
 
   is_enabled: ->
-    mappings = @['attributes']['mappings']
+    mappings = Augury.mappings.where integration_id: @id
     _(mappings).any (mapping) ->
-      mapping['enabled'] == true
+      mapping.get('enabled') == true
 )

@@ -11,9 +11,9 @@ Augury.Views.Home.Index = Backbone.View.extend(
 
     # Filter integrations from the collection that don't have any mappings
     activeIntegrations = @collection.filter (integration) ->
-      !_(integration.get('mappings')).isEmpty()
+      !_(integration.mappings()).isEmpty()
     inactiveIntegrations = @collection.filter (integration) ->
-      _(integration.get('mappings')).isEmpty()
+      _(integration.mappings()).isEmpty()
 
     @active = new Augury.Collections.Integrations(activeIntegrations)
     @inactive = new Augury.Collections.Integrations(inactiveIntegrations)
