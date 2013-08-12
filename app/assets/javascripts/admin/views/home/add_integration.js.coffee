@@ -48,8 +48,15 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     })
 
     @prepareClickHandlers()
+    @setActiveMappings()
 
     @
+
+  setActiveMappings: ->
+    for consumerName, parameters of @options.parametersByConsumer
+      consumer = _(@options.integration.get('consumers')).findWhere(name: consumerName)
+      if Augury.mappings.findWhere(name: "#{@options.integration.get('name')}.#{consumerName}")
+        @$el.find("*[data-consumer-name=#{consumerName}]").trigger('click')
 
   prepareClickHandlers: ->
     # Handle clicking on consumer toggle
