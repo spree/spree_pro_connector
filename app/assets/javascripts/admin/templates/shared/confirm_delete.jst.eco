@@ -6,7 +6,10 @@
     <p><%= @warning %></p>
   </div>
   <div class="modal-footer">
-    <a href="/admin/<%= @klass %>/delete/<%= @identifier %>?confirm=true" class="button icon-trash">Delete</a>
-    <a href="/admin/integration/cancel_dialog" class="button icon-cancel">Cancel</a>
+    <div class="form-actions">
+      <a href="/admin/<%= @klass %>/delete/<%= @identifier %>?confirm=true" class="button icon-trash delete">Delete</a>
+      <span class="or">or</span>
+      <a href="/admin/integration/cancel_dialog" class="button icon-cancel cancel">Cancel</a>
+    </div>
   </div>
 </div>
