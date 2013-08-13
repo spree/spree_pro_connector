@@ -81,7 +81,8 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       false
 
     @$el.on 'click', '.add-new-value', (e) =>
-      $(e.currentTarget).parent().append(@listTemplate())
+      # Add new value at the beginning of form
+      $(e.currentTarget).parent().prepend(@listTemplate())
       false
 
   parametersByConsumer: ->

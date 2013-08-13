@@ -49,7 +49,7 @@
                     </div>
                   </div>
 
-                  <% for parameter in parameters when parameter['data_type'] is 'list': %>
+                  <% for parameter in parameters when parameter['data_type'] isnt 'list': %>
                     <fieldset class="no-border-bottom list-value" data-parameter-name="<%= parameter['name'] %>">
                       <legend><%= parameter['name'] %> Fields</legend>
 
@@ -60,7 +60,7 @@
                         <i class="icon-plus"></i>
                         Add New Value
                       </a>
-                      <%# / Add new value%>
+                      <%# / Add new value %>
 
                       <% existingValues = Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>
                         <% if existingValues: %>
@@ -95,6 +95,8 @@
                                 Add New Row
                               </a>
                             </div>
+                            <%# / List Item %>
+
                           <% end %>
                         <% end %>
                     </fieldset>
