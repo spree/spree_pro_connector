@@ -961,3 +961,8 @@ a.add-fields {
     }
   }
 }
+
+/* A class used by the jQuery UI CSS framework for their dialogs. */
+.ui-front {
+  z-index:1000000 !important;  /* 100 is the default value */
+}

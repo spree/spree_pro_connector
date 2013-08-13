@@ -142,3 +142,7 @@
     </footer>
   </form>
 </div>
+
+<div id="dialog-confirm" title="Delete list value?" class="hidden">
+  <p>Are you sure you want to delete the list value?</p>
+</div>

@@ -90,8 +90,20 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       $(e.currentTarget).closest('legend').after(@listTemplate())
       false
 
+    # Show a confirmation modal when deleting a list value
     @$el.on 'click', '.delete-value', (e) =>
-      $(e.currentTarget).closest('.list-item').remove()
+      e.preventDefault()
+      listItem = $(e.currentTarget).closest('.list-item')
+      $('#dialog-confirm').dialog
+        modal: true
+        resizable: false
+        height: 140
+        buttons:
+          "Delete": ->
+            listItem.remove()
+            $(@).dialog 'close'
+          "Cancel": ->
+            $(@).dialog 'close'
       false
 
   parametersByConsumer: ->
