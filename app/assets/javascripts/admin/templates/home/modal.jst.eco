@@ -21,7 +21,7 @@
             <% for consumerName, parameters of @options.parametersByConsumer: %>
               <% consumer = _(@options.integration.get('consumers')).findWhere(name: consumerName) %>
               <div id="tabs-<%= consumerName %>">
-                <div class="row">
+                <div class="row mapping-container">
                   <div class="alpha four columns general-info">
                     <div class="field description">
                       <label>Description:</label>

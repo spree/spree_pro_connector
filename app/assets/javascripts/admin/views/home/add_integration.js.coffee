@@ -57,20 +57,25 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       consumer = _(@options.integration.get('consumers')).findWhere(name: consumerName)
       if Augury.mappings.findWhere(name: "#{@options.integration.get('name')}.#{consumerName}")
         @$el.find("*[data-consumer-name=#{consumerName}]").trigger('click')
+      else
+        @$el.find("*[data-consumer-name=#{consumerName}]").closest("#tabs-#{consumerName}").addClass('disabled')
 
   prepareClickHandlers: ->
     # Handle clicking on consumer toggle
     @$el.find('.integration-toggle').on 'toggle', (e, active) =>
       target = $(e.currentTarget)
       consumerName = target.data('consumer-name')
+      mappingContainer = target.closest("#tabs-#{consumerName}")
       if active
         @enabledMappings.push consumerName
         target.closest('.row').find('input').attr('disabled', false)
+        mappingContainer.removeClass('disabled')
       else
         index = @enabledMappings.indexOf consumerName
         if index != -1
           @enabledMappings.splice(index, 1)
           target.closest('.row').find('input').attr('disabled', true)
+          mappingContainer.addClass('disabled')
 
     @$el.on 'click', '.add-new-row', (e) =>
       $(@keyValueTemplate()).insertAfter($(e.currentTarget).closest('.list-item').find('.list-row:last'))
