@@ -91,7 +91,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       false
 
     @$el.on 'click', '.delete-value', (e) =>
-      window.Foo = $(e.currentTarget)
       $(e.currentTarget).closest('.list-item').remove()
       false
 
