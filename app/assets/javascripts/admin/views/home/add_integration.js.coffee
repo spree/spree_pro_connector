@@ -78,7 +78,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
           mappingContainer.addClass('disabled')
 
     @$el.on 'click', '.add-new-row', (e) =>
-      $(@keyValueTemplate()).insertAfter($(e.currentTarget).closest('.list-item').find('.list-row:last'))
+      $(@keyValueTemplate()).insertBefore($(e.currentTarget).closest('.list-item').find('.list-row:last'))
       false
 
     @$el.on 'click', '.remove-row', (e) =>
