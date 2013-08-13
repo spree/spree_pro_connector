@@ -1,29 +1,44 @@
+<%#----------------------------%>
+<%# List Item                  %>
+<%#----------------------------%>
 <div class="list-item">
-  <div class="alpha twelve columns">
-    <label>List Value</label>
-  </div>
-  <p class="add">
-    <a href="#" class="add-key-value-pair button icon-plus">add row</a>
-  </p>
-  <div class="list-values">
-    <% for own key, value of @item: %>
-      <div class="alpha twelve columns list-value additional-fields">
-        <div class="alpha six columns">
-          <div class="field">
-            <label>Key</label>
-            <input class="fullwidth" type="text" name="key" value="<%= key %>" />
-          </div>
-        </div>
-        <div class="five columns">
-          <div class="field">
-            <label>Value</label>
-            <input class="fullwidth" type="text" name="value" value="<%= value %>" />
-          </div>
-        </div>
-        <div class="omega one columns">
-          <a href="#" class="remove-key-value-pair"><i class="icon-cancel"></i></a>
+  <h5 class='list-value-title'>List Value</h5>
+  <ul class="actions hidden">
+    <li class="action">
+      <a href="javascript:void(0)" class="edit-value">
+        <i class="icon-pencil"></i>
+        Edit value
+      </a>
+    </li>
+    <li class="action">
+      <a href="javascript:void(0)" class="add-new-row">
+        <i class="icon-plus"></i>
+        Add Row
+      </a>
+    </li>
+    <li class="action">
+      <a href="javascript:void(0)" class="delete-value">
+        <i class="icon-trash"></i>
+        Delete value
+      </a>
+    </li>
+  </ul>
+  <% for own key, value of @item: %>
+    <div class="list-row row">
+      <div class="alpha four columns">
+        <div class="field">
+          <input name="key" class="list-key" type="text" value="<%= key %>" placeholder="Key">
         </div>
       </div>
-    <% end %>
-  </div>
+      <div class="four columns">
+        <div class="field">
+          <input name="value" class="list-value" type="text" value="<%= value %>" placeholder="Value">
+        </div>
+      </div>
+      <div class="omega one columns">
+        <a href="#" class="remove-row"><i class="icon-trash"></i></a>
+      </div>
+    </div>
+  <% end %>
 </div>
+<%# / List Item %>

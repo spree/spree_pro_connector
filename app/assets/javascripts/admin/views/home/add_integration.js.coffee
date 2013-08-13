@@ -73,6 +73,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
           target.closest('.row').find('input').attr('disabled', true)
 
     @$el.on 'click', '.add-new-row', (e) =>
+      # TODO: Fix to actually add row (need to change selector to match new markup)
       $(@keyValueTemplate()).appendTo($(e.currentTarget).prevUntil('.div.field').first())
       false
 

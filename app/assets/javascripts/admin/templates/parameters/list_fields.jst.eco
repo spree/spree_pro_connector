@@ -1,24 +1,45 @@
+<%#----------------------------%>
+<%# List Item                  %>
+<%#----------------------------%>
 <div class="list-item">
-  <h5 class="list-value-title">List Value</h5>
+  <h5 class='list-value-title'>List Value</h5>
+  <ul class="actions hidden">
+    <li class="action">
+      <a href="javascript:void(0)" class="edit-value">
+        <i class="icon-pencil"></i>
+        Edit value
+      </a>
+    </li>
+    <li class="action">
+      <a href="javascript:void(0)" class="add-new-row">
+        <i class="icon-plus"></i>
+        Add Row
+      </a>
+    </li>
+    <li class="action">
+      <a href="javascript:void(0)" class="delete-value">
+        <i class="icon-trash"></i>
+        Delete value
+      </a>
+    </li>
+  </ul>
+
   <div class="list-row row">
     <div class="alpha four columns">
       <div class="field">
-        <label for="">Key</label>
-        <input name="key" class="list-key" type="text">
+        <input name="key" class="list-key" type="text" value="<%= key %>" placeholder="Key">
       </div>
     </div>
     <div class="four columns">
       <div class="field">
-        <label for="">Value</label>
-        <input name="value" class="list-value" type="text">
+        <input name="value" class="list-value" type="text" value="<%= value %>" placeholder="Value">
       </div>
     </div>
     <div class="omega one columns">
       <a href="#" class="remove-row"><i class="icon-trash"></i></a>
     </div>
   </div>
-  <a href="#" class="add-new-row">
-    <i class="icon-plus"></i>
-    Add New Row
-  </a>
+
 </div>
+<%# / List Item %>
+

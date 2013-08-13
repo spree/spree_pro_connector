@@ -581,7 +581,6 @@ a.add-fields {
       font-size: 20px;
       color: $color-body-text;
       position: relative;
-      top: 22px;
 
       &:hover {
         color: $color-error;
@@ -591,22 +590,16 @@ a.add-fields {
 
   fieldset.list-value  {
     legend {
-      text-align: inherit;
-      top: -10px;
-      position: relative;
-      background-color: transparent;
-      padding: 0;
-      width: 100%;
-      border-bottom: 1px solid $color-border;
-      color: $color-body-text;
+      .title {
+        color: $color-body-text;
+      }
+      .action {
+        &, a, i { color: $color-2 }
+      }
     }
 
     .add-new-value {
-      position: absolute;
-      top: -10px;
-      right: 0;
       text-transform: uppercase;
-      color: $color-2;
 
       &:hover {
         color: darken($color-2, 5);
@@ -623,20 +616,21 @@ a.add-fields {
       font-size: 12px;
       text-transform: uppercase;
       color: $color-body-text;
-      border-bottom: 1px dotted $color-border;
-      margin-bottom: 5px;
 
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-    }
-    .list-row {
-
     }
   }
 
   .list-item {
     position: relative;
     margin-bottom: 10px;
+
+    &:hover {
+      ul.actions {
+        display: block;
+      }
+    }
   }
 
   button, .button {
@@ -647,27 +641,44 @@ a.add-fields {
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .add-new-row {
-    text-align: center;
-    text-transform: uppercase;
-    color: $color-2;
-    font-weight: 600;
-    font-size: 11px;
-    display: block;
-    margin-top: 20px;
+  ul.actions {
     position: absolute;
-    top: -15px;
+    top: 3px;
     right: 0;
+    list-style: none;
+    // display: none;
 
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    .action {
+      display: inline-block;
+      margin-right: 5px;
 
-    i {
-      padding-right: 5px
-    }
+      a {
+        text-transform: uppercase;
+        color: $color-2;
+        font-weight: 600;
+        font-size: 11px;
 
-    &:hover {
-      color: darken($color-2, 5);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        &:hover {
+          color: darken($color-2, 5);
+        }
+      }
+
+      &:after {
+        content: ' / ';
+        position: relative;
+        display: inline-block;
+        margin-left: 5px;
+        color: $color-border;
+      }
+
+      &:last-child {
+        &:after {
+          content: ''
+        }
+      }
     }
   }
 }
