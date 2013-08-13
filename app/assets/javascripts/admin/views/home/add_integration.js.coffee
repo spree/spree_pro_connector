@@ -90,6 +90,11 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       $(e.currentTarget).parent().parent().parent().prepend(@listTemplate())
       false
 
+    @$el.on 'click', '.delete-value', (e) =>
+      window.Foo = $(e.currentTarget)
+      $(e.currentTarget).closest('.list-item').remove()
+      false
+
   parametersByConsumer: ->
     @ret = {}
 
