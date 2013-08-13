@@ -23,6 +23,7 @@ Augury.Models.Integration = Backbone.Model.extend(
       parameters: parameters
       enabled: enabled).
       done((mappings, textStatus, jqXHR) =>
+        Augury.Flash.success 'The integration has been successfully updated.'
         Augury.parameters.fetch()
 
         _(mappings).each (mapping) ->
