@@ -71,7 +71,7 @@
               </a>
             </li>-->
             <li class="action">
-              <a href="/admin/integration/refresh/<%= integration.get('id') %>" title='Refresh' class='refresh-integration'>
+              <a href="#" title='Refresh' class='refresh-integration'>
                 <i class="icon-refresh"></i>
               </a>
             </li>

@@ -6,6 +6,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
   events:
     'click .integration-toggle': 'toggleIntegration'
     'click .edit-integration': 'editIntegration'
+    'click .refresh-integration': 'refreshIntegration'
 
   render: ->
     @env = Augury.connections[Augury.env_id]
@@ -80,6 +81,12 @@ Augury.Views.Home.Index = Backbone.View.extend(
         $("#integrations-select").select2 "val", ""
         $("#new-integration-modal").html('')
     )
+
+  refreshIntegration: (e) ->
+    e.preventDefault()
+    Augury.integrations.fetch(reset: true)
+    Augury.mappings.fetch(reset: true)
+    Augury.Flash.success "Refreshed integration."
 
   setActiveIntegrations: ->
     # TODO: Find a better way to do this

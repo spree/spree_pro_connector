@@ -12,12 +12,6 @@ Augury.Routers.Home = Backbone.Router.extend(
     view = new Augury.Views.Home.Index(collection: Augury.integrations)
     $("#integration_main").html view.render().el
 
-  refreshIntegration: (id) ->
-    Augury.integrations.fetch(reset: true)
-    Augury.mappings.fetch(reset: true)
-    Augury.Flash.success "Refreshed integration."
-    Backbone.history.navigate '/', trigger: true
-
   delete: (id, confirm) ->
     integration = Augury.integrations.get id
     if confirm != 'true'
