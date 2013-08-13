@@ -56,19 +56,21 @@
                       <%# Add new value button       %>
                       <%#----------------------------%>
                       <legend>
-                        <span class="title"><%= parameter['name'] %> Fields</span>
-                        <span class="action">
+                        <div class="fieldset-title">
+                          <span class="title"><%= parameter['name'] %> Fields</span>
+                          <span class="action">
 
-                          <%#----------------------------%>
-                          <%# Add new value button       %>
-                          <%#----------------------------%>
-                          <a href="#" class="add-new-value">
-                            ( <i class="icon-plus"></i>
-                            Add New Value )
-                          </a>
-                          <%# / Add new value %>
+                            <%#----------------------------%>
+                            <%# Add new value button       %>
+                            <%#----------------------------%>
+                            <a href="#" class="add-new-value">
+                              ( <i class="icon-plus"></i>
+                              Add New Value )
+                            </a>
+                            <%# / Add new value %>
 
-                        </span>
+                          </span>
+                        </div>
                       </legend>
 
                       <% existingValues = Augury.parameters.valueByName("#{@options.integration.get('name')}.#{parameter['name']}") %>
