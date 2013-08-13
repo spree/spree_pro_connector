@@ -1,13 +1,11 @@
 <div class="list-row row">
   <div class="alpha four columns">
     <div class="field">
-      <label for="">Key</label>
       <input name="key" class="list-key" type="text">
     </div>
   </div>
   <div class="four columns">
     <div class="field">
-      <label for="">Value</label>
       <input name="value" class="list-value" type="text">
     </div>
   </div>
