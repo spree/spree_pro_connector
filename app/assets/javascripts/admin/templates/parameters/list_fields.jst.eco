@@ -27,12 +27,12 @@
   <div class="list-row row">
     <div class="alpha four columns">
       <div class="field">
-        <input name="key" class="list-key" type="text" value="<%= key %>" placeholder="Key">
+        <input name="key" class="list-key" type="text" value="" placeholder="Key">
       </div>
     </div>
     <div class="four columns">
       <div class="field">
-        <input name="value" class="list-value" type="text" value="<%= value %>" placeholder="Value">
+        <input name="value" class="list-value" type="text" value="" placeholder="Value">
       </div>
     </div>
     <div class="omega one columns">
