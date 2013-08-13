@@ -1,29 +1,19 @@
 Augury.Routers.Connections = Backbone.Router.extend(
   routes:
     "connections/new": "new"
-    "connections/select": "select"
     "connections/:id/connect": "connect"
     "connections/disconnect": "disconnect"
 
   new: ->
+    Augury.update_nav('overview')
+
     view = new Augury.Views.Connections.New()
     $("#integration_main").html view.render().el
 
   index: ->
+    Augury.update_nav('connections')
+
     view = new Augury.Views.Connections.Index()
-    $("#integration_main").html view.render().el
-
-  select: ->
-    signup = 
-      auth_token: "123456"
-      user: "spree@example.com"
-      env: "development"
-      stores: [
-        { name: "Foo Store", api_url: "http://localhost:3000" },
-        { name: "Foo Store 2", api_url: "http://localhost:3000" },
-      ]
-
-    view = new Augury.Views.Connections.Select signup: signup
     $("#integration_main").html view.render().el
 
   connect: (id) ->
