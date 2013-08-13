@@ -82,7 +82,10 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       false
 
     @$el.on 'click', '.remove-row', (e) =>
+      listItem = $(e.currentTarget).closest('.list-item')
       $(e.currentTarget).closest('.list-row').remove()
+      if listItem.find('.list-row').length == 0
+        listItem.remove()
       false
 
     @$el.on 'click', '.add-new-value', (e) =>
