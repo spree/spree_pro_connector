@@ -9,19 +9,11 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
 
   events:
     'click button#cancel': 'cancel'
+    'click button#save': 'save'
 
   render: ->
     # Show modal
     @$el.html JST["admin/templates/home/modal"](options: @options)
-
-    # Validation
-    @$el.find('form#new-integration').parsley
-      trigger: "change"
-      listeners:
-        onFormSubmit: (isFormValid, e) =>
-          e.preventDefault()
-          if isFormValid
-            @save()
 
     # Setup modal tabs
     @$el.find("#modal-tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix")
@@ -133,29 +125,53 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
         finalValueJSON = JSON.stringify(finalValue)
         @$el.append("<input class='parameter_value' name='#{paramName}' type='hidden' value='#{finalValueJSON}' />")
 
-  save: ->
-    @buildValues()
+  validateForm: ->
+    inputs = @$el.find('input:enabled')
+    invalidInputs = _(inputs).filter (input) =>
+      $(input).val() == ''
 
-    parameters = {}
-    _(@$el.find('input.param:enabled')).each (param) ->
-      param = $(param)
-      val = param.val()
-      if val?
-        parameters[param.attr('name')] = val
-      else
-        console.log('missing')
+    if invalidInputs.length > 0
+      _(invalidInputs).each (input) =>
+        $(input).addClass('parsley-error')
+        $(input).next('ul.parsley-error-list').remove()
+        $(input).after('<ul class="parsley-error-list"><li class="parsley-error">Field is required</li></ul>')
 
-    if @$el.find('input.parameter_value').length > 0
-      _(@$el.find('input.parameter_value')).each (param) ->
+        @$el.on 'keyup', 'input.parsley-error', (e) ->
+          input = $(e.currentTarget)
+          if input.val() != ''
+            input.next('ul.parsley-error-list').fadeOut()
+          else
+            input.next('ul.parsley-error-list').fadeIn()
+
+      return false
+    else
+      return true
+
+  save: (e) ->
+    e.preventDefault()
+    if @validateForm()
+      @buildValues()
+
+      parameters = {}
+      _(@$el.find('input.param:enabled')).each (param) ->
         param = $(param)
         val = param.val()
         if val?
           parameters[param.attr('name')] = val
         else
-          console.log 'missing'
+          console.log('missing')
 
-    @model.signup parameters, @enabledMappings, error: @displayErrors
-    $.modal.close()
+      if @$el.find('input.parameter_value').length > 0
+        _(@$el.find('input.parameter_value')).each (param) ->
+          param = $(param)
+          val = param.val()
+          if val?
+            parameters[param.attr('name')] = val
+          else
+            console.log 'missing'
+
+      @model.signup parameters, @enabledMappings, error: @displayErrors
+      $.modal.close()
 
   cancel: (event) ->
     event.preventDefault()
