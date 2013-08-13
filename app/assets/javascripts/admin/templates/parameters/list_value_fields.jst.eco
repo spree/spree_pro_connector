@@ -5,12 +5,6 @@
   <h5 class='list-value-title'>List Value</h5>
   <ul class="actions hidden">
     <li class="action">
-      <a href="javascript:void(0)" class="edit-value">
-        <i class="icon-pencil"></i>
-        Edit value
-      </a>
-    </li>
-    <li class="action">
       <a href="javascript:void(0)" class="add-new-row">
         <i class="icon-plus"></i>
         Add Row
