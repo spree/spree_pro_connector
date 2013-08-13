@@ -5,6 +5,7 @@ Augury.Views.Home.Index = Backbone.View.extend(
 
   events:
     'click .integration-toggle': 'toggleIntegration'
+    'click .edit-integration': 'editIntegration'
 
   render: ->
     @env = Augury.connections[Augury.env_id]
@@ -36,8 +37,8 @@ Augury.Views.Home.Index = Backbone.View.extend(
 
     $("#integrations-select").on "select2-selected", (event, object) =>
       selected = $("#integrations-select").select2('data').element
-      integrationID = $(selected).data('integration-id')
-      Backbone.history.navigate "/add/#{integrationID}", trigger: true
+      integrationId = $(selected).data('integration-id')
+      @showIntegrationModal(integrationId)
 
     @$el.find("#connections-select").on "select2-selected", (event, object) =>
       selected = $("#connections-select").select2('data').element
@@ -50,6 +51,35 @@ Augury.Views.Home.Index = Backbone.View.extend(
     @setActiveIntegrations()
 
     this
+
+  editIntegration: (e) ->
+    e.preventDefault()
+    integrationId = $(e.currentTarget).closest('li.integration').data('integration-id')
+    @showIntegrationModal(integrationId)
+
+  showIntegrationModal: (integrationId) ->
+    integration = Augury.integrations.get(integrationId)
+    view = new Augury.Views.Home.AddIntegration(integration: integration)
+    view.render()
+    modalEl = $("#new-integration-modal")
+    modalEl.html(view.el)
+    modalEl.modal(
+      closeHTML: "<i class=\"icon-remove\"></i>"
+      maxHeight: 500
+      minHeight: 400
+      minWidth: 860
+      overflow: 'auto'
+      persist: true
+      onOpen: (dialog) ->
+        dialog.overlay.fadeIn 500
+        dialog.container.fadeIn 500
+        dialog.data.fadeIn 500
+
+      onClose: (dialog) ->
+        $.modal.close()
+        $("#integrations-select").select2 "val", ""
+        $("#new-integration-modal").html('')
+    )
 
   setActiveIntegrations: ->
     # TODO: Find a better way to do this

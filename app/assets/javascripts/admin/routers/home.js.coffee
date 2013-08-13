@@ -12,31 +12,6 @@ Augury.Routers.Home = Backbone.Router.extend(
     view = new Augury.Views.Home.Index(collection: Augury.integrations)
     $("#integration_main").html view.render().el
 
-  addIntegration: (id) ->
-    integration = Augury.integrations.get(id)
-    view = new Augury.Views.Home.AddIntegration(integration: integration)
-    view.render()
-    modalEl = $("#new-integration-modal")
-    modalEl.html(view.el)
-    modalEl.modal(
-      closeHTML: "<i class=\"icon-remove\"></i>"
-      maxHeight: 500
-      minHeight: 400
-      minWidth: 860
-      overflow: 'auto'
-      persist: true
-      onOpen: (dialog) ->
-        dialog.overlay.fadeIn 500
-        dialog.container.fadeIn 500
-        dialog.data.fadeIn 500
-
-      onClose: (dialog) ->
-        $.modal.close()
-        $("#integrations-select").select2 "val", ""
-        $("#new-integration-modal").html('')
-        Backbone.history.navigate '/', trigger: true
-    )
-
   refreshIntegration: (id) ->
     Augury.integrations.fetch(reset: true)
     Augury.mappings.fetch(reset: true)
