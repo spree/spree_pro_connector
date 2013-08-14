@@ -15,31 +15,36 @@ module SpreeProConnector
     end
 
     def messages
-      response = self.class.get("/stores/#{@store_id}/available_messages", default_headers)
-      check_response response
+      load_resource "/stores/#{@store_id}/available_messages"
     end
 
     def integrations
-      response = self.class.get("/stores/#{@store_id}/integrations", default_headers)
-      check_response response
+      load_resource "/stores/#{@store_id}/integrations"
     end
 
     def mappings
-      response = self.class.get("/stores/#{@store_id}/mappings", default_headers)
-      check_response response
+      load_resource "/stores/#{@store_id}/mappings"
     end
 
     def schedulers
-      response = self.class.get("/stores/#{@store_id}/schedulers", default_headers)
-      check_response response
+      load_resource "/stores/#{@store_id}/schedulers"
     end
 
     def parameters
-      response = self.class.get("/stores/#{@store_id}/parameters", default_headers)
-      check_response response
+      load_resource "/stores/#{@store_id}/parameters"
     end
 
+
     private
+
+    def load_resource(resource_url)
+      begin
+        response = self.class.get(resource_url, default_headers)
+        check_response response
+      rescue Errno::ECONNREFUSED
+        raise PreloadError
+      end
+    end
 
     def default_headers
       { :headers => { "X-Augury-Token" => @api_key } }

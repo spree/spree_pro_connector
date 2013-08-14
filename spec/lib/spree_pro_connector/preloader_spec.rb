@@ -9,13 +9,6 @@ describe SpreeProConnector::Preloader do
     end
   end
 
-  it 'gets global integrations' do
-    VCR.use_cassette('spree_pro_connector.preloader.global_integrations') do
-      response = subject.global_integrations
-      response.should match /{\"id\"\:\"store\"\,\"name\"\:\"mandrill\"/
-    end
-  end
-
   it 'gets mappings' do
     VCR.use_cassette('spree_pro_connector.preloader.mappings') do
       response = subject.mappings
