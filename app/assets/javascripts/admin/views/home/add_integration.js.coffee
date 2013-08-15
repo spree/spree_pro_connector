@@ -48,8 +48,11 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
   setActiveMappings: ->
     for consumerName, parameters of @options.parametersByConsumer
       consumer = _(@options.integration.get('consumers')).findWhere(name: consumerName)
-      if Augury.mappings.findWhere(name: "#{@options.integration.get('name')}.#{consumerName}")
-        @$el.find("*[data-consumer-name=#{consumerName}]").trigger('click')
+      if mapping = Augury.mappings.findWhere(name: "#{@options.integration.get('name')}.#{consumerName}")
+        if mapping.get('enabled') == true
+          @$el.find("*[data-consumer-name=#{consumerName}]").trigger('click')
+        else
+          @$el.find("*[data-consumer-name=#{consumerName}]").closest("#tabs-#{consumerName}").addClass('disabled')
       else
         @$el.find("*[data-consumer-name=#{consumerName}]").closest("#tabs-#{consumerName}").addClass('disabled')
 

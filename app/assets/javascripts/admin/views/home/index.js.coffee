@@ -89,7 +89,6 @@ Augury.Views.Home.Index = Backbone.View.extend(
     Augury.Flash.success "Refreshed integration."
 
   setActiveIntegrations: ->
-    # TODO: Find a better way to do this
     @$el.find('.integration-toggle').toggles
       on:    true
       width: 90
