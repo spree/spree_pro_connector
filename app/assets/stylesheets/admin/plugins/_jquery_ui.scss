@@ -1,0 +1,117 @@
+.ui-widget-overlay {  
+  background: none rgba(black, 0.5) !important;
+  opacity: 1;
+}
+
+.ui-dialog {
+  border-radius: 3px;
+  border: none;
+
+  &:active, &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .ui-widget-content, .ui-widget-header, .ui-button {
+    border: none;
+    background-image: none;
+    background-color: transparent;
+    color: $color-body-text;
+    font-family: $base-font-family;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  &.ui-widget {
+    font-family: $base-font-family;
+    font-size: $body-font-size;
+  }
+
+  .ui-dialog-titlebar {
+    &.ui-widget-header {
+      border-width: 0 0 1px 0;
+      border-color: $color-border;
+    }
+  }
+
+  .ui-dialog-title {
+    padding: 12px 20px;
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;    
+    border-bottom: 1px solid $color-border;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .ui-dialog-content {
+    padding: 20px;
+    text-align: center;
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+  .ui-dialog-titlebar .ui-button-text { display: none }
+
+  .ui-button-icon-only {    
+    position: absolute;
+    right: 10px;
+    top: 11px;
+    padding: 0;
+
+    .ui-icon.ui-icon-closethick {
+      @extend .icon-remove;
+
+      color: $color-body-text !important;
+      background-image: none;
+      font-family: 'FontAwesome';
+      font-size: 20px;
+      text-indent: 0;      
+      width: 20px;
+      height: 20px;
+
+      &:hover {
+        color: $color-2 !important;
+      }
+    }
+  }
+}
+
+.ui-dialog-buttonset {
+  text-align: center;
+  margin: 10px 0;
+
+  .ui-button {
+    background-color: $color-3;
+    color: $color-1;
+    margin: 0 10px;
+    padding: 6px 15px;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      background-color: $color-2;
+    }
+  }
+}
+
+.dialog-delete {
+  .ui-dialog-titlebar.ui-widget-header {
+    background-color: very-light($color-error);
+    color: $color-error;
+
+    .ui-dialog-title {
+      border-color: very-light($color-error, 10);
+    }
+  }
+}

@@ -90,14 +90,16 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       e.preventDefault()
       listItem = $(e.currentTarget).closest('.list-item')
       $('#dialog-confirm').dialog
+        dialogClass: 'dialog-delete'
         modal: true
         resizable: false
-        height: 140
+        draggable: false
+        minHeight: 180
         buttons:
-          "Delete": ->
+          "Yes": ->
             listItem.remove()
             $(@).dialog 'close'
-          "Cancel": ->
+          "No": ->
             $(@).dialog 'close'
       false
 
