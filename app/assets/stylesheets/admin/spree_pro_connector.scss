@@ -593,6 +593,8 @@ a.add-fields {
 
   fieldset.list-value  {
     legend {
+      font-weight: 400;
+
       .title {
         color: $color-body-text;
       }
@@ -607,13 +609,6 @@ a.add-fields {
       &:hover {
         color: darken($color-2, 5);
       }
-    }
-
-    label {
-
-    }
-    input {
-
     }
     .list-value-title {
       font-size: 12px;
@@ -713,7 +708,7 @@ a.add-fields {
     max-height: 300px;
 
     &.disabled {
-      .field:not(.state) {
+      .field:not(.state), fieldset.list-value {
         opacity: 0.5;
       }
     }
