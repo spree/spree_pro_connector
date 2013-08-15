@@ -40,6 +40,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     })
 
     @prepareClickHandlers()
+    @validateListValues()
     @setActiveMappings()
 
     @
@@ -110,6 +111,21 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
       @ret[consumer["name"]] = consumer["requires"]["parameters"]
     )
     @ret
+
+  validateListValues: ->
+    @$el.on 'change', '.list-item input', (e) ->
+      e.preventDefault()
+      inputs = $(@).closest('.list-item').find 'input.list-key'
+      input_values = _(inputs).map (input) ->
+        $(input).val()
+      unique_input_values = _.uniq input_values
+      if unique_input_values.length != input_values.length
+        $('button#save')[0].disabled = true
+        $(@).closest('.list-item').find('.key-error').remove()
+        $(@).closest('.list-item').find('.actions').after('<p class="key-error">Names must be unique</p>')
+      else
+        $('button#save')[0].disabled = false
+        $(@).closest('.list-item').find('.key-error').remove()
 
   buildValues: (e) ->
     _($('fieldset.list-value')).each (fieldset) =>
