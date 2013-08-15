@@ -6,7 +6,10 @@
 @import 'admin/globals/functions';
 @import 'admin/globals/mixins';
 @import 'admin/globals/variables';
+
 @import 'plugins/font-awesome';
+
+@import 'plugins/parsley';
 
 .order_events_iframe {
   border: none;
@@ -708,6 +711,12 @@ a.add-fields {
     background-color: transparent;
     overflow: auto;
     max-height: 300px;
+
+    &.disabled {
+      .field:not(.state) {
+        opacity: 0.5;
+      }
+    }
   }
 
   &.ui-tabs-vertical {

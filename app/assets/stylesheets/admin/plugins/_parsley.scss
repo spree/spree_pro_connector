@@ -1,0 +1,13 @@
+.parsley-error-list {
+  border: none !important;
+  padding: 0 !important;
+
+  .parsley-error {
+    font-style: italic;
+    font-size: 11px;
+  }
+}
+
+input.parsley-error {
+  border-color: very-light($color-error, 10);
+}
