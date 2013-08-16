@@ -16,9 +16,13 @@ Augury.Routers.Home = Backbone.Router.extend(
     integration = Augury.integrations.get id
     if confirm != 'true'
       dialog = JST['admin/templates/shared/confirm_delete']
-      $.modal(dialog(klass: 'integration', warning: 'Are you sure you want to delete this integration?', identifier: id))
+      $(dialog(klass: 'integration', warning: 'Are you sure you want to delete this integration?', identifier: id)).dialog
+        modal: true
+        resizable: false
+        draggable: false
+        minHeight: 180
     else
-      $.modal.close()
+      $('#confirm_delete').dialog 'close'
       integration.destroy()
       Augury.mappings.fetch
         reset: true

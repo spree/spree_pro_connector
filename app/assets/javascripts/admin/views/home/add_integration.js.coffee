@@ -197,5 +197,6 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
   cancel: (event) ->
     event.preventDefault()
 
+    $('#new-integration-modal').dialog 'close'
     $.modal.close()
 )

@@ -64,17 +64,12 @@ Augury.Views.Home.Index = Backbone.View.extend(
     view.render()
     modalEl = $("#new-integration-modal")
     modalEl.html(view.el)
-    modalEl.modal(
-      closeHTML: "<i class=\"icon-remove\"></i>"
-      maxHeight: 500
+    modalEl.dialog(
+      modal: true
       minHeight: 400
       minWidth: 860
-      overflow: 'auto'
-      persist: true
-      onOpen: (dialog) ->
-        dialog.overlay.fadeIn 500
-        dialog.container.fadeIn 500
-        dialog.data.fadeIn 500
+      show: 'fade'
+      hide: 'fade'
 
       onClose: (dialog) ->
         $.modal.close()
