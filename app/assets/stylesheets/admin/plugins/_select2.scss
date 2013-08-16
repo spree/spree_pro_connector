@@ -1,0 +1,59 @@
+/**
+  New Integration Select
+*/
+.new-integration-container {
+  width: 217px !important;
+
+  .select2-choice span {
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  b {
+    padding-right: 10px;
+  }
+
+  .select2-choice .select2-search-choice-close {
+    display: none !important;
+  }
+}
+
+.new-integration-dropdown {
+  width: 300px !important;
+  margin-left: -83px;
+  margin-top: -2px;
+  border-top: 1px solid $color-2;
+
+  .select2-results {
+    max-height: 400px;
+  }
+
+  .integration-image, .integration-name {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .integration-image {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+  }
+  .integration-name {
+    text-transform: uppercase;
+  }
+  .select2-result {
+    border-bottom: 1px dotted $color-border;
+
+    &:last-child {
+      border-bottom-width: 0
+    }
+  }
+
+  .select2-highlighted {
+    background-color: $color-1;
+
+    .integration-name {
+      color: $color-2;
+    }
+  }
+}
