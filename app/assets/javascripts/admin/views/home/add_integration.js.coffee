@@ -23,7 +23,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
     @$el.find('input').attr('disabled', true)
 
     # Copy text across duplicate inputs across consumers
-    @$el.find('input.param').bind "keyup paste", ->
+    @$el.find('input').bind "keyup paste", ->
       current = $(@)
       duplicates = $("[name='#{current.attr('name')}']")
       if duplicates.length > 1
