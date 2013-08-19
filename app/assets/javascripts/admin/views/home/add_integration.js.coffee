@@ -192,7 +192,7 @@ Augury.Views.Home.AddIntegration = Backbone.View.extend(
             console.log 'missing'
 
       @model.signup parameters, @enabledMappings, error: @displayErrors
-      $.modal.close()
+      $('#new-integration-modal').dialog 'close'
     else
       @$el.find('.parsley-error:first').focus()
 
