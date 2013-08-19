@@ -1,13 +1,27 @@
-/**
-  New Integration Select
-*/
-.new-integration-container {
-  width: 217px !important;
+.select2-chosen {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+/**
+  Integration Selects
+*/
+.connection-select-container, 
+.new-integration-container {
   .select2-choice span {
     text-transform: uppercase;
     font-weight: 600;
     text-align: left;
+
+    &.select2-chosen {
+      &:before {
+        font-family: 'FontAwesome';
+        padding-right: 5px;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
   }
 
   b {
@@ -19,7 +33,22 @@
   }
 }
 
-.new-integration-dropdown {
+.connection-select-container {
+  .select2-choice span.select2-chosen {
+    @extend .icon-refresh;
+  }  
+}
+
+.new-integration-container {
+  width: 217px !important;
+
+  .select2-choice span.select2-chosen {
+    @extend .icon-plus;
+  }
+}
+
+.new-integration-dropdown, 
+.connection-select-dropdown {
   width: 300px !important;
   margin-left: -83px;
   margin-top: -2px;

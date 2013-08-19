@@ -15,7 +15,7 @@
     formatResult: function(item){
       return '<div class="integration-name">' + item.text.toLowerCase() + '</div>'
     },
-    containerCssClass: 'new-integration-container',
-    dropdownCssClass: 'new-integration-dropdown'
+    containerCssClass: 'connection-select-container',
+    dropdownCssClass: 'connection-select-dropdown'
   });
 </script>
