@@ -65,14 +65,20 @@ Augury.Views.Home.Index = Backbone.View.extend(
     modalEl = $("#new-integration-modal")
     modalEl.html(view.el)
     modalEl.dialog(
+      dialogClass: 'new-integration-modal dialog-integration'
+      draggable: false
+      resizable: false
       modal: true
       minHeight: 400
-      minWidth: 860
+      minWidth: 865
       show: 'fade'
       hide: 'fade'
 
-      onClose: (dialog) ->
-        $.modal.close()
+      open: () -> 
+        $('body').css('overflow', 'hidden')
+
+      close: () ->
+        $('body').css('overflow', 'auto')
         $("#integrations-select").select2 "val", ""
         $("#new-integration-modal").html('')
     )
