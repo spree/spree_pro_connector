@@ -37,7 +37,11 @@
 <%#  Active Integrations                  %>
 <%#---------------------------------------%>
 <fieldset class="no-border-bottom" id="active-integrations">
-  <legend>Active Integrations</legend>
+  <% if @collection.models.length > 0: %>
+    <legend>Active Integrations</legend>
+  <% else: %>
+    <legend>There are currently no Active Integrations</legend>
+  <% end %>
 
   <div class="row">
 
