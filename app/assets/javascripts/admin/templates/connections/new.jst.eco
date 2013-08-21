@@ -143,6 +143,31 @@
 
   <div class="row">
     <%#-----------------------------------------%>
+    <%# User Details Full Width                 %>
+    <%#-----------------------------------------%>
+    <div class="fourteen columns offset-by-two">
+      <fieldset data-step="user-details-wide" class="no-border-bottom hidden">
+        <legend>User Details</legend>
+
+        <%#-----------------------------------------%>
+        <%# User Email                              %>
+        <%#-----------------------------------------%>
+        <div class="field">
+          <label for="user-email">Email</label>
+          <input type="email" id="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>" class="required hidden">
+        </div>
+
+        <%#-----------------------------------------%>
+        <%# User Password                           %>
+        <%#-----------------------------------------%>
+        <div class="field">
+          <label for="user-password">Password</label>
+          <input type="password" id="password" name="user[password]" id="user-password" class="required hidden">
+        </div>
+
+      </fieldset>
+    </div>
+    <%#-----------------------------------------%>
     <%# User Details                            %>
     <%#-----------------------------------------%>
     <div class="alpha seven columns offset-by-one">
@@ -154,7 +179,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="user-email">Email</label>
-          <input type="email" id="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>" class="required">
+          <input type="email" id="email" name="user[email]" placeholder="spree@example.com" id="user-email" value="<%= Augury.SignUp.user %>" class="required hidden">
         </div>
 
         <%#-----------------------------------------%>
@@ -162,7 +187,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="user-password">Password</label>
-          <input type="password" id="password" name="user[password]" id="user-password" class="required">
+          <input type="password" id="password" name="user[password]" id="user-password" class="required hidden">
         </div>
 
       </fieldset>
@@ -181,7 +206,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="store-name">Store Name</label>
-          <input type="text" id="name" name="store[name]" placeholder="Spree Demo Site" id="store-name" value="<%= Augury.SignUp.name %>" class="required">
+          <input type="text" id="name" name="store[name]" placeholder="Spree Demo Site" id="store-name" value="<%= Augury.SignUp.name %>" class="required hidden">
         </div>
 
         <%#-----------------------------------------%>
@@ -189,7 +214,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="store-api-url">Store API URL</label>
-          <input type="text" id="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>" class="required">
+          <input type="text" id="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>" class="required hidden">
         </div>
 
 

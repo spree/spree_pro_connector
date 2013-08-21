@@ -11,6 +11,7 @@ Augury.Views.Connections.New = Backbone.View.extend
     @step1_5 = @form.find("[data-step=\"integrator-url\"]")
     @step2 = @form.find("[data-step=\"user\"]")
     @step3 = @form.find("[data-step=\"store-details\"], [data-step=\"user-details\"]")
+    @step3_5 = @form.find("[data-step=\"user-details-wide\"]")
     @step4 = @form.find("[data-step=\"actions\"]")
     @submit = @form.find("button[type=\"submit\"]")
     @cancel = @form.find("button.cancel")
@@ -26,6 +27,7 @@ Augury.Views.Connections.New = Backbone.View.extend
 
   enableValidation: ->
     @$el.find('form#new-connection-wizard').parsley
+      excluded: 'input.hidden'
       listeners:
         onFormSubmit: (isFormValid, e) =>
           e.preventDefault()
@@ -38,11 +40,38 @@ Augury.Views.Connections.New = Backbone.View.extend
     @step4.find("[data-user]").hide()
     user_check = @step2.find("input[type=\"radio\"]")
     user_check.on "change", (e) =>
-      @step3.fadeIn()
-      @step4.find("[data-user]").fadeOut()
-      @step4.find("[data-user=\"" + $(e.currentTarget).val() + "\"]").fadeIn()
-      @step4.find('button').removeAttr("disabled").removeClass "disabled"
-    @enableValidation()
+      @$el.find('form#new-connection-wizard').parsley 'destroy'
+      selectedValue = $(e.currentTarget).val()
+      if selectedValue == 'registered'
+        if @step3.is(':visible')
+          @step3.fadeOut =>
+            @show_registered_fields()
+        else
+          @show_registered_fields()
+      else
+        if @step3_5.is(':visible')
+          @step3_5.fadeOut =>
+            @show_new_user_fields()
+        else
+          @show_new_user_fields()
+
+  show_registered_fields: ->
+    @step3_5.fadeIn =>
+      @enableValidation()
+    @step3_5.find('input').removeClass 'hidden'
+    @step3.find('input').addClass 'hidden'
+    @step4.find("[data-user]").fadeOut()
+    @step4.find("[data-user=registered]").fadeIn()
+    @step4.find('button').removeAttr("disabled").removeClass "disabled"
+
+  show_new_user_fields: ->
+    @step3.fadeIn =>
+      @enableValidation()
+    @step3.find('input').removeClass 'hidden'
+    @step3_5.find('input').addClass 'hidden'
+    @step4.find("[data-user]").fadeOut()
+    @step4.find("[data-user=new]").fadeIn()
+    @step4.find('button').removeAttr("disabled").removeClass "disabled"
 
   toggle_env: ->
     @envCheck.on 'change', (e) =>
