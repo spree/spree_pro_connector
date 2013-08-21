@@ -43,11 +43,11 @@ Augury.Views.Connections.New = Backbone.View.extend
             .then('://')
             .maybe('www.')
             .anythingBut(' ')
-            .then('/api')
+            .then('/api/')
             .endOfLine()
           regex.test val.trim()
       messages:
-        apiurl: 'This value should be a valid API url.'
+        apiurl: "Must use format 'http(s)://www.example.com/api/'"
 
 
   toggle_new_or_existing: ->
