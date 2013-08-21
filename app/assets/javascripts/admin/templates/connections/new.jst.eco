@@ -84,7 +84,7 @@
           <br>
           <label for="">Invite Code:</label>
           <div id="invite-code">
-            <input id="invite_code" type="text" placeholder="Enter invite code" class="required" />
+            <input id="invite_code" type="text" placeholder="Enter invite code" />
           </div>
         </div>
         <%# / Invite Code %>
