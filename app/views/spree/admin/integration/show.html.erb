@@ -14,7 +14,7 @@
   Augury.SignUp.urls['staging'] = "http://aug-stg2.spree.fm";
   Augury.SignUp.name = '<%= Spree::Config[:site_name] %>';
   Augury.SignUp.url = '<%= "http://#{request.host_with_port}/api" %>';
-  Augury.SignUp.version = '<%= Spree.version %>';
+  Augury.SignUp.version = '<%= Spree.version.split('.')[0..1].join('.') rescue '' %>';
   Augury.SignUp.api_key = '<%= @integrator_user.spree_api_key %>';
   Augury.SignUp.user = '<%= spree_current_user.email %>';
 
