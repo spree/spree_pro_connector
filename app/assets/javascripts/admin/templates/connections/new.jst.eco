@@ -214,7 +214,7 @@
         <%#-----------------------------------------%>
         <div class="field">
           <label for="store-api-url">Store API URL</label>
-          <input type="text" id="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>" class="required hidden">
+          <input type="text" id="url" name="store[api-url]" id="store-api-url" value="<%= Augury.SignUp.url %>" class="required hidden" data-apiurl="true">
         </div>
 
 

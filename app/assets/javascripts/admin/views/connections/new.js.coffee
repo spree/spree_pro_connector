@@ -34,6 +34,20 @@ Augury.Views.Connections.New = Backbone.View.extend
           connectOrLogin = $.trim($('button[type=submit]:visible').first().text().toLowerCase())
           if isFormValid
             @[connectOrLogin].apply @
+      validators:
+        apiurl: (val, bool) ->
+          regex = VerEx()
+            .startOfLine()
+            .then('http')
+            .maybe('s')
+            .then('://')
+            .maybe('www.')
+            .anythingBut(' ')
+            .then('/api')
+            .endOfLine()
+          regex.test val
+      messages:
+        apiurl: 'This value should be a valid API url.'
 
 
   toggle_new_or_existing: ->
@@ -116,8 +130,8 @@ Augury.Views.Connections.New = Backbone.View.extend
           version: @$el.find('input#version').val()
           api_key: @$el.find('input#api_key').val()
         user:
-          email: @$el.find('input#email').val()
-          password: @$el.find('input#password').val()
+          email: @$el.find('input#email:visible').val()
+          password: @$el.find('input#password:visible').val()
 
       success: (signup, response, opts)=>
         if signup.stores.length == 1
@@ -142,8 +156,8 @@ Augury.Views.Connections.New = Backbone.View.extend
           url: @$el.find('input#url').val()
           version: @$el.find('input#version').val()
           api_key: @$el.find('input#api_key').val()
-          email: @$el.find('input#email').val()
-          password: @$el.find('input#password').val()
+          email: @$el.find('input#email:visible').val()
+          password: @$el.find('input#password:visible').val()
           invite_code: @$el.find('input#invite_code').val()
 
       success: (login, response, opts)=>
