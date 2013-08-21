@@ -45,7 +45,7 @@ Augury.Views.Connections.New = Backbone.View.extend
             .anythingBut(' ')
             .then('/api')
             .endOfLine()
-          regex.test val
+          regex.test val.trim()
       messages:
         apiurl: 'This value should be a valid API url.'
 
