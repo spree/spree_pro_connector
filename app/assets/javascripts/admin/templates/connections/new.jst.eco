@@ -70,11 +70,24 @@
           <label for="">Integrator URL:</label>
           <div id="integration-url">
             <input data-env='custom' class="url" type="text" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden required" />
-            <span data-env='staging' class='hidden'>http://aug-stg1.spree.mx</span>
-            <span data-env='production' class='hidden'>http://aug-stg1.spree.mx</span>
+            <span data-env='staging' class='hidden'><%= Augury.SignUp.urls['staging'] %></span>
+            <span data-env='production' class='hidden'><%= Augury.SignUp.urls['production'] %></span>
           </div>
         </div>
         <%# / Integrator URL %>
+
+
+        <%#-----------------------------------------%>
+        <%# Invite Code                             %>
+        <%#-----------------------------------------%>
+        <div class="field hidden" data-step='invite-code'>
+          <br>
+          <label for="">Invite Code:</label>
+          <div id="invite-code">
+            <input id="invite_code" type="text" placeholder="Enter invite code" class="required" />
+          </div>
+        </div>
+        <%# / Invite Code %>
 
       </fieldset>
     </div>

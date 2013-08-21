@@ -10,8 +10,8 @@
 
 <%= javascript_tag do -%>
   Augury.SignUp.urls = {};
-  Augury.SignUp.urls['production'] = "http://aug-stg1.spree.mx";
-  Augury.SignUp.urls['staging'] = "http://aug-stg1.spree.mx";
+  Augury.SignUp.urls['production'] = "http://aug-app2.spree.fm";
+  Augury.SignUp.urls['staging'] = "http://aug-stg2.spree.fm";
   Augury.SignUp.name = '<%= Spree::Config[:site_name] %>';
   Augury.SignUp.url = '<%= "http://#{request.host_with_port}/api" %>';
   Augury.SignUp.version = '<%= Spree.version %>';

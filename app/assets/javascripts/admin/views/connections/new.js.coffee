@@ -47,11 +47,16 @@ Augury.Views.Connections.New = Backbone.View.extend
   toggle_env: ->
     @envCheck.on 'change', (e) =>
       @disable_env()
-
+      env = $(e.currentTarget).val()
       @step1_5.fadeIn()
       @step1_5.find("[data-env]").fadeOut()
-      @step1_5.find("[data-env=\"" + $(e.currentTarget).val() + "\"]").fadeIn()
+      @step1_5.find("[data-env=\"" + env + "\"]").fadeIn()
       @cancel.removeClass("disabled").removeAttr "disabled"
+      if env=='production'
+        @form.find("[data-step='invite-code']").fadeIn()
+      else
+        @form.find("[data-step='invite-code']").fadeOut()
+
       @step2.fadeIn()
 
   cancel: (e) ->
@@ -63,7 +68,7 @@ Augury.Views.Connections.New = Backbone.View.extend
     @step1.find('input[type="radio"]:checked').parent().removeClass('disabled')
 
   set_url: ->
-    env = @envCheck.val()
+    env = @form.find("fieldset[data-step=\"environment\"]").find("input[type=\"radio\"]:checked").val()
     if env == 'custom'
       Augury.url = @$el.find('input.url').val()
     else
