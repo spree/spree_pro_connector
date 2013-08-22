@@ -62,32 +62,38 @@
           <%# / Production ENV %>
 
         </div>
-
-        <%#-----------------------------------------%>
-        <%# Integrator URL                          %>
-        <%#-----------------------------------------%>
-        <div class="field hidden" data-step='integrator-url'>
-          <label for="">Integrator URL:</label>
-          <div id="integration-url">
-            <input data-env='custom' class="url" type="text" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden required" />
-            <span data-env='staging' class='hidden'><%= Augury.SignUp.urls['staging'] %></span>
-            <span data-env='production' class='hidden'><%= Augury.SignUp.urls['production'] %></span>
+        
+        <div class="row">
+          <div class="twelve columns offset-by-two">
+            <div class="alpha four columns">
+              <%#-----------------------------------------%>
+              <%# Integrator URL                          %>
+              <%#-----------------------------------------%>
+              <div class="field hidden" data-step='integrator-url'>
+                <label for="">Integrator URL:</label>
+                <div id="integration-url">
+                  <input data-env='custom' class="url" type="text" placeholder="Enter custom URL" value="http://localhost:4000" class="hidden required" />
+                  <span data-env='staging' class='hidden'><%= Augury.SignUp.urls['staging'] %></span>
+                  <span data-env='production' class='hidden'><%= Augury.SignUp.urls['production'] %></span>
+                </div>
+              </div>
+              <%# / Integrator URL %>
+            </div>
+            
+            <div class="omega four columns">
+              <%#-----------------------------------------%>
+              <%# Invite Code                             %>
+              <%#-----------------------------------------%>
+              <div class="field hidden" data-step='invite-code'>                
+                <label for="">Invite Code:</label>
+                <div id="invite-code">
+                  <input id="invite_code" type="text" placeholder="Enter invite code" />
+                </div>
+              </div>
+              <%# / Invite Code %>    
+            </div>
           </div>
         </div>
-        <%# / Integrator URL %>
-
-
-        <%#-----------------------------------------%>
-        <%# Invite Code                             %>
-        <%#-----------------------------------------%>
-        <div class="field hidden" data-step='invite-code'>
-          <br>
-          <label for="">Invite Code:</label>
-          <div id="invite-code">
-            <input id="invite_code" type="text" placeholder="Enter invite code" />
-          </div>
-        </div>
-        <%# / Invite Code %>
 
       </fieldset>
     </div>

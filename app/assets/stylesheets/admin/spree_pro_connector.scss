@@ -637,6 +637,12 @@ a.add-fields {
     left: 25%;
   }
 
+  #integration-url [data-env="production"] {
+    position: relative;
+    left: inherit;
+    width: inherit;
+  }
+
   .field {
     text-align: center;
 
