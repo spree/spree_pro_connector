@@ -637,6 +637,13 @@ a.add-fields {
     left: 25%;
   }
 
+  [data-step="environment"] {
+    .row {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+
   #integration-url [data-env="production"] {
     position: relative;
     left: inherit;
