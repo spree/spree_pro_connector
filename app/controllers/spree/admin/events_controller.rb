@@ -11,7 +11,7 @@ module Spree
           when 'staging'
                   "http://aug-stg1.spree.mx"
           when 'production'
-                  "http://aug-app1.spree.mx"
+                  "https://aug-app1.spree.mx"
           end
 
       end
