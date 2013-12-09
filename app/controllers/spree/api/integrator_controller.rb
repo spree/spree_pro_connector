@@ -1,6 +1,9 @@
 module Spree
   module Api
     class IntegratorController < Spree::Api::BaseController
+
+      before_filter :authorize_read! 
+
       helper_method :variant_attributes,
                     :order_attributes,
                     :stock_transfer_attributes
@@ -14,6 +17,16 @@ module Spree
       end
 
       private
+
+      
+      def authorize_read!
+         user = try_spree_current_user || current_api_user
+ 
+         unless user && user.has_spree_role?("admin")
+           raise CanCan::AccessDenied
+         end
+      end
+
       def orders(since)
         Spree::Order.complete
                     .ransack(:updated_at_gteq => since).result
